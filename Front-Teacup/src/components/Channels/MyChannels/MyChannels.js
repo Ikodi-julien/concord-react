@@ -17,3 +17,5 @@ const MyChannels = (props) => {
     </section>
   )
 }
+
+export default MyChannels;

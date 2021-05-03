@@ -1,15 +1,19 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import MyChannels from './MyChannels/MyChannels';
+import UsersInChannelList from './UsersInChannelList/UsersInChannelList';
 
-import './mychannels.scss';
+import './channels.scss';
 
 const Channels = () => {
   
   return (
     <section className='channels'>
       <Navbar />
-      <MyChannels />      
+      <div class="channels__row">
+        <MyChannels />
+        <UsersInChannelList />
+      </div>
     </section>
   )
 }
