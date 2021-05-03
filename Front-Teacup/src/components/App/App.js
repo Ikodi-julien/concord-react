@@ -18,6 +18,7 @@ const App = ({text}) => {
 
       <Route to='/login'>
         {/* Login */}
+        
       </Route>
       <Route to='/signup'>
         {/* Signup */}
@@ -39,6 +40,7 @@ const App = ({text}) => {
       </Route>
       <Route to='/'>
         {/* Accueil */}
+        
       </Route>
       
     </Switch>
