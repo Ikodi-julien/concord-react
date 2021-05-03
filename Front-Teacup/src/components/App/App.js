@@ -15,9 +15,7 @@ const App = ({text}) => {
   return (
   <div className="app">
     <Switch>
-      <Route to='/'>
-        {/* Accueil */}
-      </Route>
+
       <Route to='/login'>
         {/* Login */}
       </Route>
@@ -27,6 +25,22 @@ const App = ({text}) => {
       <Route to='/home'>
         {/* Home */}
       </Route>
+      <Route to='/channels'>
+        {/* Channels */}
+      </Route>
+      <Route to='/profile'>
+        {/* Profile */}
+      </Route>
+      <Route to='/discovery'>
+        {/* Discovery */}
+      </Route>
+      <Route to='/error'>
+        {/* Error */}
+      </Route>
+      <Route to='/'>
+        {/* Accueil */}
+      </Route>
+      
     </Switch>
   </div>)
  
