@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 // == Import
-import Channels from '../Channels/Channels';
+import Channels from '../Channel/Channel';
 
 import './app.scss';
 
