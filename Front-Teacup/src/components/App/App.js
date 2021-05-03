@@ -1,7 +1,9 @@
 // == Import npm
 import React from 'react';
-import Navbar from 'src/components/Navbar/Navbar';
-
+import {
+  Switch,
+  Route
+} from "react-router-dom";
 // == Import
 
 import './app.scss';
@@ -12,9 +14,20 @@ const App = ({text}) => {
 
   return (
   <div className="app">
-    
-    <Navbar />
-
+    <Switch>
+      <Route to='/'>
+        {/* Accueil */}
+      </Route>
+      <Route to='/login'>
+        {/* Login */}
+      </Route>
+      <Route to='/signup'>
+        {/* Signup */}
+      </Route>
+      <Route to='/home'>
+        {/* Home */}
+      </Route>
+    </Switch>
   </div>)
  
  
