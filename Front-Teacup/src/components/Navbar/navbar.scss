@@ -1,0 +1,23 @@
+@use 'src/styles/vars'as v;
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: v.$nav-height;
+  border: 1px dashed green;
+
+  &__search {
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__hamburger {
+    padding: (v.$nav-height - 29px)/2;
+    font-size: 2em;
+  }
+}

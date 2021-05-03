@@ -1,12 +1,12 @@
 // == Import : npm
+import 'semantic-ui-css/semantic.min.css'
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from 'src/store/store';
 
-
-
 // == Import : local
+import './styles/index.scss';
 // Composants
 import AppContainer from 'src/containers/AppContainers';
 

@@ -1,6 +1,6 @@
 // == Import npm
 import React from 'react';
-
+import Navbar from 'src/components/Navbar/Navbar';
 
 // == Import
 
@@ -13,7 +13,7 @@ const App = ({text}) => {
   return (
   <div className="app">
     
-    {text}
+    <Navbar />
 
   </div>)
  
