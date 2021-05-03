@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 // == Import
+import Channels from '../Channels/Channels';
 
 import './app.scss';
 
@@ -16,31 +17,32 @@ const App = ({text}) => {
   <div className="app">
     <Switch>
 
-      <Route to='/login'>
+      <Route path='/login'>
         {/* Login */}
         
       </Route>
-      <Route to='/signup'>
+      <Route path='/signup'>
         {/* Signup */}
       </Route>
-      <Route to='/home'>
+      <Route path='/home'>
         {/* Home */}
       </Route>
-      <Route to='/channels'>
+      <Route path='/channels'>
         {/* Channels */}
+        <Channels />
       </Route>
-      <Route to='/profile'>
+      <Route path='/profile'>
         {/* Profile */}
       </Route>
-      <Route to='/discovery'>
+      <Route path='/discovery'>
         {/* Discovery */}
       </Route>
-      <Route to='/error'>
+      <Route path='/error'>
         {/* Error */}
       </Route>
-      <Route to='/'>
+      <Route path='/'>
         {/* Accueil */}
-        
+
       </Route>
       
     </Switch>
