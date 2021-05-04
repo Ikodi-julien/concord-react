@@ -1,14 +1,9 @@
 import React from 'react';
 // import {Link} from 'react-router-dom';
 
-const UsersInChannelList = (props) => {
+const UsersInChannelList = ({users}) => {
   
-  const users = [
-    {id: 1, name:"Bernard", avatar: "(_;_)"},
-    {id: 2, name:"Bianca", avatar: ";o)"},
-    {id: 3, name:"Belle", avatar: ":-/"},
-    {id: 4, name:"Sébastien", avatar: "o.0"},
-  ];
+  // ici il y avait la liste des users connectés au chat.
   
   return (
     <section className="usersinchannellist">

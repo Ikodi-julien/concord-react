@@ -7,21 +7,21 @@ import ChannelForm from './ChannelForm/ChannelForm';
 
 import './channels.scss';
 
-const Channels = () => {
+const Channel = ({channel, setInputValue}) => {
   
   return (
     <section className='channels'>
       <Navbar />
       <div className="channels__row">
-        <MyChannels />
+        <MyChannels myChannelLinks={channel.myChannelLinks}/>
         <div className="channel__container">
-          <ChannelMessages />
-          <ChannelForm />
+          <ChannelMessages title={channel.title} messages={channel.messages}/>
+          <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm}/>
         </div>
-        <UsersInChannelList />
+        <UsersInChannelList users={channel.users} />
       </div>
     </section>
   )
 }
 
-export default Channels;
+export default Channel;

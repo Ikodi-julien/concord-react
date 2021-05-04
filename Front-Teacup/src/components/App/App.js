@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 // == Import
-import Channels from '../Channel/Channel';
+import ChannelContainer from '../../containers/ChannelContainer';
 
 import './app.scss';
 
@@ -29,7 +29,7 @@ const App = ({text}) => {
       </Route>
       <Route path='/channels'>
         {/* Channels */}
-        <Channels />
+        <ChannelContainer />
       </Route>
       <Route path='/profile'>
         {/* Profile */}
