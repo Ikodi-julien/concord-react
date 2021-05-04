@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import Channel from 'src/components/Channel/Channel';
-import {setInputValue} from 'src/actions/channelActions';
+import {
+  setInputValue,
+  fetchChannel
+} from 'src/actions/channelActions';
 
   
 const mapStateToProps = ({channel}) => ({
@@ -12,6 +15,10 @@ const mapStateToProps = ({channel}) => ({
 const mapDispatchToProps = (dispatch) => ({
   setInputValue: (inputObject) => {
     dispatch(setInputValue(inputObject))
+  },
+  fetchChannel: (channelId) => {
+    console.log('channelContainer');
+    dispatch(fetchChannel(channelId));
   }
 });
 
