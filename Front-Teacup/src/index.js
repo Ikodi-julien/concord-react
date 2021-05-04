@@ -1,6 +1,9 @@
 // == Import : npm
 import 'semantic-ui-css/semantic.min.css'
 import React from 'react';
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from 'src/store/store';
@@ -15,9 +18,9 @@ import AppContainer from 'src/containers/AppContainers';
 //    => crée une structure d'objets imbriqués (DOM virtuel)
 const rootReactElement = (
     <Provider store={store}>
-
-        <AppContainer />
-      
+      <Router >
+          <AppContainer />
+      </Router>
     </Provider>
   );
 // 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
