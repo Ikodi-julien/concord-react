@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
-import Navbar from '../Navbar/Navbar';
 import MyChannels from './MyChannels/MyChannels';
 import UsersInChannelList from './UsersInChannelList/UsersInChannelList';
 import ChannelMessages from './ChannelMessages/ChannelMessages';
 import ChannelForm from './ChannelForm/ChannelForm';
+import Navbar from 'src/components/Navbar/Navbar';
+import Footer from 'src/components/Footer/Footer';
 import BigLoader from 'src/components/BigLoader/BigLoader';
 import Error from 'src/components/Error/Error';
 
@@ -27,6 +28,7 @@ const Channel = ({
       <div className="channels__row">
         <BigLoader />
       </div>
+      <Footer />
     </section>
     )
   };
@@ -38,6 +40,7 @@ const Channel = ({
       <div className="channels__row">
         <Error />
       </div>
+      <Footer />
     </section>
     )
   };
@@ -53,6 +56,7 @@ const Channel = ({
         </div>
         <UsersInChannelList users={channel.users} />
       </div>
+      <Footer />
     </section>
   )
 }
