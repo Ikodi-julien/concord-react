@@ -3,11 +3,20 @@ import {Search, Select} from 'semantic-ui-react';
 
 import './navbar.scss';
 
+const options = [
+  { key: 'af', value: 'Films d\'horreur', text: 'Films d\'horreur' },
+  { key: 'ax', value: 'Cuisine', text: 'Cuisine' },
+  { key: 'al', value: 'Mangas', text: 'Mangas' },
+  { key: 'dz', value: 'Jeux video', text: 'Jeux video' },
+  { key: 'as', value: 'Sports d\'hiver', text: 'Sports d\'hiver' },
+];
+
+
 const Navbar = (props) => {
   
   return (
     <section className='nav' >
-      <div class='nav__logo'>
+      <div className='nav__logo'>
         ici le logo
       </div>
       
@@ -18,7 +27,7 @@ const Navbar = (props) => {
       {/* La searchbar qui contient un champ de recherche sur channels et tags + un select pour les tags */}
       <div className='nav__search__container'>
         <Search />
-        <Select />
+        <Select placeholder="Catégories" options={options} />
       </div>
       
       {/* - Déjà la loupe qui fait apparaitre la searchbar au click */}
@@ -27,7 +36,7 @@ const Navbar = (props) => {
       </button>
       
       <div className='nav__hamburger' >
-      <i class="fas fa-bars"></i>
+      <i className="fas fa-bars"></i>
       </div>
     </section>
   )

@@ -1,0 +1,64 @@
+@use 'src/styles/vars'as v;
+
+.channels {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__row {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.mychannels,
+.usersinchannellist {
+  width: 20vw;
+  height: 100%;
+  padding: 20px;
+  min-width: 250px;
+  border: 1px dashed blue;
+  display: flex;
+  flex-direction: column;
+}
+
+.channel {
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    .channelForm {
+      border: 1px dashed red;
+      padding: 20px;
+      margin-bottom: 50px;
+
+      .field {
+        width: 80%;
+      }
+
+      .ui.button {
+        margin: 0 0 1em 1em;
+      }
+
+      &__row {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .channelmessages {
+      width: 60vw;
+      flex: 1;
+      padding: 20px;
+      border: 1px dashed pink;
+
+      &__message {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+    }
+  }
+}
