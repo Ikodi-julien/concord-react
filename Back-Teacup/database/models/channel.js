@@ -11,6 +11,19 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            this.belongsToMany(models.User, {
+                foreignKey: 'channel_id',
+                otherKey: 'user_id',
+                as: 'users',
+                through: 'user_has_channel'
+            });
+
+            this.belongsToMany(models.Label, {
+                foreignKey: 'channel_id',
+                otherKey: 'label_id',
+                as: 'labels',
+                through: 'label_has_channel'
+            });
         }
     };
     Channel.init({

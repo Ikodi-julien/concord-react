@@ -9,20 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nickname: {
-        type: {
-          type: DataTypes.TEXT,
-          allowNull: false
-        }
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       email: {
-        type: {
-          type: DataTypes.TEXT,
-          unique: true,
-          allowNull: false
-        }
+        type: Sequelize.TEXT,
+        unique: true,
+        allowNull: false
       },
       password: {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       created_at: {
