@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id',
         otherKey: 'label_id',
         as: 'labels',
-        through: 'user_has_channel'
+        through: 'user_has_label'
       });
     }
   };
