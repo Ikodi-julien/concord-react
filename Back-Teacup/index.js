@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config();
 
 const apiRouter = require('./app/router');
+const { User } = require('./app/models');
 
 // test connection db
 const db = require('./app/database');
