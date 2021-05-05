@@ -20,14 +20,41 @@ app.use(express.json());
 
 app.use('/v1', apiRouter);
 
+
+/*
+auth => 
+à recevoir
+{
+    user : {
+        id : number,
+        nickname : string
+    }
+    channel : {
+        id : number
+    }
+}
+
+message => 
+à recevoir et renvoyer
+{
+    user : {
+        id : number,
+        nickname : string
+    }
+    channel : {
+        id : number
+    }
+    content : string
+}
+*/
+
 io.on('connection', socket => {
-    socket.on('auth', ({ channelId, userId }) => {
-        socket.join(`channel-${channelId}`);
-        io.to(`channel-${channelId}`).emit('message', `User ${userId} entered`);
+    socket.on('auth', ({ channel }) => {
+        socket.join(`channel-${channel.id}`);
     })
 
-    socket.on('message', ({ channelId, message }) => {
-        io.to(`channel-${channelId}`).emit('message', message);
+    socket.on('message', message => {
+        io.to(`channel-${message.channel.id}`).emit('message', message);
     })
 })
 
