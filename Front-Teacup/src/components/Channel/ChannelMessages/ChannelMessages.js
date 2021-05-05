@@ -3,17 +3,13 @@ import React from 'react';
 
 const ChannelMessages = ({messages, title}) => {
   
-
-  
-
-  
   return (
     <section className="channelmessages">
       <h1 className="channelmessages__title">{title}</h1>
       {
         messages.map(message => (
           <div key={message.id} className="channelmessages__message">
-            <span>{`${message.userName}`}</span> : <span>{`${message.content}`}</span>
+            <span>{`${message.nickname}`}</span> : <span>{`${message.content}`}</span>
           </div>))
       }
     </section>

@@ -3,18 +3,18 @@ import Channel from 'src/components/Channel/Channel';
 import {
   setInputValue,
   fetchChannel,
-  channelFormSubmit
+  channelFormSubmit,
 } from 'src/actions/channelActions';
 
-const mapStateToProps = ({channel}) => ({
+const mapStateToProps = ({ channel, user }) => ({
 
-    channel,
-  
+  channel,
+  user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setInputValue: (inputObject) => {
-    dispatch(setInputValue(inputObject))
+    dispatch(setInputValue(inputObject));
   },
   fetchChannel: (channelId) => {
     dispatch(fetchChannel(channelId));
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
   channelFormSubmit: () => {
     console.log('channelContainer formSubmit');
     dispatch(channelFormSubmit());
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Channel);

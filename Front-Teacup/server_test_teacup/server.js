@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const Server = require('http').Server;
 const socket = require('socket.io');
 
-
 /*
  * Vars
  */
@@ -32,33 +31,38 @@ const db = {
       password: 'pingpong',
       username: 'Karin',
       color: '#f0f',
-    }
+    },
   },
   channels: [
     {
       id: 5246,
       channelTitle: 'Le channel de test',
       messages: [
-        {id: 1, userName:"Bernard", content: "Tu la connais celle des deux poissons rouge dans un bocal ?"},
-        {id: 2, userName:"Bianca", content: "Non, raconte !"},
-        {id: 3, userName:"Belle", content: "Moi je la connais"},
-        {id: 4, userName:"Sébastien", content: "Ouais, ben ils sont en train de tourner et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\""},
+        { id: 1, nickname: 'Bernard', content: 'Tu la connais celle des deux poissons rouge dans un bocal ?' },
+        { id: 2, nickname: 'Bianca', content: 'Non, raconte !' },
+        { id: 3, nickname: 'Belle', content: 'Moi je la connais' },
+        { id: 4, nickname: 'Sébastien', content: "Ouais, ben ils sont en train de tourner et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\"" },
       ],
       users: [
-        {id: 1, name:"Bernard", avatar: "(_;_)", isConnected: true},
-        {id: 2, name:"Bianca", avatar: ";o)", isConnected: true},
-        {id: 3, name:"Belle", avatar: ":-/", isConnected: false},
-        {id: 4, name:"Sébastien", avatar: "o.0", isConnected: false},
+        {
+          id: 2, nickname: 'Bianca', avatar: ';o)', isConnected: true,
+        },
+        {
+          id: 1, nickname: 'Bernard', avatar: '(_;_)', isConnected: true,
+        },
+        {
+          id: 3, nickname: 'Belle', avatar: ':-/', isConnected: false,
+        },
+        {
+          id: 4, nickname: 'Sébastien', avatar: 'o.0', isConnected: false,
+        },
       ],
       myChannelLinks: [
-        {id: 1, slug: 'filmsdhorreur', name:"Films d'horreur"},
-        {id: 2, slug: 'cuisine', name:"Cuisine méditéranéenne"},
+        { id: 1, slug: 'filmsdhorreur', name: "Films d'horreur" },
+        { id: 2, slug: 'cuisine', name: 'Cuisine méditéranéenne' },
       ],
-      inputForm: 'Je suis le contenu du formulaire',
-      isLoading: false,
-      error: false
-    }
-  ]
+    },
+  ],
 };
 
 /*
@@ -72,8 +76,6 @@ app.use((request, response, next) => {
   response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
-
-
 
 // Page d'accueil du serveur : GET /
 app.get('/', (request, response) => {
@@ -95,15 +97,14 @@ app.get('/', (request, response) => {
  * GET un Channel
  */
 app.get('/channels/5246', (request, response) => {
-
-    console.log('<< 200 OK');
-    response.json(db.channels[0]);
+  console.log('<< 200 OK');
+  response.json(db.channels[0]);
 });
 
 /*
  * Socket.io
  */
-let id = 0;
+let id = 10;
 io.on('connection', (ws) => {
   console.log('>> socket.io - connected');
   ws.on('message', (message) => {

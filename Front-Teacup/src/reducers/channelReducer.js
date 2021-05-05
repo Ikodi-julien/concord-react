@@ -4,93 +4,101 @@ import {
   FETCH_CHANNEL,
   FETCH_CHANNEL_ERROR,
   FETCH_CHANNEL_SUCCESS,
-  MESSAGE_RECEIVED
+  MESSAGE_RECEIVED,
 } from 'src/actions/channelActions.js';
 
-const initialState = {
+const channelState = {
   id: 5246,
-  channelTitle: 'Le channel de test',
+  name: 'Le channel de test',
   messages: [
-    {id: 1, userName:"Bernard", content: "Tu la connais celle des deux poissons rouge dans un bocal ?"},
-    {id: 2, userName:"Bianca", content: "Non, raconte !"},
-    {id: 3, userName:"Belle", content: "Moi je la connais"},
-    {id: 4, userName:"Sébastien", content: "Ouais, ben ils sont en train de tourner et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\""},
+    { id: 1, nickname: 'Bernard', content: 'Tu la connais celle des deux poissons rouge dans un bocal ?' },
+    { id: 2, nickname: 'Bianca', content: 'Non, raconte !' },
+    { id: 3, nickname: 'Belle', content: 'Moi je la connais' },
+    { id: 4, nickname: 'Sébastien', content: "Ouais, ben ils sont en train de tourner et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\"" },
   ],
   users: [
-    {id: 1, name:"Bernard", avatar: "(_;_)", isConnected: true},
-    {id: 2, name:"Bianca", avatar: ";o)", isConnected: true},
-    {id: 3, name:"Belle", avatar: ":-/", isConnected: false},
-    {id: 4, name:"Sébastien", avatar: "o.0", isConnected: false},
+    {
+      id: 1, name: 'Bernard', avatar: '(_;_)', isConnected: true,
+    },
+    {
+      id: 2, name: 'Bianca', avatar: ';o)', isConnected: true,
+    },
+    {
+      id: 3, name: 'Belle', avatar: ':-/', isConnected: false,
+    },
+    {
+      id: 4, name: 'Sébastien', avatar: 'o.0', isConnected: false,
+    },
+
   ],
   inputForm: 'Je suis le contenu du formulaire',
   isLoading: false,
-  error: false
+  error: false,
 };
 
-const reducer = (stateActuel = initialState, action = {}) => {
-
+const reducer = (stateActuel = channelState, action = {}) => {
   switch (action.type) {
-    
     case FETCH_CHANNEL:
       console.log(action);
-      
+
       return {
         ...stateActuel,
-        isLoading: true
-      }
-    
+        isLoading: true,
+      };
+
     case FETCH_CHANNEL_SUCCESS:
       console.log(action);
-    
+
       return {
         ...stateActuel,
-        ...action.channel
-      }
-      
+        ...action.channel,
+        isLoading: false,
+      };
+
     case FETCH_CHANNEL_ERROR:
       console.log(action);
 
       return {
         ...stateActuel,
-        isLoading: false
-      }
-      
+        isLoading: false,
+      };
+
     case CHANNEL_INPUT_CHANGE:
       console.log(action);
-      
+
       return {
         ...stateActuel,
-        [action.name]: action.value
-      }
-    
+        [action.name]: action.value,
+      };
+
     case CHANNEL_FORM_SUBMIT:
       console.log(action);
-      
+
       return {
         ...stateActuel,
-        inputForm: ''
-      }
-    
+        inputForm: '',
+      };
+
     case MESSAGE_RECEIVED:
       console.log(action);
-      
+
       return {
         ...stateActuel,
         messages: [
           ...stateActuel.messages,
           {
             id: action.message.id,
-            userName:"Bernard",
-            content: action.message.message
-          }
-        ]
-      }
-      
-      default:
-        return {
-          ...stateActuel
-        };
+            nickname: 'Bernard',
+            content: action.message.content,
+          },
+        ],
+      };
+
+    default:
+      return {
+        ...stateActuel,
+      };
   }
-}
+};
 
 export default reducer;

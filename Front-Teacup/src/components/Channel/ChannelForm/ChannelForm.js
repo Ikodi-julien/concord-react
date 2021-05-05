@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Form} from 'semantic-ui-react';
-import Channel from '../Channel';
 
 const ChannelForm = ({setInputValue, inputValue, channelFormSubmit}) => {
   
@@ -11,7 +10,7 @@ const ChannelForm = ({setInputValue, inputValue, channelFormSubmit}) => {
   }
   
   const handleChange = (evt) => {
-    console.log('change'),
+    // console.log('change'),
     setInputValue({
       name: "inputForm",
       value: evt.target.value

@@ -16,6 +16,39 @@ export default (store) => (next) => (action) => {
       // JE crée une connexion au serveur de socket
       socket = window.io('http://localhost:3001');
       // J'écoute les messages venant du serveur.
+      
+      // const io = require("socket.io-client");
+
+      // const socket = io("ws://example.com/my-namespace", {
+      //   reconnectionDelayMax: 10000,
+      //   auth: {
+      //     token: "123"
+      //   },
+      //   query: {
+      //     "my-key": "my-value"
+      //   },
+      //     const auth = {
+      //       user: {
+      //         id: 5,
+      //         nickname: 'bob',
+      //       },
+      //       channel: {
+      //         id: 5,
+      //       }
+      // }
+      
+      // const message = {
+      //   user: {
+      //     id: 5,
+      //     nickname: 'bob'
+      //   },
+      //   channel: {
+      //     id: 5,
+      //   },
+      //   content: 'il neige sur mes ...'
+      // }
+      // });
+      
       socket.on('message', (messageDuServeur) => {
         console.log('message reçu dans socketMW ', messageDuServeur);
         // A chaque message reçu on met à jour le state, via le reducer
@@ -31,8 +64,10 @@ export default (store) => (next) => (action) => {
       const { channel, user } = store.getState();
       // fabriquer un objet de message qui contient
       const message = {
-        pseudo: user.pseudo,
-        message: channel.inputForm,
+        channelId: channel.id,
+        userId: user.id,
+        nickname: user.nickname,
+        content: channel.inputForm,
       };
       console.log('msg dans socketMW', message);
       // le texte et l'auteur (pas d'id)

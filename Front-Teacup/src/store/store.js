@@ -5,9 +5,9 @@ import rootReducer from 'src/reducers/rootReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
- const enhancers = composeEnhancers(
-   applyMiddleware(socketMiddleware, ajaxMW),
- );
+const enhancers = composeEnhancers(
+  applyMiddleware(socketMiddleware, ajaxMW),
+);
 
 const store = createStore(rootReducer, enhancers);
 

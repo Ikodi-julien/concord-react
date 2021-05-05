@@ -13,6 +13,7 @@ import './channels.scss';
 
 const Channel = ({
   channel, 
+  user,
   setInputValue,
   fetchChannel,
   channelFormSubmit
@@ -51,9 +52,9 @@ const Channel = ({
     <section className='channels'>
       <Navbar />
       <div className="channels__row">
-        <MyChannels myChannelLinks={channel.myChannelLinks}/>
+        <MyChannels myChannelLinks={user.myChannelLinks}/>
         <div className="channel__container">
-          <ChannelMessages title={channel.title} messages={channel.messages}/>
+          <ChannelMessages title={channel.name} messages={channel.messages}/>
           <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm} channelFormSubmit={channelFormSubmit}/>
         </div>
         <UsersInChannelList users={channel.users} />

@@ -1,27 +1,27 @@
 /* email, password and token are mentionned in authReducer */
 
-const initialState = {
+const userState = {
   id: 124,
-  pseudo: 'Bob',
+  nickname: 'Bob',
   loggued: true,
   myChannelLinks: [
-    {id: 1, slug: 'filmsdhorreur', name:"Films d'horreur"},
-    {id: 2, slug: 'cuisine', name:"Cuisine méditéranéenne"},
+    { id: 1, slug: 'filmsdhorreur', name: "Films d'horreur" },
+    { id: 2, slug: 'cuisine', name: 'Cuisine méditéranéenne' },
   ],
   myTags: [
-    {id: 1, name: 'Films'},
-    {id: 2, name: 'Cuisine'},
-    {id: 3, name: 'Karaté'}
-  ]
-}
+    { id: 1, name: 'Films' },
+    { id: 2, name: 'Cuisine' },
+    { id: 3, name: 'Karaté' },
+  ],
+};
 
-const reducer = (stateActuel=initialState, action={}) => {
+const reducer = (stateActuel = userState, action = {}) => {
   switch (action.type) {
-    default :
+    default:
       return {
         ...stateActuel,
-      }
+      };
   }
-}
+};
 
 export default reducer;
