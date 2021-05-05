@@ -14,12 +14,14 @@ const SALT_ROUNDS = 10;
 
         const tag1 = new Tag({ name: 'Film' });
         await tag1.save();
+        const updatedTag1 = await tag1.reload()
 
         const tag2 = new Tag({ name: 'Horreur' })
         await tag2.save();
+        const updatedTag2 = await tag2.reload()
 
-        await channel1.addTag(await tag1.reload());
-        await channel1.addTag(await tag2.reload());
+        await channel1.addTag(updatedTag1);
+        await channel1.addTag(updatedTag2);
 
         const user1 = new User({
             email: "pouet@gmail.com",
@@ -27,6 +29,19 @@ const SALT_ROUNDS = 10;
             nickname: "boloss-du-93"
         });
         await user1.save()
+        const updatedUser1 = await user1.reload()
+
+        const user2 = new User({
+            email: "bidule@gmail.com",
+            password: await bcrypt.hash("tOuJoUrSpAsLeNoMdEmOnChIeN", SALT_ROUNDS),
+            nickname: "belgoss-du-67"
+        });
+        await user2.save()
+
+        await user1.addTag(updatedTag1);
+        await user2.addTag(updatedTag2);
+
+        await channel1.addUser(updatedUser1);
     }
 
     catch (err) {
