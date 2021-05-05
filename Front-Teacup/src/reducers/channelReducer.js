@@ -1,11 +1,13 @@
 import {
   CHANNEL_INPUT_CHANGE,
+  CHANNEL_FORM_SUBMIT,
   FETCH_CHANNEL,
-  FETCH_CHANNEL_ERROR
+  FETCH_CHANNEL_ERROR,
+  FETCH_CHANNEL_SUCCESS,
+  MESSAGE_RECEIVED
 } from 'src/actions/channelActions.js';
-import { FETCH_CHANNEL_SUCCESS } from '../actions/channelActions';
 
-export const initialState = {
+const initialState = {
   id: 5246,
   channelTitle: 'Le channel de test',
   messages: [
@@ -20,22 +22,17 @@ export const initialState = {
     {id: 3, name:"Belle", avatar: ":-/", isConnected: false},
     {id: 4, name:"Sébastien", avatar: "o.0", isConnected: false},
   ],
-  myChannelLinks: [
-    {id: 1, slug: 'filmsdhorreur', name:"Films d'horreur"},
-    {id: 2, slug: 'cuisine', name:"Cuisine méditéranéenne"},
-  ],
   inputForm: 'Je suis le contenu du formulaire',
   isLoading: false,
   error: false
 };
-
 
 const reducer = (stateActuel = initialState, action = {}) => {
 
   switch (action.type) {
     
     case FETCH_CHANNEL:
-      console.log('action ds reducer: ', action);
+      console.log(action);
       
       return {
         ...stateActuel,
@@ -43,7 +40,7 @@ const reducer = (stateActuel = initialState, action = {}) => {
       }
     
     case FETCH_CHANNEL_SUCCESS:
-      console.log('FETCH_SUCCESS ds reducer: ', action);
+      console.log(action);
     
       return {
         ...stateActuel,
@@ -51,7 +48,7 @@ const reducer = (stateActuel = initialState, action = {}) => {
       }
       
     case FETCH_CHANNEL_ERROR:
-      console.log('FETCH_ERROR ds reducer: ', action);
+      console.log(action);
 
       return {
         ...stateActuel,
@@ -66,6 +63,29 @@ const reducer = (stateActuel = initialState, action = {}) => {
         [action.name]: action.value
       }
     
+    case CHANNEL_FORM_SUBMIT:
+      console.log(action);
+      
+      return {
+        ...stateActuel,
+        inputForm: ''
+      }
+    
+    case MESSAGE_RECEIVED:
+      console.log(action);
+      
+      return {
+        ...stateActuel,
+        messages: [
+          ...stateActuel.messages,
+          {
+            id: action.message.id,
+            userName:"Bernard",
+            content: action.message.message
+          }
+        ]
+      }
+      
       default:
         return {
           ...stateActuel

@@ -9,10 +9,8 @@ export default (store) => (next) => (action) => {
   
   switch(action.type) {
     case FETCH_CHANNEL:
-      console.log('Il y a eu une action FETCH_CHANNEL');
+      console.log(action);
       next(action);
-      
-      console.log('action ds MW: ', action);
       
       axios({
         url: `http://localhost:3001/${action.route}`, 

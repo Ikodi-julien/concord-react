@@ -14,12 +14,14 @@ import './channels.scss';
 const Channel = ({
   channel, 
   setInputValue,
-  fetchChannel
+  fetchChannel,
+  channelFormSubmit
   }) => {
   
   useEffect(() => {
     fetchChannel(channel.id)
   }, [])
+  
   
   if (channel.isLoading) {
     return (
@@ -52,7 +54,7 @@ const Channel = ({
         <MyChannels myChannelLinks={channel.myChannelLinks}/>
         <div className="channel__container">
           <ChannelMessages title={channel.title} messages={channel.messages}/>
-          <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm}/>
+          <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm} channelFormSubmit={channelFormSubmit}/>
         </div>
         <UsersInChannelList users={channel.users} />
       </div>
