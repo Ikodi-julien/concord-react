@@ -17,7 +17,7 @@ const Navbar = (props) => {
   return (
     <section className='nav' >
       <div className='nav__logo'>
-        ici le logo
+        {/* ici le logo */}
       </div>
       
       <button className="nav__login">

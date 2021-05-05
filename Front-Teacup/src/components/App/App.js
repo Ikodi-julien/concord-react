@@ -2,10 +2,13 @@
 import React from 'react';
 import {
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 // == Import
 import ChannelContainer from '../../containers/ChannelContainer';
+import Error from 'src/components/Error/Error';
+import Navbar from 'src/components/Navbar/Navbar';
 
 import './app.scss';
 
@@ -39,12 +42,15 @@ const App = ({text}) => {
       </Route>
       <Route path='/error'>
         {/* Error */}
+        <Navbar />
+        <Error />
       </Route>
-      <Route path='/'>
+      <Route path='/' exact>
         {/* Accueil */}
 
       </Route>
       
+      <Redirect to='/error' />
     </Switch>
     
   </div>)

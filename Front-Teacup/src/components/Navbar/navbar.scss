@@ -6,7 +6,16 @@
   align-items: center;
   width: 100%;
   height: v.$nav-height;
-  border: 1px dashed green;
+  border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
+  background-color: v.$base-color1;
+  color: v.$color-verylight;
+
+  &__logo {
+    height: 100%;
+    width: v.$nav-height;
+    padding: 8px;
+    background: center/contain no-repeat url('src/assets/cats_fond_transparent.png')
+  }
 
   &__search {
     &__container {

@@ -12,17 +12,6 @@
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
-
-    & .error {
-      width: 100%;
-      height: 100%;
-      background: center/contain no-repeat url('src/assets/error.png');
-
-      &__title {
-        font-size: 3em;
-        text-align: center;
-      }
-    }
   }
 }
 
@@ -32,9 +21,11 @@
   height: 100%;
   padding: 20px;
   min-width: 250px;
-  border: 1px dashed blue;
+  border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
   display: flex;
   flex-direction: column;
+  color: v.$color-verylight;
+  background-color: v.$base-color1;
 }
 
 .channel {
@@ -44,8 +35,10 @@
 
     .channelForm {
       border: 1px dashed red;
-      padding: 20px;
-      margin-bottom: 50px;
+      padding: 20px 20px 50px;
+      border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
+      color: v.$color-verylight;
+      background-color: v.$base-color1;
 
       .field {
         width: 80%;
@@ -66,7 +59,9 @@
       width: 60vw;
       flex: 1;
       padding: 20px;
-      border: 1px dashed pink;
+      border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
+      color: v.$color-verylight;
+      background-color: adjust-color(v.$base-color1, $lightness: 10%);
 
       &__message {
         margin-bottom: 10px;
