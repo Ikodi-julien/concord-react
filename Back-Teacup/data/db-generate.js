@@ -1,9 +1,13 @@
-const { sequelize, Channel, Tag, User } = require('./models');
+const { sequelize, Channel, Tag, User } = require('../app/models');
+const bcrypt = require('bcrypt');
 
+const SALT_ROUNDS = 10;
+
+// Don't forget to create a db first and set DATABASE_URL in your .env before running this file
 
 (async _ => {
     try {
-        await sequelize.sync()
+        await sequelize.sync({ force: true })
 
         const channel1 = new Channel({ title: 'Les griffes de la nuit' });
         await channel1.save();
@@ -19,14 +23,18 @@ const { sequelize, Channel, Tag, User } = require('./models');
 
         const user1 = new User({
             email: "pouet@gmail.com",
-            password: "jgkldqfgqdfùjgqer",
+            password: await bcrypt.hash("pAsLeNoMdEmOnChIeN", SALT_ROUNDS),
             nickname: "boloss-du-93"
-        })
+        });
         await user1.save()
     }
 
     catch (err) {
         console.error(">> Error while creating: ", err);
+    }
+
+    finally {
+        sequelize.close();
     }
 
 })()
