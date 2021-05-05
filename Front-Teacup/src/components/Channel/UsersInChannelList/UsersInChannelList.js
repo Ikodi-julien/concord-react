@@ -9,7 +9,9 @@ const UsersInChannelList = ({users}) => {
     <section className="usersinchannellist">
       <h1 className="usersinchannellist__title">En ligne</h1>
       {
-        users.map(user => <div key={user.id} className="usersinchannellist__user"><span>{`${user.avatar}`}</span>  <span>{`${user.name}`}</span></div>)
+        users.map(user => <div key={user.id} className="usersinchannellist__user">
+        {/* <span>{`${user.avatar}`}</span> */}
+        <span>{`${user.nickname}`}</span></div>)
       }
     </section>
   )

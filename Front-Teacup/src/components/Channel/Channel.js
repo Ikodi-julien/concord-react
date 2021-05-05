@@ -54,7 +54,7 @@ const Channel = ({
       <div className="channels__row">
         <MyChannels myChannelLinks={user.myChannelLinks}/>
         <div className="channel__container">
-          <ChannelMessages title={channel.name} messages={channel.messages}/>
+          <ChannelMessages title={channel.title} messages={channel.messages}/>
           <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm} channelFormSubmit={channelFormSubmit}/>
         </div>
         <UsersInChannelList users={channel.users} />

@@ -9,7 +9,7 @@ import {
 
 const channelState = {
   id: 5246,
-  name: 'Le channel de test',
+  title: 'Le channel de test',
   messages: [
     { id: 1, nickname: 'Bernard', content: 'Tu la connais celle des deux poissons rouge dans un bocal ?' },
     { id: 2, nickname: 'Bianca', content: 'Non, raconte !' },
@@ -18,16 +18,16 @@ const channelState = {
   ],
   users: [
     {
-      id: 1, name: 'Bernard', avatar: '(_;_)', isConnected: true,
+      id: 1, nickname: 'Bernard', avatar: '(_;_)', isConnected: true,
     },
     {
-      id: 2, name: 'Bianca', avatar: ';o)', isConnected: true,
+      id: 2, nickname: 'Bianca', avatar: ';o)', isConnected: true,
     },
     {
-      id: 3, name: 'Belle', avatar: ':-/', isConnected: false,
+      id: 3, nickname: 'Belle', avatar: ':-/', isConnected: false,
     },
     {
-      id: 4, name: 'Sébastien', avatar: 'o.0', isConnected: false,
+      id: 4, nickname: 'Sébastien', avatar: 'o.0', isConnected: false,
     },
 
   ],
@@ -61,6 +61,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       return {
         ...stateActuel,
         isLoading: false,
+        error: true,
       };
 
     case CHANNEL_INPUT_CHANGE:
