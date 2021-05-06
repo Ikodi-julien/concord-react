@@ -1,5 +1,6 @@
 const db = require('../models');
 const User = db.User;
+let bcrypt = require('bcryptjs');
 
 /**
  * 
@@ -18,18 +19,25 @@ exports.getUser = async(req, res) => {
 
     if(!user) {
         return res.status(400).send({
-            message: "Pas d'utilisateur avec l'id "+'${id}'
+            message: `Pas d utilisateur avec l id ${id}`
         })
     }
-
+    console.log(user);
     return res.send(user);
 }
 
-exports.createUser = async(req, res) => {
-    const {email, password, nickname} = req.body;
 
-    if (!email|!password|!nickname) {
-        return res.status(400).send({
+/**
+ * 
+ * @param {string} req.body 
+ * @param {*} res 
+ * @returns 
+ */
+exports.createUser = async(req, res) => { // voir si on envoit également un confirm password dans le formulaire d'enregistrement ?
+    let {email, password, nickname} = req.body;
+
+    if (!email||!password||!nickname) {
+        return res.status(412).send({
             message: "Il manque des informations, il faut un mail, un mot de passe et un pseudo"
         })
     }
@@ -41,8 +49,8 @@ exports.createUser = async(req, res) => {
     });
 
     if(emailExists) {
-        return res.status(400).send({
-            message: 'Un utilisateur avec cet email ${email} existe déjà !'
+        return res.status(409).send({
+            message: `Un utilisateur avec cet email ${email} existe déjà !`
         })
     }
 
@@ -53,12 +61,19 @@ exports.createUser = async(req, res) => {
     });
 
     if(nicknameExists) {
-        return res.status(400).send({
-            message: 'Un utilisateur avec ce pseudo ${nickname} existe déjà !'
+        return res.status(409).send({
+            message: `Un utilisateur avec ce pseudo ${nickname} existe déjà !`
         })
     }
 
     try {
+        //hash the user password
+        let salt = bcrypt.genSaltSync(10);
+        //update password with hashed password       
+        password = await bcrypt.hashSync(password, salt);
+
+        console.log(password);
+
         let newUser = await User.create({
             email,
             password,
@@ -67,7 +82,7 @@ exports.createUser = async(req, res) => {
         return res.send(newUser);
     } catch (error) {
         return res.status(500).send({
-            message: 'Error: ${error.message}',
+            message: `Error: ${error.message}`,
         })
     }
 }
