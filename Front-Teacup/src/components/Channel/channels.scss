@@ -24,11 +24,11 @@
   height: 100%;
   padding: 20px;
   min-width: 180px;
-  border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
+  border: 1px solid v.$base-color-grey;
   display: flex;
   flex-direction: column;
-  color: v.$color-verylight;
-  background-color: v.$base-color1;
+  color: v.$base-color-light;
+  background-color: v.$base-color-darker;
 }
 
 .channel {
@@ -40,9 +40,9 @@
     .channelForm {
       border: 1px dashed red;
       padding: 20px 20px 50px;
-      border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
-      color: v.$color-verylight;
-      background-color: v.$base-color1;
+      border: 1px solid v.$base-color-grey;
+      color: v.$base-color-light;
+      background-color: v.$base-color-dark;
 
       .field {
         width: 80%;
@@ -61,9 +61,9 @@
     .channelmessages {
       width: 60vw;
       flex: 1;
-      border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
-      color: v.$color-verylight;
-      background-color: adjust-color(v.$base-color1, $lightness: 10%);
+      border: 1px solid v.$base-color-grey;
+      color: v.$base-color-darker;
+      background-color: v.$base-color-light;
 
       &__title {
         padding: 20px;

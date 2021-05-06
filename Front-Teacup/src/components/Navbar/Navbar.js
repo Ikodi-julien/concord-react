@@ -1,9 +1,19 @@
 import React from 'react';
 import {Search, Select} from 'semantic-ui-react';
+import {Link, NavLink} from 'react-router-dom';
 
 import './navbar.scss';
 
-const Navbar = ({tagsOptions}) => {
+const Navbar = ({
+  tags,
+  channels,
+  isShowLoginButton,
+  isShowSearch,
+  toggleSearch,
+  isShowMenu,
+}) => {
+  
+  const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
   
   return (
     <section className='nav' >
@@ -11,26 +21,28 @@ const Navbar = ({tagsOptions}) => {
         {/* ici le logo */}
       </div>
       
-      <button className="nav__login">
+      {isShowLoginButton && (<Link to="/login" className="nav__loginButton">
         S'incrire / Se connecter
-      </button>
+      </Link>)}
       
+      {!isShowLoginButton && (<div className="nav__button__row">
       {/* La searchbar qui contient un champ de recherche sur channels et tags + un select pour les tags */}
-      <div className='nav__search__container'>
-        <Search />
-        <Select placeholder="Catégories" options={tagsOptions} />
-      </div>
+      {isShowSearch && (
+        <div className='nav__search__container'>
+              <Search />
+              <Select placeholder="Catégories" options={tagsOptions} />
+            </div>
+      )}
       
       {/* - Déjà la loupe qui fait apparaitre la searchbar au click */}
-      <div class="nav__button__row">
-        <button className="nav__search__button">
+        <button className="nav__search__button" onClick={toggleSearch}>
           <i className="fas fa-search"></i>
         </button>
         
-        <div className='nav__hamburger' >
+        <button className='nav__hamburger' >
         <i className="fas fa-bars"></i>
-        </div>
-      </div>
+        </button>
+      </div>)}
     </section>
   )
 }

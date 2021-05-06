@@ -6,15 +6,31 @@
   align-items: center;
   width: 100%;
   height: v.$nav-height;
-  border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
-  background-color: v.$base-color1;
-  color: v.$color-verylight;
+  border: 1px solid v.$base-color-grey;
+  background-color: v.$base-color-dark;
+  color: v.$base-color-light;
 
   &__logo {
     height: 100%;
     width: v.$nav-height;
     padding: 8px;
     background: center/contain no-repeat url('src/assets/cats_fond_transparent.png')
+  }
+
+  & .ui {
+
+    &.search,
+    &.selection.dropdown {
+      margin-right: 30px;
+    }
+  }
+
+  &__loginButton {
+    border: none;
+    background-color: v.$base-color-darker;
+    color: v.$base-color-light;
+    padding: 10px;
+    margin-right: v.$nav-height / 4;
   }
 
   &__search {
@@ -34,7 +50,7 @@
   &__search__button {
     border: none;
     background-color: transparent;
-    color: v.$color-verylight;
+    color: v.$base-color-light;
     padding: (v.$nav-height - 29px)/2;
     font-size: v.$size-font-awesome;
   }
