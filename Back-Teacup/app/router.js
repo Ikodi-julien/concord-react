@@ -17,6 +17,6 @@ router.get("/user/:id", userController.getUser);
 // [post] route for signup registration
 router.post("/signup", authController.signup);
 
-router.get("/channel/:id", channelController.getChannelById);
+router.get('/channel/:id', channelController.getChannelById);
 
 module.exports = router;
