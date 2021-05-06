@@ -16,6 +16,8 @@ app.use(express.json());
 
 app.use('/v1', apiRouter);
 
+let messageIndex = 0;
+
 io.on('connection', socket => {
     socket.on('auth', ({ channel/*, user*/ }) => {
         /*
@@ -39,6 +41,7 @@ io.on('connection', socket => {
     socket.on('message', message => {
         /*
         {
+            id : string (messageId) (have to be send)
             user : {
                 id : number,
                 nickname : string
@@ -49,6 +52,8 @@ io.on('connection', socket => {
             content : string
         }
         */
+        message.id = messageIndex++
+
         io.to(`channel-${message.channel.id}`).emit('message', message);
     })
 
