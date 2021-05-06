@@ -12,7 +12,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: 'http://localhost:5000/v1/channel/1',
+        url: 'http://localhost:3001/channels/5246',
         method: 'GET',
       })
         .then((res) => {
