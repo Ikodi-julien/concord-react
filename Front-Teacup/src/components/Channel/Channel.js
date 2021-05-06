@@ -3,7 +3,7 @@ import MyChannels from './MyChannels/MyChannels';
 import UsersInChannelList from './UsersInChannelList/UsersInChannelList';
 import ChannelMessages from './ChannelMessages/ChannelMessages';
 import ChannelForm from './ChannelForm/ChannelForm';
-import Navbar from 'src/components/Navbar/Navbar';
+import Navbar from 'src/containers/NavbarContainer';
 import Footer from 'src/components/Footer/Footer';
 import BigLoader from 'src/components/BigLoader/BigLoader';
 import Error from 'src/components/Error/Error';

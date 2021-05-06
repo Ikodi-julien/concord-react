@@ -6,11 +6,11 @@ import authReducer from './authReducer';
 import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
-   
-      app:appReducer,
-      channel: channelReducer,
-      auth: authReducer,
-      user: userReducer
+
+  app: appReducer,
+  channel: channelReducer,
+  auth: authReducer,
+  user: userReducer,
 });
 
 export default rootReducer;
