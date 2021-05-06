@@ -1,5 +1,4 @@
-const db = require("../models");
-const User = db.User;
+const { User } = require('../models')
 let bcrypt = require("bcrypt");
 
 const authController = {
@@ -10,7 +9,6 @@ const authController = {
    * @returns
    */
   signup: async (req, res) => {
-    // voir si on envoit également un confirm password dans le formulaire d'enregistrement ?
     try {
       const { email, password, nickname } = req.body;
 
@@ -18,7 +16,7 @@ const authController = {
         return res
           .status(412)
           .send(
-            "Il manque des informations, il faut un mail, un mot de passe et un pseudo"
+            "Missing information, you need to enter an email, a password and a nickname"
           );
       }
 
@@ -31,7 +29,7 @@ const authController = {
       if (emailExists) {
         return res
           .status(409)
-          .send(`Un utilisateur avec cet email ${email} existe déjà !`);
+          .send(`A user with the email ${email} already exists !`);
       }
 
       const saltRounds = 10;

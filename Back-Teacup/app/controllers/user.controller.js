@@ -1,5 +1,4 @@
-const db = require('../models');
-const User = db.User;
+const { User } = require('../models')
 
 /**
  * 
@@ -7,17 +6,24 @@ const User = db.User;
  * @returns user
  */
 exports.getUser = async(req, res) => {
-    //pour chercher un user, on demande le paramètre dans l'url (en l'occurence l'id)
+    //to search an user, we ask for url parameters (id)
     const {id} = req.params;
 
-    const user = await db.User.findOne({
+    const user = await User.findOne({
         where: {
             id
+        },
+        attributes: {
+            exclude: ['password']
+        },
+        include:{
+            association: 'tags',
+            attributes: ['id', 'name'],
         }
     });
 
     if(!user) {
-        return res.status(400).send(`Pas d utilisateur avec l id ${id}`)
+        return res.status(400).send(`No user matching id ${id}`)
     }
 
     return res.json(user);
