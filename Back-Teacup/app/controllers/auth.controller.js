@@ -39,7 +39,7 @@ const authController = {
 
       let newUser = await User.create({
         email,
-        hashedPassword,
+        password : hashedPassword,
         nickname,
       });
 
