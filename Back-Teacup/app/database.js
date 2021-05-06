@@ -1,16 +1,28 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config()
 
-// const sequelize = new Sequelize('postgres://postgres:js4life@localhost:5432/teacup');
-
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const options = process.env.NODE_ENV === 'production' ? {
+    dialectOptions: {
+        ssl: true
+    },
     define: {
         timestamps: true,
         underscored: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at'
     }
-});
+} :
+    {
+        define: {
+            timestamps: true,
+            underscored: true,
+            createdAt: 'created_at',
+            updatedAt: 'updated_at'
+        }
+    }
+
+
+const sequelize = new Sequelize(process.env.DATABASE_URL, options);
 
 // -----------------------------------
 
