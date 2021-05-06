@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const channelController = require('./controllers/channel.controller');
 const router = Router();
 const user = require('./controllers/userController');
 
@@ -11,5 +12,8 @@ router.get('/user/:id', user.getUser);
 
 // route post pour l'enregistrement
 router.post('/register', user.createUser);
+
+router.get('/channel/:id', channelController.getChannelById);
+
 
 module.exports = router;
