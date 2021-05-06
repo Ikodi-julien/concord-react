@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import Navbar from 'src/components/Navbar/Navbar';
-import { toggleNavSearch } from 'src/actions/appActions';
+import {
+  toggleNavSearch,
+  toggleNavMenu,
+} from 'src/actions/appActions';
 
 const mapStateToProps = ({ app }) => ({
 
@@ -8,12 +11,16 @@ const mapStateToProps = ({ app }) => ({
   isShowLoginButton: app.isShowLoginButton,
   isShowSearch: app.isShowSearch,
   isShowMenu: app.isShowMenu,
+  links: app.appRoutes,
 
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleSearch: () => {
     dispatch(toggleNavSearch());
+  },
+  toggleMenu: () => {
+    dispatch(toggleNavMenu());
   },
 });
 

@@ -1,6 +1,7 @@
 @use 'src/styles/vars'as v;
 
 .nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,7 +40,6 @@
       justify-content: space-between;
       align-items: center;
     }
-
   }
 
   &__button__row {
@@ -53,5 +53,28 @@
     color: v.$base-color-light;
     padding: (v.$nav-height - 29px)/2;
     font-size: v.$size-font-awesome;
+  }
+
+  &__menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: v.$nav-height;
+    right: 0;
+    width: 250px;
+    height: 400px;
+    padding: 20px;
+    background-color: v.$base-color-dark;
+    z-index: 100;
+
+    & a {
+      color: v.$base-color-light;
+    }
+
+    &__link {
+      width: 80%;
+      height: 20px;
+      margin-bottom: 20px;
+    }
   }
 }

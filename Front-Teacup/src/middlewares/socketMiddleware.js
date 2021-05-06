@@ -1,22 +1,22 @@
-import { 
-  CHANNEL_FORM_SUBMIT, 
+import { WS_URL } from 'src/vars';
+import {
+  CHANNEL_FORM_SUBMIT,
   FETCH_CHANNEL_SUCCESS,
-  messageReceived
+  messageReceived,
 } from '../actions/channelActions';
 
 let socket;
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
-    
     case FETCH_CHANNEL_SUCCESS:
       // L'API a bien renvoyé les infos du channel dispo en BDD
       next(action);
       console.log(action);
       // JE crée une connexion au serveur de socket
-      socket = window.io('http://localhost:3001');
+      socket = window.io(WS_URL);
       // J'écoute les messages venant du serveur.
-      
+
       // const io = require("socket.io-client");
 
       // const socket = io("ws://example.com/my-namespace", {
@@ -36,7 +36,7 @@ export default (store) => (next) => (action) => {
       //         id: 5,
       //       }
       // }
-      
+
       // const message = {
       //   user: {
       //     id: 5,
@@ -48,18 +48,18 @@ export default (store) => (next) => (action) => {
       //   content: 'il neige sur mes ...'
       // }
       // });
-      
+
       socket.on('message', (messageDuServeur) => {
         console.log('message reçu dans socketMW ', messageDuServeur);
         // A chaque message reçu on met à jour le state, via le reducer
         const actionToDispatch = messageReceived(messageDuServeur);
         store.dispatch(actionToDispatch);
       });
-      
+
       break;
-    
+
     case CHANNEL_FORM_SUBMIT:
-      console.log(action)
+      console.log(action);
       // Récupérer dans le state le texte du message
       const { channel, user } = store.getState();
       // fabriquer un objet de message qui contient

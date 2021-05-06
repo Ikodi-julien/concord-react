@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { FETCH_URL } from 'src/vars';
 import {
   FETCH_CHANNEL,
   fetchChannelError,
@@ -12,7 +13,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: 'http://localhost:3001/channels/5246',
+        url: `${FETCH_URL}`,
         method: 'GET',
       })
         .then((res) => {
