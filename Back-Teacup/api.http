@@ -6,3 +6,16 @@ GET http://localhost:8000/v1/channel/1
 
 ### GET /v1/channel/:id (404)
 GET http://localhost:8000/v1/channel/1000
+
+### GET /v1/channel/:id (success)
+GET http://localhost:8000/v1/signup
+Content-Type: application/json
+
+{
+    "email" : "tructruc@gmail.com",
+    "password" : "G PA DINSPI",
+    "nickname" : "loulou"
+}
+
+### GET /v1/channel/:id (404)
+GET http://localhost:8000/v1/channel/1000
