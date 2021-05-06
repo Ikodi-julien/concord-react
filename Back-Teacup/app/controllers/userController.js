@@ -1,6 +1,6 @@
 const db = require('../models');
 const User = db.User;
-let bcrypt = require('bcryptjs');
+let bcrypt = require('bcrypt');
 
 /**
  * 
@@ -66,13 +66,14 @@ exports.createUser = async(req, res) => { // voir si on envoit également un con
         })
     }
 
-    try {
-        //hash the user password
-        let salt = bcrypt.genSaltSync(10);
-        //update password with hashed password       
-        password = await bcrypt.hashSync(password, salt);
 
-        console.log(password);
+    try {
+        const saltRounds = 10;     
+        
+        bcrypt.hash(password, saltRounds, function(err, hash) {
+            // Store hash in your password DB.
+            password = hash;
+        });
 
         let newUser = await User.create({
             email,

@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "bcryptjs": "^2.4.3"
+    "bcrypt": "^5.0.1"
   }
 }
