@@ -27,10 +27,12 @@ const Navbar = ({
   
   const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
   
-  /* Ici la fonction de recherche dans les tags */
-
+  /* Ici la gestion de la recherche */
   
-  const handleResultSelect = () => {};
+  const handleResultSelect = () => {
+    // Ici je voudrais rediriger soit vers le channel choisi, soit vers la page de résultat de recherche affichant les channels du tag sélectionné
+  };
+  
   const handleSearchChange = (evt) => { 
     // On informe du changement dans l'input search
     searchChange(evt.target.value);
