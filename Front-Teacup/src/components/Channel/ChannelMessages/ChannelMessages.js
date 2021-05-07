@@ -1,26 +1,39 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 // import {Link} from 'react-router-dom';
 
-const ChannelMessages = (props) => {
+const ChannelMessages = ({messages, title}) => {
   
-  const messages = [
-    {id: 1, userName:"Bernard", content: "Tu la connais celle des deux poissons rouge dans un bocal ?"},
-    {id: 2, userName:"Bianca", content: "Non, raconte !"},
-    {id: 3, userName:"Belle", content: "Moi je la connais"},
-    {id: 4, userName:"Sébastien", content: "Ouais, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\""},
-  ];
-  
-  const channelTitle = 'Le channel de test'
+  const refContainer = useRef(null);
+
+  // effet exécuté à chaque rendu du composant, pour scroller vers le bas
+  useEffect(() => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo
+
+    // refContainer.current contient la référence vers la div
+    // https://reactjs.org/docs/hooks-reference.html#useref
+
+    refContainer.current.scrollTo({
+      // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight
+      // hauteur de l'élément, y compris la zone non visible (overflow)
+      top: refContainer.current.scrollHeight,
+      left: 0,
+      // scroll progressif
+      behavior: 'smooth',
+    });
+  }); 
   
   return (
+    
     <section className="channelmessages">
-      <h1 className="channelmessages__title">{channelTitle}</h1>
+      <h1 className="channelmessages__title">{title}</h1>
+      <div className="channelmessages__messagelist" ref={refContainer}>
       {
         messages.map(message => (
           <div key={message.id} className="channelmessages__message">
-            <span>{`${message.userName}`}</span> : <span>{`${message.content}`}</span>
+            <span>{`${message.nickname}`}</span> : <span>{`${message.content}`}</span>
           </div>))
       }
+      </div>
     </section>
   )
 }

@@ -2,10 +2,14 @@
 import React from 'react';
 import {
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 // == Import
-import Channels from '../Channel/Channel';
+import ChannelContainer from '../../containers/ChannelContainer';
+import Error from 'src/components/Error/Error';
+import NavbarContainer from 'src/containers/NavbarContainer';
+import Landing from 'src/components/Landing/Landing';
 
 import './app.scss';
 
@@ -19,33 +23,48 @@ const App = ({text}) => {
 
       <Route path='/login'>
         {/* Login */}
-        
+        <NavbarContainer />
+        <h1>Il n'y a pas encore de composant 'Login'</h1>
       </Route>
       <Route path='/signup'>
         {/* Signup */}
+        <NavbarContainer />
+        <h1>Il n'y a pas encore de composant 'Signup'</h1>
+        
       </Route>
       <Route path='/home'>
         {/* Home */}
+        <NavbarContainer />
+        <h1>Il n'y a pas encore de composant 'Home'</h1>
       </Route>
-      <Route path='/channels'>
+      <Route path='/channels/:id'>
         {/* Channels */}
-        <Channels />
+        <ChannelContainer />
       </Route>
       <Route path='/profile'>
         {/* Profile */}
+        <NavbarContainer />
+        <h1>Il n'y a pas encore de composant 'Profile'</h1>
       </Route>
       <Route path='/discovery'>
         {/* Discovery */}
+        <NavbarContainer />
+        <h1>Il n'y a pas encore de composant 'Discovery'</h1>
       </Route>
       <Route path='/error'>
         {/* Error */}
+        <NavbarContainer />
+        <Error />
       </Route>
-      <Route path='/'>
+      <Route path='/' exact>
         {/* Accueil */}
-
+        <NavbarContainer />
+        <Landing />
       </Route>
       
+      <Redirect to='/error' />
     </Switch>
+    
   </div>)
  
  

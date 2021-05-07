@@ -1,0 +1,11 @@
+@use 'src/styles/vars'as v;
+
+.footer {
+  display: flex;
+  width: 100%;
+  height: v.$footer-height;
+  min-height: v.$footer-height;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: v.$base-color-darker;
+}
