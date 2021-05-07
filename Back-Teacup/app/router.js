@@ -1,7 +1,9 @@
 const { Router } = require('express');
-const channelController = require('./controllers/channel.controller');
+const { channelController, tagController } = require('./controllers');
 const router = Router();
 
-router.get('/channel/:id', channelController.getChannelById);
+router.get('/channel/:id(\\d+)', channelController.getChannelById);
+
+router.get('/tags', tagController.getAllTags);
 
 module.exports = router;
