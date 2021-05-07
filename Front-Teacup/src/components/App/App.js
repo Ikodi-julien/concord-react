@@ -8,7 +8,7 @@ import {
 // == Import
 import ChannelContainer from '../../containers/ChannelContainer';
 import Error from 'src/components/Error/Error';
-import Navbar from 'src/components/Navbar/Navbar';
+import NavbarContainer from 'src/containers/NavbarContainer';
 
 import './app.scss';
 
@@ -42,7 +42,7 @@ const App = ({text}) => {
       </Route>
       <Route path='/error'>
         {/* Error */}
-        <Navbar />
+        <NavbarContainer />
         <Error />
       </Route>
       <Route path='/' exact>

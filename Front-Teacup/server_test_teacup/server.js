@@ -6,6 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Server = require('http').Server;
 const socket = require('socket.io');
+const { response } = require('express');
 
 /*
  * Vars
@@ -63,6 +64,13 @@ const db = {
       ],
     },
   ],
+  tags: [
+    { id: 'af', name: 'Lancé de savonnette' },
+    { id: 'ax', name: 'La littérature anglaise du 16ème siècle' },
+    { id: 'al', name: 'La biologie marine dans la mer des Sargasses' },
+    { id: 'dz', name: 'Les poissons rouges' },
+    { id: 'as', name: 'Le chocolat' },
+  ],
 };
 
 /*
@@ -99,6 +107,13 @@ app.get('/', (request, response) => {
 app.get('/channels/5246', (request, response) => {
   console.log('<< 200 OK');
   response.json(db.channels[0]);
+});
+app.get('/navdata', (req, res) => {
+  console.log('le front fetch la navbar data !');
+  res.json({
+    tags: db.tags,
+    channels: db.channels,
+  });
 });
 
 /*
