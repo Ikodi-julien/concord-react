@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes, Model) => {
 
     class User extends Model { };
-    
+
     User.init({
         nickname: {
             type: DataTypes.TEXT,
@@ -10,7 +10,13 @@ module.exports = (sequelize, DataTypes, Model) => {
         email: {
             type: DataTypes.TEXT,
             unique: true,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                isEmail: {
+                    args: true,
+                    msg: `The mail address is invalid or already in use`
+                }
+            }
         },
         password: {
             type: DataTypes.TEXT,
