@@ -29,7 +29,7 @@ const authController = {
       if (emailExists) {
         return res
           .status(409)
-          .send(`A user with the email ${email} already exists !`);
+          .send(`Validation error: The mail address is invalid or already in use`);
       }
 
       const saltRounds = 10;
@@ -37,13 +37,13 @@ const authController = {
 
       let newUser = await User.create({
         email,
-        password : hashedPassword,
+        password: hashedPassword,
         nickname,
       });
 
       return res.json(newUser);
     } catch (error) {
-      return res.status(500).send(`Error: ${error.message}`);
+      return res.status(400).send(error.message);
     }
   },
 };
