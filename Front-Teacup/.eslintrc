@@ -1,6 +1,14 @@
 {
   "extends": "airbnb",
   "parser": "@babel/eslint-parser",
+  "parserOptions":
+  {
+    "requireConfigFile": false
+    // "babelOptions":
+    // {
+    //   "configFile": "./Front-Teacup/.babelrc"
+    // }
+  },
   "env":
   {
     "browser": true
@@ -50,6 +58,5 @@
         ]
       }
     }
-  },
-  "requireConfigFile": false
+  }
 }

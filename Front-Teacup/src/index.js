@@ -11,7 +11,7 @@ import store from 'src/store/store';
 // == Import : local
 import './styles/index.scss';
 // Composants
-import AppContainer from 'src/containers/AppContainers';
+import App from 'src/components/App/App';
 
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
@@ -19,7 +19,7 @@ import AppContainer from 'src/containers/AppContainers';
 const rootReactElement = (
     <Provider store={store}>
       <Router >
-          <AppContainer />
+          <App />
       </Router>
     </Provider>
   );

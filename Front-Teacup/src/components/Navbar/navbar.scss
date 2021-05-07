@@ -6,7 +6,16 @@
   align-items: center;
   width: 100%;
   height: v.$nav-height;
-  border: 1px dashed green;
+  border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
+  background-color: v.$base-color1;
+  color: v.$color-verylight;
+
+  &__logo {
+    height: 100%;
+    width: v.$nav-height;
+    padding: 8px;
+    background: center/contain no-repeat url('src/assets/cats_fond_transparent.png')
+  }
 
   &__search {
     &__container {
@@ -14,10 +23,19 @@
       justify-content: space-between;
       align-items: center;
     }
+
   }
 
-  &__hamburger {
+  &__button__row {
+    display: flex;
+  }
+
+  &__hamburger,
+  &__search__button {
+    border: none;
+    background-color: transparent;
+    color: v.$color-verylight;
     padding: (v.$nav-height - 29px)/2;
-    font-size: 2em;
+    font-size: v.$size-font-awesome;
   }
 }
