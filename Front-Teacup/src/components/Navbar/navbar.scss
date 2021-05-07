@@ -1,14 +1,15 @@
 @use 'src/styles/vars'as v;
 
 .nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: v.$nav-height;
-  border: 1px solid adjust-color(v.$base-color1, $lightness: 10%);
-  background-color: v.$base-color1;
-  color: v.$color-verylight;
+  border: 1px solid v.$base-color-grey;
+  background-color: v.$base-color-dark;
+  color: v.$base-color-light;
 
   &__logo {
     height: 100%;
@@ -17,13 +18,29 @@
     background: center/contain no-repeat url('src/assets/cats_fond_transparent.png')
   }
 
+  & .ui {
+
+    &.search,
+    &.selection.dropdown {
+      margin-right: 30px;
+      z-index: 100;
+    }
+  }
+
+  &__loginButton {
+    border: none;
+    background-color: v.$base-color-darker;
+    color: v.$base-color-light;
+    padding: 10px;
+    margin-right: v.$nav-height / 4;
+  }
+
   &__search {
     &__container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
   }
 
   &__button__row {
@@ -34,8 +51,31 @@
   &__search__button {
     border: none;
     background-color: transparent;
-    color: v.$color-verylight;
+    color: v.$base-color-light;
     padding: (v.$nav-height - 29px)/2;
     font-size: v.$size-font-awesome;
+  }
+
+  &__menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: v.$nav-height;
+    right: 0;
+    width: 250px;
+    height: 400px;
+    padding: 20px;
+    background-color: v.$base-color-dark;
+    z-index: 10;
+
+    & a {
+      color: v.$base-color-light;
+    }
+
+    &__link {
+      width: 80%;
+      height: 20px;
+      margin-bottom: 20px;
+    }
   }
 }

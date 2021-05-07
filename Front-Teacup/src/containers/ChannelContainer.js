@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchChannel(channelId));
   },
   channelFormSubmit: () => {
-    console.log('channelContainer formSubmit');
     dispatch(channelFormSubmit());
   },
 });

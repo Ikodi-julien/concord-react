@@ -1,5 +1,8 @@
-$base-color1: adjust-color(#647C90, $lightness: -20%);
-$color-verylight: #EEEDE7;
+$base-color-dark: #368980;
+$base-color-darker: adjust-color($base-color-dark, $blackness: 30%);
+$base-color: #62CCC0;
+$base-color-grey: #BFD2D0;
+$base-color-light: #F4F7F0;
 $border-radius: 3px;
 $nav-height: 64px;
 $footer-height: 50px;

@@ -8,7 +8,7 @@ import {
 // == Import
 import ChannelContainer from '../../containers/ChannelContainer';
 import Error from 'src/components/Error/Error';
-import Navbar from 'src/components/Navbar/Navbar';
+import NavbarContainer from 'src/containers/NavbarContainer';
 
 import './app.scss';
 
@@ -22,7 +22,7 @@ const App = ({text}) => {
 
       <Route path='/login'>
         {/* Login */}
-        
+        <h1>Il n'y a pas encore de composant 'Login'</h1>
       </Route>
       <Route path='/signup'>
         {/* Signup */}
@@ -30,7 +30,7 @@ const App = ({text}) => {
       <Route path='/home'>
         {/* Home */}
       </Route>
-      <Route path='/channels'>
+      <Route path='/channels/:id'>
         {/* Channels */}
         <ChannelContainer />
       </Route>
@@ -42,7 +42,7 @@ const App = ({text}) => {
       </Route>
       <Route path='/error'>
         {/* Error */}
-        <Navbar />
+        <NavbarContainer />
         <Error />
       </Route>
       <Route path='/' exact>
