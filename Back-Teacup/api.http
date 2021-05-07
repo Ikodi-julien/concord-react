@@ -32,12 +32,21 @@ Content-Type: application/json
     "nickname" : "loulou"
 }
 
-### GET /v1/signup (error, data missing)
+### GET /v1/signup (error, email missing)
 POST http://localhost:8000/v1/signup
 Content-Type: application/json
 
 {
     "password" : "G PA DINSPI",
+    "nickname" : "loulou"
+}
+
+### GET /v1/signup (error, password missing)
+POST http://localhost:8000/v1/signup
+Content-Type: application/json
+
+{
+    "email" : "pwin@gmail.com",
     "nickname" : "loulou"
 }
 
@@ -47,6 +56,16 @@ Content-Type: application/json
 
 {
     "email" : "tructrucbis@gmail.com",
+    "password" : "G PA DINSPI",
+    "nickname" : "loulou"
+}
+
+### GET /v1/signup (error, email value is incorrect)
+POST http://localhost:8000/v1/signup
+Content-Type: application/json
+
+{
+    "email" : "pwin",
     "password" : "G PA DINSPI",
     "nickname" : "loulou"
 }
