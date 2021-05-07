@@ -11,7 +11,11 @@ import {
 
 const appState = {
   appRoutes: [
+    { slug: '/', name: 'Accueil' },
+    { slug: '/login', name: 'Connexion' },
+    { slug: '/signup', name: 'Créer un compte' },
     { slug: '/home', name: 'Home' },
+    { slug: '/profile', name: 'Mes paramètres' },
     { slug: '/discovery', name: 'Découverte' },
   ],
   tags: [
