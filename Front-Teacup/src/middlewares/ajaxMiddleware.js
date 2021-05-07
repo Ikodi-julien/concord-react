@@ -18,7 +18,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${FETCH_URL}/channels/5246`,
+        url: `${FETCH_URL}/v1/channel/1`,
         method: 'GET',
       })
         .then((res) => {
@@ -32,21 +32,21 @@ export default (store) => (next) => (action) => {
       break;
 
     case FETCH_NAV_DATA:
-      console.log(action);
-      next(action);
+      // console.log(action);
+      // next(action);
 
-      axios({
-        url: `${FETCH_URL}/navdata`,
-        method: 'GET',
-      })
-        .then((res) => {
-          console.log('res.data :', res.data);
-          store.dispatch(fetchNavDataSuccess(res.data));
-        })
-        .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(fetchNavDataError());
-        });
+      // axios({
+      //   url: `${FETCH_URL}/navdata`,
+      //   method: 'GET',
+      // })
+      //   .then((res) => {
+      //     console.log('res.data :', res.data);
+      //     store.dispatch(fetchNavDataSuccess(res.data));
+      //   })
+      //   .catch((error) => {
+      //     console.log('catch error: ', error);
+      //     store.dispatch(fetchNavDataError());
+      //   });
       break;
     default:
       next(action);
