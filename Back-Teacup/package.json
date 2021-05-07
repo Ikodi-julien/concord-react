@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-db" : "node ./data/db-generate.js",
-    "start" : "node index.js"
+    "generate-db": "node ./data/db-generate.js",
+    "start": "node index.js"
   },
   "author": "VainKate & guillaume67450",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pg": "^8.6.0",

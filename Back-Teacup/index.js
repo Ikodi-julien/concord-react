@@ -6,12 +6,21 @@ const { createServer } = require('http')
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer);
+const io = new Server(httpServer,   {
+    cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ['Access-Control-Allow-Headers', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+    credentials: true
+  }
+});
 
 const apiRouter = require('./app/router');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 8000;
 
+app.use(cors('*'));
 app.use(express.json());
 
 app.use('/v1', apiRouter);
@@ -20,6 +29,7 @@ let messageIndex = 0;
 
 io.on('connection', socket => {
     socket.on('auth', ({ channel/*, user*/ }) => {
+      console.log('channel :', channel);
         /*
         {
             user : {
@@ -39,6 +49,7 @@ io.on('connection', socket => {
     })
 
     socket.on('message', message => {
+      console.log('message :', message);
         /*
         {
             id : string (messageId) (have to be send)
