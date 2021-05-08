@@ -1,6 +1,7 @@
-# Back
-Back-Teacup/node_modules
-Back-Teacup/.env
+node_modules/
+dist/
 
-# Front
-Front-Teacup/node_modules
+.DS_Store
+Thumbs.db
+
+yarn-error.log
