@@ -11,7 +11,10 @@ import {
   setInputValue,
 } from 'src/actions/appActions';
 
-import { submitLoginForm } from 'src/actions/loginsignupActions';
+import {
+  submitLoginForm,
+  submitSignupForm,
+} from 'src/actions/loginsignupActions';
 
 const mapStateToProps = ({ app }) => ({
 
@@ -28,6 +31,13 @@ const mapStateToProps = ({ app }) => ({
   searchResult: app.searchResult,
   inputLoginEmailValue: app.loginEmail,
   inputLoginPasswordValue: app.loginPassword,
+  inputSignupPseudoValue: app.signupPseudo,
+  inputSignupEmailValue: app.signupEmail,
+  inputFirstSignupPasswordValue: app.firstSignupPassword,
+  inputSecondSignupPasswordValue: app.secondSignupPassword,
+  signupErrorIsVisible: app.signupErrorIsVisible,
+  loginErrorIsVisible: app.loginErrorIsVisible,
+  errorMessage: app.errorMessage,
 
 });
 
@@ -40,6 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
   setLoginOpen: (bool) => dispatch(setLoginOpen(bool)),
   setSignupOpen: (bool) => dispatch(setSignupOpen(bool)),
   submitLoginForm: () => dispatch(submitLoginForm()),
+  submitSignupForm: () => dispatch(submitSignupForm()),
   setInputValue: (objectInput) => dispatch(setInputValue(objectInput)),
 });
 

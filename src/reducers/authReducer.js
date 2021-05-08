@@ -1,11 +1,16 @@
 /* Here there's only data and actions regarding login, for instance pseudo or favs are mentionned in 'userReducer' */
 
-import { LOGIN_SUCCESS, LOGIN_ERROR } from 'src/actions/loginsignupActions';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  SIGN_UP_SUCCESS,
+} from 'src/actions/loginsignupActions';
+import { SIGNUP_SUCCESS } from '../actions/loginsignupActions';
 
 const authState = {
-  password: 'bob',
-  email: 'jefume@despieds.fr',
-  token: '3568dgfbh854dwqfb4wdfb',
+  password: '',
+  email: '',
+  token: '',
 };
 
 const reducer = (stateActuel = authState, action = {}) => {
@@ -16,10 +21,12 @@ const reducer = (stateActuel = authState, action = {}) => {
         ...stateActuel,
       };
 
-    case LOGIN_ERROR:
+    case SIGNUP_SUCCESS:
       console.log(action);
       return {
-        ...stateActuel,
+        password: action.user.password,
+        email: action.user.email,
+        token: '',
       };
 
     default:

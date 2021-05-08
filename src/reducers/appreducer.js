@@ -10,7 +10,13 @@ import {
   SET_LOGIN_MODAL,
   SET_SIGNUP_MODAL,
   SET_INPUT_VALUE,
+  HIDE_ERRORS,
 } from 'src/actions/appActions';
+import {
+  LOGIN_ERROR,
+  SIGNUP_ERROR,
+} from 'src/actions/loginsignupActions';
+import { SIGNUP_SUCCESS, LOGIN_SUCCESS } from '../actions/loginsignupActions';
 
 const appState = {
   appRoutes: [
@@ -43,13 +49,20 @@ const appState = {
   isShowLoginButton: true,
   isShowLoginModal: false,
   isShowSignupModal: false,
-  isShowSearch: true,
+  isShowSearch: false,
   isShowMenu: false,
   isSearchLoading: false,
   searchedValue: '',
   searchResult: {},
-  loginEmail: '',
-  loginPassword: '',
+  loginEmail: 'ju@ju.fr',
+  loginPassword: 'bob',
+  signupPseudo: 'ju',
+  signupEmail: 'ju@ju.fr',
+  firstSignupPassword: 'bob',
+  secondSignupPassword: 'bob',
+  signupErrorIsVisible: false,
+  loginErrorIsVisible: false,
+  errorMessage: '',
 };
 
 const reducer = (stateActuel = appState, action = {}) => {
@@ -67,6 +80,7 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case FETCH_NAV_DATA_SUCCESS:
+      console.log(action);
       return {
         ...stateActuel,
         tags: action.data.tags,
@@ -74,19 +88,21 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case FETCH_NAV_DATA_ERROR:
+      console.log(action);
       return {
         ...stateActuel,
         tags: [{ id: 'error', name: 'Oups, ça n\'a pas fonctionné...' }],
       };
 
     case SEARCH_NAV_CHANGE:
+      console.log(action);
       return {
         ...stateActuel,
         searchedValue: action.value,
       };
 
     case SET_NAV_SEARCH_RESULT:
-      console.log(action.list);
+      console.log(action);
 
       return {
         ...stateActuel,
@@ -94,14 +110,14 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case SET_LOGIN_MODAL:
-      console.log(action.value);
+      console.log(action);
       return {
         ...stateActuel,
         isShowLoginModal: action.value,
       };
 
     case SET_SIGNUP_MODAL:
-      console.log(action.value);
+      console.log(action);
       return {
         ...stateActuel,
         isShowSignupModal: action.value,
@@ -112,6 +128,50 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         [action.objectInput.name]: action.objectInput.value,
+      };
+
+    case SIGNUP_ERROR:
+      console.log(action);
+
+      return {
+        ...stateActuel,
+        errorMessage: action.value,
+        signupErrorIsVisible: true,
+      };
+
+    case SIGNUP_SUCCESS:
+      console.log(action);
+
+      return {
+        ...stateActuel,
+        isShowSignupModal: false,
+      };
+
+    case LOGIN_ERROR:
+      console.log(action);
+
+      return {
+        ...stateActuel,
+        errorMessage: action.value,
+        loginErrorIsVisible: true,
+      };
+
+    case LOGIN_SUCCESS:
+      console.log(action);
+
+      return {
+        ...stateActuel,
+        isShowLoginButton: false,
+        isShowLoginModal: false,
+        isShowSignupModal: false,
+        errorMessage: '',
+      };
+
+    case HIDE_ERRORS:
+      return {
+        ...stateActuel,
+        signupErrorIsVisible: false,
+        loginErrorIsVisible: false,
       };
 
     default:

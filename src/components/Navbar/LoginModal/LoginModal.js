@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Divider, Segment, Modal, Form } from 'semantic-ui-react'
+import ErrorInfo from 'src/components/Navbar/ErrorInfo/ErrorInfo';
 
 import './loginmodal.scss';
 
@@ -9,9 +10,17 @@ const LoginModal = ({
   setLoginOpen, 
   setSignupOpen,
   submitLoginForm,
+  submitSignupForm,
   inputLoginEmailValue,
   inputLoginPasswordValue,
+  inputSignupPseudoValue,
+  inputSignupEmailValue,
+  inputFirstSignupPasswordValue,
+  inputSecondSignupPasswordValue,
   setInputValue,
+  loginErrorIsVisible,
+  signupErrorIsVisible,
+  errorMessage,
 }) => {
 
   const inputChange = (evt) => {
@@ -20,7 +29,11 @@ const LoginModal = ({
   }
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    submitLoginForm()
+    if (evt.target.name === 'loginForm') {
+      submitLoginForm();
+      return;
+    }
+    submitSignupForm();
   }
 
   return (
@@ -33,7 +46,7 @@ const LoginModal = ({
       open={loginOpen}
       trigger={<Button primary >Connexion</Button>}
     >
-    
+    <ErrorInfo isVisible={loginErrorIsVisible} errorMessage={errorMessage} />
     <Modal.Content >
     <Segment placeholder >
     
@@ -45,7 +58,7 @@ const LoginModal = ({
     
     <Divider horizontal >ou</Divider>
     
-        <Form>
+        <Form name='loginForm' onSubmit={handleSubmit}>
           <Form.Field>
             <label>Email</label>
             <input 
@@ -70,7 +83,6 @@ const LoginModal = ({
             <Button 
               primary 
               type='submit'
-              onClick={handleSubmit}
               >Connexion</Button>
 
         </Form>
@@ -86,26 +98,53 @@ const LoginModal = ({
       open={signupOpen}
       trigger={<Button>Créer un compte</Button>}
       >
-      
+      <ErrorInfo isVisible={signupErrorIsVisible} errorMessage={errorMessage} />
         <Modal.Content >
       
       <Segment placeholder>
-          <Form>
+          <Form name='signupForm' onSubmit={handleSubmit}>
           <Form.Field>
               <label>Pseudo</label>
-              <input type='text' placeholder='pseudo' />
+              <input 
+                name='signupPseudo'
+                type='text' 
+                placeholder='pseudo'
+                value={inputSignupPseudoValue}
+                onChange={inputChange}
+                />
             </Form.Field>
             <Form.Field>
               <label>Email</label>
-              <input type='email' placeholder='email' />
+              <input 
+                name='signupEmail'
+                type='email'
+                placeholder='email'
+                value={inputSignupEmailValue}
+                onChange={inputChange}
+                />
             </Form.Field>
             <Form.Field>
               <label>Mot de passe</label>
-              <input type='password' placeholder='mot de passe' />
+              <input 
+                name='firstSignupPassword' 
+                type='password'
+                placeholder='mot de passe'
+                value={inputFirstSignupPasswordValue}
+                onChange={inputChange}
+                />
             </Form.Field>
-            
+            <Form.Field>
+              <label>Un autre mot de passe (ok, je sors...)</label>
+              <input 
+                name='secondSignupPassword' 
+                type='password'
+                placeholder='mot de passe'
+                value={inputSecondSignupPasswordValue}
+                onChange={inputChange}
+                />
+            </Form.Field>
             <Modal.Actions>
-              <Button type='submit'>Créer un compte</Button>
+              <Button type='submit' >Créer un compte</Button>
             </Modal.Actions>
           </Form>
           </Segment>

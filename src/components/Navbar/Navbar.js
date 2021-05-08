@@ -1,11 +1,8 @@
 import React, {useEffect} from 'react';
 import searchAndReturn from 'src/selectors/search';
 import {Search, Select} from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
 import Navmenu from './Navmenu/Navmenu';
-import SignupModal from './SignupModal/SignupModal';
 import LoginModal from './LoginModal/LoginModal';
-
 import './navbar.scss';
 
 const Navbar = ({
@@ -28,9 +25,17 @@ const Navbar = ({
   searchChange,
   setSearchResult,
   submitLoginForm,
+  submitSignupForm,
   inputLoginEmailValue,
   inputLoginPasswordValue,
+  inputSignupPseudoValue,
+  inputSignupEmailValue,
+  inputFirstSignupPasswordValue,
+  inputSecondSignupPasswordValue,
   setInputValue,
+  loginErrorIsVisible,
+  signupErrorIsVisible,
+  errorMessage,
 }) => {
   
   useEffect(() => {fetchData()}, []);
@@ -85,42 +90,50 @@ const Navbar = ({
           setLoginOpen={setLoginOpen}
           setSignupOpen={setSignupOpen}
           submitLoginForm={submitLoginForm}
+          submitSignupForm={submitSignupForm}
           inputLoginEmailValue={inputLoginEmailValue}
           inputLoginPasswordValue={inputLoginPasswordValue}
+          inputSignupPseudoValue={inputSignupPseudoValue}
+          inputSignupEmailValue={inputSignupEmailValue}
+          inputFirstSignupPasswordValue={inputFirstSignupPasswordValue}
+          inputSecondSignupPasswordValue={inputSecondSignupPasswordValue}
           setInputValue={setInputValue}
+          loginErrorIsVisible={loginErrorIsVisible}
+          signupErrorIsVisible={signupErrorIsVisible}
+          errorMessage={errorMessage}
           />)}
       
-      {!isShowLoginButton && (<div className="nav__button__row">
-
+      {!isShowLoginButton && (
+        <div className="nav__button__row">
             {/* La searchbar qui contient un champ de recherche sur channels et tags + un select pour les tags */}
             {isShowSearch && (
-        <div className='nav__search__container'>
-              
-          <Search
-            category
-            loading={isSearchLoading}
-            onResultSelect={handleResultSelect}
-            onSearchChange={handleSearchChange}
-            results={searchResult}
-            value={searchedValue}
-          />
-          
-          <Select placeholder="Catégories" options={tagsOptions} />
-        </div>
-      )}
-      
-      {/* La loupe qui fait apparaitre la searchbar au click */}
-        <button className="nav__search__button" onClick={toggleSearch}>
-          <i className="fas fa-search"></i>
-        </button>
-      {/* Le hamburger qui fait apparaitre le menu au click */}
-      <button className='nav__hamburger' onClick={toggleMenu}>
-        <i className="fas fa-bars"></i>
-        </button>
-      </div>)}
+          <div className='nav__search__container'>
+                
+            <Search
+              category
+              loading={isSearchLoading}
+              onResultSelect={handleResultSelect}
+              onSearchChange={handleSearchChange}
+              results={searchResult}
+              value={searchedValue}
+            />
+            
+            <Select placeholder="Catégories" options={tagsOptions} />
+          </div>
+        )}
+        
+        {/* La loupe qui fait apparaitre la searchbar au click */}
+          <button className="nav__search__button" onClick={toggleSearch}>
+            <i className="fas fa-search"></i>
+          </button>
+        {/* Le hamburger qui fait apparaitre le menu au click */}
+          <button className='nav__hamburger' onClick={toggleMenu}>
+            <i className="fas fa-bars"></i>
+          </button>
+        </div>)}
       
       {isShowMenu && <Navmenu links={links} />}
-      
+
     </section>
   )
 }
