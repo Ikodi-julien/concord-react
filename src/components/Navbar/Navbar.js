@@ -3,6 +3,8 @@ import searchAndReturn from 'src/selectors/search';
 import {Search, Select} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import Navmenu from './Navmenu/Navmenu';
+import SignupModal from './SignupModal/SignupModal';
+import LoginModal from './LoginModal/LoginModal';
 
 import './navbar.scss';
 
@@ -10,6 +12,8 @@ const Navbar = ({
   tags,
   channels,
   isShowLoginButton,
+  isShowLoginModal,
+  isShowSignupModal,
   isShowSearch,
   isSearchLoading,
   isShowMenu,
@@ -18,6 +22,8 @@ const Navbar = ({
   searchResult,
   toggleSearch,
   toggleMenu,
+  setLoginOpen,
+  setSignupOpen,
   fetchData,
   searchChange,
   setSearchResult,
@@ -68,9 +74,8 @@ const Navbar = ({
         {/* ici le logo */}
       </div>
       
-      {isShowLoginButton && (<Link to="/login" className="nav__loginButton">
-        S'incrire / Se connecter
-      </Link>)}
+      {isShowLoginButton && (<LoginModal loginOpen={isShowLoginModal} 
+      signupOpen={isShowSignupModal} setLoginOpen={setLoginOpen} setSignupOpen={setSignupOpen}/>)}
       
       {!isShowLoginButton && (<div className="nav__button__row">
 

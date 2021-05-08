@@ -7,6 +7,8 @@ import {
   FETCH_NAV_DATA_ERROR,
   SEARCH_NAV_CHANGE,
   SET_NAV_SEARCH_RESULT,
+  SET_LOGIN_MODAL,
+  SET_SIGNUP_MODAL,
 } from 'src/actions/appActions';
 
 const appState = {
@@ -37,7 +39,9 @@ const appState = {
       id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
     },
   ],
-  isShowLoginButton: false,
+  isShowLoginButton: true,
+  isShowLoginModal: false,
+  isShowSignupModal: false,
   isShowSearch: true,
   isShowMenu: false,
   isSearchLoading: false,
@@ -84,6 +88,20 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         searchResult: action.list,
+      };
+
+    case SET_LOGIN_MODAL:
+      console.log(action.value);
+      return {
+        ...stateActuel,
+        isShowLoginModal: action.value,
+      };
+
+    case SET_SIGNUP_MODAL:
+      console.log(action.value);
+      return {
+        ...stateActuel,
+        isShowSignupModal: action.value,
       };
 
     default:
