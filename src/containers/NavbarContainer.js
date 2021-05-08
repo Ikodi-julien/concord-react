@@ -8,7 +8,10 @@ import {
   setNavSearchResult,
   setLoginOpen,
   setSignupOpen,
+  setInputValue,
 } from 'src/actions/appActions';
+
+import { submitLoginForm } from 'src/actions/loginsignupActions';
 
 const mapStateToProps = ({ app }) => ({
 
@@ -23,6 +26,8 @@ const mapStateToProps = ({ app }) => ({
   isSearchLoading: app.isSearchLoading,
   searchedValue: app.searchedValue,
   searchResult: app.searchResult,
+  inputLoginEmailValue: app.loginEmail,
+  inputLoginPasswordValue: app.loginPassword,
 
 });
 
@@ -34,6 +39,8 @@ const mapDispatchToProps = (dispatch) => ({
   setSearchResult: (list) => dispatch(setNavSearchResult(list)),
   setLoginOpen: (bool) => dispatch(setLoginOpen(bool)),
   setSignupOpen: (bool) => dispatch(setSignupOpen(bool)),
+  submitLoginForm: () => dispatch(submitLoginForm()),
+  setInputValue: (objectInput) => dispatch(setInputValue(objectInput)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

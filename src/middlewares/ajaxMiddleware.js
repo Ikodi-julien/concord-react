@@ -48,6 +48,7 @@ export default (store) => (next) => (action) => {
       //     store.dispatch(fetchNavDataError());
       //   });
       break;
+
     default:
       next(action);
   }

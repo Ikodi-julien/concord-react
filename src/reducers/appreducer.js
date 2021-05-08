@@ -9,6 +9,7 @@ import {
   SET_NAV_SEARCH_RESULT,
   SET_LOGIN_MODAL,
   SET_SIGNUP_MODAL,
+  SET_INPUT_VALUE,
 } from 'src/actions/appActions';
 
 const appState = {
@@ -47,6 +48,8 @@ const appState = {
   isSearchLoading: false,
   searchedValue: '',
   searchResult: {},
+  loginEmail: '',
+  loginPassword: '',
 };
 
 const reducer = (stateActuel = appState, action = {}) => {
@@ -102,6 +105,13 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         isShowSignupModal: action.value,
+      };
+
+    case SET_INPUT_VALUE:
+      console.log(action);
+      return {
+        ...stateActuel,
+        [action.objectInput.name]: action.objectInput.value,
       };
 
     default:

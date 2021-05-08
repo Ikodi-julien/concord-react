@@ -1,9 +1,27 @@
 import React from 'react'
-import { Button, Divider, Segment, Grid, Icon, Modal, Form } from 'semantic-ui-react'
+import { Button, Divider, Segment, Modal, Form } from 'semantic-ui-react'
 
 import './loginmodal.scss';
 
-const SignupModal = ({loginOpen, signupOpen, setLoginOpen, setSignupOpen}) => {
+const LoginModal = ({
+  loginOpen, 
+  signupOpen, 
+  setLoginOpen, 
+  setSignupOpen,
+  submitLoginForm,
+  inputLoginEmailValue,
+  inputLoginPasswordValue,
+  setInputValue,
+}) => {
+
+  const inputChange = (evt) => {
+    // console.log(evt.)
+    setInputValue({name: evt.target.name, value: evt.target.value})
+  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    submitLoginForm()
+  }
 
   return (
     <Modal
@@ -30,14 +48,30 @@ const SignupModal = ({loginOpen, signupOpen, setLoginOpen, setSignupOpen}) => {
         <Form>
           <Form.Field>
             <label>Email</label>
-            <input type='email' placeholder='email' />
+            <input 
+              name='loginEmail' 
+              type='email' 
+              placeholder='email' 
+              value={inputLoginEmailValue}
+              onChange={inputChange}
+              />
           </Form.Field>
           <Form.Field>
             <label>Mot de passe</label>
-            <input type='password' placeholder='mot de passe' />
+            <input 
+              name='loginPassword' 
+              type='password' 
+              placeholder='mot de passe' 
+              value={inputLoginPasswordValue}
+              onChange={inputChange}
+              />
           </Form.Field>
           
-            <Button primary type='submit'>Connexion</Button>
+            <Button 
+              primary 
+              type='submit'
+              onClick={handleSubmit}
+              >Connexion</Button>
 
         </Form>
         
@@ -86,4 +120,4 @@ const SignupModal = ({loginOpen, signupOpen, setLoginOpen, setSignupOpen}) => {
   )
 }
 
-export default SignupModal;
+export default LoginModal;

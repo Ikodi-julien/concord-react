@@ -27,6 +27,10 @@ const Navbar = ({
   fetchData,
   searchChange,
   setSearchResult,
+  submitLoginForm,
+  inputLoginEmailValue,
+  inputLoginPasswordValue,
+  setInputValue,
 }) => {
   
   useEffect(() => {fetchData()}, []);
@@ -74,8 +78,17 @@ const Navbar = ({
         {/* ici le logo */}
       </div>
       
-      {isShowLoginButton && (<LoginModal loginOpen={isShowLoginModal} 
-      signupOpen={isShowSignupModal} setLoginOpen={setLoginOpen} setSignupOpen={setSignupOpen}/>)}
+      {isShowLoginButton && (
+        <LoginModal 
+          loginOpen={isShowLoginModal} 
+          signupOpen={isShowSignupModal}
+          setLoginOpen={setLoginOpen}
+          setSignupOpen={setSignupOpen}
+          submitLoginForm={submitLoginForm}
+          inputLoginEmailValue={inputLoginEmailValue}
+          inputLoginPasswordValue={inputLoginPasswordValue}
+          setInputValue={setInputValue}
+          />)}
       
       {!isShowLoginButton && (<div className="nav__button__row">
 
