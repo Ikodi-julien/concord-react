@@ -114,17 +114,18 @@ const Navbar = ({
             {/* La searchbar qui contient un champ de recherche sur channels et tags + un select pour les tags */}
             {isShowSearch && (
           <div className='nav__search__container'>
-                
-            <Search
-              category
-              loading={isSearchLoading}
-              onResultSelect={handleResultSelect}
-              onSearchChange={handleSearchChange}
-              results={searchResult}
-              value={searchedValue}
-            />
+            <div class="nav__search__container__search">
+              <Search
+                category
+                loading={isSearchLoading}
+                onResultSelect={handleResultSelect}
+                onSearchChange={handleSearchChange}
+                results={searchResult}
+                value={searchedValue}
+              />
+            </div>
             
-            <Select placeholder="Catégories" options={tagsOptions} />
+            <div class="nav__search__container__select"><Select placeholder="Catégories" options={tagsOptions} /></div>
           </div>
         )}
         

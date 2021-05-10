@@ -11,6 +11,7 @@
       .dropdown.item {
         .menu {
           background-color: v.$base-color;
+          z-index: v.$z-index-front-all;
         }
       }
     }
@@ -37,6 +38,7 @@
 
   .menu.transition.left {
     background-color: v.$base-color;
+    // z-index: ;
   }
 
   .ui.attached.menu:not(.tabular) {

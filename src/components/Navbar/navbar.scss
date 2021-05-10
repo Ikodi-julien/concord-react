@@ -40,11 +40,33 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media screen and (max-width:700px) {
+        position: absolute;
+        top: v.$nav-height;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: v.$base-color;
+        padding: 10px;
+
+        &__select,
+        &__search {
+          padding-bottom: 20px;
+          display: flex;
+          justify-content: center;
+        }
+
+        &__search {
+          z-index: v.$z-index-middle-front;
+        }
+      }
     }
   }
 
   &__button__row {
     display: flex;
+
   }
 
   &__hamburger,
