@@ -11,8 +11,10 @@ const LoginModal = ({
   setSignupOpen,
   submitLoginForm,
   submitSignupForm,
+  loginButtonIsLoading,
   inputLoginEmailValue,
   inputLoginPasswordValue,
+  signupButtonIsLoading,
   inputSignupPseudoValue,
   inputSignupEmailValue,
   inputFirstSignupPasswordValue,
@@ -82,6 +84,7 @@ const LoginModal = ({
           
             <Button 
               primary 
+              loading={loginButtonIsLoading}
               type='submit'
               >Connexion</Button>
 
@@ -96,7 +99,7 @@ const LoginModal = ({
       onClose={() => setSignupOpen(false)}
       onOpen={() => setSignupOpen(true)}
       open={signupOpen}
-      trigger={<Button>Créer un compte</Button>}
+      trigger={<Button >Créer un compte</Button>}
       >
       <ErrorInfo isVisible={signupErrorIsVisible} errorMessage={errorMessage} />
         <Modal.Content >
@@ -144,7 +147,7 @@ const LoginModal = ({
                 />
             </Form.Field>
             <Modal.Actions>
-              <Button type='submit' >Créer un compte</Button>
+              <Button type='submit' loading={signupButtonIsLoading} >Créer un compte</Button>
             </Modal.Actions>
           </Form>
           </Segment>

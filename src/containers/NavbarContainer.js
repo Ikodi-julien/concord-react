@@ -14,13 +14,14 @@ import {
 import {
   submitLoginForm,
   submitSignupForm,
+  disconnectUser,
 } from 'src/actions/loginsignupActions';
 
 const mapStateToProps = ({ app }) => ({
 
   tags: app.tags,
   channels: app.channels,
-  isShowLoginButton: app.isShowLoginButton,
+  isUserLoggued: app.isUserLoggued,
   isShowLoginModal: app.isShowLoginModal,
   isShowSignupModal: app.isShowSignupModal,
   isShowSearch: app.isShowSearch,
@@ -29,8 +30,10 @@ const mapStateToProps = ({ app }) => ({
   isSearchLoading: app.isSearchLoading,
   searchedValue: app.searchedValue,
   searchResult: app.searchResult,
+  loginButtonIsLoading: app.loginButtonIsLoading,
   inputLoginEmailValue: app.loginEmail,
   inputLoginPasswordValue: app.loginPassword,
+  signupButtonIsLoading: app.signupButtonIsLoading,
   inputSignupPseudoValue: app.signupPseudo,
   inputSignupEmailValue: app.signupEmail,
   inputFirstSignupPasswordValue: app.firstSignupPassword,
@@ -52,6 +55,7 @@ const mapDispatchToProps = (dispatch) => ({
   submitLoginForm: () => dispatch(submitLoginForm()),
   submitSignupForm: () => dispatch(submitSignupForm()),
   setInputValue: (objectInput) => dispatch(setInputValue(objectInput)),
+  disconnectUser: () => dispatch(disconnectUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

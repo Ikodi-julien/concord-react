@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, {useState, } from 'react';
 import {
   Switch,
   Route,
@@ -15,41 +15,31 @@ import './app.scss';
 
 // == Composant
 
-const App = ({text}) => {
-
+const App = ({isUserLoggued}) => {
+  
   return (
   <div className="app">
     <Switch>
 
-      <Route path='/login'>
-        {/* Login */}
-        <NavbarContainer />
-        <h1>Il n'y a pas encore de composant 'Login'</h1>
-      </Route>
-      <Route path='/signup'>
-        {/* Signup */}
-        <NavbarContainer />
-        <h1>Il n'y a pas encore de composant 'Signup'</h1>
-        
-      </Route>
       <Route path='/home'>
         {/* Home */}
         <NavbarContainer />
-        <h1>Il n'y a pas encore de composant 'Home'</h1>
+        {isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : (<h1>Il faut te connecter</h1>)}
+        
       </Route>
       <Route path='/channels/:id'>
         {/* Channels */}
-        <ChannelContainer />
+        {isUserLoggued ? <ChannelContainer /> : (<h1>Il faut te connecter</h1>)}
       </Route>
       <Route path='/profile'>
         {/* Profile */}
         <NavbarContainer />
-        <h1>Il n'y a pas encore de composant 'Profile'</h1>
+        {isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : (<h1>Il faut te connecter</h1>)}
       </Route>
       <Route path='/discovery'>
         {/* Discovery */}
         <NavbarContainer />
-        <h1>Il n'y a pas encore de composant 'Discovery'</h1>
+        {isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : (<h1>Il faut te connecter</h1>)}
       </Route>
       <Route path='/error'>
         {/* Error */}
@@ -59,15 +49,13 @@ const App = ({text}) => {
       <Route path='/' exact>
         {/* Accueil */}
         <NavbarContainer />
-        <Landing />
+        {isUserLoggued ? <Landing /> : (<h1>Il faut te connecter</h1>) }
       </Route>
       
       <Redirect to='/error' />
     </Switch>
     
   </div>)
- 
- 
 }
 ;
 

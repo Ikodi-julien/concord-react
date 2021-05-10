@@ -8,7 +8,7 @@ import './navbar.scss';
 const Navbar = ({
   tags,
   channels,
-  isShowLoginButton,
+  isUserLoggued,
   isShowLoginModal,
   isShowSignupModal,
   isShowSearch,
@@ -26,8 +26,10 @@ const Navbar = ({
   setSearchResult,
   submitLoginForm,
   submitSignupForm,
+  loginButtonIsLoading,
   inputLoginEmailValue,
   inputLoginPasswordValue,
+  signupButtonIsLoading,
   inputSignupPseudoValue,
   inputSignupEmailValue,
   inputFirstSignupPasswordValue,
@@ -36,6 +38,7 @@ const Navbar = ({
   loginErrorIsVisible,
   signupErrorIsVisible,
   errorMessage,
+  disconnectUser,
 }) => {
   
   useEffect(() => {fetchData()}, []);
@@ -83,7 +86,7 @@ const Navbar = ({
         {/* ici le logo */}
       </div>
       
-      {isShowLoginButton && (
+      {!isUserLoggued && (
         <LoginModal 
           loginOpen={isShowLoginModal} 
           signupOpen={isShowSignupModal}
@@ -91,8 +94,10 @@ const Navbar = ({
           setSignupOpen={setSignupOpen}
           submitLoginForm={submitLoginForm}
           submitSignupForm={submitSignupForm}
+          loginButtonIsLoading={loginButtonIsLoading}
           inputLoginEmailValue={inputLoginEmailValue}
           inputLoginPasswordValue={inputLoginPasswordValue}
+          signupButtonIsLoading={signupButtonIsLoading}
           inputSignupPseudoValue={inputSignupPseudoValue}
           inputSignupEmailValue={inputSignupEmailValue}
           inputFirstSignupPasswordValue={inputFirstSignupPasswordValue}
@@ -101,9 +106,10 @@ const Navbar = ({
           loginErrorIsVisible={loginErrorIsVisible}
           signupErrorIsVisible={signupErrorIsVisible}
           errorMessage={errorMessage}
+          disconnectUser={disconnectUser}
           />)}
       
-      {!isShowLoginButton && (
+      {isUserLoggued && (
         <div className="nav__button__row">
             {/* La searchbar qui contient un champ de recherche sur channels et tags + un select pour les tags */}
             {isShowSearch && (
@@ -132,7 +138,11 @@ const Navbar = ({
           </button>
         </div>)}
       
-      {isShowMenu && <Navmenu links={links} />}
+      {isShowMenu && (
+        <Navmenu 
+          links={links}
+          disconnectUser={disconnectUser} />
+      )}
 
     </section>
   )

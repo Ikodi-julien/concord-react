@@ -1,5 +1,5 @@
 // == Import : npm
-import 'semantic-ui-css/semantic.min.css'
+
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -10,8 +10,10 @@ import store from 'src/store/store';
 
 // == Import : local
 import './styles/index.scss';
+import 'semantic-ui-css/semantic.min.css'
+
 // Composants
-import App from 'src/components/App/App';
+import AppContainer from 'src/containers/AppContainer';
 
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
@@ -19,7 +21,7 @@ import App from 'src/components/App/App';
 const rootReactElement = (
     <Provider store={store}>
       <Router >
-          <App />
+        <AppContainer />
       </Router>
     </Provider>
   );

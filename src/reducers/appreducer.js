@@ -13,16 +13,18 @@ import {
   HIDE_ERRORS,
 } from 'src/actions/appActions';
 import {
-  LOGIN_ERROR,
+  SUBMIT_SIGNUP_FORM,
+  SUBMIT_LOGIN_FORM,
+  SIGNUP_SUCCESS,
   SIGNUP_ERROR,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+  DISCONNECT_USER_SUCCESS,
 } from 'src/actions/loginsignupActions';
-import { SIGNUP_SUCCESS, LOGIN_SUCCESS } from '../actions/loginsignupActions';
 
 const appState = {
   appRoutes: [
     { slug: '/', name: 'Accueil' },
-    { slug: '/login', name: 'Connexion' },
-    { slug: '/signup', name: 'Créer un compte' },
     { slug: '/home', name: 'Home' },
     { slug: '/profile', name: 'Mes paramètres' },
     { slug: '/discovery', name: 'Découverte' },
@@ -46,7 +48,7 @@ const appState = {
       id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
     },
   ],
-  isShowLoginButton: true,
+  isUserLoggued: false,
   isShowLoginModal: false,
   isShowSignupModal: false,
   isShowSearch: false,
@@ -54,8 +56,10 @@ const appState = {
   isSearchLoading: false,
   searchedValue: '',
   searchResult: {},
+  loginButtonIsLoading: false,
   loginEmail: 'ju@ju.fr',
   loginPassword: 'bob',
+  signupButtonIsLoading: false,
   signupPseudo: 'ju',
   signupEmail: 'ju@ju.fr',
   firstSignupPassword: 'bob',
@@ -130,13 +134,24 @@ const reducer = (stateActuel = appState, action = {}) => {
         [action.objectInput.name]: action.objectInput.value,
       };
 
-    case SIGNUP_ERROR:
-      console.log(action);
+    case SUBMIT_SIGNUP_FORM:
+      return {
+        ...stateActuel,
+        signupButtonIsLoading: true,
+      };
 
+    case SUBMIT_LOGIN_FORM:
+      return {
+        ...stateActuel,
+        loginButtonIsLoading: true,
+      };
+
+    case SIGNUP_ERROR:
       return {
         ...stateActuel,
         errorMessage: action.value,
         signupErrorIsVisible: true,
+        signupButtonIsLoading: false,
       };
 
     case SIGNUP_SUCCESS:
@@ -144,6 +159,7 @@ const reducer = (stateActuel = appState, action = {}) => {
 
       return {
         ...stateActuel,
+        signupButtonIsLoading: false,
         isShowSignupModal: false,
       };
 
@@ -154,6 +170,7 @@ const reducer = (stateActuel = appState, action = {}) => {
         ...stateActuel,
         errorMessage: action.value,
         loginErrorIsVisible: true,
+        loginButtonIsLoading: false,
       };
 
     case LOGIN_SUCCESS:
@@ -161,10 +178,22 @@ const reducer = (stateActuel = appState, action = {}) => {
 
       return {
         ...stateActuel,
-        isShowLoginButton: false,
+        isUserLoggued: true,
         isShowLoginModal: false,
         isShowSignupModal: false,
         errorMessage: '',
+        loginEmail: '',
+        loginPassword: '',
+        signupPseudo: '',
+        signupEmail: '',
+        firstSignupPassword: '',
+        secondSignupPassword: '',
+        loginButtonIsLoading: false,
+      };
+
+    case DISCONNECT_USER_SUCCESS:
+      return {
+        ...appState,
       };
 
     case HIDE_ERRORS:

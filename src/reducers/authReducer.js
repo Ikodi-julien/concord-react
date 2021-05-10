@@ -2,10 +2,9 @@
 
 import {
   LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  SIGN_UP_SUCCESS,
+  SIGNUP_SUCCESS,
+  DISCONNECT_USER_SUCCESS,
 } from 'src/actions/loginsignupActions';
-import { SIGNUP_SUCCESS } from '../actions/loginsignupActions';
 
 const authState = {
   password: '',
@@ -16,17 +15,25 @@ const authState = {
 const reducer = (stateActuel = authState, action = {}) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
-      };
-
-    case SIGNUP_SUCCESS:
-      console.log(action);
-      return {
         password: action.user.password,
         email: action.user.email,
         token: '',
+      };
+
+    case SIGNUP_SUCCESS:
+      // console.log(action);
+      return {
+        password: action.password,
+        email: action.email,
+        token: '',
+      };
+
+    case DISCONNECT_USER_SUCCESS:
+      return {
+        ...authState,
       };
 
     default:

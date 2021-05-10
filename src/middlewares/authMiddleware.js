@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import axios from 'axios';
 import { FETCH_URL } from 'src/vars';
 import {
@@ -7,10 +8,14 @@ import {
   SUBMIT_SIGNUP_FORM,
   signupSuccess,
   signupError,
+  DISCONNECT_USER,
+  disconnectUserSuccess,
+  disconnectUserError,
 } from 'src/actions/loginsignupActions';
 import {
   hideErrors,
 } from 'src/actions/appActions';
+import { submitLoginForm } from '../actions/loginsignupActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -22,14 +27,22 @@ export default (store) => (next) => (action) => {
     secondSignupPassword,
   } = store.getState().app;
 
+  const {
+    email,
+    password,
+  } = store.getState().auth;
+
+  const errorTimer = 2500;
+
   switch (action.type) {
     case SUBMIT_LOGIN_FORM:
       console.log(action);
       next(action);
 
+      /* If login only => email and password are from the inputs in appReducer, after a signup success they are from authReducer */
       axios.post(`${FETCH_URL}/v1/login`, {
-        email: loginEmail,
-        password: loginPassword,
+        email: email || loginEmail,
+        password: password || loginPassword,
       })
         .then((res) => {
           console.log('res.data :', res.data);
@@ -37,11 +50,18 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
+          if (error.toString().includes('401')) {
+            store.dispatch(loginError('Whalaa ! On ne connait pas ces identifiants...'));
+            setTimeout(() => {
+              store.dispatch(hideErrors());
+            }, errorTimer);
+            return;
+          }
           store.dispatch(loginError(error.toString()));
 
           setTimeout(() => {
             store.dispatch(hideErrors());
-          }, 2000);
+          }, errorTimer);
         });
       break;
 
@@ -58,7 +78,7 @@ export default (store) => (next) => (action) => {
         store.dispatch(signupError('Un ou plusieurs champs ne sont pas remplis'));
         setTimeout(() => {
           store.dispatch(hideErrors());
-        }, 2000);
+        }, errorTimer);
         return;
       }
 
@@ -66,7 +86,7 @@ export default (store) => (next) => (action) => {
         store.dispatch(signupError('Les mots de passe ne sont pas identiques'));
         setTimeout(() => {
           store.dispatch(hideErrors());
-        }, 2000);
+        }, errorTimer);
         return;
       }
 
@@ -77,15 +97,29 @@ export default (store) => (next) => (action) => {
       })
         .then((res) => {
           console.log('res.data :', res.data);
-          store.dispatch(signupSuccess(res.data));
+          store.dispatch(signupSuccess({
+            password: store.getState().app.firstSignupPassword,
+            email: res.data.email,
+          }));
+          // There you try to log after a signup success
+          setTimeout(() => {
+            store.dispatch(submitLoginForm());
+          }, 30);
         })
         .catch((error) => {
         // console.error('catch error: ', error);
           store.dispatch(signupError(error.toString()));
           setTimeout(() => {
             store.dispatch(hideErrors());
-          }, 2000);
+          }, errorTimer);
         });
+      break;
+
+    case DISCONNECT_USER:
+      next(action);
+      // TODO /disconnect/:id in server
+
+      store.dispatch(disconnectUserSuccess());
       break;
 
     default:
