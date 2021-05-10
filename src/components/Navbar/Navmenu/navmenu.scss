@@ -1,24 +1,49 @@
 @use 'src/styles/vars'as v;
 
 .nav__menu {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: v.$nav-height;
-  right: 0;
-  width: 250px;
-  // height: 400px;
-  padding: 20px;
-  background-color: v.$base-color-dark;
-  z-index: 10;
+  .ui {
+    &.menu {
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+      min-height: auto;
 
-  & a {
-    color: v.$base-color-light;
+      .dropdown.item {
+        .menu {
+          background-color: v.$base-color;
+        }
+      }
+    }
+
+
+
+    &.item {
+      padding: 0;
+
+      & i.icon {
+        font-size: v.$size-font-awesome;
+        color: v.$base-color-light;
+      }
+
+      &.dropdown {
+        height: 29px;
+      }
+    }
   }
 
-  &__link {
-    width: 80%;
-    height: 20px;
-    margin-bottom: 20px;
+  &.ui.simple.active.dropdown>.menu {
+    top: v.$nav-height;
+  }
+
+  .menu.transition.left {
+    background-color: v.$base-color;
+  }
+
+  .ui.attached.menu:not(.tabular) {
+    border: none;
+  }
+
+  .ui.menu[class*="top attached"]:first-child {
+    margin: (v.$nav-height - 29px)/2;
   }
 }

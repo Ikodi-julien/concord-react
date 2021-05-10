@@ -132,17 +132,17 @@ const Navbar = ({
           <button className="nav__search__button" onClick={toggleSearch}>
             <i className="fas fa-search"></i>
           </button>
-        {/* Le hamburger qui fait apparaitre le menu au click */}
+        {/* Le hamburger qui fait apparaitre le menu au click
           <button className='nav__hamburger' onClick={toggleMenu}>
             <i className="fas fa-bars"></i>
-          </button>
-        </div>)}
+          </button> */}
       
-      {isShowMenu && (
         <Navmenu 
           links={links}
-          disconnectUser={disconnectUser} />
-      )}
+          disconnectUser={disconnectUser} 
+        />
+        </div>
+        )}
 
     </section>
   )

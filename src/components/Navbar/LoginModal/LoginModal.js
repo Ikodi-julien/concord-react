@@ -52,14 +52,14 @@ const LoginModal = ({
     <Modal.Content >
     <Segment placeholder >
     
-        <Button
+        {/* <Button
               color='orange'
               content="Google Connect"
               onClick={() => setLoginOpen(false)}
             />
     
     <Divider horizontal >ou</Divider>
-    
+     */}
         <Form name='loginForm' onSubmit={handleSubmit}>
           <Form.Field>
             <label>Email</label>
