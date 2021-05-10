@@ -5,7 +5,6 @@ import './navmenu.scss';
 
 const Navmenu = ({links, disconnectUser}) => {
   
-  
   return (
     <section className="nav__menu">
     
@@ -20,9 +19,8 @@ const Navmenu = ({links, disconnectUser}) => {
         
         {
         links.map(link => (
-          <Dropdown.Item>
+          <Dropdown.Item key={link.name}>
             <NavLink 
-              key={link.name} 
               to={link.slug}  
               className="nav__menu__link" >{link.name}
             </NavLink>

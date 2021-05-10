@@ -5,6 +5,8 @@ import {
   FETCH_CHANNEL_ERROR,
   FETCH_CHANNEL_SUCCESS,
   MESSAGE_RECEIVED,
+  TOGGLE_MY_CHANNELS,
+  TOGGLE_USERS_IN_CHANNEL,
 } from 'src/actions/channelActions.js';
 
 const channelState = {
@@ -14,7 +16,7 @@ const channelState = {
     { id: 1, nickname: 'Bernard', content: 'Tu la connais celle des deux poissons rouge dans un bocal ?' },
     { id: 2, nickname: 'Bianca', content: 'Non, raconte !' },
     { id: 3, nickname: 'Belle', content: 'Moi je la connais' },
-    { id: 4, nickname: 'Sébastien', content: "Ouais, ben ils sont en train de tourner et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\"" },
+    { id: 4, nickname: 'Sébastien', content: "Ouais, ben ils sont en train de tourner depuis un moment et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\"" },
   ],
   users: [
     {
@@ -34,6 +36,8 @@ const channelState = {
   inputForm: 'Je suis le contenu du formulaire',
   isLoading: false,
   error: false,
+  showMychannels: false,
+  showUsersInChannel: false,
 };
 
 const reducer = (stateActuel = channelState, action = {}) => {
@@ -93,6 +97,21 @@ const reducer = (stateActuel = channelState, action = {}) => {
             content: action.message.content,
           },
         ],
+      };
+
+    case TOGGLE_MY_CHANNELS:
+      return {
+        ...stateActuel,
+        showMychannels: !stateActuel.showMychannels,
+        showUsersInChannel: false,
+
+      };
+
+    case TOGGLE_USERS_IN_CHANNEL:
+      return {
+        ...stateActuel,
+        showUsersInChannel: !stateActuel.showUsersInChannel,
+        showMychannels: false,
       };
 
     default:

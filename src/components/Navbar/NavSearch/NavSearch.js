@@ -71,7 +71,6 @@ const NavSearch = ({
                 
               {/* </Dropdown.Menu> */}
 
-              <Dropdown.Divider />
               <Dropdown.Header icon='search' content='Rechercher sur Teacup' />
               
                 <Search

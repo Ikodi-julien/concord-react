@@ -1,13 +1,21 @@
 import React from 'react';
+import {Divider} from 'semantic-ui-react';
 // import {Link} from 'react-router-dom';
 
-const UsersInChannelList = ({users}) => {
+const UsersInChannelList = ({users, showUsersInChannel}) => {
   
-  // ici il y avait la liste des users connectés au chat.
+  // ici il y a la liste des users connectés au chat et ceux qui l'ont été.
   
   return (
-    <section className="usersinchannellist">
+    <section className={showUsersInChannel ? "usersinchannellist --show" : "usersinchannellist"}>
       <h1 className="usersinchannellist__title">En ligne</h1>
+      {
+        users.map(user => <div key={user.id} className="usersinchannellist__user">
+        {/* <span>{`${user.avatar}`}</span> */}
+        <span>{`${user.nickname}`}</span></div>)
+      }
+      
+      <h1 className="usersinchannellist__title">Hors ligne</h1>
       {
         users.map(user => <div key={user.id} className="usersinchannellist__user">
         {/* <span>{`${user.avatar}`}</span> */}

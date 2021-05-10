@@ -4,6 +4,8 @@ import {
   setInputValue,
   fetchChannel,
   channelFormSubmit,
+  toggleMyChannels,
+  toggleUsersInChannel,
 } from 'src/actions/channelActions';
 
 const mapStateToProps = ({ channel, user }) => ({
@@ -22,6 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
   channelFormSubmit: () => {
     dispatch(channelFormSubmit());
   },
+  toggleMyChannels: () => dispatch(toggleMyChannels()),
+  toggleUsersInChannel: () => dispatch(toggleUsersInChannel()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Channel);

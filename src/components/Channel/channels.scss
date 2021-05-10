@@ -20,6 +20,7 @@
 
 .mychannels,
 .usersinchannellist {
+  position: relative;
   width: 20vw;
   height: 100%;
   padding: 20px;
@@ -29,6 +30,18 @@
   flex-direction: column;
   color: v.$base-color-light;
   background-color: v.$base-color-darker;
+
+  @media screen and (max-width: 700px) {
+    display: none;
+
+    &.--show {
+      display: block;
+      position: absolute;
+      top: 131px;
+      width: 100%;
+      height: 80%;
+    }
+  }
 }
 
 .channel {
@@ -62,8 +75,13 @@
       width: 60vw;
       flex: 1;
       border: 1px solid v.$base-color-grey;
-      color: v.$base-color-darker;
-      background-color: v.$base-color-light;
+      color: v.$base-color-light;
+      background-color: v.$base-color-grey;
+
+      @media screen and (max-width: 700px) {
+        width: 100%;
+        border: none;
+      }
 
       &__title {
         padding: 20px;
@@ -72,7 +90,7 @@
       &__messagelist {
         padding: 20px;
         flex: 1;
-        max-height: 30vh;
+        max-height: 60vh;
         overflow-y: auto;
         scroll-behavior: smooth;
       }
@@ -81,6 +99,16 @@
         width: 100%;
         margin-bottom: 10px;
         font-size: 1.2em;
+      }
+    }
+
+    &__options {
+      display: none;
+
+      @media screen and (max-width: 700px) {
+        display: flex;
+        justify-content: space-between;
+        background-color: v.$base-color;
       }
     }
   }

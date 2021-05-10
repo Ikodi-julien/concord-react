@@ -120,7 +120,7 @@ const Navbar = ({
           ></div>
           
             <div className='nav__search__container'>
-              <div class="nav__search__container__search">
+              <div className="nav__search__container__search">
                 <Search
                   category
                   loading={isSearchLoading}
@@ -131,7 +131,7 @@ const Navbar = ({
                 />
               </div>
               
-              <div class="nav__search__container__select"><Select placeholder="Catégories" options={tagsOptions} /></div>
+              <div className="nav__search__container__select"><Select placeholder="Catégories" options={tagsOptions} /></div>
             </div>
           </div>
           )}
