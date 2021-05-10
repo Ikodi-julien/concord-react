@@ -113,35 +113,43 @@ const Navbar = ({
         <div className="nav__button__row">
             {/* La searchbar qui contient un champ de recherche sur channels et tags + un select pour les tags */}
             {isShowSearch && (
-          <div className='nav__search__container'>
-            <div class="nav__search__container__search">
-              <Search
-                category
-                loading={isSearchLoading}
-                onResultSelect={handleResultSelect}
-                onSearchChange={handleSearchChange}
-                results={searchResult}
-                value={searchedValue}
-              />
+          <div className='nav__search'>
+          <div 
+            className={window.innerWidth < 700 ? 'nav__search__touchzone' : ''}
+            onClick={toggleSearch}
+          ></div>
+          
+            <div className='nav__search__container'>
+              <div class="nav__search__container__search">
+                <Search
+                  category
+                  loading={isSearchLoading}
+                  onResultSelect={handleResultSelect}
+                  onSearchChange={handleSearchChange}
+                  results={searchResult}
+                  value={searchedValue}
+                />
+              </div>
+              
+              <div class="nav__search__container__select"><Select placeholder="Catégories" options={tagsOptions} /></div>
             </div>
-            
-            <div class="nav__search__container__select"><Select placeholder="Catégories" options={tagsOptions} /></div>
           </div>
-        )}
+          )}
+          
+          {/* La loupe qui fait apparaitre la searchbar au click */}
+            <button className="nav__search__button" onClick={toggleSearch}>
+              <i className="fas fa-search"></i>
+            </button>
+          {/* Le hamburger qui fait apparaitre le menu au click
+            <button className='nav__hamburger' onClick={toggleMenu}>
+              <i className="fas fa-bars"></i>
+            </button> */}
         
-        {/* La loupe qui fait apparaitre la searchbar au click */}
-          <button className="nav__search__button" onClick={toggleSearch}>
-            <i className="fas fa-search"></i>
-          </button>
-        {/* Le hamburger qui fait apparaitre le menu au click
-          <button className='nav__hamburger' onClick={toggleMenu}>
-            <i className="fas fa-bars"></i>
-          </button> */}
-      
-        <Navmenu 
-          links={links}
-          disconnectUser={disconnectUser} 
-        />
+          <Navmenu 
+            links={links}
+            disconnectUser={disconnectUser} 
+          />
+          
         </div>
         )}
 

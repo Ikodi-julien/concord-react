@@ -14,7 +14,7 @@ const Navmenu = ({links, disconnectUser}) => {
         item 
         icon='bars' 
         simple
-        direction='left'
+        direction={window.innerWidth < 700 ? 'right' : 'left'}
         >
         <Dropdown.Menu>
         

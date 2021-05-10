@@ -1,0 +1,59 @@
+@use 'src/styles/vars'as v;
+
+.nav__search__container {
+  .ui {
+    &.attached.menu {
+      width: auto;
+    }
+
+    &.menu {
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+      min-height: auto;
+
+      .dropdown.item {
+        .menu {
+          background-color: v.$base-color;
+          z-index: v.$z-index-front-all;
+        }
+      }
+    }
+
+
+    &.dropdown {
+      height: 29px;
+
+      .menu>.divider {
+        border-top: 1px solid v.$base-color-lightgrey;
+      }
+
+      &.item {
+        padding: 0;
+
+        & i.icon {
+          font-size: v.$size-font-awesome;
+          color: v.$base-color-light;
+        }
+
+      }
+    }
+  }
+
+  &.ui.simple.active.dropdown>.menu {
+    top: v.$nav-height;
+  }
+
+  .menu.transition.left {
+    background-color: v.$base-color;
+    // z-index: ;
+  }
+
+  .ui.attached.menu:not(.tabular) {
+    border: none;
+  }
+
+  .ui.menu[class*="top attached"]:first-child {
+    margin: (v.$nav-height - 29px)/2;
+  }
+}

@@ -11,11 +11,16 @@
   background-color: v.$base-color-dark;
   color: v.$base-color-light;
 
+
   &__logo {
     height: 100%;
     width: v.$nav-height;
     padding: 8px;
-    background: center/contain no-repeat url('src/assets/cats_fond_transparent.png')
+    background: center/contain no-repeat url('src/assets/cats_fond_transparent.png');
+
+    @media screen and (max-width:700px) {
+      display: none;
+    }
   }
 
   & .ui {
@@ -23,7 +28,7 @@
     &.search,
     &.selection.dropdown {
       margin-right: 30px;
-      z-index: 100;
+      z-index: v.$z-index-middle;
     }
   }
 
@@ -36,18 +41,47 @@
   }
 
   &__search {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width:700px) {
+      position: absolute;
+      align-items: flex-start;
+      top: v.$nav-height;
+      left: 0;
+      width: 100%;
+    }
+
+    &__touchzone {
+      display: flex;
+      align-items: center;
+
+      position: absolute;
+      align-items: flex-start;
+      top: v.$search-height;
+      left: 0;
+      width: 100%;
+      height: 70vh;
+    }
+
     &__container {
       display: flex;
+      position: absolute;
+      left: 0;
+      width: 100%;
       justify-content: space-between;
       align-items: center;
 
       @media screen and (max-width:700px) {
         position: absolute;
-        top: v.$nav-height;
-        left: 0;
+        top: 0;
         width: 100%;
+        height: v.$search-height;
+
         flex-direction: column;
         background-color: v.$base-color;
+        // z-index: v.$z-index-middle;
+        // pointer-events: none;
         padding: 10px;
 
         &__select,
@@ -58,15 +92,21 @@
         }
 
         &__search {
-          z-index: v.$z-index-middle-front;
+          // z-index: v.$z-index-middle-front;
         }
       }
     }
   }
 
   &__button__row {
+    position: relative;
     display: flex;
 
+    @media screen and (max-width:700px) {
+      width: 100%;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
   }
 
   &__hamburger,
