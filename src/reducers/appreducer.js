@@ -25,10 +25,10 @@ import {
 const appState = {
   appRoutes: [
     { slug: '/', name: 'Accueil' },
-    { slug: '/home', name: 'Home' },
-    { slug: '/profile', name: 'Mes paramètres' },
-    { slug: '/discovery', name: 'Découverte' },
-    { slug: '/channels/1', name: 'Channel test' },
+    { slug: '/#/home', name: 'Home' },
+    { slug: '/#/profile', name: 'Mes paramètres' },
+    { slug: '/#/discovery', name: 'Découverte' },
+    { slug: '/#/channels/1', name: 'Channel test' },
   ],
   tags: [
     { id: 'af', name: 'Films d\'horreur' },
@@ -48,7 +48,7 @@ const appState = {
       id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
     },
   ],
-  isUserLoggued: true,
+  isUserLoggued: false,
   isShowLoginModal: false,
   isShowSignupModal: false,
   isShowSearch: false,

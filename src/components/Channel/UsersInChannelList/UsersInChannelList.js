@@ -8,19 +8,21 @@ const UsersInChannelList = ({users, showUsersInChannel}) => {
   
   return (
     <section className={showUsersInChannel ? "usersinchannellist --show" : "usersinchannellist"}>
-      <h1 className="usersinchannellist__title">En ligne</h1>
+      <h1 className="usersinchannellist__title">Utilisateurs</h1>
       {
         users.map(user => <div key={user.id} className="usersinchannellist__user">
         {/* <span>{`${user.avatar}`}</span> */}
         <span>{`${user.nickname}`}</span></div>)
       }
       
-      <h1 className="usersinchannellist__title">Hors ligne</h1>
-      {
-        users.map(user => <div key={user.id} className="usersinchannellist__user">
+      
+      {/* <h1 className="usersinchannellist__title">Hors ligne</h1> */}
+      {/* {
+        users.map(user => <div key={user.id} className="usersinchannellist__user"> */}
         {/* <span>{`${user.avatar}`}</span> */}
-        <span>{`${user.nickname}`}</span></div>)
-      }
+        {/* <span>{`${user.nickname}`}</span></div>)
+      } */}
+      
     </section>
   )
 }

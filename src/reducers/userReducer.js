@@ -6,7 +6,7 @@ import {
 const userState = {
   id: 124,
   nickname: 'Bob',
-  loggued: true,
+  loggued: false,
   myChannelLinks: [
     { id: 1, slug: 'filmsdhorreur', name: "Films d'horreur" },
     { id: 2, slug: 'cuisine', name: 'Cuisine méditéranéenne' },

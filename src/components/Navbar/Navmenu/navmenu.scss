@@ -1,6 +1,10 @@
 @use 'src/styles/vars'as v;
 
 .nav__menu {
+  &__link {
+    color: v.$base-color-light;
+  }
+
   .ui {
     &.menu {
       border: none;

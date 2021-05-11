@@ -16,21 +16,12 @@ export default (store) => (next) => (action) => {
       console.log(action);
 
       // On envoi les infos d'authentification
-      const auth = {
-        user: {
-          id: 5,
-          nickname: 'bob',
-        },
-        channel: {
-          id: 1,
-        },
-      };
       // connexion au serveur de socket
       socket = window.io(WS_URL);
       // On envoie les infos d'authentification
       socket.emit('auth', {
         user: {
-          id: 5,
+          id: 1,
           nickname: 'bob',
         },
         channel: {
@@ -45,13 +36,13 @@ export default (store) => (next) => (action) => {
         const actionToDispatch = messageReceived(messageDuServeur);
         store.dispatch(actionToDispatch);
       });
-
       break;
 
     case CHANNEL_FORM_SUBMIT:
+      const { channel, user } = store.getState();
+
       console.log(action);
       // Récupérer dans le state le texte du message
-      const { channel, user } = store.getState();
       // fabriquer un objet de message qui contient
       const message = {
         channel: {
@@ -69,7 +60,6 @@ export default (store) => (next) => (action) => {
       // J'envoie ce message au serveur de webSocket
       socket.emit('message', message);
       next(action);
-
       break;
 
     default:

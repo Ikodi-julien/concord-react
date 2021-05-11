@@ -30,6 +30,12 @@
   flex-direction: column;
   color: v.$base-color-light;
   background-color: v.$base-color-darker;
+  color: v.$base-color-light;
+
+  &__title {
+    margin: 10px 0;
+    font-size: 2em;
+  }
 
   @media screen and (max-width: 700px) {
     display: none;
