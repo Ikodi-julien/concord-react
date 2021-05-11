@@ -1,5 +1,5 @@
 // == Import npm
-import React, {useState, } from 'react';
+import React from 'react';
 import {
   Switch,
   Route,
@@ -24,7 +24,9 @@ const App = ({isUserLoggued}) => {
       <Route path='/home'>
         {/* Home */}
         <NavbarContainer />
-        {isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : (<h1>Il faut te connecter</h1>)}
+        {
+          isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : (<h1>Il faut te connecter</h1>)
+        }
         
       </Route>
       <Route path='/channels/:id'>

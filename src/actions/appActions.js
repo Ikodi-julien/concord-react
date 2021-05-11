@@ -21,7 +21,7 @@ export const fetchNavData = () => ({
 });
 export const fetchNavDataSuccess = (data) => ({
   type: FETCH_NAV_DATA_SUCCESS,
-  data,
+  ...data,
 });
 export const fetchNavDataError = () => ({
   type: FETCH_NAV_DATA_ERROR,

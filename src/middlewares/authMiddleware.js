@@ -45,8 +45,15 @@ export default (store) => (next) => (action) => {
         password: password || loginPassword,
       })
         .then((res) => {
-          console.log('res.data :', res.data);
-          store.dispatch(loginSuccess(res.data));
+          const user = {
+            ...res.data[0].user,
+            recommendedChannels: {
+              ...res.data[1].recommendedChannels,
+            },
+          };
+          console.log('user destructuré :', { ...user });
+
+          store.dispatch(loginSuccess({ ...user }));
         })
         .catch((error) => {
           console.log('catch error: ', error);

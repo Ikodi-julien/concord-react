@@ -10,6 +10,7 @@ import {
   fetchNavDataError,
   fetchNavDataSuccess,
 } from '../actions/appActions';
+import localFakeChannels from './fakeChannels';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -32,21 +33,21 @@ export default (store) => (next) => (action) => {
       break;
 
     case FETCH_NAV_DATA:
-      // console.log(action);
-      // next(action);
+      console.log(action);
+      next(action);
 
-      // axios({
-      //   url: `${FETCH_URL}/navdata`,
-      //   method: 'GET',
-      // })
-      //   .then((res) => {
-      //     console.log('res.data :', res.data);
-      //     store.dispatch(fetchNavDataSuccess(res.data));
-      //   })
-      //   .catch((error) => {
-      //     console.log('catch error: ', error);
-      //     store.dispatch(fetchNavDataError());
-      //   });
+      axios({
+        url: `${FETCH_URL}/v1/tags`,
+        method: 'GET',
+      })
+        .then((res) => {
+          console.log('res.data :', res.data);
+          store.dispatch(fetchNavDataSuccess({ tags: res.data, channels: localFakeChannels }));
+        })
+        .catch((error) => {
+          console.log('catch error: ', error);
+          store.dispatch(fetchNavDataError());
+        });
       break;
 
     default:

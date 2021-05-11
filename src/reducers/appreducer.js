@@ -25,10 +25,10 @@ import {
 const appState = {
   appRoutes: [
     { slug: '/', name: 'Accueil' },
-    { slug: '/#/home', name: 'Home' },
-    { slug: '/#/profile', name: 'Mes paramètres' },
-    { slug: '/#/discovery', name: 'Découverte' },
-    { slug: '/#/channels/1', name: 'Channel test' },
+    { slug: '/home', name: 'Home' },
+    { slug: '/profile', name: 'Mes paramètres' },
+    { slug: '/discovery', name: 'Découverte' },
+    { slug: '/channels/1', name: 'Channel test' },
   ],
   tags: [
     { id: 'af', name: 'Films d\'horreur' },
@@ -48,7 +48,7 @@ const appState = {
       id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
     },
   ],
-  isUserLoggued: false,
+  isUserLoggued: true,
   isShowLoginModal: false,
   isShowSignupModal: false,
   isShowSearch: false,
@@ -57,13 +57,13 @@ const appState = {
   searchedValue: '',
   searchResult: {},
   loginButtonIsLoading: false,
-  loginEmail: 'ju@ju.fr',
-  loginPassword: 'bob',
+  loginEmail: 'testeur@testmail.com',
+  loginPassword: '7357',
   signupButtonIsLoading: false,
   signupPseudo: 'ju',
-  signupEmail: 'ju@ju.fr',
-  firstSignupPassword: 'bob',
-  secondSignupPassword: 'bob',
+  signupEmail: 'testeur@testmail.com',
+  firstSignupPassword: '7357',
+  secondSignupPassword: '7357',
   signupErrorIsVisible: false,
   loginErrorIsVisible: false,
   errorMessage: '',
@@ -87,8 +87,8 @@ const reducer = (stateActuel = appState, action = {}) => {
       console.log(action);
       return {
         ...stateActuel,
-        tags: action.data.tags,
-        // channels: action.data.channels,
+        tags: action.tags,
+        channels: action.channels,
       };
 
     case FETCH_NAV_DATA_ERROR:
@@ -194,6 +194,7 @@ const reducer = (stateActuel = appState, action = {}) => {
     case DISCONNECT_USER_SUCCESS:
       return {
         ...appState,
+        isUserLoggued: false,
       };
 
     case HIDE_ERRORS:

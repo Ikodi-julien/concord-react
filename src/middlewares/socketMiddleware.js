@@ -9,6 +9,8 @@ import {
 let socket;
 
 export default (store) => (next) => (action) => {
+  const { channel, user } = store.getState();
+
   switch (action.type) {
     case FETCH_CHANNEL_SUCCESS:
       // L'API a bien renvoyé les infos du channel dispo en BDD
@@ -39,7 +41,6 @@ export default (store) => (next) => (action) => {
       break;
 
     case CHANNEL_FORM_SUBMIT:
-      const { channel, user } = store.getState();
 
       console.log(action);
       // Récupérer dans le state le texte du message

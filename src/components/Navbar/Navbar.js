@@ -58,18 +58,16 @@ const Navbar = ({
     const newNavTagList = searchAndReturn(evt.target.value, tags);
     // On fabrique la liste de tags utilisée par le composant search
     const searchTagResult = newNavTagList.map((tag) => ({ title: tag.name}));
+    // On tri la liste des channels correspondant
+    const renamedChannelList = channels.map(channel => ({name: channel.title}));
+    const newNavChannelList = searchAndReturn(evt.target.value, renamedChannelList);
+    // On fabrique la liste de channels à afficher par le composant search
+    const searchChannelResult = newNavChannelList.map((channel) => ({ title: channel.name}));
     // On fabrique l'objet représentant les résultats utilisés par le composant search.
     const results = {
       channels: {
         name: "Salons",
-        results: [
-            {
-              "title": "Baxter dury",
-            },
-            {
-              "title": "Justice",
-            }
-        ]
+        results: searchChannelResult,
       },
       tags: {
         name: "Catégories",

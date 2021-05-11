@@ -8,7 +8,7 @@ const MyChannels = ({myChannelLinks, showMychannels}) => {
     <section className={showMychannels ? "mychannels --show" : "mychannels"}>
       <h1 className="mychannels__title">Mes Channels</h1>
       {
-        myChannelLinks.map(link => <Link key={link.id} to={`/channels/${link.slug}`}>{link.name}</Link>)
+        myChannelLinks.map(link => <Link key={link.id} to={`/channels/${link.id}`}>{link.name}</Link>)
       }
     </section>
   )
