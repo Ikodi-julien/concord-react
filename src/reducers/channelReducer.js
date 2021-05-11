@@ -13,24 +13,24 @@ const channelState = {
   id: 5246,
   title: 'Le channel de test',
   messages: [
-    { id: 1, nickname: 'Bernard', content: 'Tu la connais celle des deux poissons rouge dans un bocal ?' },
-    { id: 2, nickname: 'Bianca', content: 'Non, raconte !' },
-    { id: 3, nickname: 'Belle', content: 'Moi je la connais' },
-    { id: 4, nickname: 'Sébastien', content: "Ouais, ben ils sont en train de tourner depuis un moment et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\"" },
+    // { id: 1, nickname: 'Bernard', content: 'Tu la connais celle des deux poissons rouge dans un bocal ?' },
+    // { id: 2, nickname: 'Bianca', content: 'Non, raconte !' },
+    // { id: 3, nickname: 'Belle', content: 'Moi je la connais' },
+    // { id: 4, nickname: 'Sébastien', content: "Ouais, ben ils sont en train de tourner depuis un moment et puis d'un seul coup, y'en a un qui dit à l'autre \"J'arrive pas à croire qu'on est déjà jeudi\"" },
   ],
   users: [
-    {
-      id: 1, nickname: 'Bernard', avatar: '(_;_)', isConnected: true,
-    },
-    {
-      id: 2, nickname: 'Bianca', avatar: ';o)', isConnected: true,
-    },
-    {
-      id: 3, nickname: 'Belle', avatar: ':-/', isConnected: false,
-    },
-    {
-      id: 4, nickname: 'Sébastien', avatar: 'o.0', isConnected: false,
-    },
+    // {
+    //   id: 1, nickname: 'Bernard', avatar: '(_;_)', isConnected: true,
+    // },
+    // {
+    //   id: 2, nickname: 'Bianca', avatar: ';o)', isConnected: true,
+    // },
+    // {
+    //   id: 3, nickname: 'Belle', avatar: ':-/', isConnected: false,
+    // },
+    // {
+    //   id: 4, nickname: 'Sébastien', avatar: 'o.0', isConnected: false,
+    // },
 
   ],
   inputForm: 'Je suis le contenu du formulaire',
@@ -93,7 +93,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
           ...stateActuel.messages,
           {
             id: action.message.id,
-            nickname: 'Bernard',
+            nickname: action.message.user.nickname,
             content: action.message.content,
           },
         ],

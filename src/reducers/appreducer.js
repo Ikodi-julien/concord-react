@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* This reducer manage actions accessible from everywhere, such as nav and search behavior */
 
 import {
@@ -31,24 +32,24 @@ const appState = {
     { slug: '/channels/1', name: 'Channel test' },
   ],
   tags: [
-    { id: 'af', name: 'Films d\'horreur' },
-    { id: 'ax', name: 'Cuisine' },
-    { id: 'al', name: 'Mangas' },
-    { id: 'dz', name: 'Jeux video' },
-    { id: 'as', name: 'Sports d\'hiver' },
+    // { id: 'af', name: 'Films d\'horreur' },
+    // { id: 'ax', name: 'Cuisine' },
+    // { id: 'al', name: 'Mangas' },
+    // { id: 'dz', name: 'Jeux video' },
+    // { id: 'as', name: 'Sports d\'hiver' },
   ],
   channels: [
-    {
-      id: 56, title: 'un channel anglais', keywords: ['napoleon', 'british'], tags: ['Les poissons rouges'],
-    },
-    {
-      id: 57, title: 'Baxter dury', keywords: ['rap', 'british', 'classe', 'voix'], tags: ['Le chocolat'],
-    },
-    {
-      id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
-    },
+    // {
+    //   id: 56, title: 'un channel anglais', keywords: ['napoleon', 'british'], tags: ['Les poissons rouges'],
+    // },
+    // {
+    //   id: 57, title: 'Baxter dury', keywords: ['rap', 'british', 'classe', 'voix'], tags: ['Le chocolat'],
+    // },
+    // {
+    //   id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
+    // },
   ],
-  isUserLoggued: true,
+  isUserLoggued: false,
   isShowLoginModal: false,
   isShowSignupModal: false,
   isShowSearch: false,

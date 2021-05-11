@@ -5,16 +5,16 @@ import {
 } from 'src/actions/loginsignupActions';
 
 const userState = {
-  id: 124,
-  nickname: 'Bob',
+  id: -1,
+  nickname: '',
   myChannelLinks: [
-    { id: 1, name: "Films d'horreur" },
-    { id: 2, name: 'Cuisine méditéranéenne' },
+    // { id: 1, name: "Films d'horreur" },
+    // { id: 2, name: 'Cuisine méditéranéenne' },
   ],
   myTags: [
-    { id: 1, name: 'Films' },
-    { id: 2, name: 'Cuisine' },
-    { id: 3, name: 'Karaté' },
+    // { id: 1, name: 'Films' },
+    // { id: 2, name: 'Cuisine' },
+    // { id: 3, name: 'Karaté' },
   ],
 };
 
