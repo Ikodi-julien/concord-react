@@ -10,6 +10,7 @@ import ChannelContainer from '../../containers/ChannelContainer';
 import Error from 'src/components/Error/Error';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import Landing from 'src/components/Landing/Landing';
+import Footer from 'src/components/Footer/Footer';
 
 import './app.scss';
 
@@ -51,7 +52,8 @@ const App = ({isUserLoggued}) => {
       <Route path='/' exact>
         {/* Accueil */}
         <NavbarContainer />
-        {isUserLoggued ? <Landing /> : (<h1>Il faut te connecter</h1>) }
+          <Landing />
+        <Footer />
       </Route>
       
       <Redirect to='/error' />
