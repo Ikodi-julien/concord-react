@@ -13,6 +13,7 @@ import {
   SET_INPUT_VALUE,
   HIDE_ERRORS,
   SET_NAV_MENU_OPEN,
+  SET_WINDOW_SIZE,
 } from 'src/actions/appActions';
 import {
   SUBMIT_SIGNUP_FORM,
@@ -69,6 +70,7 @@ const appState = {
   signupErrorIsVisible: false,
   loginErrorIsVisible: false,
   errorMessage: '',
+  windowSize: 0,
 };
 
 const reducer = (stateActuel = appState, action = {}) => {
@@ -210,6 +212,12 @@ const reducer = (stateActuel = appState, action = {}) => {
         ...stateActuel,
         signupErrorIsVisible: false,
         loginErrorIsVisible: false,
+      };
+
+    case SET_WINDOW_SIZE:
+      return {
+        ...stateActuel,
+        windowSize: action.value,
       };
 
     default:

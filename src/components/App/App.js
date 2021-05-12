@@ -1,10 +1,11 @@
 // == Import npm
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
+
 // == Import
 import ChannelContainer from '../../containers/ChannelContainer';
 import Error from 'src/components/Error/Error';
@@ -16,7 +17,19 @@ import './app.scss';
 
 // == Composant
 
-const App = ({isUserLoggued}) => {
+const App = ({isUserLoggued, setWindowSize}) => {
+    
+  // Ici on ecoute l'évenement resize afin de gérer la prop 'windowSize' dans appReducer, cette prop est utilisée comme une condition pour l'affichage de certains éléments de menu ou boutons... la mise à jour du state au resize sur cette prop permet le rendu responsive.
+  
+  const updateSize = () => {
+    setWindowSize(window.innerWidth)
+  };
+  
+  useEffect(() => {
+    setWindowSize(window.innerWidth);
+    // Ici j'utilise un addEventListenr, est-ce que c'est mal ?
+    window.addEventListener('resize', updateSize);
+  }, []);
   
   return (
   <div className="app">

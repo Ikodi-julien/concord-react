@@ -10,6 +10,7 @@ export const SET_SIGNUP_MODAL = 'SET_SIGNUP_MODAL';
 export const SET_INPUT_VALUE = 'SET_INPUT_VALUE';
 export const HIDE_ERRORS = 'HIDE_ERRORS';
 export const SET_NAV_MENU_OPEN = 'SET_NAV_MENU_OPEN';
+export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 
 export const toggleNavSearch = () => ({
   type: TOGGLE_NAV_SEARCH,
@@ -34,3 +35,4 @@ export const setSignupOpen = (bool) => ({ type: SET_SIGNUP_MODAL, value: bool })
 export const setInputValue = (objectInput) => ({ type: SET_INPUT_VALUE, objectInput });
 export const hideErrors = () => ({ type: HIDE_ERRORS });
 export const setNavMenuOpen = (bool) => ({ type: SET_NAV_MENU_OPEN, value: bool });
+export const setWindowSize = (windowSize) => ({ type: SET_WINDOW_SIZE, value: windowSize });

@@ -42,6 +42,8 @@ const Navbar = ({
   disconnectUser,
   toggleMyChannels,
   setNavMenuOpen,
+  setWindowSize,
+  windowSize,
 }) => {
   
   useEffect(() => {fetchData()}, []);
@@ -153,6 +155,8 @@ const Navbar = ({
             toggleNavMenu={toggleNavMenu}
             isNavMenuOpen={isNavMenuOpen}
             setNavMenuOpen={setNavMenuOpen}
+            setWindowSize={setWindowSize}
+            windowSize={windowSize}
           />
           
         </div>

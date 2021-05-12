@@ -10,6 +10,7 @@ import {
   setSignupOpen,
   setInputValue,
   setNavMenuOpen,
+  setWindowSize,
 } from 'src/actions/appActions';
 
 import {
@@ -44,6 +45,7 @@ const mapStateToProps = ({ app }) => ({
   signupErrorIsVisible: app.signupErrorIsVisible,
   loginErrorIsVisible: app.loginErrorIsVisible,
   errorMessage: app.errorMessage,
+  windowSize: app.windowSize,
 
 });
 
@@ -61,6 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
   disconnectUser: () => dispatch(disconnectUser()),
   toggleMyChannels: () => dispatch(toggleMyChannels()),
   setNavMenuOpen: (bool) => dispatch(setNavMenuOpen(bool)),
+  setWindowSize: (windowSize) => dispatch(setWindowSize(windowSize)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

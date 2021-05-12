@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavLink, useParams} from 'react-router-dom';
 import {Divider, Button, Dropdown, Icon, Menu, Segment} from 'semantic-ui-react';
+import { setWindowSize } from '../../../actions/appActions';
 import './navmenu.scss';
 
-const Navmenu = ({links, disconnectUser, toggleMyChannels, isNavMenuOpen, toggleNavMenu, setNavMenuOpen}) => {
+const Navmenu = (
+  {
+    links, 
+    disconnectUser, 
+    toggleMyChannels, 
+    isNavMenuOpen, 
+    toggleNavMenu, 
+    setNavMenuOpen, 
+    windowSize,
+  }
+  ) => {
   
+    // On récupère ici l'éventuel param id dans l'url,
+    // S'il existe on est sur une page de channel et on affiche le bouton 'Mes channels' dans le menu
   const {id} = useParams();
   
+  // On gère le comportement du menu au click sur le bouton mes channels
   const handleMyChannelsClick = () => {
     toggleMyChannels();
     setNavMenuOpen(false);
@@ -20,7 +34,7 @@ const Navmenu = ({links, disconnectUser, toggleMyChannels, isNavMenuOpen, toggle
         item 
         icon='bars' 
         simple
-        direction={window.innerWidth < 700 ? 'right' : 'left'}
+        direction={windowSize < 700 ? 'right' : 'left'}
         open={isNavMenuOpen}
         // onClick={toggleNavMenu}
         >
