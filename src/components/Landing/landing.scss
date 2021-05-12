@@ -19,13 +19,25 @@
     min-height: 500px;
     background: center/cover no-repeat url('src/assets/hero-background-image-blur-light.jpg');
 
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+    }
+
     &__text {
       width: 50%;
       max-width: 700px;
+
+      @media screen and (max-width: 700px) {
+        width: 80%;
+      }
     }
 
     &__image {
       width: 50%;
+
+      @media screen and (max-width: 700px) {
+        width: 80%;
+      }
     }
 
     &__title {}
@@ -37,6 +49,10 @@
     &__feature {
       width: 50%;
       max-width: 500px;
+
+      @media screen and (max-width: 700px) {
+        width: 80%;
+      }
 
       &__image {
         width: 50%;
