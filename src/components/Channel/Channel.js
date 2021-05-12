@@ -7,6 +7,7 @@ import ChannelForm from './ChannelForm/ChannelForm';
 import Navbar from 'src/containers/NavbarContainer';
 import Footer from 'src/components/Footer/Footer';
 import BigLoader from 'src/components/BigLoader/BigLoader';
+import {useParams} from 'react-router-dom';
 import Error from 'src/components/Error/Error';
 
 
@@ -20,14 +21,19 @@ const Channel = ({
   channelFormSubmit,
   toggleMyChannels,
   toggleUsersInChannel,
+  // updateChannel,
   }) => {
   
-  useEffect(() => {
-    fetchChannel(channel.id)
-  }, [])
+    // Ici on récupère l'id du channel dans l'url (/channels/:id)
+    let {id} = useParams();
+    console.log('id', id);
+    
+    // Ici on envoi la demande pour récupérer les infos de ce channel
+    useEffect(() => {
+      fetchChannel(id)
+    }, [])
   
-  
-  if (channel.isLoading) {
+  if (channel.isLoading) { // On affiche un loader tant que pas de réponse de l'API
     return (
       <section className='channels'>
       <Navbar />
@@ -58,6 +64,7 @@ const Channel = ({
         <MyChannels 
           myChannelLinks={user.myChannelLinks}
           showMychannels={channel.showMychannels}
+          fetchChannel={fetchChannel}
           />
         <div className="channel__container">
         

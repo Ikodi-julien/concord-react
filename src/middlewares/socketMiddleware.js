@@ -21,15 +21,7 @@ export default (store) => (next) => (action) => {
       // connexion au serveur de socket
       socket = window.io(WS_URL);
       // On envoie les infos d'authentification
-      socket.emit('auth', {
-        user: {
-          id: 1,
-          nickname: 'bob',
-        },
-        channel: {
-          id: 1,
-        },
-      });
+      socket.emit('auth', { user, channel });
 
       // Ecoute des messages en provenance du serveur.
       socket.on('message', (messageDuServeur) => {
@@ -37,6 +29,10 @@ export default (store) => (next) => (action) => {
         // A chaque message reçu on met à jour le state, via le reducer
         const actionToDispatch = messageReceived(messageDuServeur);
         store.dispatch(actionToDispatch);
+      });
+
+      socket.on('new user', (data) => {
+        console.log('new user', data);
       });
       break;
 

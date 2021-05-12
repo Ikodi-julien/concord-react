@@ -4,6 +4,9 @@ import {
   FETCH_CHANNEL,
   fetchChannelError,
   fetchChannelSuccess,
+  UPDATE_CHANNEL,
+  updateChannelSuccess,
+  updateChannelError,
 } from '../actions/channelActions';
 import {
   FETCH_NAV_DATA,
@@ -19,7 +22,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${FETCH_URL}/v1/channel/1`,
+        url: `${FETCH_URL}/v1/channel/${action.channelId}`,
         method: 'GET',
       })
         .then((res) => {
