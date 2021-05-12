@@ -13,9 +13,10 @@
 
 
   &__logo {
-    height: 100%;
-    width: v.$nav-height;
-    padding: 8px;
+    display: block;
+    height: v.$nav-height*.8;
+    width: v.$nav-height*.8;
+    margin: 0 20px;
     background: center/contain no-repeat url('src/assets/teacup_logo.png');
 
     @media screen and (max-width:700px) {

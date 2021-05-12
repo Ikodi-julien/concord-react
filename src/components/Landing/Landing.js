@@ -10,7 +10,7 @@ const Landing = () => (
   <div className='landing__container'>
     <div className='landing__hero'>
     
-      <div class="landing__hero__text">
+      <div className="landing__hero__text">
         <h1 className='landing__hero__title'>La phrase d'accroche à trouver</h1>
         <p className='landing__hero__description'>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,

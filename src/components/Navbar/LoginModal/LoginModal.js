@@ -46,7 +46,7 @@ const LoginModal = ({
       onClose={() => setLoginOpen(false)}
       onOpen={() => setLoginOpen(true)}
       open={loginOpen}
-      trigger={<Button primary >Connexion</Button>}
+      trigger={<Button primary >S'inscrire / Se connecter</Button>}
     >
     <ErrorInfo isVisible={loginErrorIsVisible} errorMessage={errorMessage} />
     <Modal.Content >

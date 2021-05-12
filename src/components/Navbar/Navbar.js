@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import searchAndReturn from 'src/selectors/search';
 import {Search, Select} from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 import Navmenu from './Navmenu/Navmenu';
 import LoginModal from './LoginModal/LoginModal';
 import './navbar.scss';
@@ -80,9 +81,9 @@ const Navbar = ({
 
   return (
     <section className='nav' >
-      <div className='nav__logo'>
+      <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
         {/* ici le logo */}
-      </div>
+      </Link>
       
       {!isUserLoggued && (
         <LoginModal 
