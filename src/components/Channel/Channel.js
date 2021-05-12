@@ -69,18 +69,14 @@ const Channel = ({
         <div className="channel__container">
         
           <div className='channel__container__options'>
-            <Button 
-              secondary 
-              content='Mes salons'
-              onClick={toggleMyChannels}
-              />
-            <Button 
-              secondary 
-              content='En ligne' 
-              onClick={toggleUsersInChannel}
-              />
+
           </div>
-          <ChannelMessages title={channel.title} messages={channel.messages}/>
+          <ChannelMessages 
+            title={channel.title} 
+            messages={channel.messages}
+            nickname={user.nickname}
+            toggleUsersInChannel={toggleUsersInChannel}
+            />
           <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm} channelFormSubmit={channelFormSubmit}/>
         </div>
         <UsersInChannelList 

@@ -1,7 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 // import {Link} from 'react-router-dom';
 
-const ChannelMessages = ({messages, title}) => {
+const ChannelMessages = (
+  {
+    messages, 
+    title, 
+    nickname, 
+    toggleUsersInChannel
+  }) => {
   
   const refContainer = useRef(null);
 
@@ -25,12 +31,29 @@ const ChannelMessages = ({messages, title}) => {
   return (
     
     <section className="channelmessages">
-      <h1 className="channelmessages__title">{title}</h1>
+      <div class="channelmessages__header">
+        <h1 className="channelmessages__title">{title}</h1>
+        {
+          window.innerWidth < 700 &&
+          <button 
+            className='channelmessages__header__button'
+            onClick={toggleUsersInChannel}
+            >
+            <i className="fas fa-users"></i>
+          </button>
+        }
+      </div>
       <div className="channelmessages__messagelist" ref={refContainer}>
       {
         messages.map(message => (
           <div key={message.id} className="channelmessages__message">
-            <span>{`${message.nickname}`}</span> : <span>{`${message.content}`}</span>
+            <div className={message.nickname === nickname ? 'channelmessages__message__nickname --me' : 'channelmessages__message__nickname'}
+            >
+              {`${message.nickname}`}
+            </div>
+            <div className={message.nickname === nickname ? 'channelmessages__message__content --me' : 'channelmessages__message__content'}>
+              {`${message.content}`}
+            </div>
           </div>))
       }
       </div>

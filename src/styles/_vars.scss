@@ -1,11 +1,13 @@
 $base-color-darkest: #202225;
-$base-color-darker: #36393f;
-$base-color-dark: #2f3136;
+$base-color-darker: #2f3136;
+$base-color-dark: #36393f;
 $base-color: #40444b;
-$base-color-grey: #575c64;
-$base-color-light: #f0f4f7;
-// $base-color-blue: 
+$base-color-grey: #647081;
+$base-color-light: #d8dee2;
+$base-color-orange: #eda247;
+$base-color-ivory: #feefc5;
 $border-radius: 3px;
+$border-color-channel: adjust-color($base-color-orange, $lightness: 30%);
 $nav-height: 64px;
 $footer-height: 50px;
 $size-font-awesome: 2em;

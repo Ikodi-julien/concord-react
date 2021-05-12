@@ -10,7 +10,7 @@ import {
 } from 'src/actions/channelActions.js';
 
 const channelState = {
-  id: 5246,
+  id: -1,
   title: 'Le channel de test',
   messages: [
     // { id: 1, nickname: 'Bernard', content: 'Tu la connais celle des deux poissons rouge dans un bocal ?' },
@@ -47,6 +47,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
 
       return {
         ...stateActuel,
+        id: action.channelId,
         isLoading: true,
       };
 
@@ -56,6 +57,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       return {
         ...stateActuel,
         ...action.channel,
+        messages: [],
         isLoading: false,
       };
 

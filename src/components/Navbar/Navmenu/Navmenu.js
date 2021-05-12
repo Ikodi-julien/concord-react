@@ -1,9 +1,11 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 import {Divider, Button, Dropdown, Icon, Menu, Segment} from 'semantic-ui-react';
 import './navmenu.scss';
 
-const Navmenu = ({links, disconnectUser}) => {
+const Navmenu = ({links, disconnectUser, toggleMyChannels}) => {
+  
+  const {id} = useParams();
   
   return (
     <section className="nav__menu">
@@ -27,7 +29,12 @@ const Navmenu = ({links, disconnectUser}) => {
           </Dropdown.Item>
           ))
         }
-        <Dropdown.Divider />
+        
+        {window.innerWidth < 700 && id && <Button 
+        primary 
+        content='Mes salons'
+        onClick={toggleMyChannels}
+        />}
         
         <Button 
         secondary 

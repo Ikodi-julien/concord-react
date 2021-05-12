@@ -11,13 +11,16 @@ const MyChannels = ({myChannelLinks, showMychannels, fetchChannel}) => {
   return (
     <section className={showMychannels ? "mychannels --show" : "mychannels"}>
       <h1 className="mychannels__title">Mes Channels</h1>
-      {
-        myChannelLinks.map(link => <Link 
-          key={link.id} 
-          to={`/channels/${link.id}`}
-          onClick={() => {handleClick(link.id)}}
-          >{link.name}</Link>)
-      }
+      <div class="mychannels__links">
+        {
+          myChannelLinks.map(link => <Link
+            key={link.id}
+            className='mychannels__links__link'
+            to={`/channels/${link.id}`}
+            onClick={() => {handleClick(link.id)}}
+            >{link.name}</Link>)
+        }
+      </div>
     </section>
   )
 }

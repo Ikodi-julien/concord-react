@@ -40,6 +40,7 @@ const Navbar = ({
   signupErrorIsVisible,
   errorMessage,
   disconnectUser,
+  toggleMyChannels,
 }) => {
   
   useEffect(() => {fetchData()}, []);
@@ -147,6 +148,7 @@ const Navbar = ({
           <Navmenu 
             links={links}
             disconnectUser={disconnectUser} 
+            toggleMyChannels={toggleMyChannels}
           />
           
         </div>

@@ -25,14 +25,14 @@ export default (store) => (next) => (action) => {
 
       // Ecoute des messages en provenance du serveur.
       socket.on('message', (messageDuServeur) => {
-        console.log('message reçu dans socketMW ', messageDuServeur);
+        console.log('message reçu', messageDuServeur);
         // A chaque message reçu on met à jour le state, via le reducer
         const actionToDispatch = messageReceived(messageDuServeur);
         store.dispatch(actionToDispatch);
       });
 
-      socket.on('new user', (data) => {
-        console.log('new user', data);
+      socket.on('user-join', (data) => {
+        console.log('user-join', data);
       });
       break;
 
@@ -52,10 +52,10 @@ export default (store) => (next) => (action) => {
         content: channel.inputForm,
       };
 
-      console.log('msg dans socketMW', message);
       // le texte et l'auteur (pas d'id)
       // J'envoie ce message au serveur de webSocket
       socket.emit('message', message);
+      console.log('emit message', message);
       next(action);
       break;
 

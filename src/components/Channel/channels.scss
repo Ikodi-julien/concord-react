@@ -30,11 +30,21 @@
   flex-direction: column;
   color: v.$base-color-light;
   background-color: v.$base-color-darker;
-  color: v.$base-color-light;
 
   &__title {
     margin: 10px 0;
     font-size: 2em;
+    color: v.$base-color-grey;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+
+    &__link {
+      padding: 8px;
+      font-size: 1.2em;
+    }
   }
 
   @media screen and (max-width: 700px) {
@@ -47,6 +57,11 @@
       width: 100%;
       height: 80%;
     }
+  }
+
+  .usersinchannellist__links__link {
+    color: v.$base-color-orange;
+    cursor: default;
   }
 }
 
@@ -89,8 +104,25 @@
         border: none;
       }
 
+      &__header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__button {
+          border: none;
+          font-size: v.$size-font-awesome;
+          color: v.$base-color-light;
+          background-color: transparent;
+          padding: 0.8em;
+          cursor: pointer;
+        }
+      }
+
       &__title {
         padding: 20px;
+        margin: 0;
       }
 
       &__messagelist {
@@ -102,9 +134,29 @@
       }
 
       &__message {
-        width: 100%;
-        margin-bottom: 10px;
-        font-size: 1.2em;
+        width: fit-content;
+        margin-bottom: 5px;
+
+        &__nickname {
+          background-color: transparent;
+          color: v.$base-color-light;
+          font-size: 1em;
+          font-weight: bold;
+          padding: 10px;
+          border-radius: 10px;
+
+          &--me {}
+        }
+
+        &__content {
+          font-size: 1.2em;
+          background-color: v.$base-color-light;
+          color: v.$base-color-dark;
+          padding: 10px;
+          border-radius: 10px;
+
+          &--me {}
+        }
       }
     }
 

@@ -17,6 +17,8 @@ import {
   disconnectUser,
 } from 'src/actions/loginsignupActions';
 
+import { toggleMyChannels } from 'src/actions/channelActions';
+
 const mapStateToProps = ({ app }) => ({
 
   tags: app.tags,
@@ -56,6 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
   submitSignupForm: () => dispatch(submitSignupForm()),
   setInputValue: (objectInput) => dispatch(setInputValue(objectInput)),
   disconnectUser: () => dispatch(disconnectUser()),
+  toggleMyChannels: () => dispatch(toggleMyChannels()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
