@@ -65,6 +65,7 @@ const Channel = ({
           myChannelLinks={user.myChannelLinks}
           showMychannels={channel.showMychannels}
           fetchChannel={fetchChannel}
+          toggleMyChannels={toggleMyChannels}
           />
         <div className="channel__container">
         
@@ -82,6 +83,7 @@ const Channel = ({
         <UsersInChannelList 
           users={channel.users}
           showUsersInChannel={channel.showUsersInChannel}
+          toggleUsersInChannel={toggleUsersInChannel}
           />
       </div>
       <Footer />

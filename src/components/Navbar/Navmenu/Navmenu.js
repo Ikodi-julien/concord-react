@@ -3,9 +3,14 @@ import {NavLink, useParams} from 'react-router-dom';
 import {Divider, Button, Dropdown, Icon, Menu, Segment} from 'semantic-ui-react';
 import './navmenu.scss';
 
-const Navmenu = ({links, disconnectUser, toggleMyChannels}) => {
+const Navmenu = ({links, disconnectUser, toggleMyChannels, isNavMenuOpen, toggleNavMenu, setNavMenuOpen}) => {
   
   const {id} = useParams();
+  
+  const handleMyChannelsClick = () => {
+    toggleMyChannels();
+    setNavMenuOpen(false);
+  };
   
   return (
     <section className="nav__menu">
@@ -16,6 +21,8 @@ const Navmenu = ({links, disconnectUser, toggleMyChannels}) => {
         icon='bars' 
         simple
         direction={window.innerWidth < 700 ? 'right' : 'left'}
+        open={isNavMenuOpen}
+        // onClick={toggleNavMenu}
         >
         <Dropdown.Menu>
         
@@ -33,7 +40,7 @@ const Navmenu = ({links, disconnectUser, toggleMyChannels}) => {
         {window.innerWidth < 700 && id && <Button 
         primary 
         content='Mes salons'
-        onClick={toggleMyChannels}
+        onClick={ handleMyChannelsClick}
         />}
         
         <Button 

@@ -31,6 +31,22 @@
   color: v.$base-color-light;
   background-color: v.$base-color-darker;
 
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__button {
+      border: none;
+      font-size: v.$size-font-awesome;
+      color: v.$base-color-light;
+      background-color: transparent;
+      padding: 0.8em;
+      cursor: pointer;
+    }
+  }
+
   &__title {
     margin: 10px 0;
     font-size: 2em;
@@ -53,9 +69,10 @@
     &.--show {
       display: block;
       position: absolute;
-      top: 131px;
+      top: v.$nav-height;
       width: 100%;
       height: 80%;
+      z-index: v.$z-index-middle-front;
     }
   }
 

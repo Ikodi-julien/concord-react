@@ -14,12 +14,12 @@ const Navbar = ({
   isShowSignupModal,
   isShowSearch,
   isSearchLoading,
-  isShowMenu,
+  isNavMenuOpen,
   links,
   searchedValue,
   searchResult,
   toggleSearch,
-  toggleMenu,
+  toggleNavMenu,
   setLoginOpen,
   setSignupOpen,
   fetchData,
@@ -41,6 +41,7 @@ const Navbar = ({
   errorMessage,
   disconnectUser,
   toggleMyChannels,
+  setNavMenuOpen,
 }) => {
   
   useEffect(() => {fetchData()}, []);
@@ -149,6 +150,9 @@ const Navbar = ({
             links={links}
             disconnectUser={disconnectUser} 
             toggleMyChannels={toggleMyChannels}
+            toggleNavMenu={toggleNavMenu}
+            isNavMenuOpen={isNavMenuOpen}
+            setNavMenuOpen={setNavMenuOpen}
           />
           
         </div>

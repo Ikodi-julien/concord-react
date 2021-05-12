@@ -9,6 +9,7 @@ import {
   setLoginOpen,
   setSignupOpen,
   setInputValue,
+  setNavMenuOpen,
 } from 'src/actions/appActions';
 
 import {
@@ -27,7 +28,7 @@ const mapStateToProps = ({ app }) => ({
   isShowLoginModal: app.isShowLoginModal,
   isShowSignupModal: app.isShowSignupModal,
   isShowSearch: app.isShowSearch,
-  isShowMenu: app.isShowMenu,
+  isNavMenuOpen: app.isNavMenuOpen,
   links: app.appRoutes,
   isSearchLoading: app.isSearchLoading,
   searchedValue: app.searchedValue,
@@ -49,7 +50,7 @@ const mapStateToProps = ({ app }) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchData: () => dispatch(fetchNavData()),
   toggleSearch: () => dispatch(toggleNavSearch()),
-  toggleMenu: () => dispatch(toggleNavMenu()),
+  toggleNavMenu: () => dispatch(toggleNavMenu()),
   searchChange: (value) => dispatch(searchNavChange(value)),
   setSearchResult: (list) => dispatch(setNavSearchResult(list)),
   setLoginOpen: (bool) => dispatch(setLoginOpen(bool)),
@@ -59,6 +60,7 @@ const mapDispatchToProps = (dispatch) => ({
   setInputValue: (objectInput) => dispatch(setInputValue(objectInput)),
   disconnectUser: () => dispatch(disconnectUser()),
   toggleMyChannels: () => dispatch(toggleMyChannels()),
+  setNavMenuOpen: (bool) => dispatch(setNavMenuOpen(bool)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

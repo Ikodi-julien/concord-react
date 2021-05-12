@@ -12,6 +12,7 @@ import {
   SET_SIGNUP_MODAL,
   SET_INPUT_VALUE,
   HIDE_ERRORS,
+  SET_NAV_MENU_OPEN,
 } from 'src/actions/appActions';
 import {
   SUBMIT_SIGNUP_FORM,
@@ -53,7 +54,7 @@ const appState = {
   isShowLoginModal: false,
   isShowSignupModal: false,
   isShowSearch: false,
-  isShowMenu: false,
+  isNavMenuOpen: false,
   isSearchLoading: false,
   searchedValue: '',
   searchResult: {},
@@ -81,7 +82,13 @@ const reducer = (stateActuel = appState, action = {}) => {
     case TOGGLE_NAV_MENU:
       return {
         ...stateActuel,
-        isShowMenu: !stateActuel.isShowMenu,
+        isNavMenuOpen: !stateActuel.isNavMenuOpen,
+      };
+
+    case SET_NAV_MENU_OPEN:
+      return {
+        ...stateActuel,
+        isNavMenuOpen: action.value,
       };
 
     case FETCH_NAV_DATA_SUCCESS:
