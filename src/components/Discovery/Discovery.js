@@ -25,7 +25,7 @@ const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
   const renamedChannelList = channels.map(channel => ({...channel, name: channel.title}));
   // console.log('renamedChannelList', renamedChannelList);
   
-  const newChannelList = searchTagsAndReturn(tagSelectValue, renamedChannelList);
+  const filteredChannels = searchTagsAndReturn(tagSelectValue, renamedChannelList);
   // console.log('newChannelList', newChannelList);
   
   // Finally, build the list used to display filtered cards
@@ -56,7 +56,7 @@ const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
     }
   ))
   
-  const channelsToDisplay = filteredChannels.length ? filteredChannels : allChannels;
+  const channelsToDisplay = channelListToDisplay.length ? channelListToDisplay : allChannels;
   
   return (
     <section className="discovery">
