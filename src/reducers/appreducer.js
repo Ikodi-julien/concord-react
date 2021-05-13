@@ -25,6 +25,9 @@ import {
   LOGIN_SUCCESS,
   DISCONNECT_USER_SUCCESS,
 } from 'src/actions/loginsignupActions';
+import {
+  FETCH_CHANNEL,
+} from 'src/actions/channelActions';
 
 const appState = {
   // Possibly related to everywhere
@@ -209,6 +212,12 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         windowSize: action.value,
+      };
+
+    case FETCH_CHANNEL:
+      return {
+        ...stateActuel,
+        searchedValue: '',
       };
 
     default:

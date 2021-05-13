@@ -15,7 +15,7 @@ export default (store) => (next) => (action) => {
     case FETCH_CHANNEL_SUCCESS:
       // L'API a bien renvoyé les infos du channel dispo en BDD
       next(action);
-      console.log(action);
+      // console.log(action);
 
       // On envoi les infos d'authentification
       // connexion au serveur de socket
@@ -32,7 +32,7 @@ export default (store) => (next) => (action) => {
       });
 
       socket.on('user-join', (data) => {
-        console.log('user-join', data);
+        // console.log('user-join', data);
       });
       break;
 

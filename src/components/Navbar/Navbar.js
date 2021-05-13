@@ -1,30 +1,42 @@
 import React, {useEffect} from 'react';
 import {searchNameAndReturn} from 'src/selectors/search';
 import {Search, Select} from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+
 import Navmenu from './Navmenu/Navmenu';
 import LoginModal from './LoginModal/LoginModal';
 import './navbar.scss';
 
 const Navbar = ({
+  setWindowSize,
+  windowSize,
+  links,
+  errorMessage,
+  // FETCH DATA
+  fetchData,
+  fetchChannel,
   tags,
   channels,
+  // BOOLEAN, TOGGLE, METHODS RELATED
   isUserLoggued,
   isShowLoginModal,
   isShowSignupModal,
   isShowSearch,
   isSearchLoading,
   isNavMenuOpen,
-  links,
-  searchedValue,
-  searchResult,
   toggleSearch,
   toggleNavMenu,
+  toggleMyChannels,
+  setNavMenuOpen,
   setLoginOpen,
   setSignupOpen,
-  fetchData,
+  // SEARCH RELATED
+  searchedValue,
+  searchResult,
   searchChange,
   setSearchResult,
+  tagSelectChange,
+  // LOGIN OR SIGNUP RELATED
   submitLoginForm,
   submitSignupForm,
   loginButtonIsLoading,
@@ -38,28 +50,44 @@ const Navbar = ({
   setInputValue,
   loginErrorIsVisible,
   signupErrorIsVisible,
-  errorMessage,
   disconnectUser,
-  toggleMyChannels,
-  setNavMenuOpen,
-  setWindowSize,
-  windowSize,
 }) => {
-  
+  // Fetch tags and channels on component did mount.
   useEffect(() => {fetchData()}, []);
-  
+  // This allows to redirect with a history.push('/someurl')
+  let history = useHistory();
+  // Options for select component
   const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
   
-  /* Ici la gestion de la recherche */
+  /* Search handling */
+  const tagNames = tags.map(tag => tag.name);
+  console.log('tagNames', tagNames);
   
-  const handleResultSelect = () => {
-    // Ici je voudrais rediriger soit vers le channel choisi, soit vers la page de résultat de recherche affichant les channels du tag sélectionné
+  const handleResultSelect = (evt, data) => {
+    console.log('data.result.title', data.result.title);
+    
+    for (const tagName of tagNames) {
+      if (tagName === data.result.title) {
+        history.push('/discovery');
+        tagSelectChange(tagName);
+        return
+      }
+    }
+
+    // If a channel is clicked, displays the related channel.
+    history.push(`/channels/${data.result.id}`);
+    // Need to dispatch action
+    fetchChannel(data.result.id);
   };
   
   const handleSelectChange = (evt, {value}) => {
-    searchChange(value);
+    console.log(value);
+    // When a tag is selected, displays page discovery with according results.
+    history.push('/discovery');
+    tagSelectChange(value);
   };
   
+  // This makes the filtered list of items to show in search input dropdown
   const handleSearchChange = (evt) => { 
     // On informe du changement dans l'input search
     searchChange(evt.target.value);
@@ -68,10 +96,18 @@ const Navbar = ({
     // On fabrique la liste de tags utilisée par le composant search
     const searchTagResult = newNavTagList.map((tag) => ({ title: tag.name}));
     // On tri la liste des channels correspondant
-    const renamedChannelList = channels.map(channel => ({name: channel.title}));
+    const renamedChannelList = channels.map(channel => (
+      {
+        ...channel,
+        name: channel.title,
+      }
+    ));
     const newNavChannelList = searchNameAndReturn(evt.target.value, renamedChannelList);
     // On fabrique la liste de channels à afficher par le composant search
-    const searchChannelResult = newNavChannelList.map((channel) => ({ title: channel.name}));
+    const searchChannelResult = newNavChannelList.map((channel) => ({ 
+      id: channel.id,
+      title: channel.name
+    }));
     // On fabrique l'objet représentant les résultats utilisés par le composant search.
     const results = {
       channels: {

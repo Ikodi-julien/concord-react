@@ -5,6 +5,7 @@ import {
   toggleNavMenu,
   fetchNavData,
   searchChange,
+  tagSelectChange,
   setNavSearchResult,
   setLoginOpen,
   setSignupOpen,
@@ -19,7 +20,7 @@ import {
   disconnectUser,
 } from 'src/actions/loginsignupActions';
 
-import { toggleMyChannels } from 'src/actions/channelActions';
+import { toggleMyChannels, fetchChannel } from 'src/actions/channelActions';
 
 const mapStateToProps = ({ app }) => ({
 
@@ -54,6 +55,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleSearch: () => dispatch(toggleNavSearch()),
   toggleNavMenu: () => dispatch(toggleNavMenu()),
   searchChange: (value) => dispatch(searchChange(value)),
+  tagSelectChange: (value) => dispatch(tagSelectChange(value)),
   setSearchResult: (list) => dispatch(setNavSearchResult(list)),
   setLoginOpen: (bool) => dispatch(setLoginOpen(bool)),
   setSignupOpen: (bool) => dispatch(setSignupOpen(bool)),
@@ -64,6 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleMyChannels: () => dispatch(toggleMyChannels()),
   setNavMenuOpen: (bool) => dispatch(setNavMenuOpen(bool)),
   setWindowSize: (windowSize) => dispatch(setWindowSize(windowSize)),
+  fetchChannel: (channelId) => dispatch(fetchChannel(channelId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

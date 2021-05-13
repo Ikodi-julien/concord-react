@@ -11,7 +11,6 @@ import './discovery.scss';
 const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
   // This function puts Select value in searchedValue prop.
   const handleChange = (evt, {value}) => {
-    // searchChange(value);
     tagSelectChange(value);
   }
   // Here i build the options object for the Select
