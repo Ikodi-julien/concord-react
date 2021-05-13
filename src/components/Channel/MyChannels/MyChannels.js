@@ -22,7 +22,7 @@ const MyChannels = (
   return (
     <section className={showMychannels ? "mychannels --show" : "mychannels"}>
       
-      <div class="mychannels__header">
+      <div className="mychannels__header">
       <h1 className="mychannels__title">Mes Channels</h1>
         {
           window.innerWidth < 700 &&
@@ -35,7 +35,7 @@ const MyChannels = (
         }
       </div>
       
-      <div class="mychannels__links">
+      <div className="mychannels__links">
         {
           myChannelLinks.map(link => <Link
             key={link.id}

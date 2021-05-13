@@ -6,7 +6,7 @@ import {
   TOGGLE_NAV_MENU,
   FETCH_NAV_DATA_SUCCESS,
   FETCH_NAV_DATA_ERROR,
-  SEARCH_NAV_CHANGE,
+  SEARCH_CHANGE,
   SET_NAV_SEARCH_RESULT,
   SET_LOGIN_MODAL,
   SET_SIGNUP_MODAL,
@@ -51,7 +51,7 @@ const appState = {
     //   id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
     // },
   ],
-  isUserLoggued: false,
+  isUserLoggued: true,
   isShowLoginModal: false,
   isShowSignupModal: false,
   isShowSearch: false,
@@ -94,7 +94,7 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case FETCH_NAV_DATA_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         tags: action.tags,
@@ -102,43 +102,42 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case FETCH_NAV_DATA_ERROR:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         tags: [{ id: 'error', name: 'Oups, ça n\'a pas fonctionné...' }],
       };
 
-    case SEARCH_NAV_CHANGE:
-      console.log(action);
+    case SEARCH_CHANGE:
+      // console.log(action);
       return {
         ...stateActuel,
         searchedValue: action.value,
       };
 
     case SET_NAV_SEARCH_RESULT:
-      console.log(action);
-
+      // console.log(action);
       return {
         ...stateActuel,
         searchResult: action.list,
       };
 
     case SET_LOGIN_MODAL:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         isShowLoginModal: action.value,
       };
 
     case SET_SIGNUP_MODAL:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         isShowSignupModal: action.value,
       };
 
     case SET_INPUT_VALUE:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         [action.objectInput.name]: action.objectInput.value,
@@ -165,8 +164,7 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case SIGNUP_SUCCESS:
-      console.log(action);
-
+      // console.log(action);
       return {
         ...stateActuel,
         signupButtonIsLoading: false,
@@ -174,8 +172,7 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case LOGIN_ERROR:
-      console.log(action);
-
+      // console.log(action);
       return {
         ...stateActuel,
         errorMessage: action.value,
@@ -184,8 +181,7 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case LOGIN_SUCCESS:
-      console.log(action);
-
+      // console.log(action);
       return {
         ...stateActuel,
         isUserLoggued: true,

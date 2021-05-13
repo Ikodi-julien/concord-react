@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import searchAndReturn from 'src/selectors/search';
+import {searchNameAndReturn} from 'src/selectors/search';
 import {Search, Select} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import Navmenu from './Navmenu/Navmenu';
@@ -60,12 +60,12 @@ const Navbar = ({
     // On informe du changement dans l'input search
     searchChange(evt.target.value);
     // On tri la liste des tags correspondant
-    const newNavTagList = searchAndReturn(evt.target.value, tags);
+    const newNavTagList = searchNameAndReturn(evt.target.value, tags);
     // On fabrique la liste de tags utilisée par le composant search
     const searchTagResult = newNavTagList.map((tag) => ({ title: tag.name}));
     // On tri la liste des channels correspondant
     const renamedChannelList = channels.map(channel => ({name: channel.title}));
-    const newNavChannelList = searchAndReturn(evt.target.value, renamedChannelList);
+    const newNavChannelList = searchNameAndReturn(evt.target.value, renamedChannelList);
     // On fabrique la liste de channels à afficher par le composant search
     const searchChannelResult = newNavChannelList.map((channel) => ({ title: channel.name}));
     // On fabrique l'objet représentant les résultats utilisés par le composant search.

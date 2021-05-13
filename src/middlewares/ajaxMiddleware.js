@@ -4,9 +4,6 @@ import {
   FETCH_CHANNEL,
   fetchChannelError,
   fetchChannelSuccess,
-  UPDATE_CHANNEL,
-  updateChannelSuccess,
-  updateChannelError,
 } from '../actions/channelActions';
 import {
   FETCH_NAV_DATA,
@@ -39,6 +36,7 @@ export default (store) => (next) => (action) => {
       console.log(action);
       next(action);
 
+      // TODO Mettre les vrais channels dès qu'ils sont dispos
       axios({
         url: `${FETCH_URL}/v1/tags`,
         method: 'GET',

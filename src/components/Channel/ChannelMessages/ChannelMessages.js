@@ -31,7 +31,7 @@ const ChannelMessages = (
   return (
     
     <section className="channelmessages">
-      <div class="channelmessages__header">
+      <div className="channelmessages__header">
         <h1 className="channelmessages__title">{title}</h1>
         {
           window.innerWidth < 700 &&

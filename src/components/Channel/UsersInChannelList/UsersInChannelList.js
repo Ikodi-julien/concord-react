@@ -8,7 +8,7 @@ const UsersInChannelList = ({users, showUsersInChannel, toggleUsersInChannel}) =
   
   return (
     <section className={showUsersInChannel ? "usersinchannellist --show" : "usersinchannellist"}>
-      <div class="usersinchannellist__header">
+      <div className="usersinchannellist__header">
         <h1 className="usersinchannellist__title">Utilisateurs</h1>
         {
           window.innerWidth < 700 &&
@@ -21,13 +21,13 @@ const UsersInChannelList = ({users, showUsersInChannel, toggleUsersInChannel}) =
         }
       </div>
       
-      <div class="usersinchannellist__links">
+      <div className="usersinchannellist__links">
         {
-          users.map(user => <Link 
+          users.map(user => <div 
             key={user.id} 
             className="usersinchannellist__links__link">
           {/* <span>{`${user.avatar}`}</span> */}
-          <span>{`${user.nickname}`}</span></Link>)
+          <span>{`${user.nickname}`}</span></div>)
         }
       </div>
       

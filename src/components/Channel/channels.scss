@@ -12,7 +12,8 @@
 
   &__row {
     position: relative;
-    flex-grow: 1;
+    flex: 1;
+    min-height: 70vh;
     display: flex;
     justify-content: space-between;
   }
