@@ -108,7 +108,7 @@ export default (store) => (next) => (action) => {
             password: store.getState().app.firstSignupPassword,
             email: res.data.email,
           }));
-          // There you try to log after a signup success
+          // There you try to log right after a signup success
           setTimeout(() => {
             store.dispatch(submitLoginForm());
           }, 30);
@@ -124,7 +124,7 @@ export default (store) => (next) => (action) => {
 
     case DISCONNECT_USER:
       next(action);
-      // TODO /disconnect/:id in server
+      // TODO eventually /disconnect/:id in server
 
       store.dispatch(disconnectUserSuccess());
       break;

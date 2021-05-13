@@ -4,6 +4,7 @@ export const FETCH_NAV_DATA = 'Fetch data to hydrate search and select in Navbar
 export const FETCH_NAV_DATA_SUCCESS = 'FETCH_NAV_DATA_SUCCESS';
 export const FETCH_NAV_DATA_ERROR = 'FETCH_NAV_DATA_ERROR';
 export const SEARCH_CHANGE = 'SEARCH_CHANGE';
+export const TAG_SELECT_CHANGE = 'TAG_SELECT_CHANGE';
 export const SET_NAV_SEARCH_RESULT = 'SET_NAV_SEARCH_RESULT';
 export const SET_LOGIN_MODAL = 'SET_LOGIN_MODAL';
 export const SET_SIGNUP_MODAL = 'SET_SIGNUP_MODAL';
@@ -29,6 +30,7 @@ export const fetchNavDataError = () => ({
   type: FETCH_NAV_DATA_ERROR,
 });
 export const searchChange = (value) => ({ type: SEARCH_CHANGE, value });
+export const tagSelectChange = (value) => ({ type: TAG_SELECT_CHANGE, value });
 export const setNavSearchResult = (list) => ({ type: SET_NAV_SEARCH_RESULT, list: list });
 export const setLoginOpen = (bool) => ({ type: SET_LOGIN_MODAL, value: bool });
 export const setSignupOpen = (bool) => ({ type: SET_SIGNUP_MODAL, value: bool });

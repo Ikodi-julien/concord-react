@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import Discovery from 'src/components/Discovery/Discovery';
-import { searchChange } from 'src/actions/appActions';
+import { tagSelectChange } from 'src/actions/appActions';
 
 const mapStateToProps = ({ app }) => ({
   tags: app.tags,
   channels: app.channels,
-  searchedValue: app.searchedValue,
+  tagSelectValue: app.tagSelectValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  searchChange: (searchValue) => dispatch(searchChange(searchValue)),
+  tagSelectChange: (searchValue) => dispatch(tagSelectChange(searchValue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Discovery);

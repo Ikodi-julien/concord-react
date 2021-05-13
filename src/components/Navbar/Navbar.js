@@ -56,6 +56,10 @@ const Navbar = ({
     // Ici je voudrais rediriger soit vers le channel choisi, soit vers la page de résultat de recherche affichant les channels du tag sélectionné
   };
   
+  const handleSelectChange = (evt, {value}) => {
+    searchChange(value);
+  };
+  
   const handleSearchChange = (evt) => { 
     // On informe du changement dans l'input search
     searchChange(evt.target.value);
@@ -134,7 +138,13 @@ const Navbar = ({
                 />
               </div>
               
-              <div className="nav__search__container__select"><Select placeholder="Catégories" options={tagsOptions} /></div>
+              <div className="nav__search__container__select">
+                <Select 
+                  placeholder="Catégories" 
+                  options={tagsOptions}
+                  onChange={handleSelectChange}
+                />
+              </div>
             </div>
           </div>
           )}

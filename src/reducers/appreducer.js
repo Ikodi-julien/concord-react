@@ -7,6 +7,7 @@ import {
   FETCH_NAV_DATA_SUCCESS,
   FETCH_NAV_DATA_ERROR,
   SEARCH_CHANGE,
+  TAG_SELECT_CHANGE,
   SET_NAV_SEARCH_RESULT,
   SET_LOGIN_MODAL,
   SET_SIGNUP_MODAL,
@@ -26,39 +27,23 @@ import {
 } from 'src/actions/loginsignupActions';
 
 const appState = {
+  // Possibly related to everywhere
+  errorMessage: '',
+  windowSize: 0,
+  isUserLoggued: true,
+  isNavMenuOpen: false,
   appRoutes: [
     { slug: '/', name: 'Accueil' },
     { slug: '/home', name: 'Home' },
     { slug: '/profile', name: 'Mes paramètres' },
     { slug: '/discovery', name: 'Découverte' },
-    { slug: '/channels/1', name: 'Channel test' },
+    // { slug: '/channels/1', name: 'Channel test' },
   ],
-  tags: [
-    // { id: 'af', name: 'Films d\'horreur' },
-    // { id: 'ax', name: 'Cuisine' },
-    // { id: 'al', name: 'Mangas' },
-    // { id: 'dz', name: 'Jeux video' },
-    // { id: 'as', name: 'Sports d\'hiver' },
-  ],
-  channels: [
-    // {
-    //   id: 56, title: 'un channel anglais', keywords: ['napoleon', 'british'], tags: ['Les poissons rouges'],
-    // },
-    // {
-    //   id: 57, title: 'Baxter dury', keywords: ['rap', 'british', 'classe', 'voix'], tags: ['Le chocolat'],
-    // },
-    // {
-    //   id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
-    // },
-  ],
-  isUserLoggued: false,
+  tags: [],
+  channels: [],
+  // Related to login or signup
   isShowLoginModal: false,
   isShowSignupModal: false,
-  isShowSearch: false,
-  isNavMenuOpen: false,
-  isSearchLoading: false,
-  searchedValue: '',
-  searchResult: {},
   loginButtonIsLoading: false,
   loginEmail: 'testeur@testmail.com',
   loginPassword: '7357',
@@ -69,8 +54,12 @@ const appState = {
   secondSignupPassword: '7357',
   signupErrorIsVisible: false,
   loginErrorIsVisible: false,
-  errorMessage: '',
-  windowSize: 0,
+  // Related to search actions
+  isShowSearch: false,
+  isSearchLoading: false,
+  navSearchValue: '',
+  tagSelectValue: '',
+  searchResult: {},
 };
 
 const reducer = (stateActuel = appState, action = {}) => {
@@ -113,6 +102,12 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         searchedValue: action.value,
+      };
+
+    case TAG_SELECT_CHANGE:
+      return {
+        ...stateActuel,
+        tagSelectValue: action.value,
       };
 
     case SET_NAV_SEARCH_RESULT:

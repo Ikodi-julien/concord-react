@@ -8,10 +8,11 @@ import {searchTagsAndReturn} from 'src/selectors/search';
 
 import './discovery.scss';
 
-const Discovery = ({tags, channels, searchedValue, searchChange}) => {
+const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
   // This function puts Select value in searchedValue prop.
   const handleChange = (evt, {value}) => {
-    searchChange(value);
+    // searchChange(value);
+    tagSelectChange(value);
   }
   // Here i build the options object for the Select
   const tagsOptions = tags.map(tag => (
@@ -20,12 +21,12 @@ const Discovery = ({tags, channels, searchedValue, searchChange}) => {
     }
   ))
   // Here the channels are filtered according to the option selected and terefore the searchedValue
-  console.log('searchedValue', searchedValue);
+  // console.log('searchedValue', tagSelectValue);
   const renamedChannelList = channels.map(channel => ({...channel, name: channel.title}));
-  console.log('renamedChannelList', renamedChannelList);
+  // console.log('renamedChannelList', renamedChannelList);
   
-  const filteredChannels = searchTagsAndReturn(searchedValue, renamedChannelList);
-  console.log('newChannelList', filteredChannels);
+  const newChannelList = searchTagsAndReturn(tagSelectValue, renamedChannelList);
+  // console.log('newChannelList', newChannelList);
   
   // Finally, build the list used to display filtered cards
   const channelListToDisplay = filteredChannels.map(channel => {
@@ -42,10 +43,9 @@ const Discovery = ({tags, channels, searchedValue, searchChange}) => {
       title: channel.title,
       tags,
       userCount: 'pas encore',
-    });
-  })
-  console.log('channelListToDisplay', channelListToDisplay);
-  
+    }
+  )})
+  // console.log('filteredChannels', filteredChannels);
   // Default channel list to be displayed
   const allChannels = channels.map(channel => (
     {
@@ -56,7 +56,7 @@ const Discovery = ({tags, channels, searchedValue, searchChange}) => {
     }
   ))
   
-  const channelsToDisplay = channelListToDisplay || allChannels
+  const channelsToDisplay = filteredChannels.length ? filteredChannels : allChannels;
   
   return (
     <section className="discovery">
