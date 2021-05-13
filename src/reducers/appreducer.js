@@ -51,7 +51,7 @@ const appState = {
     //   id: 58, title: 'Justice', keywords: ['techno', 'french', 'touch'], tags: ['Les poissons rouges', 'La littérature anglaise du 16ème siècle'],
     // },
   ],
-  isUserLoggued: true,
+  isUserLoggued: false,
   isShowLoginModal: false,
   isShowSignupModal: false,
   isShowSearch: false,

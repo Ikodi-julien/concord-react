@@ -4,10 +4,14 @@ export const searchNameAndReturn = (string = '', object = { name: '' }) => {
 };
 
 export const searchTagsAndReturn = (string = '', object = {}) => {
-  // On fait une recherche sur chaque objet
-  const filtered = object.filter((channel) => (
-    channel.tags.includes(string)
-  ));
+  // search over every tag.name in channel.tags
+  const filtered = object.filter((channel) => {
+    for (const tag of channel.tags) {
+      if (tag.name.includes(string)) {
+        return true;
+      }
+    }
+  });
 
   return filtered;
 };

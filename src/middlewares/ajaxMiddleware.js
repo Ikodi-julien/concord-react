@@ -15,7 +15,7 @@ import localFakeChannels from './fakeChannels';
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_CHANNEL:
-      console.log(action);
+      // console.log(action);
       next(action);
 
       axios({
@@ -23,7 +23,7 @@ export default (store) => (next) => (action) => {
         method: 'GET',
       })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(fetchChannelSuccess(res.data));
         })
         .catch((error) => {
@@ -33,17 +33,25 @@ export default (store) => (next) => (action) => {
       break;
 
     case FETCH_NAV_DATA:
-      console.log(action);
+      // console.log(action);
       next(action);
 
-      // TODO Mettre les vrais channels dès qu'ils sont dispos
+      // Fetch tags then channels
       axios({
-        url: `${FETCH_URL}/v1/tags`,
+        url: `${FETCH_URL}/v1/tags/channels`,
         method: 'GET',
       })
         .then((res) => {
-          console.log('res.data :', res.data);
-          store.dispatch(fetchNavDataSuccess({ tags: res.data, channels: localFakeChannels }));
+          const tags = res.data;
+
+          axios({
+            url: `${FETCH_URL}/v1/channels`,
+            method: 'GET',
+          })
+            .then((response) => {
+              const channels = response.data;
+              store.dispatch(fetchNavDataSuccess({ tags, channels }));
+            });
         })
         .catch((error) => {
           console.log('catch error: ', error);

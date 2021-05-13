@@ -24,19 +24,27 @@ const Discovery = ({tags, channels, searchedValue, searchChange}) => {
   const renamedChannelList = channels.map(channel => ({...channel, name: channel.title}));
   console.log('renamedChannelList', renamedChannelList);
   
-  const newChannelList = searchTagsAndReturn(searchedValue, renamedChannelList);
-  console.log('newChannelList', newChannelList);
+  const filteredChannels = searchTagsAndReturn(searchedValue, renamedChannelList);
+  console.log('newChannelList', filteredChannels);
   
   // Finally, build the list used to display filtered cards
-  const filteredChannels = newChannelList.map(channel => (
+  const channelListToDisplay = filteredChannels.map(channel => {
+    
+    const tags =[];
+    
+    for (const tag of channel.tags) {
+      tags.push(tag.name);
+    }
+        
+    return (
     {
       id: channel.id,
       title: channel.title,
-      tags: channel.tags,
+      tags,
       userCount: 'pas encore',
-    }
-  ))
-  console.log('filteredChannels', filteredChannels);
+    });
+  })
+  console.log('channelListToDisplay', channelListToDisplay);
   
   // Default channel list to be displayed
   const allChannels = channels.map(channel => (
@@ -48,7 +56,7 @@ const Discovery = ({tags, channels, searchedValue, searchChange}) => {
     }
   ))
   
-  const channelsToDisplay = filteredChannels || allChannels
+  const channelsToDisplay = channelListToDisplay || allChannels
   
   return (
     <section className="discovery">
