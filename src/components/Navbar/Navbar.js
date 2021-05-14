@@ -53,7 +53,8 @@ const Navbar = ({
   disconnectUser,
 }) => {
   // Fetch tags and channels on component did mount.
-  useEffect(() => {fetchData()}, []);
+    useEffect(() => {fetchData()}, []);
+
   // This allows to redirect with a history.push('/someurl')
   let history = useHistory();
   // Options for select component
@@ -61,11 +62,11 @@ const Navbar = ({
   
   /* Search handling */
   const tagNames = tags.map(tag => tag.name);
-  console.log('tagNames', tagNames);
+  // console.log('tagNames', tagNames);
   
   const handleResultSelect = (evt, data) => {
     console.log('data.result.title', data.result.title);
-    
+    // TODO faire la différence entre salon et catégorie autrement
     for (const tagName of tagNames) {
       if (tagName === data.result.title) {
         history.push('/discovery');
@@ -74,7 +75,7 @@ const Navbar = ({
       }
     }
 
-    // If a channel is clicked, displays the related channel.
+    // If a channel is clicked, displays the related channel page.
     history.push(`/channels/${data.result.id}`);
     // Need to dispatch action
     fetchChannel(data.result.id);
@@ -82,7 +83,7 @@ const Navbar = ({
   
   const handleSelectChange = (evt, {value}) => {
     console.log(value);
-    // When a tag is selected, displays page discovery with according results.
+    // When a tag is selected, displays discovery page and according results.
     history.push('/discovery');
     tagSelectChange(value);
   };

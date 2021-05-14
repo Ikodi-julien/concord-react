@@ -11,7 +11,7 @@ import {
 
 const channelState = {
   id: -1,
-  title: 'Le channel de test',
+  title: '',
   messages: [],
   users: [],
   inputForm: '',

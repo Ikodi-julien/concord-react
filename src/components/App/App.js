@@ -32,6 +32,7 @@ const App = ({isUserLoggued, setWindowSize}) => {
     window.addEventListener('resize', updateSize);
   }, []);
   
+
   return (
   <div className="app">
     <Switch>
@@ -40,31 +41,35 @@ const App = ({isUserLoggued, setWindowSize}) => {
         {/* Home */}
         <NavbarContainer />
         {
-          isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : (<h1>Il faut te connecter</h1>)
+          isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : <Redirect to='/' />
         }
-        
       </Route>
+      
       <Route path='/channels/:id'>
         {/* Channels */}
-        {isUserLoggued ? <ChannelContainer /> : (<h1>Il faut te connecter</h1>)}
+        {isUserLoggued ? <ChannelContainer /> : <Redirect to='/' />}
       </Route>
+      
       <Route path='/profile'>
         {/* Profile */}
         <NavbarContainer />
-        {isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : (<h1>Il faut te connecter</h1>)}
+        {isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : <Redirect to='/' />}
       </Route>
+      
       <Route path='/discovery'>
         {/* Discovery */}
-       
-        {isUserLoggued ? <DiscoveryContainer /> : (<h1>Il faut te connecter</h1>)}
+        {isUserLoggued ? <DiscoveryContainer /> : <Redirect to='/' />}
       </Route>
+      
       <Route path='/error'>
         {/* Error */}
         <NavbarContainer />
         <Error />
       </Route>
+      
       <Route path='/' exact>
         {/* Accueil */}
+        {isUserLoggued && <Redirect to='/home' />}
         <NavbarContainer />
           <Landing />
         <Footer />

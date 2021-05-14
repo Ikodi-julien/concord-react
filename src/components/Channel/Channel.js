@@ -21,7 +21,7 @@ const Channel = ({
   channelFormSubmit,
   toggleMyChannels,
   toggleUsersInChannel,
-  // updateChannel,
+  error,
   }) => {
   
     // Ici on récupère l'id du channel dans l'url (/channels/:id)

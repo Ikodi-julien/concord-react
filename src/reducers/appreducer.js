@@ -36,7 +36,7 @@ const appState = {
   isUserLoggued: true,
   isNavMenuOpen: false,
   appRoutes: [
-    { slug: '/', name: 'Accueil' },
+    // { slug: '/', name: 'Accueil' },
     { slug: '/home', name: 'Home' },
     { slug: '/profile', name: 'Mes paramètres' },
     { slug: '/discovery', name: 'Découverte' },

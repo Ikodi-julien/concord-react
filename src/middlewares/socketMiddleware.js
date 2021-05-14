@@ -21,8 +21,9 @@ export default (store) => (next) => (action) => {
       // connexion au serveur de socket
       socket = window.io(WS_URL);
       // On envoie les infos d'authentification
-      socket.emit('auth', { user, channel });
 
+      socket.emit('auth', { user, channel });
+      console.log('user', user, 'channel', channel);
       // Ecoute des messages en provenance du serveur.
       socket.on('message', (messageDuServeur) => {
         console.log('message reçu', messageDuServeur);
@@ -32,8 +33,11 @@ export default (store) => (next) => (action) => {
       });
 
       socket.on('user-join', (data) => {
-        // console.log('user-join', data);
+        console.log('user-join', data);
       });
+
+      socket.on('confirm', () => console.log('confirm'));
+
       break;
 
     case CHANNEL_FORM_SUBMIT:
@@ -41,6 +45,7 @@ export default (store) => (next) => (action) => {
       console.log(action);
       // Récupérer dans le state le texte du message
       // fabriquer un objet de message qui contient
+
       const message = {
         channel: {
           id: channel.id,
@@ -58,6 +63,11 @@ export default (store) => (next) => (action) => {
       console.log('emit message', message);
       next(action);
       break;
+
+      // case USER_LEAVE_CHANNEL:
+      // TODO faire une fonction qui déclenche cet au unmount de Channel.
+      //   socket.emit('user-leave', { user, channel });
+      //   break;
 
     default:
       next(action);

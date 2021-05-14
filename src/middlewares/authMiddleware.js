@@ -51,8 +51,9 @@ export default (store) => (next) => (action) => {
               ...res.data[1].recommendedChannels,
             },
           };
-          console.log('user destructuré :', { ...user });
-
+          // console.log('user destructuré :', { ...user });
+          // TODO avec branch refacto user
+          // store.dispatch(loginSuccess(res.data));
           store.dispatch(loginSuccess({ ...user }));
         })
         .catch((error) => {

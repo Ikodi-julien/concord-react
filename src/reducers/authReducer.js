@@ -16,6 +16,7 @@ const reducer = (stateActuel = authState, action = {}) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       // console.log(action);
+
       return {
         ...stateActuel,
         password: action.user.password,

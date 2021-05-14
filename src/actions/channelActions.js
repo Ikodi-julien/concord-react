@@ -1,12 +1,11 @@
-export const FETCH_CHANNEL = 'Le composant Channel est chargé, requête à l\'API';
-export const FETCH_CHANNEL_SUCCESS = 'L\'API a renvoyé les infos du channel';
-export const FETCH_CHANNEL_ERROR = 'L\'API renvoie une erreur';
-// export const UPDATE_CHANNEL = 'UPDATE_CHANNEL';
+export const FETCH_CHANNEL = 'FETCH_CHANNEL';
+export const FETCH_CHANNEL_SUCCESS = 'FETCH_CHANNEL_SUCCESS';
+export const FETCH_CHANNEL_ERROR = 'FETCH_CHANNEL_ERROR';
 
-export const CHANNEL_CONNECT = 'Le composant channel est chargé, on se connecte au socket';
-export const CHANNEL_INPUT_CHANGE = "Changement dans l'input du form de la page Channel";
-export const CHANNEL_FORM_SUBMIT = "L'utilisateur valide le formulaire dans son channel";
-export const MESSAGE_RECEIVED = 'On reçoit un nouveau message';
+export const CHANNEL_CONNECT = 'CHANNEL_CONNECT';
+export const CHANNEL_INPUT_CHANGE = 'CHANNEL_INPUT_CHANGE';
+export const CHANNEL_FORM_SUBMIT = 'CHANNEL_FORM_SUBMIT';
+export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';
 export const TOGGLE_MY_CHANNELS = 'TOGGLE_MY_CHANNELS';
 export const TOGGLE_USERS_IN_CHANNEL = 'TOGGLE_USERS_IN_CHANNEL';
 
