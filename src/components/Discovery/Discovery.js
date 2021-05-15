@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Select, Card, Icon} from 'semantic-ui-react';
+import {Select} from 'semantic-ui-react';
 
 import NavbarContainer from 'src/containers/NavbarContainer';
+import CardBox from 'src/components/CardBox/CardBox';
 import Footer from 'src/components/Footer/Footer';
 import {searchTagsAndReturn} from 'src/selectors/search';
 
@@ -72,26 +72,10 @@ const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
             />
         </div>
         
-        <div className="discovery__listcontainer">
-          {
-            channelsToDisplay.map(channel => (
-              <Link key={channel.id} to={`/channels/${channel.id}`} >
-              <Card >
-                <Card.Content>
-                  <Card.Header>{channel.title}</Card.Header>
-                  <Card.Description>
-                    {channel.tags.map(tag => <span key={tag} className="discovery__listcontainer__cardtag">{tag}</span>)}
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                    <Icon name='user' />
-                    {channel.userCount}
-                </Card.Content>
-              </Card>
-              </Link>
-            ))
-          }
-        </div>
+        <CardBox
+          list={channelsToDisplay}
+          />
+
       </div>
       <Footer />
     </section>

@@ -12,6 +12,7 @@ import Error from 'src/components/Error/Error';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import Landing from 'src/components/Landing/Landing';
 import DiscoveryContainer from 'src/containers/DiscoveryContainer';
+import HomepageContainer from 'src/containers/HomepageContainer';
 import Footer from 'src/components/Footer/Footer';
 
 import './app.scss';
@@ -40,9 +41,8 @@ const App = ({isUserLoggued, setWindowSize}) => {
 
       <Route path='/home'>
         {/* Home */}
-        <NavbarContainer />
         {
-          isUserLoggued ? (<h1>Tu es connecté mais il n'y a pas de composant à afficher pour l'instant...</h1>) : <Redirect to='/' />
+          isUserLoggued ? <HomepageContainer /> : <Redirect to='/' />
         }
       </Route>
       

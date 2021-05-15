@@ -11,12 +11,6 @@
     flex: 1;
     width: 80%;
     max-width: 1200px;
-
-    .ui.card,
-    .ui.card:first-child {
-      max-width: 250px;
-      margin: 1em 5px 0;
-    }
   }
 
   &__title {
@@ -35,6 +29,7 @@
     max-height: 50vh;
     overflow-y: auto;
     scroll-behavior: smooth;
+    margin-bottom: 40px;
 
     &__cardtag {
       padding: 0 5px;

@@ -3,35 +3,38 @@
 import {
   LOGIN_SUCCESS,
 } from 'src/actions/loginsignupActions';
+// import fakeChannels from 'src/middlewares/fakeChannels';
 
 const userState = {
   id: -1,
   nickname: '',
-  myChannelLinks: [
-    // { id: 1, name: "Films d'horreur" },
-    // { id: 2, name: 'Cuisine méditéranéenne' },
-  ],
-  myTags: [
-    // { id: 1, name: 'Films' },
-    // { id: 2, name: 'Cuisine' },
-    // { id: 3, name: 'Karaté' },
-  ],
+  myChannelLinks: [],
+  tags: [],
+  channels: [],
+  recommendedChannels: [],
 };
 
 const reducer = (stateActuel = userState, action = {}) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      console.log('userReducer', action.user);
+      // console.log('userReducer', action);
       const myChannelLinks = action.user.channels.map((channel) => ({
         ...channel,
         name: channel.title,
       }));
+
+      const recoList = [];
+      const { recommendedChannels } = action.user;
+      Object.keys(recommendedChannels).forEach((key) => recoList.push(recommendedChannels[key]));
+
       return {
         ...stateActuel,
         id: action.user.id,
         nickname: action.user.nickname,
+        tags: action.user.tags,
+        channels: action.user.channels,
+        recommendedChannels: recoList,
         myChannelLinks,
-        myTags: action.user.tags,
       };
 
     default:
