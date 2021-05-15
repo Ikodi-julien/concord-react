@@ -4,11 +4,13 @@ import {
   CHANNEL_FORM_SUBMIT,
   FETCH_CHANNEL,
   FETCH_CHANNEL_SUCCESS,
+  CONNECT_TO_SOCKET,
   USER_LEAVE_CHANNEL,
+  connectToSocket,
   messageReceived,
   userLeaveChannel,
-  userJoinChannel,
   socketJoinConfirm,
+  updateChannelUsers,
 } from '../actions/channelActions';
 
 let socket;
@@ -26,50 +28,46 @@ export default (store) => (next) => (action) => {
       break;
 
     case FETCH_CHANNEL_SUCCESS:
-      // L'API a bien renvoyé les infos du channel dispo en BDD
+      // Channel data are going to the store
       next(action);
       // console.log(action);
+      // Next, we need to connect to socket in this channel
+      store.dispatch(connectToSocket());
+      break;
 
-      // On envoi les infos d'authentification
-      // connexion au serveur de socket
-      setTimeout(() => {
-        const socketUser = store.getState().user;
-        const socketChannel = store.getState().channel;
-        socket = window.io(WS_URL);
-        // On envoie les infos d'authentification
+    case CONNECT_TO_SOCKET:
+      next(action);
+      // connect to socket
+      socket = window.io(WS_URL);
+      // auth to inform server
+      socket.emit('auth', { user, channel });
+      // make listeners
+      socket.on('message', (messageDuServeur) => {
+        // console.log('message reçu', messageDuServeur);
+        store.dispatch(messageReceived(messageDuServeur));
+      });
 
-        socket.emit('auth', { user: socketUser, channel: socketChannel });
-        // console.log('socketUser', socketUser);
-        // console.log('socketChannel', socketChannel);
+      socket.on('user:join', (data) => {
+        // This is when a user joins a channel i'm in
+        console.log('user:join', data);
+        store.dispatch(updateChannelUsers(data));
+      });
 
-        // Ecoute des messages en provenance du serveur.
-        socket.on('message', (messageDuServeur) => {
-          console.log('message reçu', messageDuServeur);
-          // A chaque message reçu on met à jour le state, via le reducer
-          const actionToDispatch = messageReceived(messageDuServeur);
-          store.dispatch(actionToDispatch);
-        });
-
-        socket.on('user:join', (data) => {
-        // User connected list is in data.channel
-          store.dispatch(userJoinChannel(data));
-        // console.log('user:join', data);
-        });
-
-        socket.on('user:leave', (data) => {
+      socket.on('user:leave', (data) => {
+        // This is when a user leaves a channel i'm in
         // TODO mettre à jour la liste des users de ce channel
-          console.log('user-leave', data);
-        });
+        console.log('user-leave', data);
+        store.dispatch(updateChannelUsers(data));
+      });
 
-        socket.on('confirm', () => {
+      socket.on('confirm', () => {
         // console.log('confirm');
-          store.dispatch(socketJoinConfirm());
-        });
+        store.dispatch(socketJoinConfirm());
+      });
 
-        socket.on('error', () => {
-          // TODO gérer l'erreur
-        });
-      }, 30);
+      socket.on('error', () => {
+        // TODO gérer l'erreur
+      });
 
       break;
 

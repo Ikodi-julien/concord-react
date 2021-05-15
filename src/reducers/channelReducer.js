@@ -11,6 +11,7 @@ import {
   USER_LEAVE_CHANNEL,
   USER_JOIN_CHANNEL,
 } from 'src/actions/channelActions.js';
+import { UPDATE_CHANNEL_USERS } from '../actions/channelActions';
 
 const channelState = {
   id: -2,
@@ -29,6 +30,22 @@ const channelState = {
 
 const reducer = (stateActuel = channelState, action = {}) => {
   switch (action.type) {
+    case CHANNEL_INPUT_CHANGE:
+      console.log(action);
+
+      return {
+        ...stateActuel,
+        [action.name]: action.value,
+      };
+
+    case CHANNEL_FORM_SUBMIT:
+      console.log(action);
+
+      return {
+        ...stateActuel,
+        inputForm: '',
+      };
+
     case FETCH_CHANNEL:
       console.log(action);
 
@@ -61,22 +78,6 @@ const reducer = (stateActuel = channelState, action = {}) => {
         error: true,
       };
 
-    case CHANNEL_INPUT_CHANGE:
-      console.log(action);
-
-      return {
-        ...stateActuel,
-        [action.name]: action.value,
-      };
-
-    case CHANNEL_FORM_SUBMIT:
-      console.log(action);
-
-      return {
-        ...stateActuel,
-        inputForm: '',
-      };
-
     case MESSAGE_RECEIVED:
       console.log(action);
       // Add the received message to message list.
@@ -93,24 +94,10 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case SOCKET_JOIN_CONFIRM:
-
+      // TODO quelque chose à faire lors du confirm ?
+      // Peut-être un petit logo qui passe au vert ?
       return {
         ...stateActuel,
-        infoMessage: `Bienvenue sur le salon ${stateActuel.title}`,
-      };
-
-    case USER_LEAVE_CHANNEL:
-      // Reinitialized state
-      return {
-        ...channelState,
-      };
-
-    case USER_JOIN_CHANNEL:
-      console.log(action);
-      // TODO afficher l'info sur le user qui join
-      return {
-        ...stateActuel,
-        ...action.channel,
       };
 
     case TOGGLE_MY_CHANNELS:
@@ -126,6 +113,25 @@ const reducer = (stateActuel = channelState, action = {}) => {
         ...stateActuel,
         showUsersInChannel: !stateActuel.showUsersInChannel,
         showMychannels: false,
+      };
+
+    case UPDATE_CHANNEL_USERS:
+      console.log('state channel id', stateActuel.id);
+      console.log('update channel id', action.value.channel.id);
+      if (action.value.channel.id !== stateActuel.id) {
+        return {
+          ...stateActuel,
+        };
+      }
+      return {
+        ...stateActuel,
+        ...action.value.channel,
+      };
+
+    case USER_LEAVE_CHANNEL:
+      // Reinitialized state
+      return {
+        ...channelState,
       };
 
     default:
