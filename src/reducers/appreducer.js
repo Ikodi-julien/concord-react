@@ -31,10 +31,10 @@ import {
 
 const appState = {
   // Possibly related to everywhere
+  isUserLoggued: false,
+  isNavMenuOpen: false,
   errorMessage: '',
   windowSize: 0,
-  isUserLoggued: true,
-  isNavMenuOpen: false,
   appRoutes: [
     // { slug: '/', name: 'Accueil' },
     { slug: '/home', name: 'Home' },
@@ -199,6 +199,7 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...appState,
         isUserLoggued: false,
+        windowSize: stateActuel.windowSize,
       };
 
     case HIDE_ERRORS:

@@ -3,6 +3,9 @@ export const FETCH_CHANNEL_SUCCESS = 'FETCH_CHANNEL_SUCCESS';
 export const FETCH_CHANNEL_ERROR = 'FETCH_CHANNEL_ERROR';
 
 export const CHANNEL_CONNECT = 'CHANNEL_CONNECT';
+export const SOCKET_JOIN_CONFIRM = 'SOCKET_JOIN_CONFIRM';
+export const USER_LEAVE_CHANNEL = 'USER_LEAVE_CHANNEL';
+export const USER_JOIN_CHANNEL = 'USER_JOIN_CHANNEL';
 export const CHANNEL_INPUT_CHANGE = 'CHANNEL_INPUT_CHANGE';
 export const CHANNEL_FORM_SUBMIT = 'CHANNEL_FORM_SUBMIT';
 export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';
@@ -22,6 +25,8 @@ export const fetchChannelSuccess = (channel) => ({
 export const fetchChannelError = () => ({ type: FETCH_CHANNEL_ERROR });
 export const channelFormSubmit = () => ({ type: CHANNEL_FORM_SUBMIT });
 export const channelConnect = () => ({ type: CHANNEL_CONNECT });
+export const userLeaveChannel = () => ({ type: USER_LEAVE_CHANNEL });
+export const userJoinChannel = () => ({ type: USER_JOIN_CHANNEL });
 
 export const setInputValue = (inputObject) => ({
   type: CHANNEL_INPUT_CHANGE,
@@ -43,3 +48,5 @@ export const toggleUsersInChannel = (bool) => ({
   type: TOGGLE_USERS_IN_CHANNEL,
   value: bool,
 });
+
+export const socketJoinConfirm = () => ({ type: SOCKET_JOIN_CONFIRM });

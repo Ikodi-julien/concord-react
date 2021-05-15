@@ -5,20 +5,26 @@ import {
   FETCH_CHANNEL_ERROR,
   FETCH_CHANNEL_SUCCESS,
   MESSAGE_RECEIVED,
+  SOCKET_JOIN_CONFIRM,
   TOGGLE_MY_CHANNELS,
   TOGGLE_USERS_IN_CHANNEL,
+  USER_LEAVE_CHANNEL,
+  USER_JOIN_CHANNEL,
 } from 'src/actions/channelActions.js';
 
 const channelState = {
-  id: -1,
+  id: -2,
   title: '',
-  messages: [],
+  messages: [
+
+  ],
   users: [],
   inputForm: '',
   isLoading: false,
   error: false,
   showMychannels: false,
   showUsersInChannel: false,
+  infoMessage: '',
 };
 
 const reducer = (stateActuel = channelState, action = {}) => {
@@ -38,7 +44,11 @@ const reducer = (stateActuel = channelState, action = {}) => {
       return {
         ...stateActuel,
         ...action.channel,
-        messages: [],
+        messages: [{
+          id: -1,
+          nickname: 'TeaCup',
+          content: `On parle de ${action.channel.title}... ou pas !`,
+        }],
         isLoading: false,
       };
 
@@ -69,7 +79,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
 
     case MESSAGE_RECEIVED:
       console.log(action);
-
+      // Add the received message to message list.
       return {
         ...stateActuel,
         messages: [
@@ -80,6 +90,27 @@ const reducer = (stateActuel = channelState, action = {}) => {
             content: action.message.content,
           },
         ],
+      };
+
+    case SOCKET_JOIN_CONFIRM:
+
+      return {
+        ...stateActuel,
+        infoMessage: `Bienvenue sur le salon ${stateActuel.title}`,
+      };
+
+    case USER_LEAVE_CHANNEL:
+      // Reinitialized state
+      return {
+        ...channelState,
+      };
+
+    case USER_JOIN_CHANNEL:
+      console.log(action);
+      // TODO afficher l'info sur le user qui join
+      return {
+        ...stateActuel,
+        ...action.channel,
       };
 
     case TOGGLE_MY_CHANNELS:

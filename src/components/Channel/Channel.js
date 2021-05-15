@@ -22,16 +22,22 @@ const Channel = ({
   toggleMyChannels,
   toggleUsersInChannel,
   error,
+  userLeaveChannel,
   }) => {
   
     // Ici on récupère l'id du channel dans l'url (/channels/:id)
     let {id} = useParams();
-    console.log('id', id);
+    // console.log('id', id);
     
     // Ici on envoi la demande pour récupérer les infos de ce channel
     useEffect(() => {
-      fetchChannel(id)
-    }, [])
+      console.log('l\'utilisateur entre dans un channel');
+      fetchChannel(id);
+      return () => {
+        console.log('l\'utilisateur quitte un channel');
+        userLeaveChannel();
+      };
+    }, []);
   
   if (channel.isLoading) { // On affiche un loader tant que pas de réponse de l'API
     return (

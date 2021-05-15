@@ -10,16 +10,15 @@ const Navmenu = (
     disconnectUser, 
     toggleMyChannels, 
     isNavMenuOpen, 
-    toggleNavMenu, 
     setNavMenuOpen, 
     windowSize,
   }
   ) => {
-  
+
     // On récupère ici l'éventuel param id dans l'url,
-    // S'il existe on est sur une page de channel et on affiche le bouton 'Mes channels' dans le menu
+    // S'il existe on est sur une page de channel et on affiche le bouton 'Mes channels' dans le menu,
   const {id} = useParams();
-  
+
   // On gère le comportement du menu au click sur le bouton mes channels
   const handleMyChannelsClick = () => {
     toggleMyChannels();

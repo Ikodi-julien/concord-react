@@ -52,7 +52,9 @@ const ChannelMessages = (
               {`${message.nickname}`}
             </div>
             <div className={message.nickname === nickname ? 'channelmessages__message__content --me' : 'channelmessages__message__content'}>
-              {`${message.content}`}
+              <div className="channelmessages__message__content__text">
+                {`${message.content}`}
+              </div>
             </div>
           </div>))
       }

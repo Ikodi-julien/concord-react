@@ -152,7 +152,9 @@
       }
 
       &__message {
-        width: fit-content;
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
         margin-bottom: 5px;
 
         &__nickname {
@@ -162,18 +164,25 @@
           font-weight: bold;
           padding: 10px;
           border-radius: 10px;
+          width: 100%;
 
-          &--me {}
+          &.--me {
+            text-align: right;
+            ;
+          }
         }
 
         &__content {
-          font-size: 1.2em;
-          background-color: v.$base-color-light;
-          color: v.$base-color-dark;
-          padding: 10px;
-          border-radius: 10px;
+          &__text {
+            font-size: 1.2em;
+            background-color: v.$base-color-light;
+            color: v.$base-color-dark;
+            padding: 10px;
+            border-radius: 10px;
+          }
 
-          &--me {}
+
+          & --me {}
         }
       }
     }
