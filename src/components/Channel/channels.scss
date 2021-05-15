@@ -113,6 +113,9 @@
     .channelmessages {
       width: 60vw;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       border: 1px solid v.$base-color-grey;
       color: v.$base-color-light;
       background-color: v.$base-color-grey;
@@ -144,6 +147,7 @@
       }
 
       &__messagelist {
+        width: 750px;
         padding: 20px;
         flex: 1;
         max-height: 60vh;
@@ -157,6 +161,10 @@
         flex-wrap: wrap;
         margin-bottom: 5px;
 
+        &.--me {
+          // justify-content: flex-end;
+        }
+
         &__nickname {
           background-color: transparent;
           color: v.$base-color-light;
@@ -167,8 +175,7 @@
           width: 100%;
 
           &.--me {
-            text-align: right;
-            ;
+            // text-align: right;
           }
         }
 
@@ -179,10 +186,12 @@
             color: v.$base-color-dark;
             padding: 10px;
             border-radius: 10px;
+
+            &.--me {
+              background-color: v.$color-message-me;
+              color: v.$base-color-light;
+            }
           }
-
-
-          & --me {}
         }
       }
     }

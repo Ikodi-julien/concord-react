@@ -46,13 +46,13 @@ const ChannelMessages = (
       <div className="channelmessages__messagelist" ref={refContainer}>
       {
         messages.map(message => (
-          <div key={message.id} className="channelmessages__message">
+          <div key={message.id} className={message.nickname === nickname ?"channelmessages__message --me" : "channelmessages__message"} >
             <div className={message.nickname === nickname ? 'channelmessages__message__nickname --me' : 'channelmessages__message__nickname'}
             >
               {`${message.nickname}`}
             </div>
-            <div className={message.nickname === nickname ? 'channelmessages__message__content --me' : 'channelmessages__message__content'}>
-              <div className="channelmessages__message__content__text">
+            <div className={'channelmessages__message__content'}>
+              <div className={message.nickname === nickname ? 'channelmessages__message__content__text --me' : 'channelmessages__message__content__text'}>
                 {`${message.content}`}
               </div>
             </div>

@@ -55,7 +55,6 @@ export default (store) => (next) => (action) => {
 
       socket.on('user:leave', (data) => {
         // This is when a user leaves a channel i'm in
-        // TODO mettre à jour la liste des users de ce channel
         console.log('user-leave', data);
         store.dispatch(updateChannelUsers(data));
       });
