@@ -31,7 +31,7 @@ import {
 
 const appState = {
   // Possibly related to everywhere
-  isUserLoggued: false,
+  isUserLoggued: true,
   isNavMenuOpen: false,
   errorMessage: '',
   windowSize: 0,
@@ -40,7 +40,6 @@ const appState = {
     { slug: '/home', name: 'Home' },
     { slug: '/profile', name: 'Mes paramètres' },
     { slug: '/discovery', name: 'Découverte' },
-    { slug: '/error', name: 'Editor' },
   ],
   tags: [],
   channels: [],

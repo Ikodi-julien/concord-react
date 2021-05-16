@@ -4,16 +4,20 @@ import {Card, Icon} from 'semantic-ui-react';
 
 import './cardbox.scss';
 
-const CardBox = ({list}) => (
+const CardBox = ({list}) => {
+  
+  const array = list || [];
+  const tags = list.tags || [];
+  return (
   <div className="discovery__listcontainer">
     {
-      list.map(item => (
+      array.map(item => (
         <Link key={item.id} to={`/channels/${item.id}`} >
         <Card >
           <Card.Content>
             <Card.Header>{item.title}</Card.Header>
             <Card.Description>
-              {item.tags.map(tag => <div key={tag.id} className="discovery__listcontainer__cardtag">{tag.name}</div>)}
+              {tags.map(tag => <div key={tag.id} className="discovery__listcontainer__cardtag">{tag.name}</div>)}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
@@ -25,6 +29,6 @@ const CardBox = ({list}) => (
       ))
     }
   </div>
-)
+)}
 
 export default CardBox;

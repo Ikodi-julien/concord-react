@@ -1,0 +1,40 @@
+@use 'src/styles/vars'as v;
+
+.profile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  &__container {
+    flex: 1;
+    width: 80%;
+    max-width: 1200px;
+
+  }
+
+  &__title {
+    padding: 20px;
+  }
+
+  &__formrow {
+    display: flex;
+    align-items: center;
+
+    & label {
+      width: 100px;
+    }
+
+    & .input {
+      vertical-align: baseline;
+    }
+  }
+
+  &__tagscontainer,
+  &__authfieldscontainer {
+    padding: 20px;
+    max-height: 50vh;
+    margin-bottom: 40px;
+  }
+}
