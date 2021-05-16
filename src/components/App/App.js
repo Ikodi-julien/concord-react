@@ -13,7 +13,7 @@ import NavbarContainer from 'src/containers/NavbarContainer';
 import Landing from 'src/components/Landing/Landing';
 import DiscoveryContainer from 'src/containers/DiscoveryContainer';
 import HomepageContainer from 'src/containers/HomepageContainer';
-import Editor from 'src/components/Editor/Editor';
+import EditorContainer from 'src/containers/EditorContainer';
 import Footer from 'src/components/Footer/Footer';
 
 import './app.scss';
@@ -66,7 +66,7 @@ const App = ({isUserLoggued, setWindowSize}) => {
       <Route path='/error'>
         {/* Error */}
         <NavbarContainer />
-        <Editor />
+        <EditorContainer />
         {/* <Error /> */}
       </Route>
       

@@ -10,6 +10,7 @@ export const UPDATE_CHANNEL_USERS = 'UPDATE_CHANNEL_USERS';
 
 export const CHANNEL_INPUT_CHANGE = 'CHANNEL_INPUT_CHANGE';
 export const CHANNEL_FORM_SUBMIT = 'CHANNEL_FORM_SUBMIT';
+export const SET_QUILL_TEXT = 'SET_QUILL_TEXT';
 export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';
 export const TOGGLE_MY_CHANNELS = 'TOGGLE_MY_CHANNELS';
 export const TOGGLE_USERS_IN_CHANNEL = 'TOGGLE_USERS_IN_CHANNEL';
@@ -58,3 +59,4 @@ export const toggleUsersInChannel = (bool) => ({
 export const socketJoinConfirm = () => ({ type: SOCKET_JOIN_CONFIRM });
 // dispatched in socketMiddleware after an user:leave or user:leave event
 export const updateChannelUsers = (data) => ({ type: UPDATE_CHANNEL_USERS, value: data });
+export const setQuillText = (text) => ({ type: SET_QUILL_TEXT, value: text });

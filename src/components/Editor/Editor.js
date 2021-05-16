@@ -3,9 +3,10 @@ import { quillRegister } from './quill-emoji/src/quill-emoji.js';
 
 import 'quill/dist/quill.snow.css'; // Add css for snow theme
 // or import 'quill/dist/quill.bubble.css'; // Add css for bubble theme
-import "src/vendor/quill-emoji/dist/quill-emoji.css";
+import "./quill-emoji/dist/quill-emoji.css";
+import './editor.scss';
 
-export default () => {
+const Editor = ({quill, setQuillText}) => {
 
   const toolbarOptions = {
     container: [],
@@ -19,9 +20,9 @@ export default () => {
   useEffect(() => {
     
       quillRegister();
-      const quill = new Quill(editor.current, {
+      quill = new Quill(editor.current, {
         modules: {
-          toolbar: toolbarOptions,
+          toolbar: false,
           'emoji-toolbar': true,
           'emoji-textarea': true,
           'emoji-shortname': true,
@@ -29,12 +30,19 @@ export default () => {
         placeholder: 'Kessessé ?...',
         theme: 'snow',
       });
-
-  }, []);
+      
+      quill.on('text-change', () => {
+        const text = quill.getText();
+        setQuillText(text);
+      });
+      
+  }, [quill]);
 
   return (
-    <div style={{ width: 500, height: 100 }}>
+    <div className='editor'>
       <div ref={editor}/>
     </div>
   );
 };
+
+export default Editor;

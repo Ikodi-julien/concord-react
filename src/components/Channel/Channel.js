@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
 import {Button} from 'semantic-ui-react';
+import {useParams} from 'react-router-dom';
 import MyChannels from './MyChannels/MyChannels';
 import UsersInChannelList from './UsersInChannelList/UsersInChannelList';
 import ChannelMessages from './ChannelMessages/ChannelMessages';
 import ChannelForm from './ChannelForm/ChannelForm';
 import Navbar from 'src/containers/NavbarContainer';
-import Footer from 'src/components/Footer/Footer';
 import BigLoader from 'src/components/BigLoader/BigLoader';
-import {useParams} from 'react-router-dom';
 import Error from 'src/components/Error/Error';
+import Footer from 'src/components/Footer/Footer';
 
 
 import './channels.scss';
@@ -85,6 +85,7 @@ const Channel = ({
             toggleUsersInChannel={toggleUsersInChannel}
             />
           <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm} channelFormSubmit={channelFormSubmit}/>
+          
         </div>
         <UsersInChannelList 
           users={channel.users}

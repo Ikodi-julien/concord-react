@@ -24,7 +24,9 @@ export default (store) => (next) => (action) => {
       // If we were already in a channel, that is a click on a channel link
       // from Channel, we need to tell the socket that we leave.
       // Else socket is undefined, so...
-      if (socket) store.dispatch(userLeaveChannel());
+      if (socket) {
+        store.dispatch(userLeaveChannel());
+      }
       break;
 
     case FETCH_CHANNEL_SUCCESS:
@@ -84,7 +86,7 @@ export default (store) => (next) => (action) => {
           id: user.id,
           nickname: user.nickname,
         },
-        content: channel.inputForm,
+        content: channel.quillContent,
       };
 
       // le texte et l'auteur (pas d'id)
@@ -99,6 +101,7 @@ export default (store) => (next) => (action) => {
       console.log('user-leave', { user, channel });
 
       socket.emit('user-leave', { user, channel });
+      socket.close();
       break;
 
     default:

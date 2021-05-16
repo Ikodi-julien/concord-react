@@ -1,0 +1,8 @@
+@use 'src/styles/vars'as v;
+
+.editor {
+  width: 100%;
+  min-height: 60px;
+  background-color: v.$base-color-light;
+  color: v.$base-color-darkest;
+}

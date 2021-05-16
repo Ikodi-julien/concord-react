@@ -147,12 +147,16 @@
       }
 
       &__messagelist {
-        width: 750px;
+        width: 80%;
         padding: 20px;
         flex: 1;
         max-height: 60vh;
         overflow-y: auto;
         scroll-behavior: smooth;
+
+        @media screen and (max-width:700px) {
+          width: 100%;
+        }
       }
 
       &__message {

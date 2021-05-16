@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Form} from 'semantic-ui-react';
+import EditorContainer from 'src/containers/EditorContainer';
 
 const ChannelForm = ({setInputValue, inputValue, channelFormSubmit}) => {
   
@@ -23,12 +24,13 @@ const ChannelForm = ({setInputValue, inputValue, channelFormSubmit}) => {
         <div className="channelForm__row">
           <Form.Field>
             {/* <label>First Name</label> */}
-            <input 
+            <EditorContainer />
+            {/* <input 
               name="inputForm"
               placeholder='Saisir un message' 
               value={inputValue}
               onChange={handleChange}
-              />
+              /> */}
           </Form.Field>
           <Button type='submit'><i className="fas fa-paper-plane"></i></Button>
         </div>

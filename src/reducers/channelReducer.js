@@ -10,6 +10,7 @@ import {
   TOGGLE_USERS_IN_CHANNEL,
   USER_LEAVE_CHANNEL,
   USER_JOIN_CHANNEL,
+  SET_QUILL_TEXT,
 } from 'src/actions/channelActions.js';
 import { UPDATE_CHANNEL_USERS } from '../actions/channelActions';
 
@@ -26,6 +27,8 @@ const channelState = {
   showMychannels: false,
   showUsersInChannel: false,
   infoMessage: '',
+  quill: null,
+  quillContent: '',
 };
 
 const reducer = (stateActuel = channelState, action = {}) => {
@@ -43,7 +46,14 @@ const reducer = (stateActuel = channelState, action = {}) => {
 
       return {
         ...stateActuel,
-        inputForm: '',
+        quillContent: '',
+      };
+
+    case SET_QUILL_TEXT:
+      console.log(action);
+      return {
+        ...stateActuel,
+        quillContent: action.value,
       };
 
     case FETCH_CHANNEL:
