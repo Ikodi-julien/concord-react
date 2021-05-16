@@ -40,7 +40,7 @@ const appState = {
     { slug: '/home', name: 'Home' },
     { slug: '/profile', name: 'Mes paramètres' },
     { slug: '/discovery', name: 'Découverte' },
-    // { slug: '/channels/1', name: 'Channel test' },
+    { slug: '/error', name: 'Editor' },
   ],
   tags: [],
   channels: [],
