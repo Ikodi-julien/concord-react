@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import Editor from 'src/components/Editor/Editor';
-import { setQuillText } from 'src/actions/channelActions';
+import { setQuillContent } from 'src/actions/channelActions';
 
 const mapStateToProps = ({ channel }) => ({
   quill: channel.quill,
   quillContent: channel.quillContent,
+  reinitQuill: channel.reinitQuill,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setQuillText: (text) => dispatch(setQuillText(text)),
+  setQuillContent: (text) => dispatch(setQuillContent(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);

@@ -59,4 +59,4 @@ export const toggleUsersInChannel = (bool) => ({
 export const socketJoinConfirm = () => ({ type: SOCKET_JOIN_CONFIRM });
 // dispatched in socketMiddleware after an user:leave or user:leave event
 export const updateChannelUsers = (data) => ({ type: UPDATE_CHANNEL_USERS, value: data });
-export const setQuillText = (text) => ({ type: SET_QUILL_TEXT, value: text });
+export const setQuillContent = (text) => ({ type: SET_QUILL_TEXT, value: text });

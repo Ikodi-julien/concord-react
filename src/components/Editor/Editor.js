@@ -6,37 +6,41 @@ import 'quill/dist/quill.snow.css'; // Add css for snow theme
 import "./quill-emoji/dist/quill-emoji.css";
 import './editor.scss';
 
-const Editor = ({quill, setQuillText}) => {
+const Editor = (
+  {
+    quill, 
+    setQuillContent, 
+    quillContent, 
+    reinitQuill
+  }
+) => {
 
-  const toolbarOptions = {
-    container: [],
-    handlers: {
-      emoji: function () {},
-    },
-  };
-  
   const editor = useRef('editor');
   
   useEffect(() => {
     
-      quillRegister();
-      quill = new Quill(editor.current, {
-        modules: {
-          toolbar: false,
-          'emoji-toolbar': true,
-          'emoji-textarea': true,
-          'emoji-shortname': true,
-        },
-        placeholder: 'Kessessé ?...',
-        theme: 'snow',
-      });
+      if (!quill || reinitQuill) {
+        console.log('quill');
+        quillRegister();
+        quill = new Quill(editor.current, {
+          modules: {
+            toolbar: false,
+            'emoji-toolbar': true,
+            'emoji-textarea': true,
+            'emoji-shortname': true,
+          },
+          placeholder: 'Kessessé ?...',
+          theme: 'snow',
+        });
+        
+        quill.setText('');
+        quill.on('text-change', () => {
+          const text = quill.getText();
+          setQuillContent(text);
+        });
+      }
       
-      quill.on('text-change', () => {
-        const text = quill.getText();
-        setQuillText(text);
-      });
-      
-  }, [quill]);
+  }, [reinitQuill]);
 
   return (
     <div className='editor'>

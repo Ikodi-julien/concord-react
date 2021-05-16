@@ -29,6 +29,7 @@ const channelState = {
   infoMessage: '',
   quill: null,
   quillContent: '',
+  reinitQuill: false,
 };
 
 const reducer = (stateActuel = channelState, action = {}) => {
@@ -47,6 +48,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       return {
         ...stateActuel,
         quillContent: '',
+        reinitQuill: true,
       };
 
     case SET_QUILL_TEXT:
@@ -101,6 +103,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
             content: action.message.content,
           },
         ],
+        reinitQuill: false,
       };
 
     case SOCKET_JOIN_CONFIRM:
