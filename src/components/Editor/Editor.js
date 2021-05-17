@@ -24,7 +24,7 @@ const Editor = (
         quill = new Quill(editor.current, {
           modules: {
             toolbar: false,
-            'emoji-toolbar': true,
+            'emoji-toolbar': false,
             'emoji-textarea': true,
             'emoji-shortname': true,
           },

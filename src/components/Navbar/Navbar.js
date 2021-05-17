@@ -53,7 +53,7 @@ const Navbar = ({
   disconnectUser,
 }) => {
   // Fetch tags and channels on component did mount.
-    useEffect(() => {fetchData()}, []);
+    if (isUserLoggued) useEffect(() => {fetchData()}, []);
 
   // This allows to redirect with a history.push('/someurl')
   let history = useHistory();

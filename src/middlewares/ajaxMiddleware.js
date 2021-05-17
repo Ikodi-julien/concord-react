@@ -21,6 +21,7 @@ export default (store) => (next) => (action) => {
       axios({
         url: `${FETCH_URL}/v1/channel/${action.channelId}`,
         method: 'GET',
+        withCredentials: true,
       })
         .then((res) => {
           // console.log('res.data :', res.data);
@@ -40,6 +41,7 @@ export default (store) => (next) => (action) => {
       axios({
         url: `${FETCH_URL}/v1/tags/channels`,
         method: 'GET',
+        withCredentials: true,
       })
         .then((res) => {
           const tags = res.data;
@@ -47,6 +49,7 @@ export default (store) => (next) => (action) => {
           axios({
             url: `${FETCH_URL}/v1/channels`,
             method: 'GET',
+            withCredentials: true,
           })
             .then((response) => {
               const channels = response.data;

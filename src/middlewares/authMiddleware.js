@@ -43,18 +43,13 @@ export default (store) => (next) => (action) => {
       axios.post(`${FETCH_URL}/v1/login`, {
         email: email || loginEmail,
         password: password || loginPassword,
+      },
+      {
+        withCredentials: true,
       })
         .then((res) => {
-          const user = {
-            ...res.data[0].user,
-            recommendedChannels: {
-              ...res.data[1].recommendedChannels,
-            },
-          };
-          // console.log('user destructuré :', { ...user });
-          // TODO avec branch refacto user
-          // store.dispatch(loginSuccess(res.data));
-          store.dispatch(loginSuccess({ ...user }));
+          console.log(res);
+          store.dispatch(loginSuccess(res.data));
         })
         .catch((error) => {
           console.log('catch error: ', error);
