@@ -37,7 +37,10 @@ class ShortNameEmoji extends Module {
 
     quill.keyboard.addBinding({
       // TODO: Once Quill supports using event.key change this to ":"
-      key: 186, // ":" instead of 190 in Safari. Since it's the same key it doesn't matter if we register both.
+    //   key: 186, // ":" instead of 190 in Safari. Since it's the same key it doesn't matter if we register both.
+    //   shiftKey: true,
+    // }, this.triggerPicker.bind(this));
+      key: 191, // ":" instead of 190 in Safari. Since it's the same key it doesn't matter if we register both.
       shiftKey: true,
     }, this.triggerPicker.bind(this));
 

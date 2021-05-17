@@ -2,8 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import { quillRegister } from './quill-emoji/src/quill-emoji.js';
 
 import 'quill/dist/quill.snow.css'; // Add css for snow theme
-// or import 'quill/dist/quill.bubble.css'; // Add css for bubble theme
-import "./quill-emoji/dist/quill-emoji.css";
+import "src/components/Editor/quill-emoji/src/scss/quill-emoji.scss";
 import './editor.scss';
 
 const Editor = (
