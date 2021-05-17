@@ -33,6 +33,8 @@ const channelState = {
 };
 
 const reducer = (stateActuel = channelState, action = {}) => {
+  const messageIds = stateActuel.messages.map((message) => message.id);
+
   switch (action.type) {
     case CHANNEL_INPUT_CHANGE:
       console.log(action);
@@ -93,6 +95,12 @@ const reducer = (stateActuel = channelState, action = {}) => {
     case MESSAGE_RECEIVED:
       console.log(action);
       // Add the received message to message list.
+      if (messageIds.includes(action.message.id)) {
+        return {
+          ...stateActuel,
+          reinitQuill: false,
+        };
+      }
       return {
         ...stateActuel,
         messages: [
