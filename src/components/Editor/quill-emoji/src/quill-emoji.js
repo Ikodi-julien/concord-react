@@ -6,14 +6,14 @@ import TextAreaEmoji from './module-textarea-emoji.js';
 import './scss/quill-emoji.scss';
 
 export const quillRegister = () => {
-  
-Quill.register({
+  Quill.register({
     'formats/emoji': EmojiBlot,
     'modules/emoji-shortname': ShortNameEmoji,
     'modules/emoji-toolbar': ToolbarEmoji,
-    'modules/emoji-textarea': TextAreaEmoji
-  }, true);  
-}
+    'modules/emoji-textarea': TextAreaEmoji,
+  }, true);
+};
 
-
-export default { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji };
+export default {
+  EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji,
+};

@@ -137,27 +137,27 @@ class ShortNameEmoji extends Module {
   }
 
   renderCompletions(emojis) {
-    try {
-      if (event) {
-        if (event.key === 'Enter' || event.keyCode === 13) {
-          this.close(emojis[0], 1);
-          this.container.style.display = 'none';
-          return;
-        }
-        if (event.key === 'Tab' || event.keyCode === 9) {
-          this.quill.disable();
-          this.buttons[0].classList.remove('emoji-active');
-          this.buttons[1].focus();
-          return;
-        }
+    // try {
+    if (event) {
+      if (event.key === 'Enter' || event.keyCode === 13) {
+        this.close(emojis[0], 1);
+        this.container.style.display = 'none';
+        return;
       }
-      if (event) {
+      if (event.key === 'Tab' || event.keyCode === 9) {
+        this.quill.disable();
+        this.buttons[0].classList.remove('emoji-active');
+        this.buttons[1].focus();
         return;
       }
     }
-    catch (e) {
-      console.warn(e);
-    }
+    //   if (event) {
+    //     return;
+    //   }
+    // }
+    // catch (e) {
+    //   console.warn(e);
+    // }
 
     while (this.container.firstChild) {
       this.container.removeChild(this.container.firstChild);
