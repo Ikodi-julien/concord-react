@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Editor from 'src/components/Editor/Editor';
-import { setQuillContent } from 'src/actions/channelActions';
+import { setQuillContent, channelFormSubmit } from 'src/actions/channelActions';
 
 const mapStateToProps = ({ channel }) => ({
   quill: channel.quill,
@@ -10,6 +10,7 @@ const mapStateToProps = ({ channel }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setQuillContent: (text) => dispatch(setQuillContent(text)),
+  channelFormSubmit: () => dispatch(channelFormSubmit()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);

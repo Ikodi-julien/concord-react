@@ -10,12 +10,18 @@ const Editor = (
     quill, 
     setQuillContent, 
     quillContent, 
-    reinitQuill
+    reinitQuill,
+    channelFormSubmit,
   }
 ) => {
 
   const editor = useRef('editor');
-  
+  const bindings = {
+    custom: {
+      key: 13,
+      handler: () => channelFormSubmit()
+    }
+  }
   useEffect(() => {
     
       if (!quill || reinitQuill) {
@@ -24,6 +30,7 @@ const Editor = (
         quill = new Quill(editor.current, {
           modules: {
             toolbar: false,
+            keyboard: {bindings},
             'emoji-toolbar': false,
             'emoji-textarea': true,
             'emoji-shortname': true,
@@ -34,7 +41,7 @@ const Editor = (
         
         quill.setText('');
         quill.on('text-change', () => {
-          const text = quill.getText();
+          const text = quill.getContents();
           setQuillContent(text);
         });
       }

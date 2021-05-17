@@ -17,9 +17,7 @@ import { UPDATE_CHANNEL_USERS } from '../actions/channelActions';
 const channelState = {
   id: -2,
   title: '',
-  messages: [
-
-  ],
+  messages: [],
   users: [],
   inputForm: '',
   isLoading: false,
@@ -71,14 +69,15 @@ const reducer = (stateActuel = channelState, action = {}) => {
 
     case FETCH_CHANNEL_SUCCESS:
       console.log(action);
-
       return {
         ...stateActuel,
         ...action.channel,
         messages: [{
-          id: -1,
+          id: 'A',
           nickname: 'TeaCup',
-          content: `On parle de ${action.channel.title}... ou pas !`,
+          content: {
+            ops: [{ insert: `On parle de ${action.channel.title}... ou pas !` }],
+          },
         }],
         isLoading: false,
       };

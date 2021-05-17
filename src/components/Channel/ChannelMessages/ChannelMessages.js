@@ -26,7 +26,22 @@ const ChannelMessages = (
       // scroll progressif
       behavior: 'smooth',
     });
-  }); 
+    
+    if (messages.length) {
+      console.log(messages.length);
+      messages.map(message => {
+        const quill = new Quill(`#editor-${message.id}`, {
+          modules: {
+            toolbar: false,
+          },
+        });
+        quill.enable(false);
+        quill.setContents(message.content); 
+        console.log(message.content);
+      })
+    }
+  }
+  ); 
   
   return (
     
@@ -53,11 +68,14 @@ const ChannelMessages = (
             </div>
             <div className={'channelmessages__message__content'}>
               <div className={message.nickname === nickname ? 'channelmessages__message__content__text --me' : 'channelmessages__message__content__text'}>
-                {`${message.content}`}
+                <div id={`editor-${message.id}`} />
               </div>
             </div>
-          </div>))
+          </div>
+          )
+        )
       }
+
       </div>
     </section>
   )
