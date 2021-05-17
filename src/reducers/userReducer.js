@@ -17,7 +17,7 @@ const userState = {
 const reducer = (stateActuel = userState, action = {}) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      // console.log('userReducer', action);
+      console.log('userReducer', action);
       const myChannelLinks = action.user.channels.map((channel) => ({
         ...channel,
         name: channel.title,

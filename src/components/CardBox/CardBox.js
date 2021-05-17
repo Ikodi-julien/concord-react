@@ -7,7 +7,7 @@ import './cardbox.scss';
 const CardBox = ({list}) => {
   
   const array = list || [];
-  const tags = list.tags || [];
+
   return (
   <div className="discovery__listcontainer">
     {
@@ -17,7 +17,9 @@ const CardBox = ({list}) => {
           <Card.Content>
             <Card.Header>{item.title}</Card.Header>
             <Card.Description>
-              {tags.map(tag => <div key={tag.id} className="discovery__listcontainer__cardtag">{tag.name}</div>)}
+              {item.tags &&
+                item.tags.map(tag => <div key={tag.id} className="discovery__listcontainer__cardtag">{tag.name}</div>)
+              }
             </Card.Description>
           </Card.Content>
           <Card.Content extra>

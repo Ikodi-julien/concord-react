@@ -10,6 +10,8 @@ const Profile = ({tags}) => {
   
   const handleSubmit = () => {};
   
+  const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
+  
   return (
     <section className="profile">
       <NavbarContainer />
@@ -20,8 +22,25 @@ const Profile = ({tags}) => {
           <h1 className="profile__title">Mon profil</h1>
           <Form >
             <div className="profile__formrow">
+              <label>Pseudo :</label>
+              <Form.Field >
+              <input
+                name='pseudo'
+                type='text'
+                placeholder='pseudo'
+                value={''}
+                onChange={() => {}}
+                />
+              </Form.Field>
+                <Button type='submit' primary loading={false} >
+                  Modifier le pseudo
+                </Button>
+            </div>
+          </Form>
+          
+          <Form >
+            <div className="profile__formrow">
             <label >Email :</label>
-            
               <Form.Field>
                     <input
                       name='email'
@@ -32,7 +51,6 @@ const Profile = ({tags}) => {
                       className="input"
                       />
               </Form.Field>
-              
               <Button type='submit' primary loading={false} >
                 Modifier l'email
               </Button>
@@ -40,7 +58,6 @@ const Profile = ({tags}) => {
           </Form>
             
           <label>Mot de passe :</label>
-          
           <Modal
           closeIcon
           dimmer='blurring'
@@ -48,7 +65,13 @@ const Profile = ({tags}) => {
           onClose={() => {}}
           onOpen={() => {}}
           // open={false}
-          trigger={<Button >Modifier</Button>}
+          trigger={
+            <Button 
+              content='Modifier le mot de passe' 
+              icon='right arrow'
+              labelPosition='right'
+            />
+              }
           >
           <Modal.Content >
           
@@ -85,9 +108,7 @@ const Profile = ({tags}) => {
                     />
                 </Form.Field>
 
-                <Modal.Actions>
-                  <Button type='submit' loading={false} >Modifier le mot de passe</Button>
-                </Modal.Actions>
+                  <Button type='submit' primary loading={false} >Modifier le mot de passe</Button>
               </Form>
               
               </Segment>
@@ -98,51 +119,18 @@ const Profile = ({tags}) => {
         
         <div className="profile__tagscontainer">
           <h1 className="profile__title">Mes catégories</h1>
-          <Form >
-            <div class="profile__formrow">
-              <label>Pseudo :</label>
-              <Form.Field >
-              <input
-                name='pseudo'
-                type='text'
-                placeholder='pseudo'
-                value={''}
-                onChange={() => {}}
-                />
-              </Form.Field>
-                <Button type='submit' loading={false} >
-                  Modifier le pseudo
-                </Button>
-            </div>
-          </Form>
+          <p className="profile__subtitle">Sélectionne des catégories pour avoir des suggestions adaptées.</p>
           
           <Form >
           <Dropdown 
-            item 
-            icon='bars' 
-            simple
-            direction={'right'}
-            // open={false}
-            // onClick={toggleNavMenu}
-            >
-            <Dropdown.Menu>
-            
-            {
-            tags.map(tag => (
-              <Dropdown.Item key={tag.name}>
-                <div className="profile__tagscontainer__tag" >
-                  {tag.name}
-                </div>
-              </Dropdown.Item>
-              ))
-            }
-            </Dropdown.Menu>
-          </Dropdown>
+            text='Mes catégories' 
+            fluid 
+            multiple selection 
+            options={tagsOptions} 
+            />
             
           </Form>
-          
         </div>
-
       </div>
       <Footer />
     </section>

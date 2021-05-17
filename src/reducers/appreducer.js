@@ -31,7 +31,7 @@ import {
 
 const appState = {
   // Possibly related to everywhere
-  isUserLoggued: true,
+  isUserLoggued: false,
   isNavMenuOpen: false,
   errorMessage: '',
   windowSize: 0,

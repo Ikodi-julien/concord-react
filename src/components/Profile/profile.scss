@@ -12,6 +12,16 @@
     width: 80%;
     max-width: 1200px;
 
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      padding: 10px;
+    }
+
+    & .ui.form input[type=email],
+    & .ui.form input[type=text] {
+      border: none;
+      border-bottom: 1px solid v.$base-color-grey;
+    }
   }
 
   &__title {
@@ -22,12 +32,12 @@
     display: flex;
     align-items: center;
 
-    & label {
-      width: 100px;
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
     }
 
-    & .input {
-      vertical-align: baseline;
+    & label {
+      width: 100px;
     }
   }
 

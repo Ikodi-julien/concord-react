@@ -10,7 +10,7 @@ import {
   fetchNavDataError,
   fetchNavDataSuccess,
 } from '../actions/appActions';
-import localFakeChannels from './fakeChannels';
+// import localFakeChannels from './fakeChannels';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
