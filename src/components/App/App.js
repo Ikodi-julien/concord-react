@@ -19,24 +19,8 @@ import Footer from 'src/components/Footer/Footer';
 import './app.scss';
 // == Composant
 
-const App = ({isUserLoggued, setWindowSize}) => {
+const App = ({isUserLoggued}) => (
   
-  // Ici on ecoute l'évenement resize afin de gérer la prop 'windowSize' dans appReducer, cette prop est utilisée comme une condition pour l'affichage de certains éléments de menu ou boutons... la mise à jour du state au resize sur cette prop permet le rendu responsive.
-
-  const updateSize = () => {
-    setWindowSize(window.innerWidth)
-  };
-  
-  useEffect(() => {
-
-    setWindowSize(window.innerWidth);
-    window.addEventListener('resize', updateSize);
-    return () => {
-      window.removeEventListener('resize', updateSize);
-    }
-  }, []);
-
-  return (
   <div className="app">
     <Switch>
 
@@ -79,9 +63,8 @@ const App = ({isUserLoggued, setWindowSize}) => {
       <Redirect to='/error' />
     </Switch>
     
-  </div>)
-}
-;
+  </div>
+);
 
 // == Export
 export default App;

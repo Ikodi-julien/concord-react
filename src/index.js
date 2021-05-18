@@ -14,15 +14,17 @@ import 'semantic-ui-css/semantic.min.css'
 
 // Composants
 import AppContainer from 'src/containers/AppContainer';
+import SetSizeContainer from 'src/containers/SetSizeContainer';
 
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
 //    => crée une structure d'objets imbriqués (DOM virtuel)
 const rootReactElement = (
     <Provider store={store}>
-      <Router >
-        <AppContainer />
-      </Router>
+        <Router >
+          <SetSizeContainer/>
+          <AppContainer />
+        </Router>
     </Provider>
   );
 // 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
