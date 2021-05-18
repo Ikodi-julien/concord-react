@@ -20,7 +20,7 @@ const channelState = {
   messages: [],
   users: [],
   inputForm: '',
-  isLoading: false,
+  isLoading: true,
   error: false,
   showMychannels: false,
   showUsersInChannel: false,
@@ -136,8 +136,8 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case UPDATE_CHANNEL_USERS:
-      console.log('state channel id', stateActuel.id);
-      console.log('update channel id', action.value.channel.id);
+      // console.log('state channel id', stateActuel.id);
+      // console.log('update channel id', action.value.channel.id);
       if (action.value.channel.id !== stateActuel.id) {
         return {
           ...stateActuel,

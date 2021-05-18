@@ -1,38 +1,23 @@
 import React from 'react';
-import {Button, Form} from 'semantic-ui-react';
+import {Form} from 'semantic-ui-react';
 import EditorContainer from 'src/containers/EditorContainer';
 
-const ChannelForm = ({setInputValue, inputValue, channelFormSubmit}) => {
+const ChannelForm = ({channelFormSubmit}) => {
   
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log('submit');
+    if (!evt.target.value) return;
     channelFormSubmit();
-  }
-  
-  const handleChange = (evt) => {
-    // console.log('change'),
-    setInputValue({
-      name: "inputForm",
-      value: evt.target.value
-    })
   }
   
   return (
     <section className="channelForm">
       <Form onSubmit={handleSubmit}>
         <div className="channelForm__row">
-          <Form.Field>
-            {/* <label>First Name</label> */}
-            <EditorContainer />
-            {/* <input 
-              name="inputForm"
-              placeholder='Saisir un message' 
-              value={inputValue}
-              onChange={handleChange}
-              /> */}
-          </Form.Field>
-          <Button type='submit'><i className="fas fa-paper-plane"></i></Button>
+          <EditorContainer />
+          <button className="channelForm__row__button" type='submit'>
+            <i className="fas fa-paper-plane"></i>
+          </button>
         </div>
       </Form>
     </section>

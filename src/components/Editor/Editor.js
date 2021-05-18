@@ -9,7 +9,6 @@ const Editor = (
   {
     quill, 
     setQuillContent, 
-    quillContent, 
     reinitQuill,
     channelFormSubmit,
   }
@@ -19,7 +18,10 @@ const Editor = (
   const bindings = {
     custom: {
       key: 13,
-      handler: () => channelFormSubmit()
+      handler: ({index}) => {
+        if (index === 0) return;
+        channelFormSubmit()
+      }
     }
   }
   useEffect(() => {

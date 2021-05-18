@@ -1,12 +1,12 @@
 import React from 'react';
 import hero from 'src/assets/cats_in_cup.png';
 import featureImg_1 from 'src/assets/teacup_logo.png';
-import featureImg_2 from 'src/assets/error.png';
+import featureImg_2 from 'src/assets/friends.png';
 import './landing.scss';
 
 const Landing = () => (
 <section className='landing'>
-
+  <div className='landing__background' />
   <div className='landing__container'>
     <div className='landing__hero'>
     

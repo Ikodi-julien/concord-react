@@ -8,6 +8,8 @@ const UsersInChannelList = ({users, showUsersInChannel, toggleUsersInChannel}) =
   
   return (
     <section className={showUsersInChannel ? "usersinchannellist --show" : "usersinchannellist"}>
+      <div className="usersinchannellist__deco" />
+    
       <div className="usersinchannellist__header">
         <h1 className="usersinchannellist__title">Utilisateurs</h1>
         {
