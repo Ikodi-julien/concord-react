@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { FETCH_URL } from 'src/vars';
 import {
+  UPDATE_PROFILE,
+  userUpdateSuccess,
+} from 'src/actions/profileActions';
+import {
   FETCH_CHANNEL,
   fetchChannelError,
   fetchChannelSuccess,
@@ -13,6 +17,7 @@ import {
 // import localFakeChannels from './fakeChannels';
 
 export default (store) => (next) => (action) => {
+  const { nicknameInput, emailInput, tagDropDownIds } = store.getState().user;
   switch (action.type) {
     case FETCH_CHANNEL:
       // console.log(action);
@@ -60,6 +65,23 @@ export default (store) => (next) => (action) => {
           console.log('catch error: ', error);
           store.dispatch(fetchNavDataError());
         });
+      break;
+
+    case UPDATE_PROFILE:
+      next(action);
+      console.log(action);
+      // TODO requête API d'update du profil
+      axios.put('http://localhost:8000/v1/me', {
+        email: emailInput,
+        nickname: nicknameInput,
+        tags: tagDropDownIds,
+      }, {
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res.data);
+        store.dispatch(userUpdateSuccess(res.data));
+      }).catch((error) => console.log('error', error));
+
       break;
 
     default:

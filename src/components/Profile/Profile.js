@@ -1,61 +1,99 @@
 import React from 'react';
-import {Segment, Button, Dropdown, Form, Modal} from 'semantic-ui-react';
+import {Segment, Button, Dropdown, Form, Modal, Input} from 'semantic-ui-react';
 
 import NavbarContainer from 'src/containers/NavbarContainer';
 import Footer from 'src/components/Footer/Footer';
 
 import './profile.scss';
 
-const Profile = ({tags}) => {
+const Profile = (
+  {
+    tags, 
+    user, 
+    updateProfile,
+    setProfileInputValue,
+    setTagsDropdownValue,
+    setTagsDropDownIds,
+    toggleActiveBtn,
+  }) => {
   
-  const handleSubmit = () => {};
-  
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    updateProfile();
+  };
+  const handleInputChange = (evt) => {
+    const objectInput = {
+      [evt.target.name]: evt.target.value
+    }
+    setProfileInputValue(objectInput);
+  }
+    
   const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
+  
+  const handleTagsSelection = ((_, {value}) => {
+    const tagIds = value.map(tagName => tagsOptions.filter(tag => tag.value === tagName)[0].key
+    )
+    setTagsDropdownValue(value);
+    setTagsDropDownIds(tagIds)
+  })
+
+  const handleEditBtn = (evt, {name}) => {
+    console.log(name)
+    toggleActiveBtn(name)
+  };
   
   return (
     <section className="profile">
       <NavbarContainer />
       
       <div className="profile__container">
-      
+      <Form onSubmit={handleSubmit}>
         <div className="profile__authfieldscontainer">
           <h1 className="profile__title">Mon profil</h1>
-          <Form >
             <div className="profile__formrow">
               <label>Pseudo :</label>
               <Form.Field >
               <input
-                name='pseudo'
+                name='nicknameInput'
                 type='text'
                 placeholder='pseudo'
-                value={''}
-                onChange={() => {}}
+                value={user.nicknameInput}
+                onChange={handleInputChange}
+                disabled={!user.nicknameInputIsActive}
                 />
               </Form.Field>
-                <Button type='submit' primary loading={false} >
-                  Modifier le pseudo
+                <Button 
+                  name='nicknameInputIsActive'
+                  type='button' 
+                  active={user.nicknameInputIsActive}
+                  onClick={handleEditBtn}
+                  >
+                <i className="fas fa-edit"></i>
                 </Button>
             </div>
-          </Form>
           
-          <Form >
             <div className="profile__formrow">
             <label >Email :</label>
               <Form.Field>
-                    <input
-                      name='email'
-                      type='email'
-                      placeholder='email'
-                      value={''}
-                      onChange={() => {}}
-                      className="input"
-                      />
+                <input
+                  name='emailInput'
+                  type='email'
+                  placeholder='email'
+                  value={user.emailInput}
+                  onChange={handleInputChange}
+                  className="input"
+                  disabled={!user.emailInputIsActive}
+                  />
               </Form.Field>
-              <Button type='submit' primary loading={false} >
-                Modifier l'email
-              </Button>
+              <Button 
+                  name='emailInputIsActive'
+                  type='button' 
+                  active={user.emailInputIsActive}
+                  onClick={handleEditBtn}
+                  >
+                <i className="fas fa-edit"></i>
+                </Button>
             </div>
-          </Form>
             
           <label>Mot de passe :</label>
           <Modal
@@ -73,10 +111,10 @@ const Profile = ({tags}) => {
             />
               }
           >
-          <Modal.Content >
-          
-          <Segment placeholder>
-              <Form name='passwordForm' onSubmit={handleSubmit}>
+            <Modal.Content >
+            
+            <Segment placeholder>
+            <Form onSubmit={() => {}}>
               <Form.Field>
                   <label>Mot de passe actuel</label>
                   <input 
@@ -109,8 +147,7 @@ const Profile = ({tags}) => {
                 </Form.Field>
 
                   <Button type='submit' primary loading={false} >Modifier le mot de passe</Button>
-              </Form>
-              
+                </Form>
               </Segment>
             </Modal.Content>
             
@@ -118,22 +155,23 @@ const Profile = ({tags}) => {
         </div>
         
         <div className="profile__tagscontainer">
-          <h1 className="profile__title">Mes catégories</h1>
+          {/* <h1 className="profile__title">Mes catégories</h1> */}
           <p className="profile__subtitle">Sélectionne des catégories pour avoir des suggestions adaptées.</p>
           
-          <Form >
           <Dropdown 
             text='Mes catégories' 
             fluid 
             multiple selection 
             options={tagsOptions} 
+            onChange={handleTagsSelection}
+            value={user.tagDropDownValue}
             />
-            
-          </Form>
         </div>
-      </div>
-      <Footer />
-    </section>
+        <Button type='submit' primary >Valider mon profil</Button>
+      </Form>
+    </div>
+    <Footer />
+  </section>
   );
 };
 

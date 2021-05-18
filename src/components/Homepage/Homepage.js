@@ -30,7 +30,7 @@ const Homepage = ({  myChannels, recommendedChannels }) => {
             <h1 className="homepage__title">Tu pourrais aimer</h1>
             <CardBox
               list={recommendedChannels}
-              isDeletable={true}
+              isDeletable={false}
               />
           </div>
           

@@ -30,7 +30,7 @@ export default (store) => (next) => (action) => {
   const {
     email,
     password,
-  } = store.getState().auth;
+  } = store.getState().user;
 
   const errorTimer = 2500;
 
@@ -39,7 +39,7 @@ export default (store) => (next) => (action) => {
       console.log(action);
       next(action);
 
-      /* If login only => email and password are from the inputs in appReducer, after a signup success they are from authReducer */
+      /* If login only => email and password are from the inputs in appReducer, after a signup success they are from userReducer */
       axios.post(`${FETCH_URL}/v1/login`, {
         email: email || loginEmail,
         password: password || loginPassword,
