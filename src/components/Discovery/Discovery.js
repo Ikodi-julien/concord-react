@@ -2,7 +2,7 @@ import React from 'react';
 import {Select} from 'semantic-ui-react';
 
 import NavbarContainer from 'src/containers/NavbarContainer';
-import CardBox from 'src/components/CardBox/CardBox';
+import CardBox from 'src/containers/CardboxContainer';
 import Footer from 'src/components/Footer/Footer';
 import {searchTagsAndReturn} from 'src/selectors/search';
 
@@ -74,6 +74,7 @@ const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
         
         <CardBox
           list={channelsToDisplay}
+          isDeletable={false}
           />
 
       </div>

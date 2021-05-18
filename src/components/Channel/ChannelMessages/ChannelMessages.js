@@ -1,5 +1,4 @@
 import React, {useEffect, useRef} from 'react';
-// import {Link} from 'react-router-dom';
 
 const ChannelMessages = (
   {
@@ -11,8 +10,8 @@ const ChannelMessages = (
   
   const refContainer = useRef(null);
 
-  // effet exécuté à chaque rendu du composant, pour scroller vers le bas
   useEffect(() => {
+    // effet exécuté à chaque rendu du composant, pour scroller vers le bas
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo
 
     // refContainer.current contient la référence vers la div
@@ -27,8 +26,8 @@ const ChannelMessages = (
       behavior: 'smooth',
     });
     
+    // Ici on gère la création d'un éditeur quill.js pour afficher les message avec leur mise en forme après que l'élement soit créé dans le DOM.
     if (messages.length) {
-      console.log(messages.length);
       messages.map(message => {
         const quill = new Quill(`#editor-${message.id}`, {
           modules: {
@@ -37,7 +36,6 @@ const ChannelMessages = (
         });
         quill.enable(false);
         quill.setContents(message.content); 
-        console.log(message.content);
       })
     }
   }

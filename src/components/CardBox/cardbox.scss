@@ -1,5 +1,30 @@
+@use 'src/styles/vars'as v;
+
 .ui.card,
 .ui.card:first-child {
+  position: relative;
   max-width: 250px;
   margin: 1em 5px 0;
+
+  & .cardbox {
+    &__button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border: none;
+      background-color: transparent;
+      z-index: v.$z-index-low;
+    }
+
+    &__emptyspace {
+      width: 30px;
+    }
+  }
+}
+
+.ui.card>.content>.header,
+.ui.cards>.card>.content>.header {
+  display: flex;
+  justify-content: space-between;
+
 }
