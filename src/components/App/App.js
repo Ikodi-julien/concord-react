@@ -8,13 +8,13 @@ import {
 
 // == Import
 import ChannelContainer from '../../containers/ChannelContainer';
-import Error from 'src/components/Error/Error';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import Landing from 'src/components/Landing/Landing';
 import DiscoveryContainer from 'src/containers/DiscoveryContainer';
 import HomepageContainer from 'src/containers/HomepageContainer';
 import ProfileContainer from 'src/containers/ProfileContainer';
 import Footer from 'src/components/Footer/Footer';
+import Error404 from 'src/components/Error404/Error404';
 
 import './app.scss';
 // == Composant
@@ -48,8 +48,7 @@ const App = ({isUserLoggued}) => (
       
       <Route path='/error'>
         {/* Error */}
-        <NavbarContainer />
-        {/* <Error /> */}
+        {isUserLoggued ? <Error404 /> : <Redirect to='/' />}
       </Route>
       
       <Route path='/' exact>
