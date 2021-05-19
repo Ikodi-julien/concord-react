@@ -11,11 +11,11 @@ import {
   DISCONNECT_USER,
   disconnectUserSuccess,
   disconnectUserError,
+  submitLoginForm,
 } from 'src/actions/loginsignupActions';
 import {
   hideErrors,
 } from 'src/actions/appActions';
-import { submitLoginForm } from '../actions/loginsignupActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -27,11 +27,6 @@ export default (store) => (next) => (action) => {
     secondSignupPassword,
   } = store.getState().app;
 
-  const {
-    email,
-    password,
-  } = store.getState().user;
-
   const errorTimer = 2500;
 
   switch (action.type) {
@@ -39,10 +34,9 @@ export default (store) => (next) => (action) => {
       console.log(action);
       next(action);
 
-      /* If login only => email and password are from the inputs in appReducer, after a signup success they are from userReducer */
       axios.post(`${FETCH_URL}/v1/login`, {
-        email: email || loginEmail,
-        password: password || loginPassword,
+        email: loginEmail,
+        password: loginPassword,
       },
       {
         withCredentials: true,
@@ -53,15 +47,16 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          if (error.toString().includes('401')) {
-            store.dispatch(loginError('Whalaa ! On ne connait pas ces identifiants...'));
-            setTimeout(() => {
-              store.dispatch(hideErrors());
-            }, errorTimer);
-            return;
+          let errorMsg;
+          if (error.toString().includes('401')) errorMsg = 'Désolé, on ne connait pas ces identifiants';
+          if (error.toString().includes('412')) errorMsg = 'Il manque une information, email ? password ?';
+          if (error.toString().includes('409')) errorMsg = 'Informations d\'identification invalides';
+          if (errorMsg) {
+            store.dispatch(loginError(errorMsg));
           }
-          store.dispatch(loginError(error.toString()));
-
+          else {
+            store.dispatch(loginError(error.toString()));
+          }
           setTimeout(() => {
             store.dispatch(hideErrors());
           }, errorTimer);
@@ -120,9 +115,19 @@ export default (store) => (next) => (action) => {
 
     case DISCONNECT_USER:
       next(action);
-      // TODO eventually /disconnect/:id in server
-
-      store.dispatch(disconnectUserSuccess());
+      axios.post(`${FETCH_URL}/v1/logout`, {},
+        { withCredentials: true })
+        .then((res) => {
+          store.dispatch(disconnectUserSuccess());
+          console.log('res.data :', res.data);
+        })
+        .catch((error) => {
+        // console.error('catch error: ', error);
+          store.dispatch(disconnectUserError(error.toString()));
+          setTimeout(() => {
+            store.dispatch(hideErrors());
+          }, errorTimer);
+        });
       break;
 
     default:

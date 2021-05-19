@@ -13,6 +13,10 @@ import {
   SET_TAGS_DROPDOWN_IDS,
   TOGGLE_ACTIVE_BTN,
 } from 'src/actions/profileActions';
+import {
+  FETCH_MY_CHANNELS_SUCCESS,
+  FETCH_MY_RECOS_SUCCESS,
+} from 'src/actions/channelActions';
 // import fakeChannels from 'src/middlewares/fakeChannels';
 
 const userState = {
@@ -116,6 +120,21 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...stateActuel,
         [action.value]: !stateActuel[action.value],
       };
+
+    case FETCH_MY_CHANNELS_SUCCESS:
+      console.log(action);
+      return {
+        ...stateActuel,
+        channels: action.value,
+      };
+
+    case FETCH_MY_RECOS_SUCCESS:
+      console.log(action);
+      return {
+        ...stateActuel,
+        recommendedChannels: action.value,
+      };
+
     default:
       return {
         ...stateActuel,

@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import CardBox from 'src/containers/CardboxContainer';
 import Footer from 'src/components/Footer/Footer';
 
 import './homepage.scss';
 
-const Homepage = ({  myChannels, recommendedChannels }) => {
+const Homepage = ({  isUserLoggued, myChannels, recommendedChannels, fetchMyChannels, fetchMyRecos }) => {
   
   
   // const myChannels = [];
   // const suggestedChannels = [];
   // console.log('myChannels homepage :', myChannels);
   console.log('recochannel homepage :', recommendedChannels);
+    // Fetch tags and channels on component did mount.
+    if (isUserLoggued) useEffect(() => {
+      fetchMyChannels();
+      fetchMyRecos();
+    }, []);
+    
   return (
     <section className='homepage'>
       <NavbarContainer />

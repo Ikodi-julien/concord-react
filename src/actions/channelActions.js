@@ -2,6 +2,14 @@ export const FETCH_CHANNEL = 'FETCH_CHANNEL';
 export const FETCH_CHANNEL_SUCCESS = 'FETCH_CHANNEL_SUCCESS';
 export const FETCH_CHANNEL_ERROR = 'FETCH_CHANNEL_ERROR';
 
+export const FETCH_MY_CHANNELS = 'FETCH_MY_CHANNELS';
+export const FETCH_MY_CHANNELS_SUCCESS = 'FETCH_MY_CHANNELS_SUCCESS';
+export const FETCH_MY_CHANNELS_ERROR = 'FETCH_MY_CHANNELS_ERROR';
+
+export const FETCH_MY_RECOS = 'FETCH_MY_RECOS';
+export const FETCH_MY_RECOS_SUCCESS = 'FETCH_MY_RECOS_SUCCESS';
+export const FETCH_MY_RECOS_ERROR = 'FETCH_MY_RECOS_ERROR';
+
 export const CONNECT_TO_SOCKET = 'CONNECT_TO_SOCKET';
 export const SOCKET_JOIN_CONFIRM = 'SOCKET_JOIN_CONFIRM';
 export const USER_LEAVE_CHANNEL = 'USER_LEAVE_CHANNEL';
@@ -60,3 +68,15 @@ export const socketJoinConfirm = () => ({ type: SOCKET_JOIN_CONFIRM });
 // dispatched in socketMiddleware after an user:leave or user:leave event
 export const updateChannelUsers = (data) => ({ type: UPDATE_CHANNEL_USERS, value: data });
 export const setQuillContent = (text) => ({ type: SET_QUILL_TEXT, value: text });
+export const fetchMyChannels = () => ({ type: FETCH_MY_CHANNELS });
+export const fetchMyChannelsSuccess = (channels) => ({
+  type: FETCH_MY_CHANNELS_SUCCESS,
+  value: channels,
+});
+export const fetchMyChannelsError = () => ({ type: FETCH_MY_CHANNELS_ERROR });
+export const fetchMyRecos = () => ({ type: FETCH_MY_RECOS });
+export const fetchMyRecosSuccess = (channels) => ({
+  type: FETCH_MY_RECOS_SUCCESS,
+  value: channels,
+});
+export const fetchMyRecosError = () => ({ type: FETCH_MY_RECOS_ERROR });
