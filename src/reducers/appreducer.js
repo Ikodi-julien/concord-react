@@ -24,6 +24,7 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   DISCONNECT_USER_SUCCESS,
+  DISCONNECT_USER_ERROR,
 } from 'src/actions/loginsignupActions';
 import {
   FETCH_CHANNEL,
@@ -34,6 +35,7 @@ const appState = {
   isUserLoggued: false,
   isNavMenuOpen: false,
   errorMessage: '',
+  appErrorIsVisible: false,
   windowSize: 0,
   appRoutes: [
     // { slug: '/', name: 'Accueil' },
@@ -47,13 +49,19 @@ const appState = {
   isShowLoginModal: false,
   isShowSignupModal: false,
   loginButtonIsLoading: false,
-  loginEmail: 'testeur@testmail.com',
-  loginPassword: '7357',
+  // loginEmail: 'testeur@testmail.com',
+  loginEmail: '',
+  // loginPassword: '7357',
+  loginPassword: '',
   signupButtonIsLoading: false,
-  signupPseudo: 'ju',
-  signupEmail: 'testeur@testmail.com',
-  firstSignupPassword: '7357',
-  secondSignupPassword: '7357',
+  // signupPseudo: 'ju',
+  // signupEmail: 'testeur@testmail.com',
+  // firstSignupPassword: '7357',
+  // secondSignupPassword: '7357',
+  signupPseudo: '',
+  signupEmail: '',
+  firstSignupPassword: '',
+  secondSignupPassword: '',
   signupErrorIsVisible: false,
   loginErrorIsVisible: false,
   // Related to search actions
@@ -194,11 +202,17 @@ const reducer = (stateActuel = appState, action = {}) => {
         loginButtonIsLoading: false,
       };
 
+    case DISCONNECT_USER_ERROR:
+      return {
+        ...appState,
+        errorMessage: 'Erreur lors du logout',
+        isUserLoggued: false,
+      };
+
     case DISCONNECT_USER_SUCCESS:
       return {
         ...appState,
         isUserLoggued: false,
-        windowSize: stateActuel.windowSize,
       };
 
     case HIDE_ERRORS:
@@ -206,6 +220,7 @@ const reducer = (stateActuel = appState, action = {}) => {
         ...stateActuel,
         signupErrorIsVisible: false,
         loginErrorIsVisible: false,
+        appErrorIsVisible: false,
       };
 
     case SET_WINDOW_SIZE:

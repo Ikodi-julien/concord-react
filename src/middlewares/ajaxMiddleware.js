@@ -8,6 +8,12 @@ import {
   FETCH_CHANNEL,
   fetchChannelError,
   fetchChannelSuccess,
+  FETCH_MY_CHANNELS,
+  fetchMyChannelsError,
+  fetchMyChannelsSuccess,
+  FETCH_MY_RECOS,
+  fetchMyRecosError,
+  fetchMyRecosSuccess,
 } from '../actions/channelActions';
 import {
   FETCH_NAV_DATA,
@@ -35,6 +41,44 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           console.log('catch error: ', error);
           store.dispatch(fetchChannelError());
+        });
+      break;
+
+    case FETCH_MY_CHANNELS:
+      // console.log(action);
+      next(action);
+      // TODO créer un profileReducer pour la gestion des actions du profil et de la homepage;
+      axios({
+        url: `${FETCH_URL}/v1/me/channels`,
+        method: 'GET',
+        withCredentials: true,
+      })
+        .then((res) => {
+          console.log('res.data :', res.data);
+          store.dispatch(fetchMyChannelsSuccess(res.data));
+        })
+        .catch((error) => {
+          console.log('catch error: ', error);
+          store.dispatch(fetchMyChannelsError());
+        });
+      break;
+
+    case FETCH_MY_RECOS:
+      // console.log(action);
+      next(action);
+
+      axios({
+        url: `${FETCH_URL}/v1/me/recommended`,
+        method: 'GET',
+        withCredentials: true,
+      })
+        .then((res) => {
+          console.log('res.data :', res.data);
+          store.dispatch(fetchMyRecosSuccess(res.data));
+        })
+        .catch((error) => {
+          console.log('catch error: ', error);
+          store.dispatch(fetchMyRecosError());
         });
       break;
 
@@ -71,7 +115,7 @@ export default (store) => (next) => (action) => {
       next(action);
       console.log(action);
       // TODO requête API d'update du profil
-      axios.put('http://localhost:8000/v1/me', {
+      axios.put(`${FETCH_URL}/v1/me`, {
         email: emailInput,
         nickname: nicknameInput,
         tags: tagDropDownIds,
