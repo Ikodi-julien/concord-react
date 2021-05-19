@@ -27,11 +27,6 @@ export default (store) => (next) => (action) => {
     secondSignupPassword,
   } = store.getState().app;
 
-  const {
-    email,
-    password,
-  } = store.getState().user;
-
   const errorTimer = 2500;
 
   switch (action.type) {
@@ -39,10 +34,9 @@ export default (store) => (next) => (action) => {
       console.log(action);
       next(action);
 
-      /* If login only => email and password are from the inputs in appReducer, after a signup success they are from userReducer */
       axios.post(`${FETCH_URL}/v1/login`, {
-        email: email || loginEmail,
-        password: password || loginPassword,
+        email: loginEmail,
+        password: loginPassword,
       },
       {
         withCredentials: true,

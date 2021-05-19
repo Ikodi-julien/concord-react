@@ -174,6 +174,8 @@ const reducer = (stateActuel = appState, action = {}) => {
         ...stateActuel,
         signupButtonIsLoading: false,
         isShowSignupModal: false,
+        loginEmail: action.user.email,
+        loginPassword: action.user.password,
       };
 
     case LOGIN_ERROR:
