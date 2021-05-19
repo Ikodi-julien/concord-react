@@ -15,6 +15,8 @@ import {
   HIDE_ERRORS,
   SET_NAV_MENU_OPEN,
   SET_WINDOW_SIZE,
+  GET_USER_INFOS,
+  GET_USER_SUCCESS,
 } from 'src/actions/appActions';
 import {
   SUBMIT_SIGNUP_FORM,
@@ -235,6 +237,19 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         searchedValue: '',
+      };
+
+    case GET_USER_INFOS:
+      console.log(action);
+      return {
+        ...stateActuel,
+      };
+
+    case GET_USER_SUCCESS:
+      console.log(action);
+      return {
+        ...stateActuel,
+        isUserLoggued: true,
       };
 
     default:

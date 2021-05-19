@@ -114,7 +114,7 @@ export default (store) => (next) => (action) => {
     case UPDATE_PROFILE:
       next(action);
       console.log(action);
-      // TODO requête API d'update du profil
+
       axios.put(`${FETCH_URL}/v1/me`, {
         email: emailInput,
         nickname: nicknameInput,

@@ -17,6 +17,7 @@ import {
   FETCH_MY_CHANNELS_SUCCESS,
   FETCH_MY_RECOS_SUCCESS,
 } from 'src/actions/channelActions';
+import { GET_USER_SUCCESS } from 'src/actions/appActions';
 // import fakeChannels from 'src/middlewares/fakeChannels';
 
 const userState = {
@@ -126,6 +127,10 @@ const reducer = (stateActuel = userState, action = {}) => {
       return {
         ...stateActuel,
         channels: action.value,
+        myChannelLinks: action.value.map((channel) => ({
+          ...channel,
+          name: channel.title,
+        })),
       };
 
     case FETCH_MY_RECOS_SUCCESS:
@@ -133,6 +138,17 @@ const reducer = (stateActuel = userState, action = {}) => {
       return {
         ...stateActuel,
         recommendedChannels: action.value,
+      };
+
+    case GET_USER_SUCCESS:
+      console.log(action);
+      return {
+        ...stateActuel,
+        ...action.value,
+        nicknameInput: action.value.nickname,
+        emailInput: action.value.email,
+        tagDropDownValue: action.value.tags.map((tag) => tag.name),
+        tagDropDownIds: action.value.tags.map((tag) => tag.id),
       };
 
     default:

@@ -1,11 +1,14 @@
 import React from 'react';
+import Logguer from 'src/containers/LogguerContainer';
 import hero from 'src/assets/cats_in_cup.png';
 import featureImg_1 from 'src/assets/teacup_logo.png';
 import featureImg_2 from 'src/assets/friends.png';
 import './landing.scss';
 
-const Landing = () => (
+const Landing = ({isUserLoggued}) => (
 <section className='landing'>
+  {/* Le composant Logguer doit redemander les infos du user à l'API si celui-ci n'est pas loggué dans le state. */}
+  { !isUserLoggued && <Logguer /> }
   <div className='landing__background' />
   <div className='landing__container'>
     <div className='landing__hero'>

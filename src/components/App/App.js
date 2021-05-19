@@ -9,7 +9,7 @@ import {
 // == Import
 import ChannelContainer from '../../containers/ChannelContainer';
 import NavbarContainer from 'src/containers/NavbarContainer';
-import Landing from 'src/components/Landing/Landing';
+import LandingContainer from 'src/containers/LandingContainer';
 import DiscoveryContainer from 'src/containers/DiscoveryContainer';
 import HomepageContainer from 'src/containers/HomepageContainer';
 import ProfileContainer from 'src/containers/ProfileContainer';
@@ -55,7 +55,7 @@ const App = ({isUserLoggued}) => (
         {/* Accueil */}
         {isUserLoggued && <Redirect to='/home' />}
         <NavbarContainer />
-          <Landing />
+          <LandingContainer />
         <Footer />
       </Route>
       

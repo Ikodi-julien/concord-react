@@ -15,6 +15,8 @@ import {
 } from 'src/actions/loginsignupActions';
 import {
   hideErrors,
+  GET_USER_INFOS,
+  getUserSuccess,
 } from 'src/actions/appActions';
 
 export default (store) => (next) => (action) => {
@@ -128,6 +130,22 @@ export default (store) => (next) => (action) => {
             store.dispatch(hideErrors());
           }, errorTimer);
         });
+      break;
+
+    case GET_USER_INFOS:
+      console.log(action);
+      next(action);
+
+      axios.get(`${FETCH_URL}/v1/me`,
+        { withCredentials: true })
+        .then((res) => {
+          console.log('res.data :', res.data);
+          store.dispatch(getUserSuccess(res.data));
+        })
+        .catch((error) => {
+          console.error('catch error: ', error);
+        });
+
       break;
 
     default:
