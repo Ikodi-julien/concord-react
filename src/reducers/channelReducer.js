@@ -151,8 +151,13 @@ const reducer = (stateActuel = channelState, action = {}) => {
 
     case UPDATE_CHANNEL_USERS_SUCCESS:
       console.log(action);
+      const sortedList = [];
+      action.value.users.forEach((user) => {
+        user.isLogged ? sortedList.unshift(user) : sortedList.push(user);
+      });
       return {
         ...stateActuel,
+        users: sortedList,
       };
 
     case USER_LEAVE_CHANNEL:
