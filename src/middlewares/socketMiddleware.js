@@ -52,18 +52,19 @@ export default (store) => (next) => (action) => {
       socket.on('user:join', (data) => {
         // This is when a user joins a channel i'm in
         console.log('user:join', data);
-        store.dispatch(updateChannelUsers(data));
+        store.dispatch(updateChannelUsers(channel.id));
       });
 
       socket.on('user:leave', (data) => {
         // This is when a user leaves a channel i'm in
         console.log('user-leave', data);
-        store.dispatch(updateChannelUsers(data));
+        store.dispatch(updateChannelUsers(channel.id));
       });
 
       socket.on('confirm', () => {
         // console.log('confirm');
         store.dispatch(socketJoinConfirm());
+        store.dispatch(updateChannelUsers(channel.id));
       });
 
       socket.on('error', () => {
@@ -99,8 +100,11 @@ export default (store) => (next) => (action) => {
       next(action);
       console.log('user-leave', { user, channel });
 
-      socket.emit('user-leave', { user, channel });
-      socket.close();
+      if (socket) {
+        socket.emit('user-leave', { user, channel });
+        socket.close();
+      }
+
       break;
 
     default:

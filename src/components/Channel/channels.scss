@@ -78,8 +78,12 @@
   }
 
   .usersinchannellist__links__link {
-    color: v.$base-color-orange;
+    color: adjust-color(v.$base-color-orange, $alpha: -0.6);
     cursor: default;
+
+    &.--logged {
+      color: v.$base-color-orange;
+    }
   }
 
   &__deco {

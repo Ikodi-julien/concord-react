@@ -2,11 +2,15 @@ export const FETCH_CHANNEL = 'FETCH_CHANNEL';
 export const FETCH_CHANNEL_SUCCESS = 'FETCH_CHANNEL_SUCCESS';
 export const FETCH_CHANNEL_ERROR = 'FETCH_CHANNEL_ERROR';
 
+export const UPDATE_CHANNEL_USERS = 'UPDATE_CHANNEL_USERS';
+export const UPDATE_CHANNEL_USERS_SUCCESS = 'UPDATE_CHANNEL_USERS_SUCCESS';
+export const UPDATE_CHANNEL_USERS_ERROR = 'UPDATE_CHANNEL_USERS_ERROR';
+
 export const CONNECT_TO_SOCKET = 'CONNECT_TO_SOCKET';
 export const SOCKET_JOIN_CONFIRM = 'SOCKET_JOIN_CONFIRM';
 export const USER_LEAVE_CHANNEL = 'USER_LEAVE_CHANNEL';
 export const USER_JOIN_CHANNEL = 'USER_JOIN_CHANNEL';
-export const UPDATE_CHANNEL_USERS = 'UPDATE_CHANNEL_USERS';
+
 export const UPDATE_MY_CHANNELS = 'UPDATE_MY_CHANNELS';
 
 export const CHANNEL_INPUT_CHANGE = 'CHANNEL_INPUT_CHANGE';
@@ -59,6 +63,8 @@ export const toggleUsersInChannel = (bool) => ({
 // dispatched in socketMiddleware after a fetch_channel_success
 export const socketJoinConfirm = () => ({ type: SOCKET_JOIN_CONFIRM });
 // dispatched in socketMiddleware after an user:leave or user:leave event
-export const updateChannelUsers = (data) => ({ type: UPDATE_CHANNEL_USERS, value: data });
+export const updateChannelUsers = () => ({ type: UPDATE_CHANNEL_USERS });
+export const updateChannelUsersSuccess = (data) => ({ type: UPDATE_CHANNEL_USERS_SUCCESS, value: data });
+export const updateChannelUsersError = () => ({ type: UPDATE_CHANNEL_USERS_ERROR });
 
 export const setQuillContent = (text) => ({ type: SET_QUILL_TEXT, value: text });

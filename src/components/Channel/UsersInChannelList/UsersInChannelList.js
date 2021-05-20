@@ -25,21 +25,14 @@ const UsersInChannelList = ({users, showUsersInChannel, toggleUsersInChannel}) =
       
       <div className="usersinchannellist__links">
         {
-          users.map(user => <div 
+          users.map((user) => (<div 
             key={user.id} 
-            className="usersinchannellist__links__link">
+            className={user.isLogged ? "usersinchannellist__links__link --logged" : "usersinchannellist__links__link"}>
           {/* <span>{`${user.avatar}`}</span> */}
-          <span>{`${user.nickname}`}</span></div>)
+          <span>{`${user.nickname}`}</span></div>))
         }
       </div>
-      
-      {/* <h1 className="usersinchannellist__title">Hors ligne</h1> */}
-      {/* {
-        users.map(user => <div key={user.id} className="usersinchannellist__user"> */}
-        {/* <span>{`${user.avatar}`}</span> */}
-        {/* <span>{`${user.nickname}`}</span></div>)
-      } */}
-      
+
     </section>
   )
 }

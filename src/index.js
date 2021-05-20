@@ -14,7 +14,6 @@ import 'semantic-ui-css/semantic.min.css'
 
 // Composants
 import AppContainer from 'src/containers/AppContainer';
-import SetSizeContainer from 'src/containers/SetSizeContainer';
 
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
@@ -22,7 +21,6 @@ import SetSizeContainer from 'src/containers/SetSizeContainer';
 const rootReactElement = (
     <Provider store={store}>
         <Router >
-          <SetSizeContainer/>
           <AppContainer />
         </Router>
     </Provider>

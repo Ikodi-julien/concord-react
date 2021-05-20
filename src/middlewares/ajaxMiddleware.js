@@ -2,13 +2,16 @@ import axios from 'axios';
 import { FETCH_URL } from 'src/vars';
 import {
   UPDATE_PROFILE,
-  userUpdateSuccess,
+  updateProfileSuccess,
 } from 'src/actions/profileActions';
 import {
   FETCH_CHANNEL,
   fetchChannelError,
   fetchChannelSuccess,
   SOCKET_JOIN_CONFIRM,
+  UPDATE_CHANNEL_USERS,
+  updateChannelUsersSuccess,
+  updateChannelUsersError,
 } from 'src/actions/channelActions';
 import {
   FETCH_MY_CHANNELS,
@@ -28,6 +31,8 @@ import {
 
 export default (store) => (next) => (action) => {
   const { nicknameInput, emailInput, tagDropDownIds } = store.getState().user;
+  const { id } = store.getState().channel;
+
   switch (action.type) {
     case FETCH_CHANNEL:
       // console.log(action);
@@ -58,7 +63,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(fetchMyChannelsSuccess(res.data));
         })
         .catch((error) => {
@@ -77,7 +82,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(fetchMyRecosSuccess(res.data));
         })
         .catch((error) => {
@@ -127,7 +132,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       }).then((res) => {
         console.log(res.data);
-        store.dispatch(userUpdateSuccess(res.data));
+        store.dispatch(updateProfileSuccess(res.data));
       }).catch((error) => console.log('error', error));
 
       break;
@@ -135,6 +140,24 @@ export default (store) => (next) => (action) => {
     case SOCKET_JOIN_CONFIRM:
       next(action);
       store.dispatch(fetchMyChannels());
+      break;
+
+    case UPDATE_CHANNEL_USERS:
+      next(action);
+
+      axios({
+        url: `${FETCH_URL}/v1/channel/${id}`,
+        method: 'GET',
+        withCredentials: true,
+      })
+        .then((res) => {
+          // console.log('res.data :', res.data);
+          store.dispatch(updateChannelUsersSuccess(res.data));
+        })
+        .catch((error) => {
+          console.log('catch error: ', error);
+          store.dispatch(updateChannelUsersError());
+        });
       break;
 
     default:
