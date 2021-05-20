@@ -8,9 +8,11 @@ import {
   toggleUsersInChannel,
   userLeaveChannel,
 } from 'src/actions/channelActions';
+import {
+  fetchMyChannels,
+} from 'src/actions/userActions';
 
 const mapStateToProps = ({ channel, user }) => ({
-
   channel,
   user,
 });
@@ -22,6 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchChannel: (channelId) => {
     dispatch(fetchChannel(channelId));
   },
+  fetchMyChannels: () => dispatch(fetchMyChannels()),
   channelFormSubmit: () => {
     dispatch(channelFormSubmit());
   },

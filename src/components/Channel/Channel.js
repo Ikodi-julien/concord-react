@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {Button} from 'semantic-ui-react';
 import {useParams} from 'react-router-dom';
-import MyChannels from './MyChannels/MyChannels';
+import MyChannelsContainer from 'src/containers/MyChannelsContainer';
 import UsersInChannelList from './UsersInChannelList/UsersInChannelList';
 import ChannelMessages from './ChannelMessages/ChannelMessages';
 import ChannelForm from './ChannelForm/ChannelForm';
@@ -20,9 +19,7 @@ const Channel = ({
   setInputValue,
   fetchChannel,
   channelFormSubmit,
-  toggleMyChannels,
   toggleUsersInChannel,
-  error,
   userLeaveChannel,
   }) => {
   
@@ -34,6 +31,7 @@ const Channel = ({
     useEffect(() => {
       console.log('l\'utilisateur entre dans un channel');
       fetchChannel(id);
+      
       return () => {
         console.log('l\'utilisateur quitte un channel');
         userLeaveChannel();
@@ -69,16 +67,9 @@ const Channel = ({
     <section className='channels'>
       <Navbar />
       <div className="channels__row">
-        <MyChannels 
-          myChannelLinks={user.myChannelLinks}
-          showMychannels={channel.showMychannels}
-          fetchChannel={fetchChannel}
-          toggleMyChannels={toggleMyChannels}
-          />
+        <MyChannelsContainer />
         <div className="channel__container">
-        
           <div className='channel__container__options'>
-
           </div>
           <ChannelMessages 
             title={channel.title} 

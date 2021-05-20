@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
 const MyChannels = (
@@ -7,6 +7,7 @@ const MyChannels = (
     showMychannels, 
     fetchChannel, 
     toggleMyChannels,
+    fetchMyChannels,
   }
   ) => {
 
@@ -21,7 +22,6 @@ const MyChannels = (
   
   return (
     <section className={showMychannels ? "mychannels --show" : "mychannels"}>
-      
       <div className="mychannels__header">
       <h1 className="mychannels__title">Mes Channels</h1>
         {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Homepage from 'src/components/Homepage/Homepage';
-import { fetchMyChannels, fetchMyRecos } from 'src/actions/channelActions';
+import { fetchMyChannels, fetchMyRecos } from 'src/actions/userActions';
 import { setIsRefresh } from 'src/actions/appActions';
 // import fakeChannels from 'src/middlewares/fakeChannels';
 

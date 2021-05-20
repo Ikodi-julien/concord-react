@@ -8,18 +8,22 @@ import {
   FETCH_CHANNEL,
   fetchChannelError,
   fetchChannelSuccess,
+  SOCKET_JOIN_CONFIRM,
+} from 'src/actions/channelActions';
+import {
   FETCH_MY_CHANNELS,
+  fetchMyChannels,
   fetchMyChannelsError,
   fetchMyChannelsSuccess,
   FETCH_MY_RECOS,
   fetchMyRecosError,
   fetchMyRecosSuccess,
-} from '../actions/channelActions';
+} from 'src/actions/userActions';
 import {
   FETCH_NAV_DATA,
   fetchNavDataError,
   fetchNavDataSuccess,
-} from '../actions/appActions';
+} from 'src/actions/appActions';
 // import localFakeChannels from './fakeChannels';
 
 export default (store) => (next) => (action) => {
@@ -47,7 +51,7 @@ export default (store) => (next) => (action) => {
     case FETCH_MY_CHANNELS:
       // console.log(action);
       next(action);
-      // TODO créer un profileReducer pour la gestion des actions du profil et de la homepage;
+
       axios({
         url: `${FETCH_URL}/v1/me/channels`,
         method: 'GET',
@@ -126,6 +130,11 @@ export default (store) => (next) => (action) => {
         store.dispatch(userUpdateSuccess(res.data));
       }).catch((error) => console.log('error', error));
 
+      break;
+
+    case SOCKET_JOIN_CONFIRM:
+      next(action);
+      store.dispatch(fetchMyChannels());
       break;
 
     default:
