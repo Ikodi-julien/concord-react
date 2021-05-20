@@ -2,7 +2,7 @@ import axios from 'axios';
 import { FETCH_URL } from 'src/vars';
 import {
   UPDATE_PROFILE,
-  userUpdateSuccess,
+  updateProfileSuccess,
 } from 'src/actions/profileActions';
 import {
   FETCH_CHANNEL,
@@ -58,7 +58,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(fetchMyChannelsSuccess(res.data));
         })
         .catch((error) => {
@@ -77,7 +77,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(fetchMyRecosSuccess(res.data));
         })
         .catch((error) => {
@@ -127,7 +127,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       }).then((res) => {
         console.log(res.data);
-        store.dispatch(userUpdateSuccess(res.data));
+        store.dispatch(updateProfileSuccess(res.data));
       }).catch((error) => console.log('error', error));
 
       break;

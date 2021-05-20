@@ -3,6 +3,7 @@ import {searchNameAndReturn} from 'src/selectors/search';
 import {Search, Select} from 'semantic-ui-react';
 import {Link, useHistory} from 'react-router-dom';
 
+import SetSizeContainer from 'src/containers/SetSizeContainer';
 import Navmenu from './Navmenu/Navmenu';
 import LoginModal from './LoginModal/LoginModal';
 import './navbar.scss';
@@ -126,6 +127,7 @@ const Navbar = ({
 
   return (
     <section className='nav' >
+    <SetSizeContainer />
       <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
         {/* ici le logo */}
       </Link>
