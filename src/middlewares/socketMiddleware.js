@@ -73,11 +73,10 @@ export default (store) => (next) => (action) => {
       break;
 
     case CHANNEL_FORM_SUBMIT:
-
       console.log(action);
+      if (!store.getState().channel.quillContent) return;
       // Récupérer dans le state le texte du message
       // fabriquer un objet de message qui contient
-
       const message = {
         channel: {
           id: channel.id,

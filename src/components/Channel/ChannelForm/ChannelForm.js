@@ -6,7 +6,6 @@ const ChannelForm = ({channelFormSubmit}) => {
   
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (!evt.target.value) return;
     channelFormSubmit();
   }
   
