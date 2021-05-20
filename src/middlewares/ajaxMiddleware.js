@@ -9,6 +9,9 @@ import {
   fetchChannelError,
   fetchChannelSuccess,
   SOCKET_JOIN_CONFIRM,
+  UPDATE_CHANNEL_USERS,
+  updateChannelUsersSuccess,
+  updateChannelUsersError,
 } from 'src/actions/channelActions';
 import {
   FETCH_MY_CHANNELS,
@@ -28,6 +31,8 @@ import {
 
 export default (store) => (next) => (action) => {
   const { nicknameInput, emailInput, tagDropDownIds } = store.getState().user;
+  const { id } = store.getState().channel;
+
   switch (action.type) {
     case FETCH_CHANNEL:
       // console.log(action);
@@ -135,6 +140,24 @@ export default (store) => (next) => (action) => {
     case SOCKET_JOIN_CONFIRM:
       next(action);
       store.dispatch(fetchMyChannels());
+      break;
+
+    case UPDATE_CHANNEL_USERS:
+      next(action);
+
+      axios({
+        url: `${FETCH_URL}/v1/channel/${id}`,
+        method: 'GET',
+        withCredentials: true,
+      })
+        .then((res) => {
+          // console.log('res.data :', res.data);
+          store.dispatch(updateChannelUsersSuccess(res.data));
+        })
+        .catch((error) => {
+          console.log('catch error: ', error);
+          store.dispatch(updateChannelUsersError());
+        });
       break;
 
     default:

@@ -4,6 +4,7 @@ import {
   FETCH_CHANNEL,
   FETCH_CHANNEL_ERROR,
   FETCH_CHANNEL_SUCCESS,
+  UPDATE_CHANNEL_USERS_SUCCESS,
   MESSAGE_RECEIVED,
   SOCKET_JOIN_CONFIRM,
   TOGGLE_MY_CHANNELS,
@@ -135,17 +136,23 @@ const reducer = (stateActuel = channelState, action = {}) => {
         showMychannels: false,
       };
 
-    case UPDATE_CHANNEL_USERS:
-      // console.log('state channel id', stateActuel.id);
-      // console.log('update channel id', action.value.channel.id);
-      if (action.value.channel.id !== stateActuel.id) {
-        return {
-          ...stateActuel,
-        };
-      }
+      // case UPDATE_CHANNEL_USERS:
+      //   // console.log('state channel id', stateActuel.id);
+      //   // console.log('update channel id', action.value.channel.id);
+      //   if (action.value.channel.id !== stateActuel.id) {
+      //     return {
+      //       ...stateActuel,
+      //     };
+      //   }
+      //   return {
+      //     ...stateActuel,
+      //     ...action.value.channel,
+      //   };
+
+    case UPDATE_CHANNEL_USERS_SUCCESS:
+      console.log(action);
       return {
         ...stateActuel,
-        ...action.value.channel,
       };
 
     case USER_LEAVE_CHANNEL:

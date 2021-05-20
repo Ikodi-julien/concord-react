@@ -26,11 +26,11 @@ const Channel = ({
     let {id} = useParams();
     // Ici on envoi la demande pour récupérer les infos de ce channel
     useEffect(() => {
-      console.log('l\'utilisateur entre dans un channel');
+      // console.log('l\'utilisateur entre dans un channel');
       fetchChannel(id);
       
       return () => {
-        console.log('l\'utilisateur quitte un channel');
+        // console.log('l\'utilisateur quitte un channel');
         userLeaveChannel();
       };
     }, []);
