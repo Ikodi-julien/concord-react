@@ -14,6 +14,7 @@ export const SET_NAV_MENU_OPEN = 'SET_NAV_MENU_OPEN';
 export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 export const GET_USER_INFOS = 'GET_USER_INFOS';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const SET_ISREFRESH = 'SET_ISREFRESH';
 
 export const toggleNavSearch = () => ({
   type: TOGGLE_NAV_SEARCH,
@@ -42,3 +43,4 @@ export const setNavMenuOpen = (bool) => ({ type: SET_NAV_MENU_OPEN, value: bool 
 export const setWindowSize = (windowSize) => ({ type: SET_WINDOW_SIZE, value: windowSize });
 export const getUserInfos = () => ({ type: GET_USER_INFOS });
 export const getUserSuccess = (user) => ({ type: GET_USER_SUCCESS, value: user });
+export const setIsRefresh = (bool) => ({ type: SET_ISREFRESH, value: bool });

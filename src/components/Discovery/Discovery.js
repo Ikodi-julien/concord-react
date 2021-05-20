@@ -3,6 +3,7 @@ import {Select} from 'semantic-ui-react';
 
 import NavbarContainer from 'src/containers/NavbarContainer';
 import CardBox from 'src/containers/CardboxContainer';
+import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import Footer from 'src/components/Footer/Footer';
 import {searchTagsAndReturn} from 'src/selectors/search';
 
@@ -59,6 +60,7 @@ const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
   
   return (
     <section className="discovery">
+    <StoreUrl />
       <NavbarContainer />
       
       <div className="discovery__container">

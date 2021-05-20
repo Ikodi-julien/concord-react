@@ -1,14 +1,19 @@
-import React from 'react';
-import Logguer from 'src/containers/LogguerContainer';
+import React, {useEffect} from 'react';
 import hero from 'src/assets/cats_in_cup.png';
 import featureImg_1 from 'src/assets/teacup_logo.png';
 import featureImg_2 from 'src/assets/friends.png';
 import './landing.scss';
 
-const Landing = ({isUserLoggued}) => (
+const Landing = ({getUserInfos}) => {
+  // Page only reachable when user is not loggued, but after a refresh user is not loggued so we try to get user infos with httponly tokens anyway.
+  // If success in getUserInfos, /home is displayed then à rerouting will occur from /home if necessary.
+  useEffect(() => {
+    getUserInfos();
+  }, []);
+
+return (
 <section className='landing'>
   {/* Le composant Logguer doit redemander les infos du user à l'API si celui-ci n'est pas loggué dans le state. */}
-  { !isUserLoggued && <Logguer /> }
   <div className='landing__background' />
   <div className='landing__container'>
     <div className='landing__hero'>
@@ -49,6 +54,6 @@ const Landing = ({isUserLoggued}) => (
     </div>
   </div>
 </section>
-);
+)};
 
 export default Landing;

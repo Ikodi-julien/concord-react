@@ -28,7 +28,7 @@ const CardBox = ({list, deleteChannel, isDeletable}) => {
             </Card.Header>
             <Card.Description>
               {item.tags &&
-                item.tags.map(tag => <div key={tag.id} className="discovery__listcontainer__cardtag">{tag.name}</div>)
+                item.tags.map(tag => <div key={`tag-${tag.id}`} className="discovery__listcontainer__cardtag">{tag.name}</div>)
               }
             </Card.Description>
           </Card.Content>

@@ -8,6 +8,7 @@ import ChannelForm from './ChannelForm/ChannelForm';
 import Navbar from 'src/containers/NavbarContainer';
 import BigLoader from 'src/components/BigLoader/BigLoader';
 import Error from 'src/components/Error/Error';
+import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import Footer from 'src/components/Footer/Footer';
 
 
@@ -42,6 +43,7 @@ const Channel = ({
   if (channel.isLoading) { // On affiche un loader tant que pas de réponse de l'API
     return (
       <section className='channels'>
+      <StoreUrl />
       <Navbar />
       <div className="channels__row">
         <BigLoader />

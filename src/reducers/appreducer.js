@@ -17,6 +17,7 @@ import {
   SET_WINDOW_SIZE,
   GET_USER_INFOS,
   GET_USER_SUCCESS,
+  SET_ISREFRESH,
 } from 'src/actions/appActions';
 import {
   SUBMIT_SIGNUP_FORM,
@@ -47,6 +48,7 @@ const appState = {
   ],
   tags: [],
   channels: [],
+  isRefresh: false,
   // Related to login or signup
   isShowLoginModal: false,
   isShowSignupModal: false,
@@ -250,6 +252,14 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         isUserLoggued: true,
+        isRefresh: true,
+      };
+
+    case SET_ISREFRESH:
+      console.log('setisrefresh dans le reducer');
+      return {
+        ...stateActuel,
+        isRefresh: action.value,
       };
 
     default:

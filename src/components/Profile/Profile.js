@@ -2,6 +2,7 @@ import React from 'react';
 import {Segment, Button, Dropdown, Form, Modal, Input} from 'semantic-ui-react';
 
 import NavbarContainer from 'src/containers/NavbarContainer';
+import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import Footer from 'src/components/Footer/Footer';
 
 import './profile.scss';
@@ -44,6 +45,7 @@ const Profile = (
   
   return (
     <section className="profile">
+      <StoreUrl />
       <NavbarContainer />
       
       <div className="profile__container">

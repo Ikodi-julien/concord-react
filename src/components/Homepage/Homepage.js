@@ -2,24 +2,30 @@ import React, {useEffect} from 'react';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import CardBox from 'src/containers/CardboxContainer';
 import Footer from 'src/components/Footer/Footer';
+import StoreUrl from 'src/components/StoreUrl/StoreUrl';
+import SetPathnameContainer from 'src/containers/SetPathnameContainer';
 
 import './homepage.scss';
 
-const Homepage = ({  isUserLoggued, myChannels, recommendedChannels, fetchMyChannels, fetchMyRecos }) => {
+const Homepage = ({  isUserLoggued, myChannels, recommendedChannels, fetchMyChannels, fetchMyRecos, isRefresh, setIsRefresh }) => {
   
-  
-  // const myChannels = [];
-  // const suggestedChannels = [];
-  // console.log('myChannels homepage :', myChannels);
-  console.log('recochannel homepage :', recommendedChannels);
-    // Fetch tags and channels on component did mount.
-    if (isUserLoggued) useEffect(() => {
+        {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage else we store the path in sessionStorage */}
+  if (isRefresh) {
+    console.log('on envoi SetPath')
+    return (<SetPathnameContainer />)
+  }
+  // Fetch tags and channels on component did mount, if it's not a rerouting after a refresh.
+  if (isUserLoggued && !isRefresh) {
+    useEffect(() => {
       fetchMyChannels();
       fetchMyRecos();
     }, []);
-    
+  }
+
   return (
     <section className='homepage'>
+
+      <StoreUrl />
       <NavbarContainer />
     
         <div className='homepage__container'>
