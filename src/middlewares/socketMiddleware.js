@@ -100,8 +100,11 @@ export default (store) => (next) => (action) => {
       next(action);
       console.log('user-leave', { user, channel });
 
-      socket.emit('user-leave', { user, channel });
-      socket.close();
+      if (socket) {
+        socket.emit('user-leave', { user, channel });
+        socket.close();
+      }
+
       break;
 
     default:

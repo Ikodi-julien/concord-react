@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import MyChannelsContainer from 'src/containers/MyChannelsContainer';
-import UsersInChannelList from './UsersInChannelList/UsersInChannelList';
+import UsersInChannelListContainer from 'src/containers/UsersInChannelListContainer';
 import ChannelMessages from './ChannelMessages/ChannelMessages';
 import ChannelForm from './ChannelForm/ChannelForm';
 import Navbar from 'src/containers/NavbarContainer';
@@ -9,7 +9,6 @@ import BigLoader from 'src/components/BigLoader/BigLoader';
 import Error from 'src/components/Error/Error';
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import Footer from 'src/components/Footer/Footer';
-
 
 import './channels.scss';
 
@@ -25,8 +24,6 @@ const Channel = ({
   
     // Ici on récupère l'id du channel dans l'url (/channels/:id)
     let {id} = useParams();
-    // console.log('id', id);
-    
     // Ici on envoi la demande pour récupérer les infos de ce channel
     useEffect(() => {
       console.log('l\'utilisateur entre dans un channel');
@@ -80,11 +77,7 @@ const Channel = ({
           <ChannelForm setInputValue={setInputValue} inputValue={channel.inputForm} channelFormSubmit={channelFormSubmit}/>
           
         </div>
-        <UsersInChannelList 
-          users={channel.users}
-          showUsersInChannel={channel.showUsersInChannel}
-          toggleUsersInChannel={toggleUsersInChannel}
-          />
+        <UsersInChannelListContainer />
       </div>
       <Footer />
     </section>
