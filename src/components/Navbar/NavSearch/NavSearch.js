@@ -1,7 +1,7 @@
 import React from 'react';
 import {Search, Select} from 'semantic-ui-react';
-import {searchNameAndReturn} from 'src/selectors/search';
 import {useHistory} from 'react-router-dom';
+import { searchChangeHandler } from '../../../selectors/search';
 
 const NavSearch = (
   {
@@ -25,20 +25,20 @@ const NavSearch = (
   /* ------- Search handling -------- */
   const tagNames = tags.map(tag => tag.name);
   
-  const handleResultSelect = (evt, data) => {
-    // console.log('data.result.title', data.result.title);
-    // TODO faire la différence entre salon et catégorie autrement
-    for (const tagName of tagNames) {
-      if (tagName === data.result.title) {
-        history.push('/discovery');
-        tagSelectChange(tagName);
-        return
-      }
-    }
+  const handleResultSelect = (_, {result}) => {
     // If a channel is clicked, displays the related channel page.
-    history.push(`/channels/${data.result.id}`);
-    // Need to dispatch action
-    fetchChannel(data.result.id);
+    if (result.id) {
+      history.push(`/channels/${result.id}`);
+      // action dispatched
+      fetchChannel(result.id);
+      return;
+    }
+    // if it isn't a channel then it's a tag (i hope)
+    if (tagNames.includes(result.title)) {
+      history.push('/discovery');
+      tagSelectChange(result.title);
+      return
+    }
   };
   
   const handleSelectChange = (evt, {value}) => {
@@ -48,41 +48,15 @@ const NavSearch = (
   };
   
   // Make filtered list of items that's shown in search input dropdown
-  const handleSearchChange = (evt) => { 
-    // On informe du changement dans l'input search
-    searchChange(evt.target.value);
-    // On tri la liste des tags correspondant
-    const newNavTagList = searchNameAndReturn(evt.target.value, tags);
-    // On fabrique la liste de tags utilisée par le composant search
-    const searchTagResult = newNavTagList.map((tag) => ({ title: tag.name}));
-    // On tri la liste des channels correspondant
-    const renamedChannelList = channels.map(channel => (
-      {
-        ...channel,
-        name: channel.title,
-      }
-    ));
-    const newNavChannelList = searchNameAndReturn(evt.target.value, renamedChannelList);
-    // On fabrique la liste de channels à afficher par le composant search
-    const searchChannelResult = newNavChannelList.map((channel) => ({ 
-      id: channel.id,
-      title: channel.name
-    }));
-    // On fabrique l'objet représentant les résultats utilisés par le composant search.
-    const results = {
-      channels: {
-        name: "Salons",
-        results: searchChannelResult,
-      },
-      tags: {
-        name: "Catégories",
-        results: searchTagResult,
-      }
-    }
-    
-    setSearchResult(results);
-  };
-  
+  const handleSearchChange = (evt) => {
+    searchChangeHandler(evt, {
+      tags: tags,
+      channels: channels,
+      searchChange: searchChange,
+      setSearchResult: setSearchResult,
+    })
+  }
+
   return (
     <div className='nav__search'>
       <div 
