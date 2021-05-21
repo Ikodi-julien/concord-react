@@ -42,6 +42,7 @@ const Editor = (
         });
         
         quill.setText('');
+        quill.focus();
         quill.on('text-change', () => {
           const text = quill.getContents();
           setQuillContent(text);
