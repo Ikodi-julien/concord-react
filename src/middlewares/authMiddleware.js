@@ -40,7 +40,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios.post(`${FETCH_URL}/v1/login`, {
-        email: loginEmail,
+        email: loginEmail.toLowerCase(),
         password: loginPassword,
       },
       {
@@ -95,7 +95,7 @@ export default (store) => (next) => (action) => {
 
       axios.post(`${FETCH_URL}/v1/signup`, {
         nickname: signupPseudo,
-        email: signupEmail,
+        email: signupEmail.toLowerCase(),
         password: firstSignupPassword,
       })
         .then((res) => {
