@@ -14,6 +14,7 @@ export const SET_NAV_MENU_OPEN = 'SET_NAV_MENU_OPEN';
 export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 
 export const SET_ISREFRESH = 'SET_ISREFRESH';
+export const SET_FIRST_LOGIN = 'SET_FIRST_LOGIN';
 export const APP_ERROR = 'APP_ERROR';
 /*-------------------------------------------*/
 export const toggleNavSearch = () => ({
@@ -44,3 +45,4 @@ export const setWindowSize = (windowSize) => ({ type: SET_WINDOW_SIZE, value: wi
 
 export const setIsRefresh = (bool) => ({ type: SET_ISREFRESH, value: bool });
 export const appError = (msg) => ({ type: APP_ERROR, value: msg });
+export const setFirstLogin = (bool) => ({ type: SET_FIRST_LOGIN, value: bool });

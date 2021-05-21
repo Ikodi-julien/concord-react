@@ -19,7 +19,7 @@ import Error404 from 'src/components/Error404/Error404';
 import './app.scss';
 // == Composant
 
-const App = ({isUserLoggued}) => (
+const App = ({isUserLoggued, firstLogin}) => (
   
   <div className="app">
     <Switch>
@@ -27,7 +27,7 @@ const App = ({isUserLoggued}) => (
       <Route path='/home'>
         {/* Home */}
         {
-          isUserLoggued ? <HomepageContainer /> : <Redirect to='/' />
+          isUserLoggued && firstLogin ? <Redirect to='/profile' />: isUserLoggued ? <HomepageContainer /> : <Redirect to='/' />
         }
       </Route>
       

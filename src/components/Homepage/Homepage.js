@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import CardBox from 'src/containers/CardboxContainer';
 import Footer from 'src/components/Footer/Footer';
@@ -7,8 +8,16 @@ import SetPathnameContainer from 'src/containers/SetPathnameContainer';
 
 import './homepage.scss';
 
-const Homepage = ({  isUserLoggued, myChannels, recommendedChannels, fetchMyChannels, fetchMyRecos, isRefresh, setIsRefresh }) => {
-  
+const Homepage = ({
+  isUserLoggued, 
+  myChannels, 
+  recommendedChannels, 
+  fetchMyChannels, 
+  fetchMyRecos, 
+  isRefresh, 
+  setIsRefresh,
+}) => {
+
         {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage else we store the path in sessionStorage */}
   if (isRefresh) {
     console.log('on envoi SetPath')

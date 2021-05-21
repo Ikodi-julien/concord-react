@@ -4,6 +4,7 @@ import App from 'src/components/App/App';
 
 const mapStateToProps = ({ app }) => ({
   isUserLoggued: app.isUserLoggued,
+  firstLogin: app.firstLogin,
 });
 
 const mapDispatchToProps = (dispatch) => ({

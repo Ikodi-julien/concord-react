@@ -17,6 +17,7 @@ import {
   SET_WINDOW_SIZE,
   SET_ISREFRESH,
   APP_ERROR,
+  SET_FIRST_LOGIN,
 } from 'src/actions/appActions';
 import {
   SUBMIT_SIGNUP_FORM,
@@ -71,6 +72,7 @@ const appState = {
   secondSignupPassword: '',
   signupErrorIsVisible: false,
   loginErrorIsVisible: false,
+  firstLogin: false,
   // Related to search actions
   isShowSearch: false,
   isSearchLoading: false,
@@ -270,6 +272,12 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         isRefresh: action.value,
+      };
+
+    case SET_FIRST_LOGIN:
+      return {
+        ...stateActuel,
+        firstLogin: action.value,
       };
 
     default:

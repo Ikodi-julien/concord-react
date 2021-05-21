@@ -7,6 +7,7 @@ import {
   setTagsDropDownIds,
   toggleActiveBtn,
 } from 'src/actions/profileActions';
+import { setFirstLogin } from 'src/actions/appActions';
 
 const mapStateToProps = ({ app, user }) => ({
   tags: app.tags,
@@ -19,6 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   setTagsDropdownValue: (array) => dispatch(setTagsDropdownValue(array)),
   setTagsDropDownIds: (array) => dispatch(setTagsDropDownIds(array)),
   toggleActiveBtn: (btnName) => dispatch(toggleActiveBtn(btnName)),
+  setFirstLogin: (bool) => dispatch(setFirstLogin(bool)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

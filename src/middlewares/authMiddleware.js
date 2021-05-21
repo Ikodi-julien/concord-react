@@ -15,6 +15,7 @@ import {
 } from 'src/actions/loginsignupActions';
 import {
   hideErrors,
+  setFirstLogin,
 } from 'src/actions/appActions';
 import {
   GET_USER_INFOS,
@@ -103,6 +104,7 @@ export default (store) => (next) => (action) => {
             password: store.getState().app.firstSignupPassword,
             email: res.data.email,
           }));
+          store.dispatch(setFirstLogin(true));
           // There you try to log right after a signup success
           setTimeout(() => {
             store.dispatch(submitLoginForm());

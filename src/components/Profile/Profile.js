@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Segment, Button, Dropdown, Form, Modal, Input} from 'semantic-ui-react';
 import {useHistory} from 'react-router-dom';
 
@@ -17,6 +17,7 @@ const Profile = (
     setTagsDropdownValue,
     setTagsDropDownIds,
     toggleActiveBtn,
+    setFirstLogin,
   }) => {
   const history = useHistory();
   
@@ -45,6 +46,8 @@ const Profile = (
     console.log(name)
     toggleActiveBtn(name)
   };
+  
+  useEffect(() => setFirstLogin(false), [])
   
   return (
     <section className="profile">
