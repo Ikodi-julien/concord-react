@@ -1,5 +1,6 @@
 import React from 'react';
 import {Segment, Button, Dropdown, Form, Modal, Input} from 'semantic-ui-react';
+import {useHistory} from 'react-router-dom';
 
 import NavbarContainer from 'src/containers/NavbarContainer';
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
@@ -17,10 +18,12 @@ const Profile = (
     setTagsDropDownIds,
     toggleActiveBtn,
   }) => {
+  const history = useHistory();
   
   const handleSubmit = (evt) => {
     evt.preventDefault();
     updateProfile();
+    history.push('/home');
   };
   const handleInputChange = (evt) => {
     const objectInput = {
