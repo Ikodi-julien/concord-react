@@ -35,6 +35,7 @@ const mapStateToProps = ({ app }) => ({
   isSearchLoading: app.isSearchLoading,
   searchedValue: app.searchedValue,
   searchResult: app.searchResult,
+  tagSelectValue: app.tagSelectValue,
   loginButtonIsLoading: app.loginButtonIsLoading,
   inputLoginEmailValue: app.loginEmail,
   inputLoginPasswordValue: app.loginPassword,

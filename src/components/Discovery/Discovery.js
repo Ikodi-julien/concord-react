@@ -43,6 +43,7 @@ const Discovery = ({
         <div className="discovery__selectcontainer">
           <Select 
             placeholder='Catégories' 
+            value={tagSelectValue}
             options={tagsOptions}
             onChange={handleChange}
             />

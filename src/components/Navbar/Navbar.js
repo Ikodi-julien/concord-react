@@ -40,6 +40,7 @@ const Navbar = ({
   searchChange,
   setSearchResult,
   tagSelectChange,
+  tagSelectValue,
   // LOGIN OR SIGNUP RELATED
   submitLoginForm,
   submitSignupForm,
@@ -184,6 +185,7 @@ const Navbar = ({
               <div className="nav__search__container__select">
                 <Select 
                   placeholder="Catégories" 
+                  value={tagSelectValue}
                   options={tagsOptions}
                   onChange={handleSelectChange}
                 />
