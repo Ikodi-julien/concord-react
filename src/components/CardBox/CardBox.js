@@ -4,18 +4,22 @@ import {Card, Icon} from 'semantic-ui-react';
 
 import './cardbox.scss';
 
-const CardBox = ({list, deleteChannel, isDeletable}) => {
+const CardBox = ({list, deleteChannel, isDeletable, deleteFromMyChannels}) => {
   
   const array = list || [];
-
+  const handleDelete = (evt) => {
+    const channelId = evt.target.closest('.cardbox__button').id;
+    deleteFromMyChannels(channelId);
+  }
   return (
   <div className="discovery__listcontainer">
     {
       array.map(item => (
         <Card key={item.id} >
           {isDeletable && <button 
+            id={item.id}
             className='cardbox__button'
-            onClick={() => console.log('clic')}
+            onClick={handleDelete}
             >
             <i className="fas fa-times"></i>
           </button>}

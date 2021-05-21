@@ -21,11 +21,13 @@ import {
   FETCH_MY_RECOS,
   fetchMyRecosError,
   fetchMyRecosSuccess,
+  DELETE_FROM_MY_CHANNELS,
 } from 'src/actions/userActions';
 import {
   FETCH_NAV_DATA,
   fetchNavDataError,
   fetchNavDataSuccess,
+  appError,
 } from 'src/actions/appActions';
 // import localFakeChannels from './fakeChannels';
 
@@ -157,6 +159,21 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           console.log('catch error: ', error);
           store.dispatch(updateChannelUsersError());
+        });
+      break;
+
+    case DELETE_FROM_MY_CHANNELS:
+      // console.log(action);
+      axios.delete(`${FETCH_URL}/v1/me/channels/${action.value}`, {
+        withCredentials: true,
+      })
+        .then((res) => {
+          console.log(res.data);
+          store.dispatch(fetchMyChannels());
+        })
+        .catch((err) => {
+          console.log(err);
+          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
         });
       break;
 

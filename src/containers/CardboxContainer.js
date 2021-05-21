@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Cardbox from 'src/components/CardBox/CardBox';
-import { } from 'src/actions/channelActions';
+import { deleteFromMyChannels } from 'src/actions/userActions';
 
 const mapStateToProps = (_, { list, isDeletable }) => ({
   list,
@@ -8,7 +8,7 @@ const mapStateToProps = (_, { list, isDeletable }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteChannel: () => console.log('delete'),
+  deleteFromMyChannels: (channelId) => dispatch(deleteFromMyChannels(channelId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cardbox);
