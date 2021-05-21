@@ -6,6 +6,8 @@ import {Link, useHistory} from 'react-router-dom';
 import SetSizeContainer from 'src/containers/SetSizeContainer';
 import Navmenu from './Navmenu/Navmenu';
 import LoginModal from './LoginModal/LoginModal';
+import ErrorInfo from './ErrorInfo/ErrorInfo';
+
 import './navbar.scss';
 
 const Navbar = ({
@@ -13,6 +15,7 @@ const Navbar = ({
   windowSize,
   links,
   errorMessage,
+  appErrorIsVisible,
   // FETCH DATA
   fetchData,
   fetchChannel,
@@ -128,6 +131,7 @@ const Navbar = ({
   return (
     <section className='nav' >
     <SetSizeContainer />
+    <ErrorInfo errorMessage={errorMessage} isVisible={appErrorIsVisible} />
       <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
         {/* ici le logo */}
       </Link>

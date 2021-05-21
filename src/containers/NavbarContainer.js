@@ -46,6 +46,7 @@ const mapStateToProps = ({ app }) => ({
   signupErrorIsVisible: app.signupErrorIsVisible,
   loginErrorIsVisible: app.loginErrorIsVisible,
   errorMessage: app.errorMessage,
+  appErrorIsVisible: app.appErrorIsVisible,
   windowSize: app.windowSize,
 
 });

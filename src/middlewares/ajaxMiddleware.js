@@ -11,15 +11,12 @@ import {
   SOCKET_JOIN_CONFIRM,
   UPDATE_CHANNEL_USERS,
   updateChannelUsersSuccess,
-  updateChannelUsersError,
 } from 'src/actions/channelActions';
 import {
   FETCH_MY_CHANNELS,
   fetchMyChannels,
-  fetchMyChannelsError,
   fetchMyChannelsSuccess,
   FETCH_MY_RECOS,
-  fetchMyRecosError,
   fetchMyRecosSuccess,
   DELETE_FROM_MY_CHANNELS,
 } from 'src/actions/userActions';
@@ -28,12 +25,13 @@ import {
   fetchNavDataError,
   fetchNavDataSuccess,
   appError,
+  hideErrors,
 } from 'src/actions/appActions';
-// import localFakeChannels from './fakeChannels';
 
 export default (store) => (next) => (action) => {
   const { nicknameInput, emailInput, tagDropDownIds } = store.getState().user;
   const { id } = store.getState().channel;
+  const errorTimer = 2000;
 
   switch (action.type) {
     case FETCH_CHANNEL:
@@ -70,7 +68,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          store.dispatch(fetchMyChannelsError());
+          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          setTimeout(() => {
+            store.dispatch(hideErrors());
+          }, errorTimer);
         });
       break;
 
@@ -89,7 +90,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          store.dispatch(fetchMyRecosError());
+          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          setTimeout(() => {
+            store.dispatch(hideErrors());
+          }, errorTimer);
         });
       break;
 
@@ -135,7 +139,13 @@ export default (store) => (next) => (action) => {
       }).then((res) => {
         console.log(res.data);
         store.dispatch(updateProfileSuccess(res.data));
-      }).catch((error) => console.log('error', error));
+      }).catch((error) => {
+        console.log(error);
+        store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+        setTimeout(() => {
+          store.dispatch(hideErrors());
+        }, errorTimer);
+      });
 
       break;
 
@@ -158,7 +168,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          store.dispatch(updateChannelUsersError());
+          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          setTimeout(() => {
+            store.dispatch(hideErrors());
+          }, errorTimer);
         });
       break;
 
@@ -174,6 +187,9 @@ export default (store) => (next) => (action) => {
         .catch((err) => {
           console.log(err);
           store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          setTimeout(() => {
+            store.dispatch(hideErrors());
+          }, errorTimer);
         });
       break;
 

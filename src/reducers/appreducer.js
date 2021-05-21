@@ -16,6 +16,7 @@ import {
   SET_NAV_MENU_OPEN,
   SET_WINDOW_SIZE,
   SET_ISREFRESH,
+  APP_ERROR,
 } from 'src/actions/appActions';
 import {
   SUBMIT_SIGNUP_FORM,
@@ -80,6 +81,13 @@ const appState = {
 
 const reducer = (stateActuel = appState, action = {}) => {
   switch (action.type) {
+    case APP_ERROR:
+      return {
+        ...stateActuel,
+        errorMessage: action.value,
+        appErrorIsVisible: true,
+      };
+
     case TOGGLE_NAV_SEARCH:
       return {
         ...stateActuel,
