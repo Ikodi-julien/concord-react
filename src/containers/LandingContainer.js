@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Landing from 'src/components/Landing/Landing';
 import {
   getUserInfos,
-} from 'src/actions/appActions';
+} from 'src/actions/userActions';
 
 const mapStateToProps = ({ app }) => ({
   isUserLoggued: app.isUserLoggued,

@@ -15,9 +15,11 @@ import {
 } from 'src/actions/loginsignupActions';
 import {
   hideErrors,
+} from 'src/actions/appActions';
+import {
   GET_USER_INFOS,
   getUserSuccess,
-} from 'src/actions/appActions';
+} from 'src/actions/userActions';
 
 export default (store) => (next) => (action) => {
   const {

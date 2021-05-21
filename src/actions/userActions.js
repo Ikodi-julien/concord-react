@@ -1,3 +1,6 @@
+export const GET_USER_INFOS = 'GET_USER_INFOS';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+
 export const FETCH_MY_CHANNELS = 'FETCH_MY_CHANNELS';
 export const FETCH_MY_CHANNELS_SUCCESS = 'FETCH_MY_CHANNELS_SUCCESS';
 export const FETCH_MY_CHANNELS_ERROR = 'FETCH_MY_CHANNELS_ERROR';
@@ -5,7 +8,9 @@ export const FETCH_MY_CHANNELS_ERROR = 'FETCH_MY_CHANNELS_ERROR';
 export const FETCH_MY_RECOS = 'FETCH_MY_RECOS';
 export const FETCH_MY_RECOS_SUCCESS = 'FETCH_MY_RECOS_SUCCESS';
 export const FETCH_MY_RECOS_ERROR = 'FETCH_MY_RECOS_ERROR';
-
+/*----------------------------------------------------------*/
+export const getUserInfos = () => ({ type: GET_USER_INFOS });
+export const getUserSuccess = (user) => ({ type: GET_USER_SUCCESS, value: user });
 export const fetchMyChannels = () => ({ type: FETCH_MY_CHANNELS });
 export const fetchMyChannelsSuccess = (channels) => ({
   type: FETCH_MY_CHANNELS_SUCCESS,

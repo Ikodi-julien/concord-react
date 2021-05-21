@@ -15,8 +15,6 @@ import {
   HIDE_ERRORS,
   SET_NAV_MENU_OPEN,
   SET_WINDOW_SIZE,
-  GET_USER_INFOS,
-  GET_USER_SUCCESS,
   SET_ISREFRESH,
 } from 'src/actions/appActions';
 import {
@@ -29,6 +27,10 @@ import {
   DISCONNECT_USER_SUCCESS,
   DISCONNECT_USER_ERROR,
 } from 'src/actions/loginsignupActions';
+import {
+  GET_USER_INFOS,
+  GET_USER_SUCCESS,
+} from 'src/actions/userActions';
 import {
   FETCH_CHANNEL,
 } from 'src/actions/channelActions';

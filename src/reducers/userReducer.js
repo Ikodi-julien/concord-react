@@ -14,10 +14,10 @@ import {
   TOGGLE_ACTIVE_BTN,
 } from 'src/actions/profileActions';
 import {
+  GET_USER_SUCCESS,
   FETCH_MY_CHANNELS_SUCCESS,
   FETCH_MY_RECOS_SUCCESS,
 } from 'src/actions/userActions';
-import { GET_USER_SUCCESS } from 'src/actions/appActions';
 // import fakeChannels from 'src/middlewares/fakeChannels';
 
 const userState = {
