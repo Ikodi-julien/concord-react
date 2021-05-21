@@ -22,13 +22,10 @@ import {
 
 import { toggleMyChannels, fetchChannel } from 'src/actions/channelActions';
 
-const mapStateToProps = ({ app }) => ({
+const mapStateToProps = ({ app, auth }) => ({
 
   tags: app.tags,
   channels: app.channels,
-  isUserLoggued: app.isUserLoggued,
-  isShowLoginModal: app.isShowLoginModal,
-  isShowSignupModal: app.isShowSignupModal,
   isShowSearch: app.isShowSearch,
   isNavMenuOpen: app.isNavMenuOpen,
   links: app.appRoutes,
@@ -36,20 +33,23 @@ const mapStateToProps = ({ app }) => ({
   searchedValue: app.searchedValue,
   searchResult: app.searchResult,
   tagSelectValue: app.tagSelectValue,
-  loginButtonIsLoading: app.loginButtonIsLoading,
-  inputLoginEmailValue: app.loginEmail,
-  inputLoginPasswordValue: app.loginPassword,
-  signupButtonIsLoading: app.signupButtonIsLoading,
-  inputSignupPseudoValue: app.signupPseudo,
-  inputSignupEmailValue: app.signupEmail,
-  inputFirstSignupPasswordValue: app.firstSignupPassword,
-  inputSecondSignupPasswordValue: app.secondSignupPassword,
-  signupErrorIsVisible: app.signupErrorIsVisible,
-  loginErrorIsVisible: app.loginErrorIsVisible,
   errorMessage: app.errorMessage,
   appErrorIsVisible: app.appErrorIsVisible,
   windowSize: app.windowSize,
 
+  isUserLoggued: auth.isUserLoggued,
+  isShowLoginModal: auth.isShowLoginModal,
+  isShowSignupModal: auth.isShowSignupModal,
+  loginButtonIsLoading: auth.loginButtonIsLoading,
+  inputLoginEmailValue: auth.loginEmail,
+  inputLoginPasswordValue: auth.loginPassword,
+  signupButtonIsLoading: auth.signupButtonIsLoading,
+  inputSignupPseudoValue: auth.signupPseudo,
+  inputSignupEmailValue: auth.signupEmail,
+  inputFirstSignupPasswordValue: auth.firstSignupPassword,
+  inputSecondSignupPasswordValue: auth.secondSignupPassword,
+  signupErrorIsVisible: auth.signupErrorIsVisible,
+  loginErrorIsVisible: auth.loginErrorIsVisible,
 });
 
 const mapDispatchToProps = (dispatch) => ({

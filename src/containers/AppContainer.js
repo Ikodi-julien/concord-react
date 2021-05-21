@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { setWindowSize } from 'src/actions/appActions';
 import App from 'src/components/App/App';
 
-const mapStateToProps = ({ app }) => ({
-  isUserLoggued: app.isUserLoggued,
-  firstLogin: app.firstLogin,
+const mapStateToProps = ({ auth }) => ({
+  isUserLoggued: auth.isUserLoggued,
+  firstLogin: auth.firstLogin,
 });
 
 const mapDispatchToProps = (dispatch) => ({

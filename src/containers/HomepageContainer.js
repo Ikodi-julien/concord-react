@@ -4,8 +4,8 @@ import { fetchMyChannels, fetchMyRecos } from 'src/actions/userActions';
 import { setIsRefresh } from 'src/actions/appActions';
 // import fakeChannels from 'src/middlewares/fakeChannels';
 
-const mapStateToProps = ({ user, app }) => ({
-  isUserLoggued: app.isUserLoggued,
+const mapStateToProps = ({ user, app, auth }) => ({
+  isUserLoggued: auth.isUserLoggued,
   myChannels: user.channels,
   recommendedChannels: user.recommendedChannels,
   isRefresh: app.isRefresh,

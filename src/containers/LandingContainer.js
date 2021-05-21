@@ -4,8 +4,8 @@ import {
   getUserInfos,
 } from 'src/actions/userActions';
 
-const mapStateToProps = ({ app }) => ({
-  isUserLoggued: app.isUserLoggued,
+const mapStateToProps = ({ auth }) => ({
+  isUserLoggued: auth.isUserLoggued,
 });
 
 const mapDispatchToProps = (dispatch) => ({

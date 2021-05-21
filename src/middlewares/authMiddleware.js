@@ -30,7 +30,7 @@ export default (store) => (next) => (action) => {
     signupPseudo,
     firstSignupPassword,
     secondSignupPassword,
-  } = store.getState().app;
+  } = store.getState().auth;
 
   const errorTimer = 2500;
 
@@ -101,7 +101,7 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           console.log('res.data :', res.data);
           store.dispatch(signupSuccess({
-            password: store.getState().app.firstSignupPassword,
+            password: store.getState().auth.firstSignupPassword,
             email: res.data.email,
           }));
           store.dispatch(setFirstLogin(true));
