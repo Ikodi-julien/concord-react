@@ -1,14 +1,18 @@
 @use 'src/styles/vars'as v;
 
 .profile {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   &__container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     width: 80%;
     max-width: 1200px;
 
@@ -45,6 +49,6 @@
   &__authfieldscontainer {
     padding: 20px;
     max-height: 50vh;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
   }
 }
