@@ -9,7 +9,12 @@ import {searchTagsAndReturn} from 'src/selectors/search';
 
 import './discovery.scss';
 
-const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
+const Discovery = ({
+  tags, 
+  channels, 
+  tagSelectValue, 
+  tagSelectChange,
+}) => {
   // This function puts Select value in searchedValue prop.
   const handleChange = (evt, {value}) => {
     tagSelectChange(value);
@@ -21,43 +26,12 @@ const Discovery = ({tags, channels, tagSelectValue, tagSelectChange}) => {
     }
   ))
   // Here the channels are filtered according to the option selected and terefore the searchedValue
-  // console.log('searchedValue', tagSelectValue);
   const renamedChannelList = channels.map(channel => ({...channel, name: channel.title}));
-  // console.log('renamedChannelList', renamedChannelList);
   
   const filteredChannels = searchTagsAndReturn(tagSelectValue, renamedChannelList);
-  // console.log('newChannelList', newChannelList);
-  
-  // Finally, build the list used to display filtered cards
-  const channelListToDisplay = filteredChannels.map(channel => {
-    
-    const tags =[];
-    
-    for (const tag of channel.tags) {
-      tags.push(tag.name);
-    }
-        
-    return (
-    {
-      id: channel.id,
-      title: channel.title,
-      tags,
-      userCount: 'pas encore',
-    }
-  )})
-  // console.log('filteredChannels', filteredChannels);
-  // Default channel list to be displayed
-  const allChannels = channels.map(channel => (
-    {
-      id: channel.id,
-      title: channel.title,
-      tags: channel.tags,
-      userCount: 'pas encore',
-    }
-  ))
-  
-  const channelsToDisplay = channelListToDisplay.length ? channelListToDisplay : allChannels;
-  
+
+  const channelsToDisplay = filteredChannels.length ? filteredChannels : channels;
+
   return (
     <section className="discovery">
     <StoreUrl />
