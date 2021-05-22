@@ -19,9 +19,9 @@ return (
     <div className='landing__hero'>
     
       <div className="landing__hero__text">
-        <h1 className='landing__hero__title'>La phrase d'accroche à trouver</h1>
+        <h1 className='landing__hero__title'>Come chat with us !</h1>
         <p className='landing__hero__description'>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        Envie de discuter de ta série du moment, de films d'horreur ou simplement de ta passion pour la cuisine ? Rejoins nous sur les channels de ton choix et viens échanger avec d'autres passionnés !
         </p>
       </div>
       
@@ -31,9 +31,9 @@ return (
     
     <div className='landing__features'>
       <div className='landing__features__feature'>
-        <h2 className='landing__features__feature__title'>La phrase feature</h2>
+        <h2 className='landing__features__feature__title'>Des channels dédiés à tes centres d'intérêt </h2>
         
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        <p>Chaque channel est associé à un ou plusieurs centres d'intérêts, des films aux sports en passant par les jeux de société, il y en a pour tous les goûts !
         </p>
         
         <img className='landing__features__feature__image' src={featureImg_1} />
@@ -45,9 +45,9 @@ return (
         
         <img className='landing__features__feature__image' src={featureImg_2} />
       
-        <h2 className='landing__features__feature__title'>La phrase feature</h2>
+        <h2 className='landing__features__feature__title'>Remplis ton profil, on s'occupe du reste !</h2>
         
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        <p>Renseigne tes centres d'intérêts dans tes paramètres et laisse toi guider ! TeaCup te suggérera des channels adaptés à tes goûts.
         </p>
       
       </div>
