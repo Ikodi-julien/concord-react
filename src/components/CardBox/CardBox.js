@@ -32,13 +32,13 @@ const CardBox = ({list, deleteChannel, isDeletable, deleteFromMyChannels}) => {
             </Card.Header>
             <Card.Description>
               {item.tags &&
-                item.tags.map(tag => <div key={`tag-${tag.id}`} className="discovery__listcontainer__cardtag">{tag.name}</div>)
+                item.tags.map(tag => <div key={`tag-${tag.id}`} className={"discovery__listcontainer__cardtag" + (tag.matchingTag ? "--matching_tag" : "")}>{tag.name}</div>)
               }
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
               <Icon name='user' />
-              {item.userCount}
+              {item.usersCount}
           </Card.Content>
         </Card>
       ))

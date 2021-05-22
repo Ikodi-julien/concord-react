@@ -31,8 +31,13 @@
     scroll-behavior: smooth;
     margin-bottom: 40px;
 
-    &__cardtag {
+    &__cardtag, &__cardtag--matching_tag {
       padding: 0 5px;
+
+      &--matching_tag{
+        color: v.$base-color-orange;
+        font-weight:bold;
+      }
     }
   }
 }
