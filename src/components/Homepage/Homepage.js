@@ -48,7 +48,7 @@ const Homepage = ({
           </div>
           
           <div className="homepage__suggested">
-            <h1 className="homepage__title">Tu pourrais aimer</h1>
+            <h1 className="homepage__title">Mes Channels recommandés</h1>
             <CardBox
               list={recommendedChannels}
               isDeletable={false}
