@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Form, Dropdown} from 'semantic-ui-react';
 import {useHistory} from 'react-router-dom';
 
-export default ({user, tags, toggleActiveBtn, setTagsDropdownValue, setTagsDropDownIds, setProfileInputValue, updateProfile}) => {
+export default ({
+  user, 
+  tags, 
+  toggleActiveBtn, 
+  setTagsDropdownValue, 
+  setTagsDropDownIds, 
+  setProfileInputValue, 
+  updateProfile,
+  fetchMyProfile,
+}) => {
   const history = useHistory();
   
   const handleSubmit = (evt) => {
@@ -16,9 +25,10 @@ export default ({user, tags, toggleActiveBtn, setTagsDropdownValue, setTagsDropD
     }
     setProfileInputValue(objectInput);
   }
-    
-  const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
   
+  // This sets options in tags gropdown menu
+  let tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
+  //
   const handleTagsSelection = ((_, {value}) => {
     const tagIds = value.map(tagName => tagsOptions.filter(tag => tag.value === tagName)[0].key
     )
@@ -30,6 +40,10 @@ export default ({user, tags, toggleActiveBtn, setTagsDropdownValue, setTagsDropD
     toggleActiveBtn(name)
   };
   
+  useEffect(() => {
+    fetchMyProfile();
+  }, []);
+
   return (
   <Form onSubmit={handleSubmit}>
   <div className="profile__authfieldscontainer">

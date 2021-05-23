@@ -12,6 +12,7 @@ import {
   SET_TAGS_DROPDOWN_VALUE,
   SET_TAGS_DROPDOWN_IDS,
   TOGGLE_ACTIVE_BTN,
+  FETCH_MY_PROFILE_SUCCESS,
 } from 'src/actions/profileActions';
 import {
   GET_USER_SUCCESS,
@@ -71,26 +72,38 @@ const reducer = (stateActuel = userState, action = {}) => {
       };
 
     case SET_PROFILE_INPUT_VALUE:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         ...action.value,
       };
 
     case UPDATE_PROFILE:
-      console.log(action);
+      // console.log(action);
       // TODO bouton loading en attente de UPDATE_PROFILE_SUCCESS
       return {
         ...stateActuel,
       };
 
     case UPDATE_PROFILE_SUCCESS:
-      // console.log(action);
+      console.log(action);
       return {
         ...stateActuel,
         nickname: action.data.nickname,
         email: action.data.email,
         tags: action.data.tags,
+      };
+
+    case FETCH_MY_PROFILE_SUCCESS:
+      console.log(action);
+
+      return {
+        ...stateActuel,
+        nickname: action.data.nickname,
+        email: action.data.email,
+        tags: action.data.tags,
+        tagDropDownValue: action.data.tags.map((tag) => tag.name),
+        tagDropDownIds: action.data.tags.map((tag) => tag.id),
       };
 
     case SET_TAGS_DROPDOWN_VALUE:
@@ -130,14 +143,14 @@ const reducer = (stateActuel = userState, action = {}) => {
       };
 
     case FETCH_MY_RECOS_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         recommendedChannels: action.value,
       };
 
     case GET_USER_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         ...action.value,

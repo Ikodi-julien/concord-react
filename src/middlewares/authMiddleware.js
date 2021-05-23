@@ -36,7 +36,7 @@ export default (store) => (next) => (action) => {
 
   switch (action.type) {
     case SUBMIT_LOGIN_FORM:
-      console.log(action);
+      // console.log(action);
       next(action);
 
       axios.post(`${FETCH_URL}/v1/login`, {
@@ -47,7 +47,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           store.dispatch(loginSuccess(res.data));
         })
         .catch((error) => {
@@ -69,7 +69,7 @@ export default (store) => (next) => (action) => {
       break;
 
     case SUBMIT_SIGNUP_FORM:
-      console.log(action);
+      // console.log(action);
       next(action);
       // check for inputs consistency
       if (
@@ -99,7 +99,7 @@ export default (store) => (next) => (action) => {
         password: firstSignupPassword,
       })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(signupSuccess({
             password: store.getState().auth.firstSignupPassword,
             email: res.data.email,
@@ -125,7 +125,7 @@ export default (store) => (next) => (action) => {
         { withCredentials: true })
         .then((res) => {
           store.dispatch(disconnectUserSuccess());
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
         })
         .catch((error) => {
         // console.error('catch error: ', error);
@@ -137,13 +137,13 @@ export default (store) => (next) => (action) => {
       break;
 
     case GET_USER_INFOS:
-      console.log(action);
+      // console.log(action);
       next(action);
 
       axios.get(`${FETCH_URL}/v1/me`,
         { withCredentials: true })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(getUserSuccess(res.data));
         })
         .catch((error) => {

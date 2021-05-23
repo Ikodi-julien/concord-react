@@ -24,7 +24,7 @@ const Homepage = ({
     console.log('on envoi SetPath')
     return (<SetPathnameContainer />)
   }
-  // Fetch tags and channels on component did mount, if it's not a rerouting after a refresh.
+  // Fetch tags and channels on component did mount, if it's not a rerouting after a refresh. Also fetch after user's tags are updated.
   if (isUserLoggued && !isRefresh) {
     useEffect(() => {
       fetchMyChannels();
