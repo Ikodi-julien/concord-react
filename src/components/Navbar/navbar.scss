@@ -7,17 +7,20 @@
   align-items: center;
   width: 100%;
   height: v.$nav-height;
-  border: 1px solid v.$base-color-grey;
   background-color: v.$base-color-dark;
   color: v.$base-color-light;
 
 
   &__logo {
-    display: block;
-    height: v.$nav-height*.8;
-    width: v.$nav-height*.8;
-    margin: 0 20px;
-    background: center/contain no-repeat url('src/assets/teacup_logo.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: v.$nav-height*3;
+    background: center/cover no-repeat url('src/assets/big-paint-splatter-resize.png');
+    font-family: 'Permanent Marker', cursive;
+    color: v.$base-color-dark;
+    font-size: 3em;
 
     @media screen and (max-width:700px) {
       display: none;

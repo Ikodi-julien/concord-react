@@ -33,6 +33,7 @@ const Navbar = ({
     <ErrorInfo errorMessage={errorMessage} isVisible={appErrorIsVisible} />
       <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
         {/* ici le logo */}
+        TeaCup
       </Link>
       
       {!isUserLoggued && ( <LoginModalContainer />)}

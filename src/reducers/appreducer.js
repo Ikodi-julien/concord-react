@@ -11,6 +11,7 @@ import {
   SET_WINDOW_SIZE,
   SET_ISREFRESH,
   APP_ERROR,
+  SET_ISLANDINGACTIVE,
 } from 'src/actions/appActions';
 import {
   SIGNUP_ERROR,
@@ -26,6 +27,7 @@ import {
 } from 'src/actions/channelActions';
 
 const appState = {
+  isLandingActive: false,
   // Possibly related to everywhere
   isNavMenuOpen: false,
   errorMessage: '',
@@ -145,6 +147,12 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         windowSize: action.value,
+      };
+
+    case SET_ISLANDINGACTIVE:
+      return {
+        ...stateActuel,
+        isLandingActive: action.value,
       };
 
     case FETCH_CHANNEL:
