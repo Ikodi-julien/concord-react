@@ -15,6 +15,7 @@ const Homepage = ({
   fetchMyChannels, 
   fetchMyRecos, 
   isRefresh, 
+  tags,
   setIsRefresh,
 }) => {
 
@@ -28,7 +29,7 @@ const Homepage = ({
     useEffect(() => {
       fetchMyChannels();
       fetchMyRecos();
-    }, []);
+    }, [tags]);
   }
 
   return (

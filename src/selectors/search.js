@@ -50,3 +50,8 @@ export const searchChangeHandler = (evt, options) => {
   // On met les valeurs dans le store
   options.setSearchResult(results);
 };
+
+export const makeSelectOptions = (tags) => {
+  const tagsOptions = tags.map((tag) => ({ key: tag.id, value: tag.name, text: tag.name }));
+  return [{ key: 'A', value: '', text: 'Toutes catégories' }, ...tagsOptions];
+};

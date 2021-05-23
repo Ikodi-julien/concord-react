@@ -5,7 +5,7 @@ import NavbarContainer from 'src/containers/NavbarContainer';
 import CardBox from 'src/containers/CardboxContainer';
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import Footer from 'src/components/Footer/Footer';
-import {searchTagsAndReturn} from 'src/selectors/search';
+import {searchTagsAndReturn, makeSelectOptions} from 'src/selectors/search';
 
 import './discovery.scss';
 
@@ -19,12 +19,8 @@ const Discovery = ({
   const handleChange = (evt, {value}) => {
     tagSelectChange(value);
   }
-  // Here i build the options object for the Select
-  const tagsOptions = tags.map(tag => (
-    {
-      key: tag.id, value: tag.name, text: tag.name 
-    }
-  ))
+  // Options for select component
+  const selectOptions = makeSelectOptions(tags);
   // Here the channels are filtered according to the option selected and terefore the searchedValue
   const renamedChannelList = channels.map(channel => ({...channel, name: channel.title}));
   
@@ -44,7 +40,7 @@ const Discovery = ({
           <Select 
             placeholder='Catégories' 
             value={tagSelectValue}
-            options={tagsOptions}
+            options={selectOptions}
             onChange={handleChange}
             />
         </div>
