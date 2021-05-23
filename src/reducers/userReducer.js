@@ -40,15 +40,7 @@ const userState = {
 const reducer = (stateActuel = userState, action = {}) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      console.log('userReducer', action);
-      const myChannelLinks = action.user.channels.map((channel) => ({
-        ...channel,
-        name: channel.title,
-      }));
-
-      const recoList = [];
-      const { recommendedChannels } = action.user;
-      Object.keys(recommendedChannels).forEach((key) => recoList.push(recommendedChannels[key]));
+      // console.log('userReducer', action);
 
       return {
         ...stateActuel,
@@ -56,13 +48,13 @@ const reducer = (stateActuel = userState, action = {}) => {
         nickname: action.user.nickname,
         password: action.user.password,
         email: action.user.email,
-        myChannelLinks,
-        tags: action.user.tags,
-        channels: action.user.channels,
-        recommendedChannels: recoList,
+        // myChannelLinks,
+        // tags: action.user.tags,
+        // channels: action.user.channels,
+        // recommendedChannels: recoList,
         nicknameInput: action.user.nickname,
         emailInput: action.user.email,
-        tagDropDownValue: action.user.tags.map((tag) => tag.name),
+        // tagDropDownValue: action.user.tags.map((tag) => tag.name),
       };
 
     case SIGNUP_SUCCESS:

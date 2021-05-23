@@ -21,7 +21,7 @@ const NavSearch = (
   let history = useHistory();
   // Options for select component
   const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
-  
+  const allTagsOptions = [{ key: 'A', value: '', text: 'Toutes catégories' }, ...tagsOptions];
   /* ------- Search handling -------- */
   const tagNames = tags.map(tag => tag.name);
   
@@ -80,7 +80,7 @@ const NavSearch = (
           <Select 
             placeholder="Catégories" 
             value={tagSelectValue}
-            options={tagsOptions}
+            options={allTagsOptions}
             onChange={handleSelectChange}
           />
         </div>
