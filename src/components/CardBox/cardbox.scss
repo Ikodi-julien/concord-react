@@ -54,7 +54,6 @@
 .ui.card>.extra,
 .ui.cards>.card>.extra {
   padding : 1%;
-  // max-height: 20%;
   max-height: 1.5em;
 }
 
@@ -64,4 +63,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   max-height: 80%;
+}
+
+.ui.cards>.card>.content>.header+.description {
+  margin-top: .1em;
 }
