@@ -12,14 +12,17 @@ import {
   disconnectUserSuccess,
   disconnectUserError,
   submitLoginForm,
-} from 'src/actions/loginsignupActions';
+  SUBMIT_FORGOT_PASS_FORM,
+  forgotPassInfo,
+} from 'src/actions/authActions';
 import {
-  hideErrors,
+  hideInfos,
   setFirstLogin,
 } from 'src/actions/appActions';
 import {
   GET_USER_INFOS,
   getUserSuccess,
+
 } from 'src/actions/userActions';
 
 export default (store) => (next) => (action) => {
@@ -30,13 +33,14 @@ export default (store) => (next) => (action) => {
     signupPseudo,
     firstSignupPassword,
     secondSignupPassword,
+    forgotPasswordEmailInput,
   } = store.getState().auth;
 
   const errorTimer = 2500;
 
   switch (action.type) {
     case SUBMIT_LOGIN_FORM:
-      console.log(action);
+      // console.log(action);
       next(action);
 
       axios.post(`${FETCH_URL}/v1/login`, {
@@ -47,7 +51,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           store.dispatch(loginSuccess(res.data));
         })
         .catch((error) => {
@@ -63,13 +67,13 @@ export default (store) => (next) => (action) => {
             store.dispatch(loginError(error.toString()));
           }
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
 
     case SUBMIT_SIGNUP_FORM:
-      console.log(action);
+      // console.log(action);
       next(action);
       // check for inputs consistency
       if (
@@ -80,7 +84,7 @@ export default (store) => (next) => (action) => {
       ) {
         store.dispatch(signupError('Un ou plusieurs champs ne sont pas remplis'));
         setTimeout(() => {
-          store.dispatch(hideErrors());
+          store.dispatch(hideInfos());
         }, errorTimer);
         return;
       }
@@ -88,7 +92,7 @@ export default (store) => (next) => (action) => {
       if (firstSignupPassword !== secondSignupPassword) {
         store.dispatch(signupError('Les mots de passe ne sont pas identiques'));
         setTimeout(() => {
-          store.dispatch(hideErrors());
+          store.dispatch(hideInfos());
         }, errorTimer);
         return;
       }
@@ -99,7 +103,7 @@ export default (store) => (next) => (action) => {
         password: firstSignupPassword,
       })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(signupSuccess({
             password: store.getState().auth.firstSignupPassword,
             email: res.data.email,
@@ -114,7 +118,7 @@ export default (store) => (next) => (action) => {
         // console.error('catch error: ', error);
           store.dispatch(signupError(error.toString()));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
@@ -125,25 +129,25 @@ export default (store) => (next) => (action) => {
         { withCredentials: true })
         .then((res) => {
           store.dispatch(disconnectUserSuccess());
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
         })
         .catch((error) => {
         // console.error('catch error: ', error);
           store.dispatch(disconnectUserError(error.toString()));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
 
     case GET_USER_INFOS:
-      console.log(action);
+      // console.log(action);
       next(action);
 
       axios.get(`${FETCH_URL}/v1/me`,
         { withCredentials: true })
         .then((res) => {
-          console.log('res.data :', res.data);
+          // console.log('res.data :', res.data);
           store.dispatch(getUserSuccess(res.data));
         })
         .catch((error) => {
@@ -152,6 +156,27 @@ export default (store) => (next) => (action) => {
 
       break;
 
+    case SUBMIT_FORGOT_PASS_FORM:
+      // console.log(action);
+      axios.post(`${FETCH_URL}/v1/forgot-pwd`,
+        {
+          email: forgotPasswordEmailInput,
+        })
+        .then((res) => {
+          console.log(res.data);
+          store.dispatch(forgotPassInfo('L\'email a bien été envoyé'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
+        })
+        .catch((err) => {
+          console.log(err);
+          store.dispatch(forgotPassInfo('Aïe, ça n\'a pas fonctionné, désolé'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
+        });
+      break;
     default:
       next(action);
   }

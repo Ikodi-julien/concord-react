@@ -4,7 +4,7 @@ import {
   SET_SIGNUP_MODAL,
   SET_INPUT_VALUE,
   SET_FIRST_LOGIN,
-  HIDE_ERRORS,
+  HIDE_INFOS,
 } from 'src/actions/appActions';
 import {
   SUBMIT_SIGNUP_FORM,
@@ -15,7 +15,8 @@ import {
   LOGIN_SUCCESS,
   DISCONNECT_USER_SUCCESS,
   DISCONNECT_USER_ERROR,
-} from 'src/actions/loginsignupActions';
+  FORGOT_PASS_INFO,
+} from 'src/actions/authActions';
 import {
   GET_USER_INFOS,
   GET_USER_SUCCESS,
@@ -33,9 +34,11 @@ const authState = {
   signupEmail: '',
   firstSignupPassword: '',
   secondSignupPassword: '',
-  signupErrorIsVisible: false,
-  loginErrorIsVisible: false,
+  signupInfoIsVisible: false,
+  loginInfoIsVisible: false,
   firstLogin: false,
+  forgotPasswordEmailInput: '',
+  forgotPassInfoIsVisible: false,
 };
 
 const reducer = (stateActuel = authState, action = {}) => {
@@ -55,7 +58,7 @@ const reducer = (stateActuel = authState, action = {}) => {
       };
 
     case SET_INPUT_VALUE:
-      // console.log(action);
+      console.log(action);
       return {
         ...stateActuel,
         [action.objectInput.name]: action.objectInput.value,
@@ -76,12 +79,12 @@ const reducer = (stateActuel = authState, action = {}) => {
     case SIGNUP_ERROR:
       return {
         ...stateActuel,
-        signupErrorIsVisible: true,
+        signupInfoIsVisible: true,
         signupButtonIsLoading: false,
       };
 
     case SIGNUP_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         signupButtonIsLoading: false,
@@ -94,7 +97,7 @@ const reducer = (stateActuel = authState, action = {}) => {
       // console.log(action);
       return {
         ...stateActuel,
-        loginErrorIsVisible: true,
+        loginInfoIsVisible: true,
         loginButtonIsLoading: false,
       };
 
@@ -133,23 +136,30 @@ const reducer = (stateActuel = authState, action = {}) => {
       };
 
     case GET_USER_INFOS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
       };
 
     case GET_USER_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         isUserLoggued: true,
       };
 
-    case HIDE_ERRORS:
+    case FORGOT_PASS_INFO:
       return {
         ...stateActuel,
-        signupErrorIsVisible: false,
-        loginErrorIsVisible: false,
+        forgotPassInfoIsVisible: true,
+      };
+
+    case HIDE_INFOS:
+      return {
+        ...stateActuel,
+        signupInfoIsVisible: false,
+        loginInfoIsVisible: false,
+        forgotPassInfoIsVisible: false,
       };
 
     default:

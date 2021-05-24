@@ -4,7 +4,11 @@ export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
 export const SET_TAGS_DROPDOWN_VALUE = 'SET_TAGS_DROPDOWN_VALUE';
 export const SET_TAGS_DROPDOWN_IDS = 'SET_TAGS_DROPDOWN_IDS';
 export const TOGGLE_ACTIVE_BTN = 'TOGGLE_ACTIVE_BTN';
+export const FETCH_MY_PROFILE = 'FETCH_MY_PROFILE';
+export const FETCH_MY_PROFILE_SUCCESS = 'FETCH_MY_PROFILE_SUCCESS';
 
+export const fetchMyProfile = () => ({ type: FETCH_MY_PROFILE });
+export const fetchMyProfileSuccess = (data) => ({ type: FETCH_MY_PROFILE_SUCCESS, data });
 export const updateProfile = () => ({ type: UPDATE_PROFILE });
 export const setProfileInputValue = (objectInput) => (
   { type: SET_PROFILE_INPUT_VALUE, value: objectInput }

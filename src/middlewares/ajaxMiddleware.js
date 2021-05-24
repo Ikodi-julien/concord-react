@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { FETCH_URL } from 'src/vars';
 import {
+  FETCH_MY_PROFILE,
+  fetchMyProfileSuccess,
   UPDATE_PROFILE,
   updateProfileSuccess,
 } from 'src/actions/profileActions';
 import {
   FETCH_CHANNEL,
-  fetchChannelError,
   fetchChannelSuccess,
   SOCKET_JOIN_CONFIRM,
   UPDATE_CHANNEL_USERS,
@@ -24,8 +25,9 @@ import {
   FETCH_NAV_DATA,
   fetchNavDataError,
   fetchNavDataSuccess,
-  appError,
-  hideErrors,
+  setFirstLogin,
+  appInfo,
+  hideInfos,
 } from 'src/actions/appActions';
 
 export default (store) => (next) => (action) => {
@@ -49,7 +51,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          store.dispatch(fetchChannelError());
+          store.dispatch(appInfo('Aïe l\'API a renvoyé une erreur'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
         });
       break;
 
@@ -68,9 +73,9 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          store.dispatch(appInfo('Aïe, un problème est survenu...'));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
@@ -90,9 +95,9 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          store.dispatch(appInfo('Aïe, un problème est survenu...'));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
@@ -123,7 +128,31 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           console.log('catch error: ', error);
           store.dispatch(fetchNavDataError());
+          store.dispatch(appInfo('Aïe l\'API a renvoyé une erreur'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
         });
+      break;
+
+    case FETCH_MY_PROFILE:
+      next(action);
+      console.log(action);
+
+      axios.get(`${FETCH_URL}/v1/me`, {
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res.data);
+        store.dispatch(fetchMyProfileSuccess(res.data));
+
+        store.dispatch(setFirstLogin(false));
+      }).catch((error) => {
+        console.log(error);
+        store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
+        setTimeout(() => {
+          store.dispatch(hideInfos());
+        }, errorTimer);
+      });
       break;
 
     case UPDATE_PROFILE:
@@ -141,9 +170,9 @@ export default (store) => (next) => (action) => {
         store.dispatch(updateProfileSuccess(res.data));
       }).catch((error) => {
         console.log(error);
-        store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+        store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
         setTimeout(() => {
-          store.dispatch(hideErrors());
+          store.dispatch(hideInfos());
         }, errorTimer);
       });
 
@@ -168,9 +197,9 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log('catch error: ', error);
-          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
@@ -186,9 +215,9 @@ export default (store) => (next) => (action) => {
         })
         .catch((err) => {
           console.log(err);
-          store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+          store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
