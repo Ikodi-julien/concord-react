@@ -9,7 +9,7 @@ import {
 } from 'src/actions/appActions';
 import {
   disconnectUser,
-} from 'src/actions/loginsignupActions';
+} from 'src/actions/authActions';
 import { toggleMyChannels } from 'src/actions/channelActions';
 
 const mapStateToProps = ({ app, auth }) => ({
@@ -18,8 +18,8 @@ const mapStateToProps = ({ app, auth }) => ({
   isShowSearch: app.isShowSearch,
   isNavMenuOpen: app.isNavMenuOpen,
   links: app.appRoutes,
-  errorMessage: app.errorMessage,
-  appErrorIsVisible: app.appErrorIsVisible,
+  appInfo: app.appInfo,
+  appInfoIsVisible: app.appInfoIsVisible,
   windowSize: app.windowSize,
   isUserLoggued: auth.isUserLoggued,
 });

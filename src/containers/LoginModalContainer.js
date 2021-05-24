@@ -9,7 +9,7 @@ import {
   submitLoginForm,
   submitSignupForm,
   disconnectUser,
-} from 'src/actions/loginsignupActions';
+} from 'src/actions/authActions';
 
 const mapStateToProps = ({ app, auth }) => ({
   loginOpen: auth.isShowLoginModal,
@@ -22,9 +22,9 @@ const mapStateToProps = ({ app, auth }) => ({
   inputSignupEmailValue: auth.signupEmail,
   inputFirstSignupPasswordValue: auth.firstSignupPassword,
   inputSecondSignupPasswordValue: auth.secondSignupPassword,
-  loginErrorIsVisible: auth.loginErrorIsVisible,
-  signupErrorIsVisible: auth.signupErrorIsVisible,
-  errorMessage: app.errorMessage,
+  loginInfoIsVisible: auth.loginInfoIsVisible,
+  signupInfoIsVisible: auth.signupInfoIsVisible,
+  appInfo: app.appInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

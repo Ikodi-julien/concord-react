@@ -7,6 +7,8 @@ export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const DISCONNECT_USER = 'DISCONNECT_USER';
 export const DISCONNECT_USER_SUCCESS = 'DISCONNECT_USER_SUCCESS';
 export const DISCONNECT_USER_ERROR = 'DISCONNECT_USER_ERROR';
+export const SUBMIT_FORGOT_PASS_FORM = 'SUBMIT_FORGOT_PASS_FORM';
+export const FORGOT_PASS_INFO = 'FORGOT_PASS_INFO';
 
 export const submitLoginForm = () => (
   { type: SUBMIT_LOGIN_FORM }
@@ -35,3 +37,5 @@ export const disconnectUserSuccess = () => (
 export const disconnectUserError = (errorMessage) => (
   { type: DISCONNECT_USER_ERROR, value: errorMessage }
 );
+export const submitForgotPassForm = () => ({ type: SUBMIT_FORGOT_PASS_FORM });
+export const forgotPassInfo = (msg) => ({ type: FORGOT_PASS_INFO, value: msg });

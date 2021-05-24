@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
-import {Button, Dropdown, Form, Segment, Divider} from 'semantic-ui-react';
-import {useHistory} from 'react-router-dom';
+import React from 'react';
+import {Segment, Divider} from 'semantic-ui-react';
 
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import NavbarContainer from 'src/containers/NavbarContainer';
@@ -10,12 +9,9 @@ import Footer from 'src/components/Footer/Footer';
 
 import './profile.scss';
 
-const Profile = ({ setFirstLogin }) => {
+const Profile = () => {
 
-  useEffect(() => {
-    setFirstLogin(false);
-  }, [])
-  
+  /* Profile datas are fetch from ProfileForm component */
   return (
     <section className="profile">
       <StoreUrl />

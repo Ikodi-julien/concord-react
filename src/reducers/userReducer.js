@@ -4,7 +4,7 @@ import {
   LOGIN_SUCCESS,
   SIGNUP_SUCCESS,
   DISCONNECT_USER_SUCCESS,
-} from 'src/actions/loginsignupActions';
+} from 'src/actions/authActions';
 import {
   UPDATE_PROFILE,
   UPDATE_PROFILE_SUCCESS,
@@ -49,13 +49,7 @@ const reducer = (stateActuel = userState, action = {}) => {
         nickname: action.user.nickname,
         password: action.user.password,
         email: action.user.email,
-        // myChannelLinks,
-        // tags: action.user.tags,
-        // channels: action.user.channels,
-        // recommendedChannels: recoList,
-        nicknameInput: action.user.nickname,
-        emailInput: action.user.email,
-        // tagDropDownValue: action.user.tags.map((tag) => tag.name),
+
       };
 
     case SIGNUP_SUCCESS:
@@ -92,6 +86,8 @@ const reducer = (stateActuel = userState, action = {}) => {
         nickname: action.data.nickname,
         email: action.data.email,
         tags: action.data.tags,
+        nicknameInput: action.data.nickname,
+        emailInput: action.data.email,
       };
 
     case FETCH_MY_PROFILE_SUCCESS:
@@ -104,6 +100,8 @@ const reducer = (stateActuel = userState, action = {}) => {
         tags: action.data.tags,
         tagDropDownValue: action.data.tags.map((tag) => tag.name),
         tagDropDownIds: action.data.tags.map((tag) => tag.id),
+        nicknameInput: action.data.nickname,
+        emailInput: action.data.email,
       };
 
     case SET_TAGS_DROPDOWN_VALUE:
