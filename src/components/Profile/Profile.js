@@ -5,24 +5,16 @@ import {useHistory} from 'react-router-dom';
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import PasswordModal from './PasswordModal/PasswordModal';
-import ProfileForm from './ProfileForm/ProfileForm';
+import ProfileFormContainer from 'src/containers/ProfileFormContainer';
 import Footer from 'src/components/Footer/Footer';
 
 import './profile.scss';
 
-const Profile = (
-  {
-    tags, 
-    user, 
-    updateProfile,
-    setProfileInputValue,
-    setTagsDropdownValue,
-    setTagsDropDownIds,
-    toggleActiveBtn,
-    setFirstLogin,
-  }) => {
+const Profile = ({ setFirstLogin }) => {
 
-  useEffect(() => setFirstLogin(false), [])
+  useEffect(() => {
+    setFirstLogin(false);
+  }, [])
   
   return (
     <section className="profile">
@@ -31,15 +23,7 @@ const Profile = (
       
       <div className="profile__container">
         <Segment >
-          <ProfileForm 
-            user={user}
-            tags={tags}
-            toggleActiveBtn={toggleActiveBtn}
-            setTagsDropdownValue={setTagsDropdownValue}
-            setTagsDropDownIds={setTagsDropDownIds}
-            setProfileInputValue={setProfileInputValue}
-            updateProfile={updateProfile}
-          />
+          <ProfileFormContainer />
         </Segment>
         <Divider />
         <Segment >

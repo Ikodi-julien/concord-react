@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Profile from 'src/components/Profile/Profile';
+import ProfileForm from 'src/components/Profile/ProfileForm/ProfileForm';
 import {
   updateProfile,
   setProfileInputValue,
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMyProfile: () => dispatch(fetchMyProfile()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);

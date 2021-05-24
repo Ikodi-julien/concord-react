@@ -81,7 +81,7 @@ const reducer = (stateActuel = authState, action = {}) => {
       };
 
     case SIGNUP_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         signupButtonIsLoading: false,
@@ -133,13 +133,13 @@ const reducer = (stateActuel = authState, action = {}) => {
       };
 
     case GET_USER_INFOS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
       };
 
     case GET_USER_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         isUserLoggued: true,

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { FETCH_URL } from 'src/vars';
 import {
+  FETCH_MY_PROFILE,
+  fetchMyProfileSuccess,
   UPDATE_PROFILE,
   updateProfileSuccess,
 } from 'src/actions/profileActions';
@@ -124,6 +126,24 @@ export default (store) => (next) => (action) => {
           console.log('catch error: ', error);
           store.dispatch(fetchNavDataError());
         });
+      break;
+
+    case FETCH_MY_PROFILE:
+      next(action);
+      console.log(action);
+
+      axios.get(`${FETCH_URL}/v1/me`, {
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res.data);
+        store.dispatch(fetchMyProfileSuccess(res.data));
+      }).catch((error) => {
+        console.log(error);
+        store.dispatch(appError('Aïe, ça n\'a pas fonctionné, désolé'));
+        setTimeout(() => {
+          store.dispatch(hideErrors());
+        }, errorTimer);
+      });
       break;
 
     case UPDATE_PROFILE:
