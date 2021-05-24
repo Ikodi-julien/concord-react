@@ -26,20 +26,39 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
-    // max-height: 50vh;
-    max-height: 46vh;
+    max-height: 25vh;
     overflow-y: auto;
     scroll-behavior: smooth;
-    // margin-bottom: 40px;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 
-    &__cardtag, &__cardtag--matching_tag {
+    &__cardtag,
+    &__cardtag--matching_tag {
       padding: 0 5px;
 
-      &--matching_tag{
+      &--matching_tag {
         color: v.$base-color-orange;
-        font-weight:bold;
+        font-weight: bold;
       }
+    }
+
+    @media screen and (min-width: 425px) {
+      max-height: 28vh;
+    }
+
+    @media screen and (min-height: 731px) {
+      max-height: 30vh;
+    }
+
+    @media screen and (min-height: 823px) {
+      max-height: 34vh;
+    }
+
+    @media screen and (min-height: 1024px) {
+      max-height: 35vh;
+    }
+
+    @media screen and (min-height: 1366px) {
+      max-height: 38vh;
     }
   }
 }

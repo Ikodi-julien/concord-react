@@ -65,7 +65,7 @@
     }
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 768px) {
     display: none;
 
     &.--show {
@@ -148,7 +148,7 @@
       background-color: v.$base-color-grey;
       max-height: calc(100vh - 50px - 64px - 116px);
 
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 768px) {
         width: 100%;
         border: none;
       }
@@ -183,7 +183,7 @@
         overflow-y: auto;
         scroll-behavior: smooth;
 
-        @media screen and (max-width:700px) {
+        @media screen and (max-width:768px) {
           width: 100%;
         }
       }
@@ -233,7 +233,7 @@
     &__options {
       display: none;
 
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 768px) {
         display: flex;
         justify-content: space-between;
         background-color: v.$base-color;

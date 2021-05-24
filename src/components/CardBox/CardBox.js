@@ -39,7 +39,7 @@ const CardBox = ({ list, deleteChannel, isDeletable, deleteFromMyChannels }) => 
             </Card.Content>
             <Card.Content extra>
               <Icon name='user' />
-              {item.usersCount}
+              {(item.usersCount || 'Aucun') + ` utilisateur${item.usersCount > 1 ? "s" : ""} sur ce channel`}
             </Card.Content>
           </Card>
         ))
