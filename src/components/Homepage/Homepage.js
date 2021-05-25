@@ -20,7 +20,7 @@ const Homepage = ({
 }) => {
   {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage */}
   if (isRefresh) {
-    console.log('on envoi SetPath')
+    // console.log('on envoi SetPath')
     return (<SetPathnameContainer />)
   }
   // Fetch tags and channels on component did mount, if it's not a rerouting after a refresh. Also fetch channels after user's tags are updated from Profile.

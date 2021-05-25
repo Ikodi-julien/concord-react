@@ -170,14 +170,14 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case GET_USER_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         isRefresh: true,
       };
 
     case SET_ISREFRESH:
-      console.log('setisrefresh dans le reducer');
+      // console.log('setisrefresh dans le reducer');
       return {
         ...stateActuel,
         isRefresh: action.value,

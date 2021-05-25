@@ -36,9 +36,9 @@ const CardBox = ({list, deleteChannel, isDeletable, deleteFromMyChannels}) => {
               }
             </Card.Description>
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content extra >
               <Icon name='user' />
-              {item.userCount}
+              Nombre d'utilisateurs : {item.usersCount}
           </Card.Content>
         </Card>
       ))
