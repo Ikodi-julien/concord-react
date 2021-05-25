@@ -6,6 +6,7 @@ export const FETCH_NAV_DATA_ERROR = 'FETCH_NAV_DATA_ERROR';
 export const SEARCH_CHANGE = 'SEARCH_CHANGE';
 export const TAG_SELECT_CHANGE = 'TAG_SELECT_CHANGE';
 export const SET_NAV_SEARCH_RESULT = 'SET_NAV_SEARCH_RESULT';
+export const RESET_SEARCH = 'RESET_SEARCH';
 export const SET_LOGIN_MODAL = 'SET_LOGIN_MODAL';
 export const SET_SIGNUP_MODAL = 'SET_SIGNUP_MODAL';
 export const SET_INPUT_VALUE = 'SET_INPUT_VALUE';
@@ -46,3 +47,4 @@ export const setWindowSize = (windowSize) => ({ type: SET_WINDOW_SIZE, value: wi
 export const setIsRefresh = (bool) => ({ type: SET_ISREFRESH, value: bool });
 export const appInfo = (msg) => ({ type: APP_INFO, value: msg });
 export const setFirstLogin = (bool) => ({ type: SET_FIRST_LOGIN, value: bool });
+export const resetSearch = () => ({ type: RESET_SEARCH });

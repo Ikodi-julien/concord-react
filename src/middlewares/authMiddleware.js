@@ -239,9 +239,8 @@ export default (store) => (next) => (action) => {
       axios.delete(`${FETCH_URL}/v1/me`, {
         withCredentials: true,
       })
-        .then((res) => {
+        .then(() => {
           store.dispatch(disconnectUserSuccess());
-          // console.log('res.data :', res.data);
         })
         .catch((error) => {
           // console.error('catch error: ', error);

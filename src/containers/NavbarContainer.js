@@ -6,6 +6,7 @@ import {
   fetchNavData,
   setNavMenuOpen,
   setWindowSize,
+  resetSearch,
 } from 'src/actions/appActions';
 import {
   disconnectUser,
@@ -32,6 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
   setNavMenuOpen: (bool) => dispatch(setNavMenuOpen(bool)),
   setWindowSize: (windowSize) => dispatch(setWindowSize(windowSize)),
   toggleSearch: () => dispatch(toggleNavSearch()),
+  resetSearch: () => dispatch(resetSearch()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

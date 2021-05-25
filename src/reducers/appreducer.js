@@ -11,6 +11,7 @@ import {
   SET_WINDOW_SIZE,
   SET_ISREFRESH,
   APP_INFO,
+  RESET_SEARCH,
 } from 'src/actions/appActions';
 import {
   SIGNUP_ERROR,
@@ -96,6 +97,12 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         searchedValue: action.value,
+      };
+
+    case RESET_SEARCH:
+      return {
+        ...stateActuel,
+        tagSelectValue: '',
       };
 
     case TAG_SELECT_CHANGE:

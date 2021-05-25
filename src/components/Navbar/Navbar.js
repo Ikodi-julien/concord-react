@@ -23,6 +23,7 @@ const Navbar = ({
   toggleMyChannels,
   setNavMenuOpen,
   disconnectUser,
+  resetSearch,
 }) => {
   // Fetch tags and channels on component did mount.
   if (isUserLoggued) useEffect(() => {fetchData()}, []);
@@ -56,6 +57,7 @@ const Navbar = ({
             setNavMenuOpen={setNavMenuOpen}
             setWindowSize={setWindowSize}
             windowSize={windowSize}
+            resetSearch={resetSearch}
           />
           
         </div>
