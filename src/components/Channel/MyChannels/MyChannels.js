@@ -44,7 +44,7 @@ const MyChannels = (
               return (
                 <div
                   key={link.id}
-                  className='mychannels__links__link'
+                  className='mychannels__links__link--active'
                 >{link.name}</div>)
             }
             

@@ -71,6 +71,7 @@
 
   &__features {
     background: white;
+    padding: 20vh 0;
 
     &__feature {
       width: 50%;
@@ -84,7 +85,6 @@
 
       @media screen and (max-width: 700px) {
         width: 80%;
-        margin-bottom: 10vh;
       }
 
       &__image {
