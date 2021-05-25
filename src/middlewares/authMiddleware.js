@@ -12,14 +12,17 @@ import {
   disconnectUserSuccess,
   disconnectUserError,
   submitLoginForm,
-} from 'src/actions/loginsignupActions';
+  SUBMIT_FORGOT_PASS_FORM,
+  forgotPassInfo,
+} from 'src/actions/authActions';
 import {
-  hideErrors,
+  hideInfos,
   setFirstLogin,
 } from 'src/actions/appActions';
 import {
   GET_USER_INFOS,
   getUserSuccess,
+
 } from 'src/actions/userActions';
 
 export default (store) => (next) => (action) => {
@@ -30,6 +33,7 @@ export default (store) => (next) => (action) => {
     signupPseudo,
     firstSignupPassword,
     secondSignupPassword,
+    forgotPasswordEmailInput,
   } = store.getState().auth;
 
   const errorTimer = 2500;
@@ -63,7 +67,7 @@ export default (store) => (next) => (action) => {
             store.dispatch(loginError(error.toString()));
           }
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
@@ -80,7 +84,7 @@ export default (store) => (next) => (action) => {
       ) {
         store.dispatch(signupError('Un ou plusieurs champs ne sont pas remplis'));
         setTimeout(() => {
-          store.dispatch(hideErrors());
+          store.dispatch(hideInfos());
         }, errorTimer);
         return;
       }
@@ -88,7 +92,7 @@ export default (store) => (next) => (action) => {
       if (firstSignupPassword !== secondSignupPassword) {
         store.dispatch(signupError('Les mots de passe ne sont pas identiques'));
         setTimeout(() => {
-          store.dispatch(hideErrors());
+          store.dispatch(hideInfos());
         }, errorTimer);
         return;
       }
@@ -114,7 +118,7 @@ export default (store) => (next) => (action) => {
         // console.error('catch error: ', error);
           store.dispatch(signupError(error.toString()));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
@@ -131,7 +135,7 @@ export default (store) => (next) => (action) => {
         // console.error('catch error: ', error);
           store.dispatch(disconnectUserError(error.toString()));
           setTimeout(() => {
-            store.dispatch(hideErrors());
+            store.dispatch(hideInfos());
           }, errorTimer);
         });
       break;
@@ -152,6 +156,27 @@ export default (store) => (next) => (action) => {
 
       break;
 
+    case SUBMIT_FORGOT_PASS_FORM:
+      // console.log(action);
+      axios.post(`${FETCH_URL}/v1/forgot-pwd`,
+        {
+          email: forgotPasswordEmailInput,
+        })
+        .then((res) => {
+          console.log(res.data);
+          store.dispatch(forgotPassInfo('L\'email a bien été envoyé'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
+        })
+        .catch((err) => {
+          console.log(err);
+          store.dispatch(forgotPassInfo('Aïe, ça n\'a pas fonctionné, désolé'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
+        });
+      break;
     default:
       next(action);
   }

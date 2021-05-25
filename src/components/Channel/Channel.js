@@ -26,11 +26,9 @@ const Channel = ({
     let {id} = useParams();
     // Ici on envoi la demande pour récupérer les infos de ce channel
     useEffect(() => {
-      // console.log('l\'utilisateur entre dans un channel');
       fetchChannel(id);
-      
       return () => {
-        // console.log('l\'utilisateur quitte un channel');
+        // this is done just before the component unmounts
         userLeaveChannel();
       };
     }, []);

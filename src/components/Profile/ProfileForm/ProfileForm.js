@@ -40,6 +40,7 @@ export default ({
     toggleActiveBtn(name)
   };
   
+  // Fetch for last profile datas on component did mount.
   useEffect(() => {
     fetchMyProfile();
   }, []);

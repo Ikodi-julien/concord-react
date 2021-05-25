@@ -18,14 +18,18 @@ const Homepage = ({
   tags,
   setIsRefresh,
 }) => {
+<<<<<<< HEAD
   console.log(tags);
 
   {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage else we store the path in sessionStorage */ }
+=======
+  {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage */}
+>>>>>>> 8a79d448f83bfe91f1a286e47e163905c358c3f4
   if (isRefresh) {
     console.log('on envoi SetPath')
     return (<SetPathnameContainer />)
   }
-  // Fetch tags and channels on component did mount, if it's not a rerouting after a refresh. Also fetch after user's tags are updated.
+  // Fetch tags and channels on component did mount, if it's not a rerouting after a refresh. Also fetch channels after user's tags are updated from Profile.
   if (isUserLoggued && !isRefresh) {
     useEffect(() => {
       fetchMyChannels();
