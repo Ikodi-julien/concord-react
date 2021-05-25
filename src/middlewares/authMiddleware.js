@@ -25,6 +25,9 @@ import {
   GET_USER_INFOS,
   getUserSuccess,
 } from 'src/actions/userActions';
+import {
+  SUBMIT_DELETE_ACCOUNT,
+} from 'src/actions/profileActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -226,6 +229,23 @@ export default (store) => (next) => (action) => {
             msg = 'The current password is incorrect';
           }
           store.dispatch(updatePassInfo(msg));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
+        });
+      break;
+
+    case SUBMIT_DELETE_ACCOUNT:
+      axios.delete(`${FETCH_URL}/v1/me`, {
+        withCredentials: true,
+      })
+        .then((res) => {
+          store.dispatch(disconnectUserSuccess());
+          // console.log('res.data :', res.data);
+        })
+        .catch((error) => {
+          // console.error('catch error: ', error);
+          store.dispatch(disconnectUserError(error.toString()));
           setTimeout(() => {
             store.dispatch(hideInfos());
           }, errorTimer);
