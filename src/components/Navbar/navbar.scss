@@ -1,7 +1,9 @@
 @use 'src/styles/vars'as v;
 
 .nav {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,7 +21,7 @@
     margin: 0 20px;
     background: center/contain no-repeat url('src/assets/teacup_logo.png');
 
-    @media screen and (max-width:700px) {
+    @media screen and (max-width:768px) {
       display: none;
     }
   }
@@ -48,7 +50,7 @@
     align-items: center;
     z-index: v.$z-index-middle-front;
 
-    @media screen and (max-width:700px) {
+    @media screen and (max-width:768px) {
       position: absolute;
       align-items: flex-start;
       top: v.$nav-height;
@@ -76,7 +78,7 @@
       justify-content: space-between;
       align-items: center;
 
-      @media screen and (max-width:700px) {
+      @media screen and (max-width:768px) {
         position: absolute;
         top: 0;
         width: 100%;
@@ -103,7 +105,7 @@
     position: relative;
     display: flex;
 
-    @media screen and (max-width:700px) {
+    @media screen and (max-width:768px) {
       width: 100%;
       flex-direction: row-reverse;
       justify-content: space-between;
