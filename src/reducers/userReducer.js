@@ -28,6 +28,7 @@ const userState = {
   email: '',
   myChannelLinks: [],
   tags: [],
+  noTagAlert: 0,
   channels: [],
   recommendedChannels: [],
   nicknameInput: '',
@@ -145,6 +146,7 @@ const reducer = (stateActuel = userState, action = {}) => {
       return {
         ...stateActuel,
         recommendedChannels: action.value,
+        noTagAlert: action.value.length,
       };
 
     case GET_USER_SUCCESS:
