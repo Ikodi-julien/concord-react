@@ -3,7 +3,7 @@ import {Segment, Divider} from 'semantic-ui-react';
 
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import NavbarContainer from 'src/containers/NavbarContainer';
-import PasswordModal from './PasswordModal/PasswordModal';
+import PasswordModalContainer from 'src/containers/PasswordModalContainer';
 import ProfileFormContainer from 'src/containers/ProfileFormContainer';
 import Footer from 'src/components/Footer/Footer';
 
@@ -23,7 +23,7 @@ const Profile = () => {
         </Segment>
         <Divider />
         <Segment >
-          <PasswordModal />
+          <PasswordModalContainer />
           {/* <Button secondary icon='delete user' content='Supprimer mon compte' labelPosition='left' /> */}
         </Segment>
 

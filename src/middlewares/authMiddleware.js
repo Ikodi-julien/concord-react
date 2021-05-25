@@ -14,6 +14,8 @@ import {
   submitLoginForm,
   SUBMIT_FORGOT_PASS_FORM,
   forgotPassInfo,
+  SUBMIT_UPDATE_PASSWORD,
+  updatePassInfo,
 } from 'src/actions/authActions';
 import {
   hideInfos,
@@ -22,7 +24,6 @@ import {
 import {
   GET_USER_INFOS,
   getUserSuccess,
-
 } from 'src/actions/userActions';
 
 export default (store) => (next) => (action) => {
@@ -34,6 +35,9 @@ export default (store) => (next) => (action) => {
     firstSignupPassword,
     secondSignupPassword,
     forgotPasswordEmailInput,
+    updatePassFormOld,
+    updatePassFormNew1,
+    updatePassFormNew2,
   } = store.getState().auth;
 
   const errorTimer = 2500;
@@ -177,6 +181,57 @@ export default (store) => (next) => (action) => {
           }, errorTimer);
         });
       break;
+
+    case SUBMIT_UPDATE_PASSWORD:
+      console.log(action);
+      next(action);
+      // check for inputs consistency
+      if (
+        !updatePassFormOld
+          || !updatePassFormNew1
+          || !updatePassFormNew2
+      ) {
+        store.dispatch(updatePassInfo('Un ou plusieurs champs ne sont pas remplis'));
+        setTimeout(() => {
+          store.dispatch(hideInfos());
+        }, errorTimer);
+        return;
+      }
+
+      if (updatePassFormNew1 !== updatePassFormNew2) {
+        store.dispatch(updatePassInfo('Les mots de passe ne sont pas identiques'));
+        setTimeout(() => {
+          store.dispatch(hideInfos());
+        }, errorTimer);
+        return;
+      }
+
+      axios.patch(`${FETCH_URL}/v1/me`, {
+        password: updatePassFormOld,
+        newPassword: updatePassFormNew1,
+      }, {
+        withCredentials: true,
+      })
+        .then((res) => {
+          // console.log('res.data :', res.data);
+          store.dispatch(updatePassInfo(res.data.message));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
+        })
+        .catch((error) => {
+          console.error('catch error: ', error);
+          let msg = 'Quelque chose n\'a pas fonctionné, désolé';
+          if (error.toString().includes('409')) {
+            msg = 'The current password is incorrect';
+          }
+          store.dispatch(updatePassInfo(msg));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
+        });
+      break;
+
     default:
       next(action);
   }

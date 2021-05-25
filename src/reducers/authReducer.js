@@ -16,6 +16,7 @@ import {
   DISCONNECT_USER_SUCCESS,
   DISCONNECT_USER_ERROR,
   FORGOT_PASS_INFO,
+  UPDATE_PASS_INFO,
 } from 'src/actions/authActions';
 import {
   GET_USER_INFOS,
@@ -39,6 +40,10 @@ const authState = {
   firstLogin: false,
   forgotPasswordEmailInput: '',
   forgotPassInfoIsVisible: false,
+  updatePassFormOld: '',
+  updatePassFormNew1: '',
+  updatePassFormNew2: '',
+  updatePassInfoIsVisible: false,
 };
 
 const reducer = (stateActuel = authState, action = {}) => {
@@ -58,7 +63,7 @@ const reducer = (stateActuel = authState, action = {}) => {
       };
 
     case SET_INPUT_VALUE:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         [action.objectInput.name]: action.objectInput.value,
@@ -154,12 +159,19 @@ const reducer = (stateActuel = authState, action = {}) => {
         forgotPassInfoIsVisible: true,
       };
 
+    case UPDATE_PASS_INFO:
+      return {
+        ...stateActuel,
+        updatePassInfoIsVisible: true,
+      };
+
     case HIDE_INFOS:
       return {
         ...stateActuel,
         signupInfoIsVisible: false,
         loginInfoIsVisible: false,
         forgotPassInfoIsVisible: false,
+        updatePassInfoIsVisible: false,
       };
 
     default:

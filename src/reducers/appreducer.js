@@ -18,6 +18,7 @@ import {
   LOGIN_SUCCESS,
   DISCONNECT_USER_ERROR,
   FORGOT_PASS_INFO,
+  UPDATE_PASS_INFO,
 } from 'src/actions/authActions';
 import {
   GET_USER_SUCCESS,
@@ -137,6 +138,13 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case FORGOT_PASS_INFO:
+      // console.log(action);
+      return {
+        ...stateActuel,
+        appInfo: action.value,
+      };
+
+    case UPDATE_PASS_INFO:
       // console.log(action);
       return {
         ...stateActuel,
