@@ -41,16 +41,14 @@
       }
     }
 
-    @media screen and (min-width: 425px) {
-      max-height: 28vh;
-    }
-
     @media screen and (min-height: 731px) {
-      max-height: 30vh;
+      height: 26vh;
+      max-height: 31vh;
     }
 
     @media screen and (min-height: 823px) {
-      max-height: 34vh;
+      height: 29vh;
+      max-height: 33vh;
     }
 
     @media screen and (min-height: 1024px) {

@@ -6,12 +6,18 @@
   margin: 0.4em 0.5em;
   min-height:20vh;
   
-  @media screen and (min-width: 560px) {
-    max-width: 47%;
+  @media screen and (min-width: 768px) {
+    // max-width: 47%;
+
+    width: 35vw;
+    min-width: 47%;
   }
 
   @media screen and (min-width: 1200px) {
-    max-width: 31%;
+    // max-width: 31%;
+
+    min-width: 30%;
+    width: 22vw;
   }
 
   @media screen and (min-height: 800px) {

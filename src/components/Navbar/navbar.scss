@@ -1,7 +1,9 @@
 @use 'src/styles/vars'as v;
 
 .nav {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;

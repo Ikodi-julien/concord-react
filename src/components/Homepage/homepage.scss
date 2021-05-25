@@ -7,11 +7,10 @@
   flex-direction: column;
   align-items: center;
 
-  &__suggested>.homepage__title {
-    margin-top: 1.5em;
+  &__title {
 
     @media screen and (max-height:640px) {
-      margin-top: 1em
+      font-size: 1.5rem;
     }
   }
 
@@ -20,14 +19,27 @@
     width: 80%;
     max-width: 1200px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-height: calc(100vh - 114px);
+
     @media screen and (max-width: 768px) {
       width: 90vw;
     }
-  }
 
-  &__mychannels,
-  &__suggested {
-    margin-top: 1em;
-    max-height: calc(50vh - 64px - 50px);
+    @media screen and (max-height: 660px) {
+      max-height: none;
+    }
   }
+}
+
+.notagalert {
+  padding: 5px;
+  border: 1px solid #4200EA;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-align: center;
+  background-color: #4200EA15;
 }
