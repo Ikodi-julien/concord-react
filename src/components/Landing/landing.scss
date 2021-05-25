@@ -34,7 +34,7 @@
     background-color: transparent;
 
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 700px) {
       flex-direction: column;
       margin: 10vh 0;
     }
@@ -45,7 +45,7 @@
       text-align: center;
       filter: drop-shadow(1px 1px 1px white);
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 700px) {
         width: 80%;
       }
     }
@@ -53,13 +53,8 @@
     &__image {
       width: 50%;
 
-<<<<<<< HEAD
-      @media screen and (max-width: 768px) {
-        width: 80%;
-=======
       @media screen and (max-width: 700px) {
         width: 115%;
->>>>>>> 8a79d448f83bfe91f1a286e47e163905c358c3f4
       }
     }
 
@@ -87,7 +82,7 @@
         color: v.$base-color-orange;
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 700px) {
         width: 80%;
         margin-bottom: 10vh;
       }

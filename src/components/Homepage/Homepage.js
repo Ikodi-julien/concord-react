@@ -18,13 +18,7 @@ const Homepage = ({
   tags,
   setIsRefresh,
 }) => {
-<<<<<<< HEAD
-  console.log(tags);
-
-  {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage else we store the path in sessionStorage */ }
-=======
   {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage */}
->>>>>>> 8a79d448f83bfe91f1a286e47e163905c358c3f4
   if (isRefresh) {
     console.log('on envoi SetPath')
     return (<SetPathnameContainer />)
