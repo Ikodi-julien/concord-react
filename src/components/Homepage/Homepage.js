@@ -16,7 +16,7 @@ const Homepage = ({
   fetchMyRecos,
   isRefresh,
   tags,
-  setIsRefresh,
+  noTagAlert,
 }) => {
   {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage */}
   if (isRefresh) {
@@ -39,7 +39,7 @@ const Homepage = ({
 
       <div className='homepage__container'>
 
-        {(!tags || tags.length === 0) && (
+        {!noTagAlert && (
           <div className='notagalert'>
             <p><strong>On dirait que tu n'as pas renseigné de centres d'intérêt...</strong> <Link to="/profile">Passe dans tes paramètres</Link> pour que nous puissions te proposer des salons qui t'intéressent !</p>
           </div>
