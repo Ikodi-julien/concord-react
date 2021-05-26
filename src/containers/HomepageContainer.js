@@ -10,6 +10,7 @@ const mapStateToProps = ({ user, app, auth }) => ({
   recommendedChannels: user.recommendedChannels,
   isRefresh: app.isRefresh,
   tags: user.tags,
+  noTagAlert: user.noTagAlert,
 });
 
 const mapDispatchToProps = (dispatch) => ({
