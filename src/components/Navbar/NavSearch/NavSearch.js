@@ -1,7 +1,7 @@
 import React from 'react';
 import {Search, Select} from 'semantic-ui-react';
 import {useHistory} from 'react-router-dom';
-import { searchChangeHandler } from '../../../selectors/search';
+import { searchChangeHandler, makeSelectOptions } from '../../../selectors/search';
 
 const NavSearch = (
   {
@@ -20,7 +20,7 @@ const NavSearch = (
   // This allows to redirect with a history.push('/someurl')
   let history = useHistory();
   // Options for select component
-  const tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
+  const selectOptions = makeSelectOptions(tags);
   
   /* ------- Search handling -------- */
   const tagNames = tags.map(tag => tag.name);
@@ -80,7 +80,7 @@ const NavSearch = (
           <Select 
             placeholder="Catégories" 
             value={tagSelectValue}
-            options={tagsOptions}
+            options={selectOptions}
             onChange={handleSelectChange}
           />
         </div>

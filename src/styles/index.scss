@@ -1,14 +1,21 @@
 // @use 'reset';
 @use 'vars';
 
-body {
-  font-family: sans-serif;
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../assets/fonts/Quicksand-Regular.ttf');
 }
+
+// body {
+//   font-family: 'sans-serif';
+// }
 
 #root {
   width: 100%;
   height: 100%;
+  font-family: 'Quicksand';
 }
+
 
 /* 
   // or you can import your own font

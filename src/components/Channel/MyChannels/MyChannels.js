@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 const MyChannels = (
   {
@@ -19,6 +19,7 @@ const MyChannels = (
   const handleMyChannelClick = () => {
     toggleMyChannels();
   };
+  const {id} =useParams();
   
   return (
     <section className={showMychannels ? "mychannels --show" : "mychannels"}>
@@ -37,12 +38,23 @@ const MyChannels = (
       
       <div className="mychannels__links">
         {
-          myChannelLinks.map(link => <Link
-            key={link.id}
-            className='mychannels__links__link'
-            to={`/channels/${link.id}`}
-            onClick={() => {handleClick(link.id)}}
-            >{link.name}</Link>)
+          myChannelLinks.map(link => {
+            // return a div if it's the loaded channel
+            if (id == link.id) {
+              return (
+                <div
+                  key={link.id}
+                  className='mychannels__links__link--active'
+                >{link.name}</div>)
+            }
+            
+            return (
+            <Link
+              key={link.id}
+              className='mychannels__links__link'
+              to={`/channels/${link.id}`}
+              onClick={() => {handleClick(link.id)}}
+            >{link.name}</Link>)})
         }
       </div>
     </section>

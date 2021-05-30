@@ -6,19 +6,22 @@ import {
   SEARCH_CHANGE,
   TAG_SELECT_CHANGE,
   SET_NAV_SEARCH_RESULT,
-  HIDE_ERRORS,
+  HIDE_INFOS,
   SET_NAV_MENU_OPEN,
   SET_WINDOW_SIZE,
   SET_ISREFRESH,
-  APP_ERROR,
   SET_ISLANDINGACTIVE,
+  APP_INFO,
+  RESET_SEARCH,
 } from 'src/actions/appActions';
 import {
   SIGNUP_ERROR,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   DISCONNECT_USER_ERROR,
-} from 'src/actions/loginsignupActions';
+  FORGOT_PASS_INFO,
+  UPDATE_PASS_INFO,
+} from 'src/actions/authActions';
 import {
   GET_USER_SUCCESS,
 } from 'src/actions/userActions';
@@ -30,8 +33,8 @@ const appState = {
   isLandingActive: false,
   // Possibly related to everywhere
   isNavMenuOpen: false,
-  errorMessage: '',
-  appErrorIsVisible: false,
+  appInfo: '',
+  appInfoIsVisible: false,
   windowSize: 0,
   appRoutes: [
     { slug: '/home', name: 'Home' },
@@ -51,11 +54,11 @@ const appState = {
 
 const reducer = (stateActuel = appState, action = {}) => {
   switch (action.type) {
-    case APP_ERROR:
+    case APP_INFO:
       return {
         ...stateActuel,
-        errorMessage: action.value,
-        appErrorIsVisible: true,
+        appInfo: action.value,
+        appInfoIsVisible: true,
       };
 
     case TOGGLE_NAV_SEARCH:
@@ -98,6 +101,12 @@ const reducer = (stateActuel = appState, action = {}) => {
         searchedValue: action.value,
       };
 
+    case RESET_SEARCH:
+      return {
+        ...stateActuel,
+        tagSelectValue: '',
+      };
+
     case TAG_SELECT_CHANGE:
       return {
         ...stateActuel,
@@ -114,33 +123,47 @@ const reducer = (stateActuel = appState, action = {}) => {
     case SIGNUP_ERROR:
       return {
         ...stateActuel,
-        errorMessage: action.value,
+        appInfo: action.value,
       };
 
     case LOGIN_ERROR:
       // console.log(action);
       return {
         ...stateActuel,
-        errorMessage: action.value,
+        appInfo: action.value,
       };
 
     case LOGIN_SUCCESS:
       // console.log(action);
       return {
         ...stateActuel,
-        errorMessage: '',
+        appInfo: '',
       };
 
     case DISCONNECT_USER_ERROR:
       return {
         ...appState,
-        errorMessage: 'Erreur lors du logout',
+        appInfo: 'Erreur lors du logout',
       };
 
-    case HIDE_ERRORS:
+    case FORGOT_PASS_INFO:
+      // console.log(action);
       return {
         ...stateActuel,
-        appErrorIsVisible: false,
+        appInfo: action.value,
+      };
+
+    case UPDATE_PASS_INFO:
+      // console.log(action);
+      return {
+        ...stateActuel,
+        appInfo: action.value,
+      };
+
+    case HIDE_INFOS:
+      return {
+        ...stateActuel,
+        appInfoIsVisible: false,
       };
 
     case SET_WINDOW_SIZE:
@@ -162,14 +185,14 @@ const reducer = (stateActuel = appState, action = {}) => {
       };
 
     case GET_USER_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         isRefresh: true,
       };
 
     case SET_ISREFRESH:
-      console.log('setisrefresh dans le reducer');
+      // console.log('setisrefresh dans le reducer');
       return {
         ...stateActuel,
         isRefresh: action.value,

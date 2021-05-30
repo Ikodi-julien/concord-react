@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Divider, Segment, Modal, Form } from 'semantic-ui-react'
-import ErrorInfo from 'src/components/Navbar/ErrorInfo/ErrorInfo';
+import AppInfo from 'src/components/AppInfo/AppInfo';
+import ForgotPassContainer from 'src/containers/ForgotPasswordContainer';
 
 import './loginmodal.scss';
 
@@ -20,9 +21,9 @@ const LoginModal = ({
   inputFirstSignupPasswordValue,
   inputSecondSignupPasswordValue,
   setInputValue,
-  loginErrorIsVisible,
-  signupErrorIsVisible,
-  errorMessage,
+  loginInfoIsVisible,
+  signupInfoIsVisible,
+  appInfo,
 }) => {
 
   const inputChange = (evt) => {
@@ -48,7 +49,7 @@ const LoginModal = ({
       open={loginOpen}
       trigger={<Button primary >S'inscrire / Se connecter</Button>}
     >
-    <ErrorInfo isVisible={loginErrorIsVisible} errorMessage={errorMessage} />
+    <AppInfo isVisible={loginInfoIsVisible} appInfo={appInfo} />
     <Modal.Content >
     <Segment placeholder >
     
@@ -101,7 +102,7 @@ const LoginModal = ({
       open={signupOpen}
       trigger={<Button >Créer un compte</Button>}
       >
-      <ErrorInfo isVisible={signupErrorIsVisible} errorMessage={errorMessage} />
+      <AppInfo isVisible={signupInfoIsVisible} appInfo={appInfo} />
         <Modal.Content >
       
       <Segment placeholder>
@@ -154,7 +155,9 @@ const LoginModal = ({
         </Modal.Content>
         
       </Modal>
-
+      <Divider />
+      
+      <ForgotPassContainer />
       
       </Segment>
       </Modal.Content>

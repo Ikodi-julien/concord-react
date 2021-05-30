@@ -4,7 +4,7 @@ import SetSizeContainer from 'src/containers/SetSizeContainer';
 import NavSearchContainer from 'src/containers/NavSearchContainer';
 import Navmenu from './Navmenu/Navmenu';
 import LoginModalContainer from 'src/containers/LoginModalContainer';
-import ErrorInfo from './ErrorInfo/ErrorInfo';
+import AppInfo from 'src/components/AppInfo/AppInfo';
 
 import './navbar.scss';
 
@@ -12,8 +12,8 @@ const Navbar = ({
   setWindowSize,
   windowSize,
   links,
-  errorMessage,
-  appErrorIsVisible,
+  appInfo,
+  appInfoIsVisible,
   fetchData,
   isUserLoggued,
   isShowSearch,
@@ -23,6 +23,7 @@ const Navbar = ({
   toggleMyChannels,
   setNavMenuOpen,
   disconnectUser,
+  resetSearch,
 }) => {
   // Fetch tags and channels on component did mount.
   if (isUserLoggued) useEffect(() => {fetchData()}, []);
@@ -30,7 +31,7 @@ const Navbar = ({
   return (
     <section className='nav' >
     <SetSizeContainer />
-    <ErrorInfo errorMessage={errorMessage} isVisible={appErrorIsVisible} />
+    <AppInfo appInfo={appInfo} isVisible={appInfoIsVisible} />
       <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
         {/* ici le logo */}
         TeaCup
@@ -57,6 +58,7 @@ const Navbar = ({
             setNavMenuOpen={setNavMenuOpen}
             setWindowSize={setWindowSize}
             windowSize={windowSize}
+            resetSearch={resetSearch}
           />
           
         </div>

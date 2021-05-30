@@ -1,29 +1,22 @@
-import React, {useEffect} from 'react';
-import {Button, Dropdown, Form, Segment, Divider} from 'semantic-ui-react';
-import {useHistory} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Button, Header, Segment, Divider, Modal} from 'semantic-ui-react';
 
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import NavbarContainer from 'src/containers/NavbarContainer';
-import PasswordModal from './PasswordModal/PasswordModal';
-import ProfileForm from './ProfileForm/ProfileForm';
+import PasswordModalContainer from 'src/containers/PasswordModalContainer';
+import ProfileFormContainer from 'src/containers/ProfileFormContainer';
 import Footer from 'src/components/Footer/Footer';
 
 import './profile.scss';
 
-const Profile = (
-  {
-    tags, 
-    user, 
-    updateProfile,
-    setProfileInputValue,
-    setTagsDropdownValue,
-    setTagsDropDownIds,
-    toggleActiveBtn,
-    setFirstLogin,
-  }) => {
+const Profile = ({submitDeleteAccount}) => {
 
-  useEffect(() => setFirstLogin(false), [])
-  
+  const [open, setOpen] = useState(false)
+  const handleDeleteAccount = () => {
+    setOpen(false);
+    submitDeleteAccount();
+  }
+  /* Profile datas are fetch from ProfileForm component */
   return (
     <section className="profile">
       <StoreUrl />
@@ -31,20 +24,39 @@ const Profile = (
       
       <div className="profile__container">
         <Segment >
-          <ProfileForm 
-            user={user}
-            tags={tags}
-            toggleActiveBtn={toggleActiveBtn}
-            setTagsDropdownValue={setTagsDropdownValue}
-            setTagsDropDownIds={setTagsDropDownIds}
-            setProfileInputValue={setProfileInputValue}
-            updateProfile={updateProfile}
-          />
+          <ProfileFormContainer />
         </Segment>
         <Divider />
         <Segment >
-          <PasswordModal />
-          {/* <Button secondary icon='delete user' content='Supprimer mon compte' labelPosition='left' /> */}
+          <PasswordModalContainer />
+
+          <Modal
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+            open={open}
+            trigger={<Button>Supprimer mon compte</Button>}
+          >
+            <Modal.Header>Supprimer mon compte</Modal.Header>
+            <Modal.Content >
+              <Modal.Description>
+                <p>
+                  Vous êtes sûr de vouloir supprimer votre compte ?</p>
+                <p>Vos informations personnelles seront supprimées, vous serez déconnecté de l'application mais vous pourrez toujours créer un nouveau compte.</p>
+              </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button color='black' onClick={() => setOpen(false)}>
+                Nope
+              </Button>
+              <Button
+                content="Supprimer mon compte"
+                labelPosition='right'
+                icon='checkmark'
+                onClick={handleDeleteAccount}
+                positive
+              />
+            </Modal.Actions>
+          </Modal>
         </Segment>
 
       </div>

@@ -12,6 +12,7 @@ const Navmenu = (
     isNavMenuOpen, 
     setNavMenuOpen, 
     windowSize,
+    resetSearch,
   }
   ) => {
 
@@ -44,7 +45,9 @@ const Navmenu = (
           <Dropdown.Item key={link.name}>
             <NavLink 
               to={link.slug}  
-              className="nav__menu__link" >{link.name}
+              className="nav__menu__link" 
+              onClick={() => resetSearch()}
+              >{link.name}
             </NavLink>
           </Dropdown.Item>
           ))
