@@ -33,8 +33,7 @@ const Navbar = ({
     <SetSizeContainer />
     <AppInfo appInfo={appInfo} isVisible={appInfoIsVisible} />
       <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
-        {/* ici le logo */}
-        TeaCup
+        chatRoom
       </Link>
       
       {!isUserLoggued && ( <LoginModalContainer />)}

@@ -5,7 +5,7 @@ import './footer.scss';
 
 const Footer = () => (
   <section className="footer">
-    © TeaCup
+    © chatRoom
     {/* <Link to="/terms">Conditions d'utilisation</Link>
     <Link to="/privacy">Confidentialité</Link>
     <Link to="/about">A propos de TeaCup</Link>
