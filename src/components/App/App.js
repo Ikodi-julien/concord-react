@@ -1,69 +1,71 @@
 // == Import npm
-import React, {useEffect} from 'react';
-import {
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
+import React, { useEffect } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import setSocketInHtml from 'src/selectors/setSocketInHtml'
 
 // == Import
-import ChannelContainer from '../../containers/ChannelContainer';
-import NavbarContainer from 'src/containers/NavbarContainer';
-import LandingContainer from 'src/containers/LandingContainer';
-import DiscoveryContainer from 'src/containers/DiscoveryContainer';
-import HomepageContainer from 'src/containers/HomepageContainer';
-import ProfileContainer from 'src/containers/ProfileContainer';
-import Footer from 'src/components/Footer/Footer';
-import Error404 from 'src/components/Error404/Error404';
+import ChannelContainer from '../../containers/ChannelContainer'
+import NavbarContainer from 'src/containers/NavbarContainer'
+import LandingContainer from 'src/containers/LandingContainer'
+import DiscoveryContainer from 'src/containers/DiscoveryContainer'
+import HomepageContainer from 'src/containers/HomepageContainer'
+import ProfileContainer from 'src/containers/ProfileContainer'
+import Footer from 'src/components/Footer/Footer'
+import Error404 from 'src/components/Error404/Error404'
 
-import './app.scss';
+import './app.scss'
 // == Composant
 
-const App = ({isUserLoggued, firstLogin}) => (
-  
-  <div className="app">
-    <Switch>
+const App = ({ isUserLoggued, firstLogin }) => {
+  useEffect(() => setSocketInHtml(), [])
 
-      <Route path='/home'>
-        {/* Home */}
-        {
-          isUserLoggued && firstLogin ? <Redirect to='/profile' />: isUserLoggued ? <HomepageContainer /> : <Redirect to='/' />
-        }
-      </Route>
-      
-      <Route path='/channels/:id'>
-        {/* Channels */}
-        {isUserLoggued ? <ChannelContainer /> : <Redirect to='/' />}
-      </Route>
-      
-      <Route path='/profile'>
-        {/* Profile */}
-        {isUserLoggued ?  <ProfileContainer /> : <Redirect to='/' />}
-      </Route>
-      
-      <Route path='/discovery'>
-        {/* Discovery */}
-        {isUserLoggued ? <DiscoveryContainer /> : <Redirect to='/' />}
-      </Route>
-      
-      <Route path='/error'>
-        {/* Error */}
-        {isUserLoggued ? <Error404 /> : <Redirect to='/' />}
-      </Route>
-      
-      <Route path='/' exact>
-        {/* Accueil */}
-        {isUserLoggued && <Redirect to='/home' />}
-        <NavbarContainer />
+  return (
+    <div className="app">
+      <Switch>
+        <Route path="/home">
+          {/* Home */}
+          {isUserLoggued && firstLogin ? (
+            <Redirect to="/profile" />
+          ) : isUserLoggued ? (
+            <HomepageContainer />
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
+
+        <Route path="/channels/:id">
+          {/* Channels */}
+          {isUserLoggued ? <ChannelContainer /> : <Redirect to="/" />}
+        </Route>
+
+        <Route path="/profile">
+          {/* Profile */}
+          {isUserLoggued ? <ProfileContainer /> : <Redirect to="/" />}
+        </Route>
+
+        <Route path="/discovery">
+          {/* Discovery */}
+          {isUserLoggued ? <DiscoveryContainer /> : <Redirect to="/" />}
+        </Route>
+
+        <Route path="/error">
+          {/* Error */}
+          {isUserLoggued ? <Error404 /> : <Redirect to="/" />}
+        </Route>
+
+        <Route path="/" exact>
+          {/* Accueil */}
+          {isUserLoggued && <Redirect to="/home" />}
+          <NavbarContainer />
           <LandingContainer />
-        <Footer />
-      </Route>
-      
-      <Redirect to='/error' />
-    </Switch>
-    
-  </div>
-);
+          <Footer />
+        </Route>
+
+        <Redirect to="/error" />
+      </Switch>
+    </div>
+  )
+}
 
 // == Export
-export default App;
+export default App
