@@ -1,18 +1,18 @@
-import axios from 'axios';
-import { FETCH_URL } from 'src/vars';
+import axios from 'axios'
+import { API_URL } from 'src/settings'
 import {
   FETCH_MY_PROFILE,
   fetchMyProfileSuccess,
   UPDATE_PROFILE,
   updateProfileSuccess,
-} from 'src/actions/profileActions';
+} from 'src/actions/profileActions'
 import {
   FETCH_CHANNEL,
   fetchChannelSuccess,
   SOCKET_JOIN_CONFIRM,
   UPDATE_CHANNEL_USERS,
   updateChannelUsersSuccess,
-} from 'src/actions/channelActions';
+} from 'src/actions/channelActions'
 import {
   FETCH_MY_CHANNELS,
   fetchMyChannels,
@@ -20,7 +20,7 @@ import {
   FETCH_MY_RECOS,
   fetchMyRecosSuccess,
   DELETE_FROM_MY_CHANNELS,
-} from 'src/actions/userActions';
+} from 'src/actions/userActions'
 import {
   FETCH_NAV_DATA,
   fetchNavDataError,
@@ -28,201 +28,211 @@ import {
   setFirstLogin,
   appInfo,
   hideInfos,
-} from 'src/actions/appActions';
+} from 'src/actions/appActions'
 
 export default (store) => (next) => (action) => {
-  const { nicknameInput, emailInput, tagDropDownIds } = store.getState().user;
-  const { id } = store.getState().channel;
-  const errorTimer = 2000;
+  const { nicknameInput, emailInput, tagDropDownIds } = store.getState().user
+  const { id } = store.getState().channel
+  const errorTimer = 2000
 
   switch (action.type) {
     case FETCH_CHANNEL:
       // console.log(action);
-      next(action);
+      next(action)
 
       axios({
-        url: `${FETCH_URL}/v1/channel/${action.channelId}`,
+        url: `${API_URL}/v1/channel/${action.channelId}`,
         method: 'GET',
         withCredentials: true,
       })
         .then((res) => {
           // console.log('res.data :', res.data);
-          store.dispatch(fetchChannelSuccess(res.data));
+          store.dispatch(fetchChannelSuccess(res.data))
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo('Aïe l\'API a renvoyé une erreur'));
+          console.log('catch error: ', error)
+          store.dispatch(appInfo("Aïe l'API a renvoyé une erreur"))
           setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
-        });
-      break;
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
+      break
 
     case FETCH_MY_CHANNELS:
       // console.log(action);
-      next(action);
+      next(action)
 
       axios({
-        url: `${FETCH_URL}/v1/me/channels`,
+        url: `${API_URL}/v1/me/channels`,
         method: 'GET',
         withCredentials: true,
       })
         .then((res) => {
           // console.log('res.data :', res.data);
-          store.dispatch(fetchMyChannelsSuccess(res.data));
+          store.dispatch(fetchMyChannelsSuccess(res.data))
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo('Aïe, un problème est survenu...'));
+          console.log('catch error: ', error)
+          store.dispatch(appInfo('Aïe, un problème est survenu...'))
           setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
-        });
-      break;
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
+      break
 
     case FETCH_MY_RECOS:
       // console.log(action);
-      next(action);
+      next(action)
 
       axios({
-        url: `${FETCH_URL}/v1/me/recommended`,
+        url: `${API_URL}/v1/me/recommended`,
         method: 'GET',
         withCredentials: true,
       })
         .then((res) => {
           // console.log('res.data :', res.data);
-          store.dispatch(fetchMyRecosSuccess(res.data));
+          store.dispatch(fetchMyRecosSuccess(res.data))
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo('Aïe, un problème est survenu...'));
+          console.log('catch error: ', error)
+          store.dispatch(appInfo('Aïe, un problème est survenu...'))
           setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
-        });
-      break;
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
+      break
 
     case FETCH_NAV_DATA:
       // console.log(action);
-      next(action);
+      next(action)
 
       // Fetch tags then channels
       axios({
-        url: `${FETCH_URL}/v1/tags/channels`,
+        url: `${API_URL}/v1/tags/channels`,
         method: 'GET',
         withCredentials: true,
       })
         .then((res) => {
-          const tags = res.data;
+          const tags = res.data
 
           axios({
-            url: `${FETCH_URL}/v1/channels`,
+            url: `${API_URL}/v1/channels`,
             method: 'GET',
             withCredentials: true,
+          }).then((response) => {
+            const channels = response.data
+            store.dispatch(fetchNavDataSuccess({ tags, channels }))
           })
-            .then((response) => {
-              const channels = response.data;
-              store.dispatch(fetchNavDataSuccess({ tags, channels }));
-            });
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(fetchNavDataError());
-          store.dispatch(appInfo('Aïe l\'API a renvoyé une erreur'));
+          console.log('catch error: ', error)
+          store.dispatch(fetchNavDataError())
+          store.dispatch(appInfo("Aïe l'API a renvoyé une erreur"))
           setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
-        });
-      break;
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
+      break
 
     case FETCH_MY_PROFILE:
-      next(action);
-      console.log(action);
+      next(action)
+      console.log(action)
 
-      axios.get(`${FETCH_URL}/v1/me`, {
-        withCredentials: true,
-      }).then((res) => {
-        console.log(res.data);
-        store.dispatch(fetchMyProfileSuccess(res.data));
+      axios
+        .get(`${API_URL}/v1/me`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data)
+          store.dispatch(fetchMyProfileSuccess(res.data))
 
-        store.dispatch(setFirstLogin(false));
-      }).catch((error) => {
-        console.log(error);
-        store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
-        setTimeout(() => {
-          store.dispatch(hideInfos());
-        }, errorTimer);
-      });
-      break;
+          store.dispatch(setFirstLogin(false))
+        })
+        .catch((error) => {
+          console.log(error)
+          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"))
+          setTimeout(() => {
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
+      break
 
     case UPDATE_PROFILE:
-      next(action);
-      console.log(action);
+      next(action)
+      console.log(action)
 
-      axios.put(`${FETCH_URL}/v1/me`, {
-        email: emailInput,
-        nickname: nicknameInput,
-        tags: tagDropDownIds,
-      }, {
-        withCredentials: true,
-      }).then((res) => {
-        console.log(res.data);
-        store.dispatch(updateProfileSuccess(res.data));
-      }).catch((error) => {
-        console.log(error);
-        store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
-        setTimeout(() => {
-          store.dispatch(hideInfos());
-        }, errorTimer);
-      });
+      axios
+        .put(
+          `${API_URL}/v1/me`,
+          {
+            email: emailInput,
+            nickname: nicknameInput,
+            tags: tagDropDownIds,
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          console.log(res.data)
+          store.dispatch(updateProfileSuccess(res.data))
+        })
+        .catch((error) => {
+          console.log(error)
+          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"))
+          setTimeout(() => {
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
 
-      break;
+      break
 
     case SOCKET_JOIN_CONFIRM:
-      next(action);
-      store.dispatch(fetchMyChannels());
-      break;
+      next(action)
+      store.dispatch(fetchMyChannels())
+      break
 
     case UPDATE_CHANNEL_USERS:
-      next(action);
+      next(action)
 
       axios({
-        url: `${FETCH_URL}/v1/channel/${id}`,
+        url: `${API_URL}/v1/channel/${id}`,
         method: 'GET',
         withCredentials: true,
       })
         .then((res) => {
           // console.log('res.data :', res.data);
-          store.dispatch(updateChannelUsersSuccess(res.data));
+          store.dispatch(updateChannelUsersSuccess(res.data))
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
+          console.log('catch error: ', error)
+          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"))
           setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
-        });
-      break;
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
+      break
 
     case DELETE_FROM_MY_CHANNELS:
       // console.log(action);
-      axios.delete(`${FETCH_URL}/v1/me/channels/${action.value}`, {
-        withCredentials: true,
-      })
+      axios
+        .delete(`${API_URL}/v1/me/channels/${action.value}`, {
+          withCredentials: true,
+        })
         .then((res) => {
-          console.log(res.data);
-          store.dispatch(fetchMyChannels());
+          console.log(res.data)
+          store.dispatch(fetchMyChannels())
         })
         .catch((err) => {
-          console.log(err);
-          store.dispatch(appInfo('Aïe, ça n\'a pas fonctionné, désolé'));
+          console.log(err)
+          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"))
           setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
-        });
-      break;
+            store.dispatch(hideInfos())
+          }, errorTimer)
+        })
+      break
 
     default:
-      next(action);
+      next(action)
   }
-};
+}
