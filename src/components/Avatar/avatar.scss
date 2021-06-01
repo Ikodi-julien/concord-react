@@ -1,0 +1,14 @@
+@use 'src/styles/vars' as v;
+
+.profile__avatar__row {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  & img {
+    height: 80px;
+    width: 80px;
+  }
+  & label {
+    color: v.$base-color-light;
+  }
+}

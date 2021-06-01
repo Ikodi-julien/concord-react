@@ -7,7 +7,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background-color: v.$base-color-dark;
+  color: v.$base-color-light;
 
+  & .ui.segment {
+    background-color: v.$base-color-dark;
+    color: v.$base-color-light;
+  }
   &__container {
     flex: 1;
     display: flex;
@@ -21,8 +27,8 @@
       padding: 10px;
     }
 
-    & .ui.form input[type=email],
-    & .ui.form input[type=text] {
+    & .ui.form input[type='email'],
+    & .ui.form input[type='text'] {
       border: none;
       border-bottom: 1px solid v.$base-color-grey;
     }

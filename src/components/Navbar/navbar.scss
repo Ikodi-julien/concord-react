@@ -10,24 +10,22 @@
   width: 100%;
   height: v.$nav-height;
   border: 1px solid v.$base-color-grey;
-  background-color: v.$base-color-dark;
+  background-color: v.$base-color-darkest;
   color: v.$base-color-light;
-
 
   &__logo {
     display: block;
-    height: v.$nav-height*.8;
-    width: v.$nav-height*.8;
+    height: v.$nav-height * 0.8;
+    width: v.$nav-height * 0.8;
     margin: 0 20px;
     background: center/contain no-repeat url('src/assets/teacup_logo.png');
 
-    @media screen and (max-width:768px) {
+    @media screen and (max-width: 768px) {
       display: none;
     }
   }
 
   & .ui {
-
     &.search,
     &.selection.dropdown {
       margin-right: 30px;
@@ -50,7 +48,7 @@
     align-items: center;
     z-index: v.$z-index-middle-front;
 
-    @media screen and (max-width:768px) {
+    @media screen and (max-width: 768px) {
       position: absolute;
       align-items: flex-start;
       top: v.$nav-height;
@@ -78,7 +76,7 @@
       justify-content: space-between;
       align-items: center;
 
-      @media screen and (max-width:768px) {
+      @media screen and (max-width: 768px) {
         position: absolute;
         top: 0;
         width: 100%;
@@ -105,7 +103,7 @@
     position: relative;
     display: flex;
 
-    @media screen and (max-width:768px) {
+    @media screen and (max-width: 768px) {
       width: 100%;
       flex-direction: row-reverse;
       justify-content: space-between;
