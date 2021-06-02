@@ -1,10 +1,9 @@
 /* eslint-disable no-case-declarations */
-/* email, password and token are mentionned in authReducer */
 import {
   LOGIN_SUCCESS,
   SIGNUP_SUCCESS,
   DISCONNECT_USER_SUCCESS,
-} from 'src/actions/authActions'
+} from "src/actions/authActions";
 import {
   UPDATE_PROFILE,
   UPDATE_PROFILE_SUCCESS,
@@ -13,34 +12,34 @@ import {
   SET_TAGS_DROPDOWN_IDS,
   TOGGLE_ACTIVE_BTN,
   FETCH_MY_PROFILE_SUCCESS,
-} from 'src/actions/profileActions'
+} from "src/actions/profileActions";
 import {
   GET_USER_SUCCESS,
   FETCH_MY_CHANNELS_SUCCESS,
   FETCH_MY_RECOS_SUCCESS,
   SET_PREVIEW,
-} from 'src/actions/userActions'
+} from "src/actions/userActions";
 // import fakeChannels from 'src/middlewares/fakeChannels';
 
 const userState = {
   id: -1,
-  nickname: '',
-  password: '',
-  email: '',
+  nickname: "",
+  password: "",
+  email: "",
   myChannelLinks: [],
   tags: [],
   noTagAlert: 0,
   channels: [],
   recommendedChannels: [],
-  nicknameInput: '',
-  emailInput: '',
+  nicknameInput: "",
+  emailInput: "",
   nicknameInputIsActive: false,
   emailInputIsActive: false,
   tagDropDownValue: [],
   tagDropDownIds: [],
-  avatarSrc: '',
-  avatarPreview: '',
-}
+  avatarSrc: "",
+  avatarPreview: "",
+};
 
 const reducer = (stateActuel = userState, action = {}) => {
   switch (action.type) {
@@ -53,7 +52,7 @@ const reducer = (stateActuel = userState, action = {}) => {
         nickname: action.user.nickname,
         password: action.user.password,
         email: action.user.email,
-      }
+      };
 
     case SIGNUP_SUCCESS:
       // console.log(action);
@@ -61,29 +60,29 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...stateActuel,
         password: action.password,
         email: action.email,
-      }
+      };
 
     case DISCONNECT_USER_SUCCESS:
       return {
         ...userState,
-      }
+      };
 
     case SET_PROFILE_INPUT_VALUE:
       // console.log(action);
       return {
         ...stateActuel,
         ...action.value,
-      }
+      };
 
     case UPDATE_PROFILE:
       // console.log(action);
       // TODO bouton loading en attente de UPDATE_PROFILE_SUCCESS
       return {
         ...stateActuel,
-      }
+      };
 
     case UPDATE_PROFILE_SUCCESS:
-      console.log(action)
+      console.log(action);
       return {
         ...stateActuel,
         nickname: action.data.nickname,
@@ -91,10 +90,10 @@ const reducer = (stateActuel = userState, action = {}) => {
         tags: action.data.tags,
         nicknameInput: action.data.nickname,
         emailInput: action.data.email,
-      }
+      };
 
     case FETCH_MY_PROFILE_SUCCESS:
-      console.log(action)
+      console.log(action);
 
       return {
         ...stateActuel,
@@ -105,34 +104,34 @@ const reducer = (stateActuel = userState, action = {}) => {
         tagDropDownIds: action.data.tags.map((tag) => tag.id),
         nicknameInput: action.data.nickname,
         emailInput: action.data.email,
-      }
+      };
 
     case SET_TAGS_DROPDOWN_VALUE:
       // console.log(action);
       return {
         ...stateActuel,
         tagDropDownValue: action.value,
-      }
+      };
 
     case SET_TAGS_DROPDOWN_IDS:
       // console.log(action);
       return {
         ...stateActuel,
         tagDropDownIds: action.value,
-      }
+      };
 
     case TOGGLE_ACTIVE_BTN:
       return {
         ...stateActuel,
         [action.value]: !stateActuel[action.value],
-      }
+      };
 
     case FETCH_MY_CHANNELS_SUCCESS:
       // console.log(action);
       if (stateActuel.channels === action.value) {
         return {
           ...stateActuel,
-        }
+        };
       }
       return {
         ...stateActuel,
@@ -141,7 +140,7 @@ const reducer = (stateActuel = userState, action = {}) => {
           ...channel,
           name: channel.title,
         })),
-      }
+      };
 
     case FETCH_MY_RECOS_SUCCESS:
       // console.log(action);
@@ -149,7 +148,7 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...stateActuel,
         recommendedChannels: action.value,
         noTagAlert: action.value.length,
-      }
+      };
 
     case GET_USER_SUCCESS:
       // console.log(action);
@@ -160,19 +159,19 @@ const reducer = (stateActuel = userState, action = {}) => {
         emailInput: action.value.email,
         tagDropDownValue: action.value.tags.map((tag) => tag.name),
         tagDropDownIds: action.value.tags.map((tag) => tag.id),
-      }
+      };
 
     case SET_PREVIEW:
       return {
         ...stateActuel,
         avatarPreview: action.value,
-      }
+      };
 
     default:
       return {
         ...stateActuel,
-      }
+      };
   }
-}
+};
 
-export default reducer
+export default reducer;

@@ -16,6 +16,7 @@ export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 
 export const SET_ISREFRESH = 'SET_ISREFRESH';
 export const SET_FIRST_LOGIN = 'SET_FIRST_LOGIN';
+export const SET_ISLANDINGACTIVE = 'SET_ISLANDINGACTIVE';
 export const APP_INFO = 'APP_INFO';
 /*-------------------------------------------*/
 export const toggleNavSearch = () => ({
@@ -47,4 +48,5 @@ export const setWindowSize = (windowSize) => ({ type: SET_WINDOW_SIZE, value: wi
 export const setIsRefresh = (bool) => ({ type: SET_ISREFRESH, value: bool });
 export const appInfo = (msg) => ({ type: APP_INFO, value: msg });
 export const setFirstLogin = (bool) => ({ type: SET_FIRST_LOGIN, value: bool });
+export const setIsLandingActive = (bool) => ({ type: SET_ISLANDINGACTIVE, value: bool });
 export const resetSearch = () => ({ type: RESET_SEARCH });

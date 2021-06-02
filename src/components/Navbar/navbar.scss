@@ -18,7 +18,7 @@
     height: v.$nav-height * 0.8;
     width: v.$nav-height * 0.8;
     margin: 0 20px;
-    background: center/contain no-repeat url('src/assets/teacup_logo.png');
+    background: center/contain no-repeat url("src/assets/teacup_logo.png");
 
     @media screen and (max-width: 768px) {
       display: none;
