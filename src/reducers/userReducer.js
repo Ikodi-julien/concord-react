@@ -1,10 +1,9 @@
 /* eslint-disable no-case-declarations */
-/* email, password and token are mentionned in authReducer */
 import {
   LOGIN_SUCCESS,
   SIGNUP_SUCCESS,
   DISCONNECT_USER_SUCCESS,
-} from 'src/actions/authActions';
+} from "src/actions/authActions";
 import {
   UPDATE_PROFILE,
   UPDATE_PROFILE_SUCCESS,
@@ -13,26 +12,26 @@ import {
   SET_TAGS_DROPDOWN_IDS,
   TOGGLE_ACTIVE_BTN,
   FETCH_MY_PROFILE_SUCCESS,
-} from 'src/actions/profileActions';
+} from "src/actions/profileActions";
 import {
   GET_USER_SUCCESS,
   FETCH_MY_CHANNELS_SUCCESS,
   FETCH_MY_RECOS_SUCCESS,
-} from 'src/actions/userActions';
+} from "src/actions/userActions";
 // import fakeChannels from 'src/middlewares/fakeChannels';
 
 const userState = {
   id: -1,
-  nickname: '',
-  password: '',
-  email: '',
+  nickname: "",
+  password: "",
+  email: "",
   myChannelLinks: [],
   tags: [],
   noTagAlert: 0,
   channels: [],
   recommendedChannels: [],
-  nicknameInput: '',
-  emailInput: '',
+  nicknameInput: "",
+  emailInput: "",
   nicknameInputIsActive: false,
   emailInputIsActive: false,
   tagDropDownValue: [],
@@ -50,7 +49,6 @@ const reducer = (stateActuel = userState, action = {}) => {
         nickname: action.user.nickname,
         password: action.user.password,
         email: action.user.email,
-
       };
 
     case SIGNUP_SUCCESS:
