@@ -1,29 +1,17 @@
-import React from 'react'
-import Avatar from 'react-avatar-edit'
-import { Button, Segment } from 'semantic-ui-react'
+import React from 'react';
+import Avatar from 'react-avatar-edit';
+import { Button, Segment } from 'semantic-ui-react';
+import getDateMyFormat from 'src/selectors/getDateMyFormat';
+import './avatar.scss';
 
-import './avatar.scss'
-
-export default ({ avatarSrc, preview, setPreview }) => {
-  // constructor(props) {
-  //   super(props)
-  //   const src = './example/einshtein.jpg'
-  //   this.state = {
-  //     preview: null,
-  //     src,
-  //   }
-  //   this.onCrop = this.onCrop.bind(this)
-  //   this.onClose = this.onClose.bind(this)
-  //   this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
-  // }
+export default ({ avatarFile, avatar, setAvatar, pseudo }) => {
 
   const onClose = () => {
-    setPreview(null)
-    // this.setState({ preview: null })
+    setAvatar(null)
   }
 
-  const onCrop = (preview) => {
-    setPreview(preview)
+  const onCrop = (avatar) => {
+    setAvatar(avatar)
   }
 
   const onBeforeFileLoad = (elem) => {
@@ -43,9 +31,18 @@ export default ({ avatarSrc, preview, setPreview }) => {
           onCrop={onCrop}
           onClose={onClose}
           onBeforeFileLoad={onBeforeFileLoad}
-          src={avatarSrc}
+          src={avatarFile}
         />
-        {preview && <img src={preview} alt="Preview" />}
+        {avatar && (
+          <div className="profile__avatar__preview">
+            <img src={avatar} alt="Preview" />
+            <div className="profile__avatar__preview__options">
+              <div className="profile__avatar__preview__options__time">{getDateMyFormat()}</div>
+              <div className="profile__avatar__preview__options__pseudo">{pseudo}</div>
+              <div className="profile__avatar__preview__content">Ça a débuté comme ça.</div>
+            </div>
+          </div>
+        )}
       </div>
       <Button primary content="Valider" onClick={() => {}} />
     </Segment>

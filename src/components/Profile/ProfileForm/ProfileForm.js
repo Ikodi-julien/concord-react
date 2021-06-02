@@ -48,7 +48,6 @@ export default ({
   return (
   <Form onSubmit={handleSubmit}>
   <div className="profile__authfieldscontainer">
-    <h1 className="profile__title">Mon profil</h1>
     <div className="profile__formrow">
       <label>Pseudo :</label>
       <Form.Field >

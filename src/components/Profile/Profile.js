@@ -24,6 +24,7 @@ const Profile = ({ submitDeleteAccount }) => {
 
       <div className="profile__container">
         <Segment>
+          <h1 className="profile__title">Mon profil</h1>
           <ProfileFormContainer />
         </Segment>
         <Divider />

@@ -1,14 +1,34 @@
 @use 'src/styles/vars' as v;
 
-.profile__avatar__row {
-  display: flex;
-  justify-content: space-between;
-  max-width: 500px;
-  & img {
-    height: 80px;
-    width: 80px;
+.profile__avatar {
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    padding: 20px;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+    & img {
+      height: 50px;
+      width: 50px;
+      margin: 8px;
+    }
+    & label {
+      color: v.$base-color-light;
+    }
   }
-  & label {
-    color: v.$base-color-light;
+  &__preview {
+    display: flex;
+    &__options {
+      padding: 8px;
+
+      &__time {
+        color: v.$base-color-grey;
+      }
+      &__pseudo {
+        color: v.$base-color-light;
+      }
+    }
   }
 }

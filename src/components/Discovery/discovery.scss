@@ -6,6 +6,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background-color: v.$base-color-dark;
+  color: v.$base-color-light;
 
   &__container {
     flex: 1;

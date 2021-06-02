@@ -11,7 +11,7 @@ export const FETCH_MY_RECOS_ERROR = 'FETCH_MY_RECOS_ERROR';
 
 export const DELETE_FROM_MY_CHANNELS = 'DELETE_FROM_MY_CHANNELS';
 
-export const SET_PREVIEW = 'SET_PREVIEW';
+export const SET_AVATAR = 'SET_AVATAR';
 /*----------------------------------------------------------*/
 export const getUserInfos = () => ({ type: GET_USER_INFOS });
 export const getUserSuccess = (user) => ({
@@ -34,4 +34,4 @@ export const deleteFromMyChannels = (channelId) => ({
   type: DELETE_FROM_MY_CHANNELS,
   value: channelId,
 });
-export const setPreview = (preview) => ({ type: SET_PREVIEW, value: preview });
+export const setAvatar = (preview) => ({ type: SET_AVATAR, value: preview });

@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+import Message from 'src/components/Message/Message';
 
 const ChannelMessages = (
   {
@@ -59,17 +60,7 @@ const ChannelMessages = (
       <div className="channelmessages__messagelist" ref={refContainer}>
       {
         messages.map(message => (
-          <div key={message.id} className={message.nickname === nickname ?"channelmessages__message --me" : "channelmessages__message"} >
-            <div className={message.nickname === nickname ? 'channelmessages__message__nickname --me' : 'channelmessages__message__nickname'}
-            >
-              {`${message.nickname}`}
-            </div>
-            <div className={'channelmessages__message__content'}>
-              <div className={message.nickname === nickname ? 'channelmessages__message__content__text --me' : 'channelmessages__message__content__text'}>
-                <div id={`editor-${message.id}`} />
-              </div>
-            </div>
-          </div>
+          <Message key={message.id} message={message} nickname={nickname}/>
           )
         )
       }

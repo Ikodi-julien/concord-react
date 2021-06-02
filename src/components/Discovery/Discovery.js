@@ -34,7 +34,7 @@ const Discovery = ({
       <NavbarContainer />
       
       <div className="discovery__container">
-        <h1 className="discovery__title">Channels</h1>
+        <h1 className="discovery__title">Chat rooms</h1>
         
         <div className="discovery__selectcontainer">
           <Select 

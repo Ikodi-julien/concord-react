@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
 import Avatar from 'src/components/Avatar/Avatar'
-import { setPreview } from 'src/actions/userActions'
+import { setAvatar } from 'src/actions/userActions'
 
 const mapStateToProps = ({ user }) => ({
-  avatarSrc: user.avatarSrc,
-  preview: user.avatarPreview,
-})
+  avatarFile: user.avatarFile,
+  avatar: user.avatar,
+  pseudo: user.nickname,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  setPreview: (preview) => dispatch(setPreview(preview)),
-})
+  setAvatar: (preview) => dispatch(setAvatar(preview)),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Avatar)
+export default connect(mapStateToProps, mapDispatchToProps)(Avatar);
