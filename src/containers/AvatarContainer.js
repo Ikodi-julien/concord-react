@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Avatar from 'src/components/Avatar/Avatar'
-import { setAvatar } from 'src/actions/userActions'
+import { setAvatar, updateAvatar } from 'src/actions/userActions'
 
 const mapStateToProps = ({ user }) => ({
   avatarFile: user.avatarFile,
@@ -10,6 +10,7 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setAvatar: (preview) => dispatch(setAvatar(preview)),
+  updateAvatar: () => dispatch(updateAvatar()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Avatar);

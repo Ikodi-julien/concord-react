@@ -4,13 +4,14 @@ import { Button, Segment } from 'semantic-ui-react';
 import Message from 'src/components/Message/Message';
 import './avatar.scss';
 
-export default ({ avatarFile, avatar, setAvatar, pseudo }) => {
+export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
 
   const onClose = () => {
     setAvatar(null)
   }
 
   const onCrop = (avatar) => {
+    console.log(avatar);
     setAvatar(avatar)
   }
 
@@ -29,7 +30,7 @@ export default ({ avatarFile, avatar, setAvatar, pseudo }) => {
     <Segment>
       <h1 className="profile__title">Mon avatar</h1>
       <div className="profile__avatar__row">
-        <div class="profile__avatar__container">
+        <div className="profile__avatar__container">
           <Avatar
             width={150}
             height={150}
@@ -43,7 +44,7 @@ export default ({ avatarFile, avatar, setAvatar, pseudo }) => {
           <Message message={preview} nickname={pseudo} avatar={avatar} />
         )}
       </div>
-      <Button primary content="Valider" onClick={() => {}} />
+      <Button primary content="Valider" onClick={() => {updateAvatar()}} />
     </Segment>
   )
 }
