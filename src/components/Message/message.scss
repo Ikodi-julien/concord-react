@@ -1,0 +1,52 @@
+@use 'src/styles/vars' as v;
+
+.message {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 5px;
+  border-bottom: 1px solid v.$base-color;
+
+  &.--me {
+    // justify-content: flex-end;
+  }
+  &__image {
+    width: 50px;
+    height: 50px;
+  }
+  &__data {
+    
+  }
+  &__options {
+    display: flex;
+  }
+
+  &__nickname, &__time {
+    color: v.$base-color-blue;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0 10px;
+
+    &.--me {
+      color: v.$base-color-green;
+    }
+  }
+
+  &__time {
+    color: v.$base-color-grey;
+    font-weight: 400;
+  }
+
+  &__content {
+    &__text {
+      font-size: 1.2em;
+      color: v.$base-color-light;
+      border-radius: 10px;
+
+      &.--me {
+      //   background-color: v.$color-message-me;
+      //   color: v.$color-message-me-dark;
+      }
+    }
+  }
+}

@@ -33,7 +33,7 @@ const Navbar = ({
     <SetSizeContainer />
     <AppInfo appInfo={appInfo} isVisible={appInfoIsVisible} />
       <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
-        chatRoom
+        Concord
       </Link>
       
       {!isUserLoggued && ( <LoginModalContainer />)}
