@@ -99,6 +99,7 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...stateActuel,
         nickname: action.data.nickname,
         email: action.data.email,
+        avatar: action.data.avatar,
         tags: action.data.tags,
         tagDropDownValue: action.data.tags.map((tag) => tag.name),
         tagDropDownIds: action.data.tags.map((tag) => tag.id),

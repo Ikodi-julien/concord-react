@@ -250,6 +250,9 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           console.log(res.data);
           store.dispatch(appInfo('avatar mis à jour'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, errorTimer);
         })
         .catch((error) => {
           console.log(error);

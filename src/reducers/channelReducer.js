@@ -108,6 +108,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
           {
             id: action.message.id,
             nickname: action.message.user.nickname,
+            avatar: action.message.user.avatar,
             content: action.message.content,
           },
         ],
