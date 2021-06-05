@@ -11,15 +11,12 @@ export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
   }
 
   const onCrop = (avatar) => {
-    console.log(avatar);
+    // console.log(avatar);
     setAvatar(avatar)
   }
 
   const onBeforeFileLoad = (elem) => {
-    if (elem.target.files[0].size > 500000) {
-      alert('File is too big! max 500ko')
-      elem.target.value = ''
-    }
+    // console.log(elem.target.files[0].size);
   }
 
   const preview = {
@@ -32,7 +29,7 @@ export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
       <div className="profile__avatar__row">
         <div className="profile__avatar__container">
           <Avatar
-            width={150}
+            width={200}
             height={150}
             onCrop={onCrop}
             onClose={onClose}

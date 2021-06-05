@@ -1,6 +1,5 @@
 import React from 'react';
-import {Divider} from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
+import defaultAvatar from 'src/assets/avatarDefault.js';
 
 const UsersInChannelList = ({users, showUsersInChannel, toggleUsersInChannel}) => {
   
@@ -28,8 +27,8 @@ const UsersInChannelList = ({users, showUsersInChannel, toggleUsersInChannel}) =
           users.map((user) => (<div 
             key={user.id} 
             className={user.isLogged ? "usersinchannellist__links__link --logged" : "usersinchannellist__links__link"}>
-          {/* <span>{`${user.avatar}`}</span> */}
-          <span>{`${user.nickname}`}</span></div>))
+          <img src={user.avatar ? user.avatar : defaultAvatar} style={{width: 25, height: 25 }}/>
+          <span> {`${user.nickname}`}</span></div>))
         }
       </div>
 

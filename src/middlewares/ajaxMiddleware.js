@@ -32,7 +32,9 @@ import {
 } from 'src/actions/appActions';
 
 export default (store) => (next) => (action) => {
-  const { nicknameInput, emailInput, tagDropDownIds, avatar } = store.getState().user;
+  const {
+    nicknameInput, emailInput, tagDropDownIds, avatar,
+  } = store.getState().user;
   const { id } = store.getState().channel;
   const errorTimer = 2000;
 

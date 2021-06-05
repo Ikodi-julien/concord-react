@@ -19,7 +19,8 @@ import {
   FETCH_MY_RECOS_SUCCESS,
   SET_AVATAR,
 } from 'src/actions/userActions';
-// import fakeChannels from 'src/middlewares/fakeChannels';
+
+import avatarDefault from 'src/assets/avatarDefault';
 
 const userState = {
   id: -1,
@@ -38,7 +39,7 @@ const userState = {
   tagDropDownValue: [],
   tagDropDownIds: [],
   avatarFile: '',
-  avatar: '',
+  avatar: avatarDefault,
 };
 
 const reducer = (stateActuel = userState, action = {}) => {
@@ -93,13 +94,13 @@ const reducer = (stateActuel = userState, action = {}) => {
       };
 
     case FETCH_MY_PROFILE_SUCCESS:
-      console.log(action);
+      // console.log(action);
 
       return {
         ...stateActuel,
         nickname: action.data.nickname,
         email: action.data.email,
-        avatar: action.data.avatar,
+        avatar: action.data.avatar ? action.data.avatar : avatarDefault,
         tags: action.data.tags,
         tagDropDownValue: action.data.tags.map((tag) => tag.name),
         tagDropDownIds: action.data.tags.map((tag) => tag.id),

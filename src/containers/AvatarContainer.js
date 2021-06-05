@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import Avatar from 'src/components/Avatar/Avatar'
-import { setAvatar, updateAvatar } from 'src/actions/userActions'
+import { connect } from 'react-redux';
+import Avatar from 'src/components/Avatar/Avatar';
+import { setAvatar, updateAvatar } from 'src/actions/userActions';
 
 const mapStateToProps = ({ user }) => ({
   avatarFile: user.avatarFile,

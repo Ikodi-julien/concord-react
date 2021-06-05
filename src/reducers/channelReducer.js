@@ -10,10 +10,10 @@ import {
   TOGGLE_MY_CHANNELS,
   TOGGLE_USERS_IN_CHANNEL,
   USER_LEAVE_CHANNEL,
-  USER_JOIN_CHANNEL,
   SET_QUILL_TEXT,
 } from 'src/actions/channelActions.js';
-import { UPDATE_CHANNEL_USERS } from '../actions/channelActions';
+
+import chatBotAvatar from 'src/assets/chatbot.js';
 
 const channelState = {
   id: -2,
@@ -75,7 +75,8 @@ const reducer = (stateActuel = channelState, action = {}) => {
         ...action.channel,
         messages: [{
           id: 'A',
-          nickname: 'TeaCup',
+          avatar: chatBotAvatar,
+          nickname: 'ConcordBot',
           content: {
             ops: [{ insert: `On parle de ${action.channel.title}... ou pas !` }],
           },
@@ -136,19 +137,6 @@ const reducer = (stateActuel = channelState, action = {}) => {
         showUsersInChannel: !stateActuel.showUsersInChannel,
         showMychannels: false,
       };
-
-      // case UPDATE_CHANNEL_USERS:
-      //   // console.log('state channel id', stateActuel.id);
-      //   // console.log('update channel id', action.value.channel.id);
-      //   if (action.value.channel.id !== stateActuel.id) {
-      //     return {
-      //       ...stateActuel,
-      //     };
-      //   }
-      //   return {
-      //     ...stateActuel,
-      //     ...action.value.channel,
-      //   };
 
     case UPDATE_CHANNEL_USERS_SUCCESS:
       console.log(action);
