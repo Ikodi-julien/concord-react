@@ -11,6 +11,7 @@ export const searchTitleAndReturn = (string = '', object = { title: '' }) => {
 export const searchTagsAndReturn = (string = '', object = {}) => {
   // search over every tag.name in channel.tags
   const filtered = object.filter((channel) => {
+    // eslint-disable-next-line no-restricted-syntax
     for (const tag of channel.tags) {
       if (tag.name.includes(string)) {
         return true;
