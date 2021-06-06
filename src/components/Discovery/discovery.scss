@@ -10,59 +10,32 @@
   color: v.$base-color-light;
 
   &__container {
-    flex: 1;
+
+    display: flex;
+    flex-direction: column;
     width: 80%;
     max-width: 1200px;
+    height: calc(100vh - #{(v.$nav-height + v.$footer-height)});
+
+    @media screen and (max-width: 768px) {
+      width: 95%;
+    }
   }
 
   &__title {
     padding: 20px;
+
+    @media screen and (max-width: 768px) {
+      padding: 10px;
+    }
   }
 
   &__selectcontainer {
     padding: 20px;
-  }
 
-  &__listcontainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-    max-height: 25vh;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    margin-bottom: 2em;
-
-    &__cardtag,
-    &__cardtag--matching_tag {
-      padding: 0 5px;
-
-      &--matching_tag {
-        color: v.$base-color-orange;
-        font-weight: bold;
-      }
-    }
-
-    @media screen and (min-height: 731px) {
-      height: 26vh;
-      max-height: 31vh;
-    }
-
-    @media screen and (min-height: 823px) {
-      height: 29vh;
-      max-height: 33vh;
-    }
-
-    @media screen and (min-height: 1024px) {
-      max-height: 35vh;
-    }
-
-    @media screen and (min-height: 1366px) {
-      max-height: 38vh;
+    @media screen and (max-width: 768px) {
+      padding: 10px;
     }
   }
-}
 
-.discovery__container>.discovery__listcontainer{
-  max-height: fit-content;
 }

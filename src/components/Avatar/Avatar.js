@@ -15,9 +15,9 @@ export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
     setAvatar(avatar)
   }
 
-  const onBeforeFileLoad = (elem) => {
-    // console.log(elem.target.files[0].size);
-  }
+  // const onBeforeFileLoad = (elem) => {
+  //   // console.log(elem.target.files[0].size);
+  // }
 
   const preview = {
     nickname: pseudo,
@@ -33,15 +33,18 @@ export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
             height={150}
             onCrop={onCrop}
             onClose={onClose}
-            onBeforeFileLoad={onBeforeFileLoad}
+            // onBeforeFileLoad={onBeforeFileLoad}
             src={avatarFile}
           />
         </div>
         {avatar && (
-          <Message message={preview} nickname={pseudo} avatar={avatar} />
+          <div>
+            <p>Aperçu</p>
+            <Message message={preview} nickname={pseudo} avatar={avatar} />
+          </div>
         )}
       </div>
-      <Button primary content="Valider" onClick={() => {updateAvatar()}} />
+      <Button primary content="Valider" onClick={updateAvatar} />
     </Segment>
   )
 }

@@ -12,7 +12,7 @@ const CardBox = ({ list, deleteChannel, isDeletable, deleteFromMyChannels }) => 
     deleteFromMyChannels(channelId);
   }
   return (
-    <div className="discovery__listcontainer">
+    <div className="cardbox__listcontainer">
       <Card.Group>
         {
           array.map(item => (
@@ -33,7 +33,14 @@ const CardBox = ({ list, deleteChannel, isDeletable, deleteFromMyChannels }) => 
                 </Card.Header>
                 <Card.Description>
                   {item.tags &&
-                    item.tags.map(tag => <div key={`tag-${tag.id}`} className={"discovery__listcontainer__cardtag" + (tag.matchingTag ? "--matching_tag" : "")}>{tag.name}</div>)
+                    item.tags.map(tag => 
+                    (<span 
+                        key={`tag-${tag.id}`} 
+                        className={"cardtag" + (tag.matchingTag ? "--matching_tag" : "")}
+                      >
+                        {tag.name}
+                      </span>)
+                    )
                   }
                 </Card.Description>
               </Card.Content>

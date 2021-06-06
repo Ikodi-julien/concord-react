@@ -1,4 +1,4 @@
-@use 'src/styles/vars' as v;
+@use 'src/styles/vars'as v;
 
 .message {
   display: flex;
@@ -10,18 +10,21 @@
   &.--me {
     // justify-content: flex-end;
   }
+
   &__image {
     width: 50px;
     height: 50px;
   }
-  &__data {
-    
-  }
+
+  &__data {}
+
   &__options {
     display: flex;
+    padding-top: 4px;
   }
 
-  &__nickname, &__time {
+  &__nickname,
+  &__time {
     color: v.$base-color-blue;
     font-size: 1em;
     font-weight: bold;
@@ -44,8 +47,8 @@
       border-radius: 10px;
 
       &.--me {
-      //   background-color: v.$color-message-me;
-      //   color: v.$color-message-me-dark;
+        //   background-color: v.$color-message-me;
+        //   color: v.$color-message-me-dark;
       }
     }
   }

@@ -39,24 +39,31 @@ const Homepage = ({
 
       <div className='homepage__container'>
 
-        {!noTagAlert && (
-          <div className='notagalert'>
-            <p><strong>On dirait que tu n'as pas renseigné de centres d'intérêt...</strong> <Link to="/profile">Passe dans tes paramètres</Link> pour que nous puissions te proposer des salons qui t'intéressent !</p>
-          </div>
-        )}
 
-        {myChannels && myChannels.length > 0 && (
           <div className="homepage__mychannels">
-            <h1 className="homepage__title">Tes Channels</h1>
+            <h1 className="homepage__title"># mes chatrooms</h1>
+          {myChannels && myChannels.length > 0 ? (
             <CardBox
               list={myChannels}
               isDeletable={true}
             />
+            ) : (
+              <div className='homepage__info'>
+                <p>Ici s'afficheront les chatrooms visitées</p>
+              </div>
+            )
+          }
+            
           </div>
-        )}
 
         <div className="homepage__suggested">
-          <h1 className="homepage__title">Recommandé pour toi</h1>
+          <h1 className="homepage__title"># recommandés</h1>
+                    
+          {!noTagAlert && (
+            <div className='homepage__info'>
+              <p>Pour avoir des recommandations,  <Link to="/profile">tu peux choisir des centres d'intérêt dans tes paramètres</Link></p>
+            </div>
+          )}
           <CardBox
             list={recommendedChannels}
             isDeletable={false}
