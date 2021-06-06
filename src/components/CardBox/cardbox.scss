@@ -7,7 +7,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 10px;
-  height: 100%;
+  height: fit-content;
+  max-height: 100%;
   overflow-y: auto;
   scroll-behavior: smooth;
   margin-bottom: 2em;
@@ -25,9 +26,10 @@
   &>.ui.card {
     position: relative;
     width: 100%;
+    height: min-content;
     margin: 0.4em 0.5em;
 
-    &>.cardbox {
+    & .cardbox {
       &__button {
         position: absolute;
         top: 8px;
@@ -35,45 +37,67 @@
         border: none;
         background-color: transparent;
         z-index: v.$z-index-low;
+        color: v.$base-color-grey;
+        cursor: grabbing;
       }
 
       &__emptyspace {
         width: 30px;
       }
-    }
 
-    & .content {
-      max-height: 80%;
-
-
-      &>.header+.description {
+      &__content {
         display: flex;
-        margin-top: .1em;
+        align-items: center;
+        width: 85%;
+
+        @media screen and (max-width: 768px) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
 
-      &>.header {
-        justify-content: space-between;
+      &__title {
+        color: v.$base-color-blue;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 5px;
+
+        @media screen and (max-width: 768px) {
+          font-size: 1.1em;
+          padding: 5px 5px 0 5px;
+        }
       }
 
-      &>.description {
-        flex-direction: column;
+      &__description {
+        display: flex;
         flex-wrap: wrap;
-        max-height: 80%;
       }
-    }
 
-    .extra {
-      padding: 1%;
-      max-height: 1.5em;
-    }
+      &__cardtag {
+        padding: 5px;
+        color: v.$base-color-dark;
 
-    & .cardtag,
-    & .cardtag--matching_tag {
-      padding: 0 5px;
+        &.--matching_tag {
+          color: v.$base-color-orange;
+          font-weight: bold;
+        }
 
-      &--matching_tag {
-        color: v.$base-color-orange;
-        font-weight: bold;
+        @media screen and (max-width: 768px) {
+          font-size: 0.8em;
+          padding: 0 5px 2px 5px;
+        }
+      }
+
+      &__usercount {
+        padding: 0 50px 0;
+        text-align: right;
+        color: v.$base-color-grey;
+
+        @media screen and (max-width: 768px) {
+          font-size: 0.8em;
+          padding: 0 5px 0;
+
+        }
       }
     }
   }

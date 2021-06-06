@@ -16,38 +16,42 @@ const CardBox = ({ list, deleteChannel, isDeletable, deleteFromMyChannels }) => 
       <Card.Group>
         {
           array.map(item => (
+            
             <Card key={item.id} >
-              {isDeletable && <button
-                id={item.id}
-                className='cardbox__button'
-                onClick={handleDelete}
-              >
-                <i className="fas fa-times"></i>
-              </button>}
-              <Card.Content>
-                <Card.Header>
-                  <Link to={`/channels/${item.id}`} >
+              
+                {isDeletable && <button
+                  id={item.id}
+                  className='cardbox__button'
+                  onClick={handleDelete}
+                >
+                  <i className="far fa-trash-alt"></i>
+                </button>}
+              <Link to={`/channels/${item.id}`} >
+                
+                <div className='cardbox__content'>
+                  <div class="cardbox__title">
                     {item.title}
-                  </Link>
+                  </div>
+                  <div className='cardbox__description'>
+                    {item.tags &&
+                      item.tags.map(tag => 
+                      (<div 
+                          key={`tag-${tag.id}`} 
+                          className={"cardbox__cardtag" + (tag.matchingTag ? " --matching_tag" : "")}
+                        >
+                          {tag.name}
+                        </div>)
+                      )
+                    }
+                  </div>
                   <div className='cardbox__emptyspace' />
-                </Card.Header>
-                <Card.Description>
-                  {item.tags &&
-                    item.tags.map(tag => 
-                    (<span 
-                        key={`tag-${tag.id}`} 
-                        className={"cardtag" + (tag.matchingTag ? "--matching_tag" : "")}
-                      >
-                        {tag.name}
-                      </span>)
-                    )
-                  }
-                </Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <Icon name='user' />
-                {(item.usersCount || 'Aucun') + ` utilisateur${item.usersCount > 1 ? "s" : ""} sur ce channel`}
-              </Card.Content>
+                  
+                </div>
+                <div className='cardbox__usercount'>
+                  <Icon name='user' />
+                  {(item.usersCount || 'Aucun') + ` utilisateur${item.usersCount > 1 ? "s" : ""} sur ce channel`}
+                </div>
+              </Link>
             </Card>
           ))
         }
