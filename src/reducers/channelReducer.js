@@ -80,7 +80,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
           content: {
             ops: [{ insert: `On parle de ${action.channel.title}... ou pas !` }],
           },
-        }, ...action.channel.channel_messages],
+        }, ...action.channel.messages],
         isLoading: false,
       };
 
