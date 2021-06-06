@@ -21,6 +21,10 @@
   &__options {
     display: flex;
     padding-top: 4px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   &__nickname,
@@ -33,18 +37,29 @@
     &.--me {
       color: v.$base-color-green;
     }
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.9em;
+    }
   }
 
   &__time {
     color: v.$base-color-grey;
     font-weight: 400;
+    font-size: 0.9em;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8em;
+    }
   }
 
   &__content {
+    & .ql-editor {
+      padding: 2px 10px;
+    }
+
     &__text {
-      font-size: 1.2em;
       color: v.$base-color-light;
-      border-radius: 10px;
 
       &.--me {
         //   background-color: v.$color-message-me;

@@ -10,13 +10,13 @@ export default ({message, nickname, avatar}) => (
     
     <div className="message__data">
       <div className="message__options">
-        <span className={message.nickname === nickname ? 'message__nickname --me' : 'message__nickname'}
+        <div className={message.nickname === nickname ? 'message__nickname --me' : 'message__nickname'}
         >
           {`${message.nickname}`}
-        </span>
-        <span className="message__time">
+        </div>
+        <div className="message__time">
           {getDateMyFormat()}
-        </span>
+        </div>
       </div>
       <div className={'message__content'}>
         <div className={message.nickname === nickname ? 'message__content__text --me' : 'message__content__text'}>

@@ -46,7 +46,7 @@ const ChannelMessages = (
     
     <section className="channelmessages">
       <div className="channelmessages__header">
-        <h1 className="channelmessages__title">{title}</h1>
+        <h1 className="channelmessages__title">#{title}</h1>
         {
           window.innerWidth < 700 &&
           <button 

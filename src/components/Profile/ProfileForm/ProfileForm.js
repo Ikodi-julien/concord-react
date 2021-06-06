@@ -50,64 +50,67 @@ export default ({
   <div className="profile__authfieldscontainer">
     <div className="profile__formrow">
       <label>Pseudo :</label>
-      <Form.Field >
-      <input
+      <div class="profile__inputrow">
+        <Form.Input
         name='nicknameInput'
-        type='text'
-        placeholder='pseudo'
-        value={user.nicknameInput}
-        onChange={handleInputChange}
-        disabled={!user.nicknameInputIsActive}
+          type='text'
+          placeholder='pseudo'
+          value={user.nicknameInput}
+          onChange={handleInputChange}
+          disabled={!user.nicknameInputIsActive}
         />
-      </Form.Field>
-        <Button 
+        <Button
           name='nicknameInputIsActive'
-          type='button' 
+          type='button'
           active={user.nicknameInputIsActive}
           onClick={handleEditBtn}
           >
         <i className="fas fa-edit"></i>
         </Button>
+      </div>
     </div>
   
     <div className="profile__formrow">
       <label >Email :</label>
-      <Form.Field>
-        <input
-          name='emailInput'
-          type='email'
-          placeholder='email'
-          value={user.emailInput}
-          onChange={handleInputChange}
-          className="input"
-          disabled={!user.emailInputIsActive}
-          />
-      </Form.Field>
-      <Button 
-        name='emailInputIsActive'
-        type='button' 
-        active={user.emailInputIsActive}
-        onClick={handleEditBtn}
-        >
-      <i className="fas fa-edit"></i>
-      </Button>
+      <div class="profile__inputrow">
+        <Form.Input
+            name='emailInput'
+            type='email'
+            placeholder='email'
+            value={user.emailInput}
+            onChange={handleInputChange}
+            className="input"
+            disabled={!user.emailInputIsActive}
+            />
+
+        <Button 
+          name='emailInputIsActive'
+          type='button' 
+          active={user.emailInputIsActive}
+          onClick={handleEditBtn}
+          >
+        <i className="fas fa-edit"></i>
+        </Button>
+      </div>
     </div>
   </div>
   
   <div className="profile__tagscontainer">
     {/* <h1 className="profile__title">Mes catégories</h1> */}
     <p className="profile__subtitle">Sélectionne des catégories pour avoir des suggestions adaptées.</p>
-    
-    <Dropdown 
-      text='Mes catégories' 
-      fluid 
-      multiple selection 
-      options={tagsOptions} 
-      onChange={handleTagsSelection}
-      value={user.tagDropDownValue}
-      />
+    <div class="profile__inputrow --tags">
+      <Dropdown 
+        text='Mes catégories' 
+        fluid 
+        multiple selection 
+        options={tagsOptions} 
+        onChange={handleTagsSelection}
+        value={user.tagDropDownValue}
+        />
+      
+      <Button type='submit' primary >Valider mon profil</Button>
+    </div>
   </div>
   
-  <Button type='submit' primary >Valider mon profil</Button>
 </Form>
 )}
