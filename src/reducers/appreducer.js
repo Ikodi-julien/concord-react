@@ -18,8 +18,6 @@ import {
   SIGNUP_ERROR,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
-  DISCONNECT_USER_ERROR,
-  FORGOT_PASS_INFO,
   UPDATE_PASS_INFO,
 } from 'src/actions/authActions';
 import {
@@ -55,6 +53,7 @@ const appState = {
 const reducer = (stateActuel = appState, action = {}) => {
   switch (action.type) {
     case APP_INFO:
+      console.log(action);
       return {
         ...stateActuel,
         appInfo: action.value,
@@ -138,19 +137,6 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         appInfo: '',
-      };
-
-    case DISCONNECT_USER_ERROR:
-      return {
-        ...appState,
-        appInfo: 'Erreur lors du logout',
-      };
-
-    case FORGOT_PASS_INFO:
-      // console.log(action);
-      return {
-        ...stateActuel,
-        appInfo: action.value,
       };
 
     case UPDATE_PASS_INFO:

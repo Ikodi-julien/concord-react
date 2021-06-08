@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_URL } from 'src/settings';
+import handlAPIErrors from 'src/selectors/handleAPIError';
 import {
   FETCH_MY_PROFILE,
   fetchMyProfileSuccess,
@@ -30,13 +31,13 @@ import {
   appInfo,
   hideInfos,
 } from 'src/actions/appActions';
+import handleAPIError from '../selectors/handleAPIError';
 
 export default (store) => (next) => (action) => {
   const {
     nicknameInput, emailInput, tagDropDownIds, avatar,
   } = store.getState().user;
   const { id } = store.getState().channel;
-  const errorTimer = 2000;
 
   switch (action.type) {
     case FETCH_CHANNEL:
@@ -53,11 +54,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(fetchChannelSuccess(res.data));
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo("Aïe l'API a renvoyé une erreur"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handlAPIErrors(error, store, action.type);
         });
       break;
 
@@ -75,11 +72,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(fetchMyChannelsSuccess(res.data));
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo('Aïe, un problème est survenu...'));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -97,11 +90,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(fetchMyRecosSuccess(res.data));
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo('Aïe, un problème est survenu...'));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -128,19 +117,14 @@ export default (store) => (next) => (action) => {
           });
         })
         .catch((error) => {
-          console.log('catch error: ', error);
           store.dispatch(fetchNavDataError());
-          store.dispatch(appInfo("Aïe l'API a renvoyé une erreur"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
     case FETCH_MY_PROFILE:
       next(action);
-      console.log(action);
-
+      // console.log(action);
       axios
         .get(`${API_URL}/v1/me`, {
           withCredentials: true,
@@ -152,11 +136,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(setFirstLogin(false));
         })
         .catch((error) => {
-          console.log(error);
-          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -181,11 +161,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(updateProfileSuccess(res.data));
         })
         .catch((error) => {
-          console.log(error);
-          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
 
       break;
@@ -208,11 +184,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(updateChannelUsersSuccess(res.data));
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -223,15 +195,11 @@ export default (store) => (next) => (action) => {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           store.dispatch(fetchMyChannels());
         })
         .catch((err) => {
-          console.log(err);
-          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -254,14 +222,10 @@ export default (store) => (next) => (action) => {
           store.dispatch(appInfo('avatar mis à jour'));
           setTimeout(() => {
             store.dispatch(hideInfos());
-          }, errorTimer);
+          }, 2000);
         })
         .catch((error) => {
-          console.log(error);
-          store.dispatch(appInfo("Aïe, ça n'a pas fonctionné, désolé"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
 
       break;

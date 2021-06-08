@@ -69,6 +69,7 @@ export default (store) => (next) => (action) => {
 
       socket.on('error', () => {
         // TODO gérer l'erreur
+        throw Error('erreur dans socketMW');
       });
 
       break;

@@ -29,7 +29,7 @@ const CardBox = ({ list, deleteChannel, isDeletable, deleteFromMyChannels }) => 
               <Link to={`/channels/${item.id}`} >
                 
                 <div className='cardbox__content'>
-                  <div class="cardbox__title">
+                  <div className="cardbox__title">
                     {item.title}
                   </div>
                   <div className='cardbox__description'>

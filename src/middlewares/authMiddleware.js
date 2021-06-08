@@ -4,13 +4,11 @@ import { API_URL } from 'src/settings';
 import {
   SUBMIT_LOGIN_FORM,
   loginSuccess,
-  loginError,
   SUBMIT_SIGNUP_FORM,
   signupSuccess,
   signupError,
   DISCONNECT_USER,
   disconnectUserSuccess,
-  disconnectUserError,
   submitLoginForm,
   SUBMIT_FORGOT_PASS_FORM,
   forgotPassInfo,
@@ -20,6 +18,7 @@ import {
 import { hideInfos, setFirstLogin } from 'src/actions/appActions';
 import { GET_USER_INFOS, getUserSuccess } from 'src/actions/userActions';
 import { SUBMIT_DELETE_ACCOUNT } from 'src/actions/profileActions';
+import handleAPIError from '../selectors/handleAPIError';
 
 export default (store) => (next) => (action) => {
   const {
@@ -58,21 +57,9 @@ export default (store) => (next) => (action) => {
           store.dispatch(loginSuccess(res.data));
         })
         .catch((error) => {
-          console.log('catch error: ', error);
-          let errorMsg;
-          if (error.toString().includes('401')) errorMsg = 'Désolé, on ne connait pas ces identifiants';
-          if (error.toString().includes('412')) errorMsg = 'Il manque une information, email ? password ?';
-          if (error.toString().includes('409')) errorMsg = "Informations d'identification invalides";
-          if (errorMsg) {
-            store.dispatch(loginError(errorMsg));
-          }
-          else {
-            store.dispatch(loginError(error.toString()));
-          }
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
+
       break;
 
     case SUBMIT_SIGNUP_FORM:
@@ -91,7 +78,7 @@ export default (store) => (next) => (action) => {
         setTimeout(() => {
           store.dispatch(hideInfos());
         }, errorTimer);
-        return;
+        break;
       }
 
       if (firstSignupPassword !== secondSignupPassword) {
@@ -99,7 +86,7 @@ export default (store) => (next) => (action) => {
         setTimeout(() => {
           store.dispatch(hideInfos());
         }, errorTimer);
-        return;
+        break;
       }
 
       axios
@@ -110,6 +97,7 @@ export default (store) => (next) => (action) => {
         })
         .then((res) => {
           // console.log('res.data :', res.data);
+          // There try to login right after a signup success
           store.dispatch(
             signupSuccess({
               password: store.getState().auth.firstSignupPassword,
@@ -117,17 +105,12 @@ export default (store) => (next) => (action) => {
             }),
           );
           store.dispatch(setFirstLogin(true));
-          // There you try to log right after a signup success
           setTimeout(() => {
             store.dispatch(submitLoginForm());
           }, 30);
         })
         .catch((error) => {
-          // console.error('catch error: ', error);
-          store.dispatch(signupError(error.toString()));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -140,11 +123,7 @@ export default (store) => (next) => (action) => {
           // console.log('res.data :', res.data);
         })
         .catch((error) => {
-          // console.error('catch error: ', error);
-          store.dispatch(disconnectUserError(error.toString()));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -159,9 +138,8 @@ export default (store) => (next) => (action) => {
           store.dispatch(getUserSuccess(res.data));
         })
         .catch((error) => {
-          console.error('catch error: ', error);
+          handleAPIError(error, store, action.type);
         });
-
       break;
 
     case SUBMIT_FORGOT_PASS_FORM:
@@ -177,12 +155,8 @@ export default (store) => (next) => (action) => {
             store.dispatch(hideInfos());
           }, errorTimer);
         })
-        .catch((err) => {
-          console.log(err);
-          store.dispatch(forgotPassInfo("Aïe, ça n'a pas fonctionné, désolé"));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+        .catch((error) => {
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -229,15 +203,7 @@ export default (store) => (next) => (action) => {
           }, errorTimer);
         })
         .catch((error) => {
-          console.error('catch error: ', error);
-          let msg = "Quelque chose n'a pas fonctionné, désolé";
-          if (error.toString().includes('409')) {
-            msg = 'The current password is incorrect';
-          }
-          store.dispatch(updatePassInfo(msg));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
@@ -250,11 +216,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(disconnectUserSuccess());
         })
         .catch((error) => {
-          // console.error('catch error: ', error);
-          store.dispatch(disconnectUserError(error.toString()));
-          setTimeout(() => {
-            store.dispatch(hideInfos());
-          }, errorTimer);
+          handleAPIError(error, store, action.type);
         });
       break;
 
