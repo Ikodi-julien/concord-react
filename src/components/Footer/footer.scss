@@ -7,7 +7,11 @@
   // min-height: v.$footer-height;
   justify-content: space-evenly;
   align-items: center;
-  background-color: v.$base-color-darker;
+  background-color: v.$base-color-darkest;
   color: v.$base-color-light;
   justify-self: flex-end;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }

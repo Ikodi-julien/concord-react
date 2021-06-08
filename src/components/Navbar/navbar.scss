@@ -9,7 +9,6 @@
   align-items: center;
   width: 100%;
   height: v.$nav-height;
-  border: 1px solid v.$base-color-grey;
   background-color: v.$base-color-darkest;
   color: v.$base-color-light;
 
@@ -19,7 +18,7 @@
     // align-items: center;
     height: v.$nav-height * 0.6;
     width: v.$nav-height * 2.5;
-    background: center/contain no-repeat url('src/assets/concord_logo.png');
+    background: center/contain no-repeat url('src/assets/concord_logo_blue.png');
     // font-family: 'Permanent Marker', cursive;
     // color: v.$base-color-dark;
     // font-size: 2.1em;

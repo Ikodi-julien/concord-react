@@ -22,21 +22,25 @@
 .mychannels,
 .usersinchannellist {
   position: relative;
-  min-width: 15vw;
   height: 100%;
   padding: 20px;
-  min-width: 180px;
-  border: 1px solid v.$base-color-grey;
+  max-width: 300px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   color: v.$base-color-light;
   background-color: v.$base-color-darkest;
 
+
   &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: v.$base-color-darkest;
 
     &__button {
       border: none;
@@ -49,15 +53,19 @@
   }
 
   &__title {
-    margin: 10px 0;
+    padding: 10px;
     font-size: 2em;
     color: v.$base-color-grey;
+    margin: 0;
   }
 
   &__links {
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    height: 100%;
+    padding-top: 56px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
 
     &__link {
       padding: 8px;
@@ -79,8 +87,9 @@
       display: block;
       position: absolute;
       top: v.$nav-height;
-      width: 100%;
-      height: 80%;
+      max-width: 100%;
+      min-width: 100%;
+      height: calc(100% - #{v.$nav-height * 2});
       z-index: v.$z-index-middle-front;
     }
   }
@@ -92,15 +101,6 @@
     &.--logged {
       color: v.$base-color-orange;
     }
-  }
-
-  &__deco {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 150px;
-    height: 150px;
-    background: bottom/contain no-repeat url('src/assets/friends.png');
   }
 }
 
@@ -121,7 +121,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: 1px solid v.$base-color-grey;
       color: v.$base-color-light;
       background-color: v.$base-color-dark;
 
@@ -176,7 +175,6 @@
       width: 100%;
       bottom: 0;
       padding: 20px 20px 50px;
-      border: 1px solid v.$base-color-grey;
       color: v.$base-color-light;
       background-color: v.$base-color;
 
