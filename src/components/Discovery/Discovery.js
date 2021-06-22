@@ -26,8 +26,10 @@ const Discovery = ({
   
   const filteredChannels = searchTagsAndReturn(tagSelectValue, renamedChannelList);
 
-  const channelsToDisplay = filteredChannels.length ? filteredChannels : channels;
+  let channelsToDisplay = filteredChannels.length ? filteredChannels : channels;
 
+  if (tagSelectValue !== '' && !filteredChannels.length) channelsToDisplay = [];
+  
   return (
     <section className="discovery">
     <StoreUrl />
