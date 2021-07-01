@@ -12,6 +12,18 @@ const ChannelMessages = (
   const refContainer = useRef(null);
 
   useEffect(() => {
+    // Ici on gère la création d'un éditeur quill.js pour afficher les message avec leur mise en forme après que l'élement soit créé dans le DOM.
+    if (messages.length) {
+      messages.map(message => {
+        const quill = new Quill(`#editor-${message.id}`, {
+          modules: {
+            toolbar: false,
+          },
+        });
+        quill.enable(false);
+        quill.setContents(message.content); 
+      })
+    }
     // effet exécuté à chaque rendu du composant, pour scroller vers le bas
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo
 
@@ -27,18 +39,7 @@ const ChannelMessages = (
       behavior: 'smooth',
     });
     
-    // Ici on gère la création d'un éditeur quill.js pour afficher les message avec leur mise en forme après que l'élement soit créé dans le DOM.
-    if (messages.length) {
-      messages.map(message => {
-        const quill = new Quill(`#editor-${message.id}`, {
-          modules: {
-            toolbar: false,
-          },
-        });
-        quill.enable(false);
-        quill.setContents(message.content); 
-      })
-    }
+
   }
   ); 
   

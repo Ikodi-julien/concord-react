@@ -56,6 +56,11 @@
   &__content {
     & .ql-editor {
       padding: 2px 10px;
+
+      & img {
+        max-width: 150px;
+        max-height: 250px;
+      }
     }
 
     &__text {

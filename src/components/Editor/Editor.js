@@ -11,6 +11,7 @@ export default (
     setQuillContent, 
     reinitQuill,
     channelFormSubmit,
+    windowSize,
   }
 ) => {
 
@@ -24,30 +25,42 @@ export default (
       }
     }
   }
+  
+  const toolbarOptions = windowSize < 770 ? false : {
+    container: [
+      ['bold', 'italic', 'underline', 'strike', 'code-block'],
+      [{ color: [] }, { background: [] }],
+    ],
+    handlers: {
+      emoji: function () {},
+    },
+  };
+  
   useEffect(() => {
-    
-      if (!quill || reinitQuill) {
-        // console.log('quill');
-        quillRegister(); // registers Quill modules
-        quill = new Quill(editor.current, {
-          modules: {
-            toolbar: false, // no toolbar for the editor
-            keyboard: {bindings},
-            'emoji-toolbar': false,
-            'emoji-textarea': true,
-            'emoji-shortname': true, // doesn't work with french keyboard
-          },
-          placeholder: 'Kessessé ?...',
-          theme: 'snow',
-        });
-        
-        quill.setText('');
-        quill.focus();
-        quill.on('text-change', () => {
-          const text = quill.getContents();
-          setQuillContent(text);
-        });
+    if (!quill || reinitQuill) {
+      if (document.querySelector('.editor .ql-toolbar')) {
+        document.querySelector('.editor .ql-toolbar').remove()
       }
+      quillRegister(); // registers Quill modules
+      quill = new Quill(editor.current, {
+        modules: {
+          toolbar: toolbarOptions, // no toolbar for the editor
+          keyboard: {bindings},
+          'emoji-toolbar': false,
+          'emoji-textarea': true,
+          'emoji-shortname': true, // doesn't work with french keyboard
+        },
+        placeholder: 'Kessessé ?...',
+        theme: 'snow',
+      });
+      
+      quill.setText('');
+      quill.focus();
+      quill.on('text-change', () => {
+        const text = quill.getContents();
+        setQuillContent(text);
+      });
+    }
   }, [reinitQuill]);
 
   return (
