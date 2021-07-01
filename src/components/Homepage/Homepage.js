@@ -39,22 +39,21 @@ const Homepage = ({
 
       <div className='homepage__container'>
 
-
-          <div className="homepage__mychannels">
-            <h1 className="homepage__title"># mes chatrooms</h1>
-          {myChannels && myChannels.length > 0 ? (
-            <CardBox
-              list={myChannels}
-              isDeletable={true}
-            />
-            ) : (
-              <div className='homepage__info'>
-                <p>Ici s'afficheront les chatrooms visitées</p>
-              </div>
-            )
-          }
-            
-          </div>
+        <div className="homepage__mychannels">
+          <h1 className="homepage__title"># mes chatrooms</h1>
+        {myChannels && myChannels.length > 0 ? (
+          <CardBox
+            list={myChannels}
+            isDeletable={true}
+          />
+          ) : (
+            <div className='homepage__info'>
+              <p>Ici s'afficheront les chatrooms visitées</p>
+            </div>
+          )
+        }
+          
+        </div>
 
         <div className="homepage__suggested">
           <h1 className="homepage__title"># recommandés</h1>

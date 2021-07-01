@@ -27,14 +27,15 @@ const CardBox = ({ list, isDeletable, deleteFromMyChannels }) => {
                 >
                   <i className="far fa-trash-alt"></i>
                 </button>}
+                
               <Link to={`/channels/${item.id}`} >
-              
-                <div class="cardbox__title__row">
+                <div className="cardbox__title__row">
                   <div className="cardbox__title__text">
                       {item.title}
                   </div>
                   <div className='cardbox__emptyspace' />
                 </div>
+              </Link>
                 
                 <div className="cardbox__tags">
                 {item.tags &&
@@ -50,15 +51,21 @@ const CardBox = ({ list, isDeletable, deleteFromMyChannels }) => {
                 </div>
                 
                 <div className='cardbox__content'>
-                  <div className='cardbox__content__image'>
-                    <img src={item.img_url} />
-                  </div>
+                  <Link to={`/channels/${item.id}`} >
+                    <div className='cardbox__content__image'>
+                      <img src={item.img_url} />
+                    </div>
+                  </Link>
+                  
                   <div className='cardbox__content__plot'>
                     {item.plot}
                   </div>
                 </div>
 
                 <div className='cardbox__footer'>
+                  <div className='cardbox__footer__rank'>
+                    <i className="fas fa-trophy"/> {item.rank}
+                  </div>
                   <div className='cardbox__footer__year'>
                     Année: {item.year}
                   </div>
@@ -67,7 +74,6 @@ const CardBox = ({ list, isDeletable, deleteFromMyChannels }) => {
                   {(item.usersCount || 'Aucun') + ` utilisateur${item.usersCount > 1 ? "s" : ""}`}
                   </div>
                 </div>
-              </Link>
             </Card>
           ))
         }

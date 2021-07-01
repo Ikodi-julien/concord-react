@@ -29,14 +29,15 @@ const NavSearch = (
     // If a channel is clicked, displays the related channel page.
     if (result.id) {
       history.push(`/channels/${result.id}`);
-      // action dispatched
       fetchChannel(result.id);
+      searchChange('');
       return;
     }
-    // if it isn't a channel then it's a tag (i hope)
+    // if it has no property id it's a tag (i hope)
     if (tagNames.includes(result.title)) {
       history.push('/discovery');
       tagSelectChange(result.title);
+      searchChange('');
       return
     }
   };
