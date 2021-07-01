@@ -1,6 +1,6 @@
-export const TOGGLE_NAV_SEARCH = 'Click on search button, displays search input';
-export const TOGGLE_NAV_MENU = 'Show or hide nav menu';
-export const FETCH_NAV_DATA = 'Fetch data to hydrate search and select in Navbar';
+export const TOGGLE_NAV_SEARCH = 'TOGGLE_NAV_SEARCH';
+export const TOGGLE_NAV_MENU = 'TOGGLE_NAV_MENU';
+export const FETCH_NAV_DATA = 'FETCH_NAV_DATA';
 export const FETCH_NAV_DATA_SUCCESS = 'FETCH_NAV_DATA_SUCCESS';
 export const FETCH_NAV_DATA_ERROR = 'FETCH_NAV_DATA_ERROR';
 export const SEARCH_CHANGE = 'SEARCH_CHANGE';

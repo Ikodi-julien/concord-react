@@ -5,7 +5,7 @@ import 'quill/dist/quill.snow.css'; // Add css for snow theme
 import "src/components/Editor/quill-emoji/src/scss/quill-emoji.scss";
 import './editor.scss';
 
-const Editor = (
+export default (
   {
     quill, 
     setQuillContent, 
@@ -14,8 +14,8 @@ const Editor = (
   }
 ) => {
 
-  const editor = useRef('editor');
-  const bindings = {
+  const editor = useRef('editor'); // the div that will contain the editor
+  const bindings = { // option for editor, bind key 'Enter' to submit form
     custom: {
       key: 13,
       handler: ({index}) => {
@@ -27,15 +27,15 @@ const Editor = (
   useEffect(() => {
     
       if (!quill || reinitQuill) {
-        console.log('quill');
-        quillRegister();
+        // console.log('quill');
+        quillRegister(); // registers Quill modules
         quill = new Quill(editor.current, {
           modules: {
-            toolbar: false,
+            toolbar: false, // no toolbar for the editor
             keyboard: {bindings},
             'emoji-toolbar': false,
             'emoji-textarea': true,
-            'emoji-shortname': true,
+            'emoji-shortname': true, // doesn't work with french keyboard
           },
           placeholder: 'Kessessé ?...',
           theme: 'snow',
@@ -48,7 +48,6 @@ const Editor = (
           setQuillContent(text);
         });
       }
-      
   }, [reinitQuill]);
 
   return (
@@ -57,5 +56,3 @@ const Editor = (
     </div>
   );
 };
-
-export default Editor;

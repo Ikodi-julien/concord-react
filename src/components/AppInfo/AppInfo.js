@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './appinfo.scss';
 
 const AppInfo = ({appInfo, isVisible}) => {
@@ -10,4 +11,8 @@ const AppInfo = ({appInfo, isVisible}) => {
   )
 }
 
+AppInfo.propTypes = {
+  appInfo: PropTypes.string,
+  isVisible: PropTypes.bool,
+}
 export default AppInfo;

@@ -5,7 +5,7 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 10px;
   height: fit-content;
   max-height: 100%;
@@ -17,86 +17,102 @@
     padding: 10px;
     margin-bottom: 0.5em;
   }
-}
 
 
-.ui.cards {
-  width: 100%;
-
-  &>.ui.card {
-    position: relative;
+  .ui.cards {
     width: 100%;
-    height: min-content;
-    margin: 0.4em 0.5em;
+    background-color: black;
 
-    & .cardbox {
-      &__button {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        border: none;
-        background-color: transparent;
-        z-index: v.$z-index-low;
-        color: v.$base-color-grey;
-        cursor: grabbing;
-      }
+    &>.ui.card {
+      position: relative;
+      width: v.$card-width;
+      height: v.$card-height;
+      margin: 0.4em 0.5em;
 
-      &__emptyspace {
-        width: 30px;
-      }
-
-      &__content {
-        display: flex;
-        align-items: center;
-        width: 85%;
-
-        @media screen and (max-width: 768px) {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-
-      &__title {
-        color: v.$base-color-blue;
-        font-size: 1.2em;
-        font-weight: 600;
-        padding: 5px;
-
-        @media screen and (max-width: 768px) {
-          font-size: 1.1em;
-          padding: 5px 5px 0 5px;
-        }
-      }
-
-      &__description {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      &__cardtag {
-        padding: 5px;
-        color: v.$base-color-dark;
-
-        &.--matching_tag {
-          color: v.$base-color-orange;
-          font-weight: bold;
+      & .cardbox {
+        &__button {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          border: none;
+          background-color: transparent;
+          z-index: v.$z-index-low;
+          color: v.$base-color-grey;
+          cursor: grabbing;
         }
 
-        @media screen and (max-width: 768px) {
-          font-size: 0.8em;
-          padding: 0 5px 2px 5px;
+        &__title {
+          &__row {
+            display: flex;
+            justify-content: space-between;
+            height: v.$card-header-height;
+          }
+
+          &__text {
+            display: flex;
+            padding: 3px 0 0 5px;
+            align-items: center;
+            color: v.$base-color-blue;
+            font-size: 1.2em;
+            overflow: hidden;
+          }
         }
-      }
 
-      &__usercount {
-        padding: 0 50px 0;
-        text-align: right;
-        color: v.$base-color-grey;
+        &__emptyspace {
+          width: 40px;
+        }
 
-        @media screen and (max-width: 768px) {
-          font-size: 0.8em;
-          padding: 0 5px 0;
+        &__tags {
+          display: flex;
+          font-size: 0.7em;
+          height: v.$card-tags-height;
+        }
 
+        &__content {
+          width: 100%;
+          display: flex;
+          height: v.$card-height - v.$card-header-height - v.$card-footer-height - v.$card-tags-height;
+
+          &__image {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+
+            & img {
+              width: 100%;
+              min-width: 100%;
+            }
+          }
+
+          &__plot {
+            width: 50%;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+          }
+        }
+
+        &__cardtag {
+          padding: 5px;
+          color: v.$base-color-dark;
+
+          &.--matching_tag {
+            color: v.$base-color-orange;
+            font-weight: bold;
+          }
+
+          @media screen and (max-width: 768px) {
+            font-size: 0.8em;
+            padding: 0 5px 2px 5px;
+          }
+        }
+
+        &__footer {
+          display: flex;
+          justify-content: space-between;
+
+          &__year {}
+
+          &__usercount {}
         }
       }
     }

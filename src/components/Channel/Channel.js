@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import MyChannelsContainer from 'src/containers/MyChannelsContainer';
 import UsersInChannelListContainer from 'src/containers/UsersInChannelListContainer';
@@ -22,9 +23,9 @@ const Channel = ({
   userLeaveChannel,
   }) => {
   
-    // Ici on récupère l'id du channel dans l'url (/channels/:id)
+    // get param 'id' in url (/channels/:id)
     let {id} = useParams();
-    // Ici on envoi la demande pour récupérer les infos de ce channel
+    // When component Channel is mount, fetch channel's data from API
     useEffect(() => {
       fetchChannel(id);
       return () => {
@@ -33,7 +34,7 @@ const Channel = ({
       };
     }, []);
   
-  if (channel.isLoading) { // On affiche un loader tant que pas de réponse de l'API
+  if (channel.isLoading) { // loader while waiting for API answer
     return (
       <section className='channels'>
       <StoreUrl />
@@ -80,6 +81,29 @@ const Channel = ({
       <Footer />
     </section>
   )
+}
+
+Channel.propType = {
+  channel: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    messages: PropTypes.array,
+    users: PropTypes.array,
+    inputForm: PropTypes.string,
+    isLoading: PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired,
+    showMychannels: PropTypes.bool.isRequired,
+    showUsersInChannel: PropTypes.bool.isRequired,
+    infoMessage: PropTypes.string,
+    quillContent: PropTypes.string,
+    reinitQuill: PropTypes.bool,
+  }), 
+  user: PropTypes.array,
+  setInputValue: PropTypes.func.isRequired,
+  fetchChannel: PropTypes.func.isRequired,
+  channelFormSubmit: PropTypes.func.isRequired,
+  toggleUsersInChannel: PropTypes.bool.isRequired,
+  userLeaveChannel: PropTypes.func,
 }
 
 export default Channel;

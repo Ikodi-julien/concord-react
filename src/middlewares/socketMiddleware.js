@@ -50,13 +50,13 @@ export default (store) => (next) => (action) => {
       });
 
       socket.on('user:join', (data) => {
-        // This is when a user joins a channel i'm in
+        // This is when a user joins the active channel
         console.log('user:join', data);
         store.dispatch(updateChannelUsers(channel.id));
       });
 
       socket.on('user:leave', (data) => {
-        // This is when a user leaves a channel i'm in
+        // This is when a user leaves the active channel
         console.log('user-leave', data);
         store.dispatch(updateChannelUsers(channel.id));
       });

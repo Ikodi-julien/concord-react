@@ -1,10 +1,11 @@
 import React from 'react';
-import Avatar from 'react-avatar-edit';
+import PropTypes from 'prop-types';
+import AvatarEdit from 'react-avatar-edit';
 import { Button, Segment } from 'semantic-ui-react';
 import Message from 'src/components/Message/Message';
 import './avatar.scss';
 
-export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
+const Avatar = ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
 
   const onClose = () => {
     setAvatar(null)
@@ -28,7 +29,7 @@ export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
       <h1 className="profile__title">Mon avatar</h1>
       <div className="profile__avatar__row">
         <div className="profile__avatar__container">
-          <Avatar
+          <AvatarEdit
             width={200}
             height={150}
             onCrop={onCrop}
@@ -48,3 +49,13 @@ export default ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
     </Segment>
   )
 }
+
+Avatar.propTypes = {
+  avatarFile: PropTypes.any,
+  avatar: PropTypes.string.isRequired,
+  setAvatar: PropTypes.func.isRequired, 
+  pseudo: PropTypes.string.isRequired, 
+  updateAvatar: PropTypes.func.isRequired,
+}
+
+export default Avatar;

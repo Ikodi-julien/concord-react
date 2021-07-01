@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import setSocketInHtml from 'src/selectors/setSocketInHtml'
+import PropTypes from 'prop-types';
 
 // == Import
 import ChannelContainer from '../../containers/ChannelContainer'
@@ -65,6 +66,11 @@ const App = ({ isUserLoggued, firstLogin }) => {
       </Switch>
     </div>
   )
+}
+
+App.propTypes = {
+  isUserLoggued: PropTypes.bool,
+  firstLogin: PropTypes.bool,
 }
 
 // == Export

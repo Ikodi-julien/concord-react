@@ -18,6 +18,10 @@ import chatBotAvatar from 'src/assets/chatbot.js';
 const channelState = {
   id: -2,
   title: '',
+  img_url: '',
+  rank: '',
+  plot: '',
+  year: 0,
   messages: [],
   users: [],
   inputForm: '',
