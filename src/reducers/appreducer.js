@@ -48,6 +48,7 @@ const appState = {
   navSearchValue: '',
   tagSelectValue: '',
   searchResult: {},
+  googleConnectURL: '',
 };
 
 const reducer = (stateActuel = appState, action = {}) => {

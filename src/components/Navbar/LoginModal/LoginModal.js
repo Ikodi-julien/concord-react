@@ -1,8 +1,9 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 import { Button, Divider, Segment, Modal, Form } from 'semantic-ui-react'
 import AppInfo from 'src/components/AppInfo/AppInfo';
 import ForgotPassContainer from 'src/containers/ForgotPasswordContainer';
-
+import {GOOGLE_CONNECT_URL} from 'src/settings'
 import './loginmodal.scss';
 
 const LoginModal = ({
@@ -53,14 +54,13 @@ const LoginModal = ({
     <Modal.Content >
     <Segment placeholder >
     
-        {/* <Button
-              color='orange'
-              content="Google Connect"
-              onClick={() => setLoginOpen(false)}
-            />
+      <a href={GOOGLE_CONNECT_URL} >
+        <Button
+          color='orange'
+          content="Google Connect"
+        />
+      </a>
     
-    <Divider horizontal >ou</Divider>
-     */}
         <Form name='loginForm' onSubmit={handleSubmit}>
           <Form.Field>
             <label>Email</label>
