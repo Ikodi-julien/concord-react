@@ -17,6 +17,7 @@ import {
   setDataFromGoogle,
   googleLogin,
   GOOGLE_LOGIN,
+  LOGIN_SUCCESS,
 } from 'src/actions/authActions';
 import { hideInfos, setFirstLogin } from 'src/actions/appActions';
 import { GET_USER_INFOS, getUserSuccess } from 'src/actions/userActions';
@@ -141,16 +142,23 @@ export default (store) => (next) => (action) => {
           // console.log('res.data :', res.data);
           store.dispatch(getUserSuccess(res.data));
         })
-        .catch((error) => {
+        .catch(async (error) => {
           handleAPIError(error, store, action.type);
           // Try googleConnect cookie
-          const dataGoogle = document.cookie
-            .split('; ').find((row) => row.startsWith('dataGoogle=')).split('=')[1];
+          try {
+            const dataGoogle = document.cookie
+              .split('; ').find((row) => row.startsWith('dataGoogle=')).split('=')[1];
 
-          if (dataGoogle) {
-            const decoded = atob(dataGoogle);
-            store.dispatch(setDataFromGoogle(JSON.parse(decoded)));
-            store.dispatch(googleLogin());
+            if (dataGoogle) {
+              const decoded = atob(dataGoogle);
+              document.cookie = 'dataGoogle=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+
+              store.dispatch(setDataFromGoogle(JSON.parse(decoded)));
+              store.dispatch(googleLogin());
+            }
+          }
+          catch (error) {
+            console.warn(error);
           }
         });
       break;
@@ -172,11 +180,8 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           // console.log(res);
           store.dispatch(loginSuccess(res.data));
-          // Gérer la suppression des cookies
-          // store.dispatch(deleteGoogleData())
         })
         .catch((error) => {
-          console.log('va te coucher');
           store.dispatch(submitSignupForm());
         });
       break;
