@@ -7,7 +7,7 @@ const MyChannels = (
     showMychannels, 
     fetchChannel, 
     toggleMyChannels,
-    fetchMyChannels,
+    imageURL,
   }
   ) => {
 
@@ -23,17 +23,26 @@ const MyChannels = (
   
   return (
     <section className={showMychannels ? "mychannels --show" : "mychannels"}>
+
+    
       <div className="mychannels__header">
-      <h1 className="mychannels__title">Mes Channels</h1>
-        {
-          window.innerWidth < 700 &&
-          <button
-            className='mychannels__header__button'
-            onClick={ handleMyChannelClick }
-            >
-            <i className="fas fa-times"></i>
-          </button>
-        }
+        <div className="mychannels__header__image" >
+          <img src={imageURL} />
+        </div>
+        
+        
+        <div class="mychannels__header__row">
+          <h1 className="mychannels__title">Mes Channels</h1>
+          {
+            window.innerWidth < 700 &&
+            <button
+              className='mychannels__header__button'
+              onClick={ handleMyChannelClick }
+              >
+              <i className="fas fa-times"></i>
+            </button>
+          }
+        </div>
       </div>
       
       <div className="mychannels__links">

@@ -9,6 +9,7 @@ import { fetchMyChannels } from 'src/actions/userActions';
 const mapStateToProps = ({ user, channel }) => ({
   myChannelLinks: user.myChannelLinks,
   showMychannels: channel.showMychannels,
+  imageURL: channel.img_url,
 });
 
 const mapDispatchToProps = (dispatch) => ({

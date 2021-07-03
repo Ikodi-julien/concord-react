@@ -33,16 +33,32 @@
 
 
   &__header {
-    position: absolute;
-    top: 0;
-    left: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+
     background-color: v.$base-color-darkest;
 
+    &__image {
+      width: 100%;
+      // background-color: white;
+      height: 200px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+
+      &>img {
+        height: 200px;
+      }
+    }
+
     &__button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
       border: none;
       font-size: v.$size-font-awesome;
       color: v.$base-color-light;
@@ -62,8 +78,8 @@
   &__links {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding-top: 56px;
+    // height: 100%;
+    padding-top: 20px;
     overflow-y: auto;
     scroll-behavior: smooth;
 
