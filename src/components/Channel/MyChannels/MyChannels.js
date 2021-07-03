@@ -26,23 +26,22 @@ const MyChannels = (
 
     
       <div className="mychannels__header">
+        {
+          window.innerWidth < 700 &&
+          <button
+            className='mychannels__header__button'
+            onClick={ handleMyChannelClick }
+            >
+            <i className="fas fa-times"></i>
+          </button>
+        }
+      
         <div className="mychannels__header__image" >
           <img src={imageURL} />
         </div>
         
-        
-        <div class="mychannels__header__row">
-          <h1 className="mychannels__title">Mes Channels</h1>
-          {
-            window.innerWidth < 700 &&
-            <button
-              className='mychannels__header__button'
-              onClick={ handleMyChannelClick }
-              >
-              <i className="fas fa-times"></i>
-            </button>
-          }
-        </div>
+        <h1 className="mychannels__title">Mes #</h1>
+
       </div>
       
       <div className="mychannels__links">

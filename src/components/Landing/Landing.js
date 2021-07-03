@@ -9,7 +9,7 @@ const Landing = ({getUserInfos, isActive, setIsLandingActive}) => {
     getUserInfos();
     setTimeout(() => {
       setIsLandingActive(true)
-    }, 12000);
+    }, 18000);
   }, []);
 
   const indexs = [];
