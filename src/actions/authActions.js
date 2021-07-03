@@ -11,6 +11,8 @@ export const SUBMIT_FORGOT_PASS_FORM = 'SUBMIT_FORGOT_PASS_FORM';
 export const FORGOT_PASS_INFO = 'FORGOT_PASS_INFO';
 export const SUBMIT_UPDATE_PASSWORD = 'SUBMIT_UPDATE_PASSWORD';
 export const UPDATE_PASS_INFO = 'UPDATE_PASS_INFO';
+export const GOOGLE_LOGIN = 'GOOGLE_LOGIN';
+export const SET_DATA_FROM_GOOGLE = 'SET_DATA_FROM_GOOGLE';
 
 export const submitLoginForm = () => (
   { type: SUBMIT_LOGIN_FORM }
@@ -43,3 +45,5 @@ export const submitForgotPassForm = () => ({ type: SUBMIT_FORGOT_PASS_FORM });
 export const forgotPassInfo = (msg) => ({ type: FORGOT_PASS_INFO, value: msg });
 export const submitUpdatePassword = () => ({ type: SUBMIT_UPDATE_PASSWORD });
 export const updatePassInfo = (msg) => ({ type: UPDATE_PASS_INFO, value: msg });
+export const googleLogin = () => ({ type: GOOGLE_LOGIN });
+export const setDataFromGoogle = (data) => ({ type: SET_DATA_FROM_GOOGLE, value: data });

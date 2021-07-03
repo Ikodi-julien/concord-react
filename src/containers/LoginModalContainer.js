@@ -34,7 +34,6 @@ const mapDispatchToProps = (dispatch) => ({
   submitSignupForm: () => dispatch(submitSignupForm()),
   setInputValue: (objectInput) => dispatch(setInputValue(objectInput)),
   disconnectUser: () => dispatch(disconnectUser()),
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

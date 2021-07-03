@@ -17,6 +17,7 @@ import {
   DISCONNECT_USER_ERROR,
   FORGOT_PASS_INFO,
   UPDATE_PASS_INFO,
+  SET_DATA_FROM_GOOGLE,
 } from 'src/actions/authActions';
 import {
   GET_USER_INFOS,
@@ -172,6 +173,17 @@ const reducer = (stateActuel = authState, action = {}) => {
         loginInfoIsVisible: false,
         forgotPassInfoIsVisible: false,
         updatePassInfoIsVisible: false,
+      };
+
+    case SET_DATA_FROM_GOOGLE:
+      return {
+        ...stateActuel,
+        loginEmail: action.value.email,
+        loginPassword: action.value.password,
+        signupPseudo: action.value.pseudo,
+        signupEmail: action.value.email,
+        firstSignupPassword: action.value.password,
+        secondSignupPassword: action.value.password,
       };
 
     default:

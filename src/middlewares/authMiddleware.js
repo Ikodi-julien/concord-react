@@ -14,11 +14,15 @@ import {
   forgotPassInfo,
   SUBMIT_UPDATE_PASSWORD,
   updatePassInfo,
+  setDataFromGoogle,
+  googleLogin,
+  GOOGLE_LOGIN,
 } from 'src/actions/authActions';
 import { hideInfos, setFirstLogin } from 'src/actions/appActions';
 import { GET_USER_INFOS, getUserSuccess } from 'src/actions/userActions';
 import { SUBMIT_DELETE_ACCOUNT } from 'src/actions/profileActions';
 import handleAPIError from '../selectors/handleAPIError';
+import { submitSignupForm } from '../actions/authActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -139,6 +143,41 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           handleAPIError(error, store, action.type);
+          // Try googleConnect cookie
+          const dataGoogle = document.cookie
+            .split('; ').find((row) => row.startsWith('dataGoogle=')).split('=')[1];
+
+          if (dataGoogle) {
+            const decoded = atob(dataGoogle);
+            store.dispatch(setDataFromGoogle(JSON.parse(decoded)));
+            store.dispatch(googleLogin());
+          }
+        });
+      break;
+
+    case GOOGLE_LOGIN:
+      next(action);
+
+      axios
+        .post(
+          `${API_URL}/v1/login`,
+          {
+            email: loginEmail.toLowerCase(),
+            password: loginPassword,
+          },
+          {
+            withCredentials: true,
+          },
+        )
+        .then((res) => {
+          // console.log(res);
+          store.dispatch(loginSuccess(res.data));
+          // Gérer la suppression des cookies
+          // store.dispatch(deleteGoogleData())
+        })
+        .catch((error) => {
+          console.log('va te coucher');
+          store.dispatch(submitSignupForm());
         });
       break;
 

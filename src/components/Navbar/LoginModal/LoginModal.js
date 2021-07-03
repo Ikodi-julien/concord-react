@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
 import { Button, Divider, Segment, Modal, Form } from 'semantic-ui-react'
 import AppInfo from 'src/components/AppInfo/AppInfo';
 import ForgotPassContainer from 'src/containers/ForgotPasswordContainer';
