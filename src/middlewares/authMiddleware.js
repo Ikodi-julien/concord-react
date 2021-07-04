@@ -151,14 +151,16 @@ export default (store) => (next) => (action) => {
 
             if (dataGoogle) {
               const decoded = atob(dataGoogle);
-              document.cookie = 'dataGoogle=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+              setTimeout(() => {
+                document.cookie = 'dataGoogle=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+              }, 2000);
 
               store.dispatch(setDataFromGoogle(JSON.parse(decoded)));
               store.dispatch(googleLogin());
             }
           }
-          catch (error) {
-            console.warn(error);
+          catch (err) {
+            console.warn(err);
           }
         });
       break;
