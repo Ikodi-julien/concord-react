@@ -5,7 +5,7 @@
   width: 100%;
   height: v.$footer-height;
   // min-height: v.$footer-height;
-  justify-content: space-evenly;
+  justify-content: left;
   align-items: center;
   background-color: v.$base-color-darkest;
   justify-self: flex-end;
@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     color: v.$base-color-light;
+    margin-left: 15px;
   }
 
   &__contact {
