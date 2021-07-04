@@ -151,11 +151,6 @@ export default (store) => (next) => (action) => {
 
             if (dataGoogle) {
               const decoded = atob(dataGoogle);
-              setTimeout(() => {
-                document.cookie = `dataGoogle=; path=/; domain=concord.ikodi.eu; expires=${new Date(0).toUTCString()}`;
-                document.cookie = 'testeur=; path=/; domain=concord.ikodi.eu;';
-              },
-              1000);
 
               store.dispatch(setDataFromGoogle(JSON.parse(decoded)));
               store.dispatch(googleLogin());
