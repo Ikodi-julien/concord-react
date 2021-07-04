@@ -54,11 +54,9 @@ const LoginModal = ({
     <Segment placeholder >
     
       <a href={GOOGLE_CONNECT_URL} >
-        <Button
-          color='orange'
-          content="Google Connect"
-        />
+        <button className="button-google" />
       </a>
+      <Divider horizontal >ou</Divider>
     
         <Form name='loginForm' onSubmit={handleSubmit}>
           <Form.Field>

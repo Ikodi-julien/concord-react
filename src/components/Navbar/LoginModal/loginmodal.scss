@@ -8,3 +8,21 @@
 .ui.button {
   margin: 1em;
 }
+
+.ui.placeholder.segment>a {
+  display: flex;
+  justify-content: center;
+}
+
+.ui.placeholder>:before {
+  background-color: transparent;
+}
+
+.button-google {
+  width: 100px;
+  height: 48px;
+  border: 1px solid rgba(34, 36, 38, .15);
+  border-radius: 5px;
+  background: center/cover white no-repeat url('src/assets/Google-Logo.wine.svg');
+  cursor: pointer;
+}
