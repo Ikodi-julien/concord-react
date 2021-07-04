@@ -40,7 +40,7 @@ const MyChannels = (
           <img src={imageURL} />
         </div>
         
-        <h1 className="mychannels__title">Mes #</h1>
+        <h1 className="mychannels__title"># mes chatrooms</h1>
 
       </div>
       

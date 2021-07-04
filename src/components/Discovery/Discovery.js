@@ -6,6 +6,7 @@ import CardBox from 'src/containers/CardboxContainer';
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
 import Footer from 'src/components/Footer/Footer';
 import {searchTagsAndReturn, makeSelectOptions} from 'src/selectors/search';
+import SetPathnameContainer from 'src/containers/SetPathnameContainer';
 
 import './discovery.scss';
 
@@ -14,7 +15,14 @@ const Discovery = ({
   channels, 
   tagSelectValue, 
   tagSelectChange,
+  isRefresh,
 }) => {
+    {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage */}
+    if (isRefresh) {
+      // console.log('on envoi SetPath')
+      return (<SetPathnameContainer />)
+    }
+  
   // This function puts Select value in searchedValue prop.
   const handleChange = (evt, {value}) => {
     tagSelectChange(value);

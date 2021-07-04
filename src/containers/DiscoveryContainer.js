@@ -6,6 +6,7 @@ const mapStateToProps = ({ app }) => ({
   tags: app.tags,
   channels: app.channels,
   tagSelectValue: app.tagSelectValue,
+  isRefresh: app.isRefresh,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -56,7 +56,7 @@ const App = ({ isUserLoggued, firstLogin }) => {
 
         <Route path="/" exact>
           {/* Accueil */}
-          {isUserLoggued && <Redirect to="/home" />}
+          {isUserLoggued && <Redirect to="/discovery" />}
           <NavbarContainer />
           <LandingContainer />
           <Footer />
