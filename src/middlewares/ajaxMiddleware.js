@@ -45,7 +45,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${API_URL}/v1/channel/${action.channelId}`,
+        url: `${API_URL}/v2/channel/${action.channelId}`,
         method: 'GET',
         withCredentials: true,
       })
@@ -63,7 +63,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${API_URL}/v1/me/channels`,
+        url: `${API_URL}/v2/me/channels`,
         method: 'GET',
         withCredentials: true,
       })
@@ -81,7 +81,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${API_URL}/v1/me/recommended`,
+        url: `${API_URL}/v2/me/recommended`,
         method: 'GET',
         withCredentials: true,
       })
@@ -100,7 +100,7 @@ export default (store) => (next) => (action) => {
 
       // Fetch tags then channels
       axios({
-        url: `${API_URL}/v1/tags/channels`,
+        url: `${API_URL}/v2/tags/channels`,
         method: 'GET',
         withCredentials: true,
       })
@@ -108,7 +108,7 @@ export default (store) => (next) => (action) => {
           const tags = res.data;
 
           axios({
-            url: `${API_URL}/v1/channels`,
+            url: `${API_URL}/v2/channels`,
             method: 'GET',
             withCredentials: true,
           }).then((response) => {
@@ -126,7 +126,7 @@ export default (store) => (next) => (action) => {
       next(action);
       // console.log(action);
       axios
-        .get(`${API_URL}/v1/me`, {
+        .get(`${API_URL}/v2/me`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -146,7 +146,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .put(
-          `${API_URL}/v1/me`,
+          `${API_URL}/v2/me`,
           {
             email: emailInput,
             nickname: nicknameInput,
@@ -159,6 +159,10 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           console.log(res.data);
           store.dispatch(updateProfileSuccess(res.data));
+          store.dispatch(appInfo('profil mis à jour'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, 2000);
         })
         .catch((error) => {
           handleAPIError(error, store, action.type);
@@ -175,7 +179,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${API_URL}/v1/channel/${id}`,
+        url: `${API_URL}/v2/channel/${id}`,
         method: 'GET',
         withCredentials: true,
       })
@@ -191,7 +195,7 @@ export default (store) => (next) => (action) => {
     case DELETE_FROM_MY_CHANNELS:
       // console.log(action);
       axios
-        .delete(`${API_URL}/v1/me/channels/${action.value}`, {
+        .delete(`${API_URL}/v2/me/channels/${action.value}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -209,7 +213,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .put(
-          `${API_URL}/v1/me/avatar`,
+          `${API_URL}/v2/me/avatar`,
           {
             avatar,
           },

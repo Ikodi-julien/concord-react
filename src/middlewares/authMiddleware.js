@@ -48,7 +48,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .post(
-          `${API_URL}/v1/login`,
+          `${API_URL}/v2/login`,
           {
             email: loginEmail.toLowerCase(),
             password: loginPassword,
@@ -95,7 +95,7 @@ export default (store) => (next) => (action) => {
       }
 
       axios
-        .post(`${API_URL}/v1/signup`, {
+        .post(`${API_URL}/v2/signup`, {
           nickname: signupPseudo,
           email: signupEmail.toLowerCase(),
           password: firstSignupPassword,
@@ -122,7 +122,7 @@ export default (store) => (next) => (action) => {
     case DISCONNECT_USER:
       next(action);
       axios
-        .post(`${API_URL}/v1/logout`, {}, { withCredentials: true })
+        .post(`${API_URL}/v2/logout`, {}, { withCredentials: true })
         .then((res) => {
           store.dispatch(disconnectUserSuccess());
           // console.log('res.data :', res.data);
@@ -137,7 +137,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios
-        .get(`${API_URL}/v1/me`, { withCredentials: true })
+        .get(`${API_URL}/v2/me`, { withCredentials: true })
         .then((res) => {
           // console.log('res.data :', res.data);
           store.dispatch(getUserSuccess(res.data));
@@ -168,7 +168,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .post(
-          `${API_URL}/v1/login`,
+          `${API_URL}/v2/login`,
           {
             email: loginEmail.toLowerCase(),
             password: loginPassword,
@@ -189,7 +189,7 @@ export default (store) => (next) => (action) => {
     case SUBMIT_FORGOT_PASS_FORM:
       // console.log(action);
       axios
-        .post(`${API_URL}/v1/forgot-pwd`, {
+        .post(`${API_URL}/v2/forgot-pwd`, {
           email: forgotPasswordEmailInput,
         })
         .then((res) => {
@@ -230,7 +230,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .patch(
-          `${API_URL}/v1/me`,
+          `${API_URL}/v2/me`,
           {
             password: updatePassFormOld,
             newPassword: updatePassFormNew1,
@@ -253,7 +253,7 @@ export default (store) => (next) => (action) => {
 
     case SUBMIT_DELETE_ACCOUNT:
       axios
-        .delete(`${API_URL}/v1/me`, {
+        .delete(`${API_URL}/v2/me`, {
           withCredentials: true,
         })
         .then(() => {

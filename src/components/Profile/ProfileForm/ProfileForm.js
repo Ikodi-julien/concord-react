@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {Button, Form, Dropdown} from 'semantic-ui-react';
-import {useHistory} from 'react-router-dom';
 
 export default ({
   user, 
@@ -12,12 +11,9 @@ export default ({
   updateProfile,
   fetchMyProfile,
 }) => {
-  const history = useHistory();
-  
   const handleSubmit = (evt) => {
     evt.preventDefault();
     updateProfile();
-    history.push('/home');
   };
   const handleInputChange = (evt) => {
     const objectInput = {

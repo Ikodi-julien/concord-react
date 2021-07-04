@@ -5,11 +5,10 @@ import './footer.scss';
 
 const Footer = () => (
   <section className="footer">
-    © chatRoom
-    {/* <Link to="/terms">Conditions d'utilisation</Link>
-    <Link to="/privacy">Confidentialité</Link>
-    <Link to="/about">A propos de TeaCup</Link>
-    <Link to="/contact">Contact</Link> */}
+    <a className='footer__link' href='https://ikodi.eu/blog/?page_id=36'>
+    Contact
+    <div className='footer__contact' />
+    </a>
   </section>
 )
 
