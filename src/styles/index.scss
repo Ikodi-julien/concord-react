@@ -1,14 +1,14 @@
 // @use 'reset';
-@use 'vars';
+@use 'vars'as v;
 
 @font-face {
   font-family: 'Quicksand';
   src: url('../assets/fonts/Quicksand-Regular.ttf');
 }
 
-// body {
-//   font-family: 'sans-serif';
-// }
+body {
+  background-color: v.$base-color-dark;
+}
 
 #root {
   width: 100%;
