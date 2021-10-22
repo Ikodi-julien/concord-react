@@ -10,7 +10,6 @@ import {
   SET_NAV_MENU_OPEN,
   SET_WINDOW_SIZE,
   SET_ISREFRESH,
-  SET_ISLANDINGACTIVE,
   APP_INFO,
   RESET_SEARCH,
 } from 'src/actions/appActions';
@@ -157,12 +156,6 @@ const reducer = (stateActuel = appState, action = {}) => {
       return {
         ...stateActuel,
         windowSize: action.value,
-      };
-
-    case SET_ISLANDINGACTIVE:
-      return {
-        ...stateActuel,
-        isLandingActive: action.value,
       };
 
     case FETCH_CHANNEL:
