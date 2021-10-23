@@ -27,20 +27,27 @@ const Discovery = ({
   const handleChange = (evt, {value}) => {
     tagSelectChange(value);
   }
+  // Sort tags
+  const sortedTags = tags.sort((a, b) => a.id - b.id);
+  
   // Options for select component
-  const selectOptions = makeSelectOptions(tags);
-  // Here the channels are filtered according to the option selected and terefore the searchedValue
-  const renamedChannelList = channels.map(channel => ({...channel, name: channel.title}));
+  const selectOptions = makeSelectOptions(sortedTags);
+  
+  // sort channels by rank
+  const sortedChannels = channels.sort((a, b) => a.rank - b.rank );
+  
+  // Here the channels are filtered according to the option selected
+  const renamedChannelList = sortedChannels.map(channel => ({...channel, name: channel.title}));
   
   const filteredChannels = searchTagsAndReturn(tagSelectValue, renamedChannelList);
 
-  let channelsToDisplay = filteredChannels.length ? filteredChannels : channels;
+  let channelsToDisplay = filteredChannels.length ? filteredChannels : sortedChannels;
 
   if (tagSelectValue !== '' && !filteredChannels.length) channelsToDisplay = [];
   
   return (
     <section className="discovery">
-    <StoreUrl />
+      <StoreUrl />
       <NavbarContainer />
       
       <div className="discovery__container">
