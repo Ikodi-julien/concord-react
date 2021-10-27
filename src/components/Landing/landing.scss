@@ -11,14 +11,14 @@
 }
 
 .hero {
-  position: absolute;
-  width: 200%;
+  position: relative;
+  width: 100%;
   height: 100%;
   animation: swapBackground 20s ease-in-out 10s forwards infinite;
 
   & .--first {
     position: absolute;
-    width: 50%;
+    width: 100%;
     height: 100%;
     top: 0;
     left: 0;
@@ -27,10 +27,10 @@
 
   & .--second {
     position: absolute;
-    width: 50%;
+    width: 100%;
     height: 100%;
     top: 0;
-    right: 0;
+    left: 100%;
     background: center/contain no-repeat url("../../assets/concord-background2.png");
   }
 }
