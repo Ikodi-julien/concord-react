@@ -4,7 +4,7 @@ import {Select} from 'semantic-ui-react';
 import NavbarContainer from 'src/containers/NavbarContainer';
 import CardBox from 'src/containers/CardboxContainer';
 import StoreUrl from 'src/components/StoreUrl/StoreUrl';
-import Footer from 'src/components/Footer/Footer';
+import FooterContainer from 'src/containers/FooterContainer';
 import {searchTagsAndReturn, makeSelectOptions} from 'src/selectors/search';
 import SetPathnameContainer from 'src/containers/SetPathnameContainer';
 
@@ -68,7 +68,7 @@ const Discovery = ({
           />
 
       </div>
-      <Footer />
+      <FooterContainer />
     </section>
   );
 };

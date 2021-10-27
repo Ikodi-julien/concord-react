@@ -12,11 +12,15 @@ export const searchTagsAndReturn = (string = '', object = {}) => {
   // search over every tag.name in channel.tags
   const filtered = object.filter((channel) => {
     // eslint-disable-next-line no-restricted-syntax
-    for (const tag of channel.tags) {
-      if (tag.name.includes(string)) {
-        return true;
-      }
+    let tagReturn;
+    if (channel.tags) {
+      channel.tags.forEach((tag) => {
+        if (tag.name.includes(string)) {
+          tagReturn = true;
+        }
+      });
     }
+    return tagReturn;
   });
 
   return filtered;

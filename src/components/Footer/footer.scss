@@ -5,7 +5,7 @@
   width: 100%;
   height: v.$footer-height;
   // min-height: v.$footer-height;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   background-color: v.$base-color-darkest;
   justify-self: flex-end;
@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     color: v.$base-color-light;
-    margin-left: 15px;
+    margin: 0 15px;
   }
 
   &__contact {
@@ -23,6 +23,10 @@
     width: 1.5 * v.$footer-height;
     margin-left: 15px;
     background: center/contain url('src/assets/logo_ikodi_lettres.png')
+  }
+
+  & p {
+    margin: 0 15px;
   }
 
   @media screen and (max-width: 768px) {

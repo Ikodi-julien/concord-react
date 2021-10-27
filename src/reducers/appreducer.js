@@ -40,6 +40,7 @@ const appState = {
   ],
   tags: [],
   channels: [],
+  dbDate: 'none',
   isRefresh: false,
   // Related to search actions
   isShowSearch: false,
@@ -84,6 +85,7 @@ const reducer = (stateActuel = appState, action = {}) => {
         ...stateActuel,
         tags: action.tags,
         channels: action.channels,
+        dbDate: action.channels[0].date,
       };
 
     case FETCH_NAV_DATA_ERROR:
