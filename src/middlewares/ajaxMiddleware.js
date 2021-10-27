@@ -113,7 +113,7 @@ export default (store) => (next) => (action) => {
             withCredentials: true,
           }).then((response) => {
             const channels = response.data;
-            console.log(channels);
+            // console.log(channels);
             store.dispatch(fetchNavDataSuccess({ tags, channels }));
           });
         })

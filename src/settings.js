@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
 export const API_URL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:5000'
+  ? 'http://localhost:8002'
   : 'https://concordapi.ikodi.eu';
 
 export const GOOGLE_CONNECT_URL = process.env.NODE_ENV === 'development'

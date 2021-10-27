@@ -9,7 +9,7 @@ const Footer = ({dbDate}) => (
     Contact
     <div className='footer__contact' />
     </a>
-    <p>Mise à jour BdD: {dbDate}</p>
+    <p>Mise à jour des données: {dbDate}</p>
   </section>
 )
 
