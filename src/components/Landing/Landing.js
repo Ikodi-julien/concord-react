@@ -12,10 +12,7 @@ const Landing = ({getUserInfos}) => {
     
 return (
 <section className='landing'>
-  <div className="hero">
-    <div className={`--first`}></div>
-    <div className={`--second`}></div>
-  </div>
+  <div className="hero"></div>
 </section>
 )};
 

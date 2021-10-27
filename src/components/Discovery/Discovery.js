@@ -16,6 +16,7 @@ const Discovery = ({
   tagSelectValue, 
   tagSelectChange,
   isRefresh,
+  dbDate
 }) => {
     {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage */}
     if (isRefresh) {
@@ -51,7 +52,9 @@ const Discovery = ({
       <NavbarContainer />
       
       <div className="discovery__container">
-        <h1 className="discovery__title">Chat rooms</h1>
+        <h1 className="discovery__title">Chat rooms</h1> 
+        <p className="discovery__subtitle">Màj des données: {dbDate}</p>
+        
         
         <div className="discovery__selectcontainer">
           <Select 
