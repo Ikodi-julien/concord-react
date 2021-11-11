@@ -1,3 +1,4 @@
+export const POST_NEW_PROFILE = 'POST_NEW_PROFILE';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 export const SET_PROFILE_INPUT_VALUE = 'SET_PROFILE_INPUT_VALUE';
 export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
@@ -10,6 +11,7 @@ export const SUBMIT_DELETE_ACCOUNT = 'SUBMIT_DELETE_ACCOUNT';
 
 export const fetchMyProfile = () => ({ type: FETCH_MY_PROFILE });
 export const fetchMyProfileSuccess = (data) => ({ type: FETCH_MY_PROFILE_SUCCESS, data });
+export const postNewProfil = (data) => ({ type: POST_NEW_PROFILE, data });
 export const updateProfile = () => ({ type: UPDATE_PROFILE });
 export const setProfileInputValue = (objectInput) => (
   { type: SET_PROFILE_INPUT_VALUE, value: objectInput }

@@ -46,7 +46,7 @@ export default ({
   <div className="profile__authfieldscontainer">
     <div className="profile__formrow">
       <label>Pseudo :</label>
-      <div class="profile__inputrow">
+      <div className="profile__inputrow">
         <Form.Input
         name='nicknameInput'
           type='text'
@@ -68,7 +68,7 @@ export default ({
   
     <div className="profile__formrow">
       <label >Email :</label>
-      <div class="profile__inputrow">
+      <div className="profile__inputrow">
         <Form.Input
             name='emailInput'
             type='email'
@@ -94,7 +94,7 @@ export default ({
   <div className="profile__tagscontainer">
     {/* <h1 className="profile__title">Mes catégories</h1> */}
     <p className="profile__subtitle">Sélectionne des catégories pour avoir des suggestions adaptées.</p>
-    <div class="profile__inputrow --tags">
+    <div className="profile__inputrow --tags">
       <Dropdown 
         text='Mes catégories' 
         fluid 

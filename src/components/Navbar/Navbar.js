@@ -7,6 +7,7 @@ import LoginModalContainer from 'src/containers/LoginModalContainer';
 import AppInfo from 'src/components/AppInfo/AppInfo';
 
 import './navbar.scss';
+import { Button } from 'semantic-ui-react';
 
 const Navbar = ({
   setWindowSize,
@@ -36,6 +37,7 @@ const Navbar = ({
       </Link>
       
       {!isUserLoggued && ( <LoginModalContainer />)}
+      {/* {!isUserLoggued && ( <a href="http://localhost:8080?app=concord" ><Button content="S'inscrire / Se connecter" primary/></a>)} */}
       
       {isUserLoggued && (
         <div className="nav__button__row">

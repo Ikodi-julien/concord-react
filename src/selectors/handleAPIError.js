@@ -85,7 +85,7 @@ export default (error, store, actionType) => {
       break;
 
     case SUBMIT_SIGNUP_FORM:
-      store.dispatch(signupError(error.toString()));
+      store.dispatch(signupError(error.response.data.message));
       setTimeout(() => {
         store.dispatch(hideInfos());
       }, errorTimer);
@@ -132,5 +132,11 @@ export default (error, store, actionType) => {
       break;
 
     default:
+      if (typeof error.response !== 'undefined') {
+        store.dispatch(appInfo(error.response.data.message));
+        setTimeout(() => {
+          store.dispatch(hideInfos());
+        }, errorTimer);
+      }
   }
 };

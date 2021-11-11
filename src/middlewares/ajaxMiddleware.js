@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { API_URL } from 'src/settings';
+import { BASE_URL } from 'src/settings';
 import handlAPIErrors from 'src/selectors/handleAPIError';
 import {
+  POST_NEW_PROFILE,
   FETCH_MY_PROFILE,
   fetchMyProfileSuccess,
   UPDATE_PROFILE,
@@ -32,6 +33,7 @@ import {
   hideInfos,
 } from 'src/actions/appActions';
 import handleAPIError from '../selectors/handleAPIError';
+import { fetchMyProfile } from '../actions/profileActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -40,12 +42,25 @@ export default (store) => (next) => (action) => {
   const { id } = store.getState().channel;
 
   switch (action.type) {
+    case POST_NEW_PROFILE:
+      next(action);
+      axios.post(`${BASE_URL}/me`, {
+        nickname: action.data.nickname,
+      }, {
+        withCredentials: true,
+      })
+        .then((res) => {
+          store.dispatch(fetchMyProfile());
+        })
+        .catch((err) => handlAPIErrors(err, store, action.type));
+      break;
+
     case FETCH_CHANNEL:
       // console.log(action);
       next(action);
 
       axios({
-        url: `${API_URL}/v2/channel/${action.channelId}`,
+        url: `${BASE_URL}/channel/${action.channelId}`,
         method: 'GET',
         withCredentials: true,
       })
@@ -63,7 +78,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${API_URL}/v2/me/channels`,
+        url: `${BASE_URL}/me/channels`,
         method: 'GET',
         withCredentials: true,
       })
@@ -81,7 +96,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${API_URL}/v2/me/recommended`,
+        url: `${BASE_URL}/me/recommended`,
         method: 'GET',
         withCredentials: true,
       })
@@ -97,23 +112,20 @@ export default (store) => (next) => (action) => {
     case FETCH_NAV_DATA:
       // console.log(action);
       next(action);
-
       // Fetch tags then channels
       axios({
-        url: `${API_URL}/v2/tags/channels`,
+        url: `${BASE_URL}/tags/channels`,
         method: 'GET',
         withCredentials: true,
       })
         .then((res) => {
           const tags = res.data;
-
           axios({
-            url: `${API_URL}/v2/channels`,
+            url: `${BASE_URL}/channels`,
             method: 'GET',
             withCredentials: true,
           }).then((response) => {
             const channels = response.data;
-            // console.log(channels);
             store.dispatch(fetchNavDataSuccess({ tags, channels }));
           });
         })
@@ -127,14 +139,11 @@ export default (store) => (next) => (action) => {
       next(action);
       // console.log(action);
       axios
-        .get(`${API_URL}/v2/me`, {
+        .get(`${BASE_URL}/me`, {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res.data);
           store.dispatch(fetchMyProfileSuccess(res.data));
-
-          store.dispatch(setFirstLogin(false));
         })
         .catch((error) => {
           handleAPIError(error, store, action.type);
@@ -147,9 +156,8 @@ export default (store) => (next) => (action) => {
 
       axios
         .put(
-          `${API_URL}/v2/me`,
+          `${BASE_URL}/me`,
           {
-            email: emailInput,
             nickname: nicknameInput,
             tags: tagDropDownIds,
           },
@@ -158,7 +166,7 @@ export default (store) => (next) => (action) => {
           },
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           store.dispatch(updateProfileSuccess(res.data));
           store.dispatch(appInfo('profil mis à jour'));
           setTimeout(() => {
@@ -180,7 +188,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${API_URL}/v2/channel/${id}`,
+        url: `${BASE_URL}/channel/${id}`,
         method: 'GET',
         withCredentials: true,
       })
@@ -196,7 +204,7 @@ export default (store) => (next) => (action) => {
     case DELETE_FROM_MY_CHANNELS:
       // console.log(action);
       axios
-        .delete(`${API_URL}/v2/me/channels/${action.value}`, {
+        .delete(`${BASE_URL}/me/channels/${action.value}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -204,17 +212,17 @@ export default (store) => (next) => (action) => {
           store.dispatch(fetchMyChannels());
         })
         .catch((err) => {
-          handleAPIError(error, store, action.type);
+          handleAPIError(err, store, action.type);
         });
       break;
 
     case UPDATE_AVATAR:
       next(action);
-      console.log(action);
+      // console.log(action);
 
       axios
         .put(
-          `${API_URL}/v2/me/avatar`,
+          `${BASE_URL}/v2/me/avatar`,
           {
             avatar,
           },
@@ -223,7 +231,7 @@ export default (store) => (next) => (action) => {
           },
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           store.dispatch(appInfo('avatar mis à jour'));
           setTimeout(() => {
             store.dispatch(hideInfos());

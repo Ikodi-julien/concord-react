@@ -51,8 +51,9 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...stateActuel,
         id: action.user.id,
         nickname: action.user.nickname,
-        password: action.user.password,
+        password: '',
         email: action.user.email,
+        emailInput: action.user.email,
       };
 
     case SIGNUP_SUCCESS:
@@ -84,13 +85,12 @@ const reducer = (stateActuel = userState, action = {}) => {
 
     case UPDATE_PROFILE_SUCCESS:
       console.log(action);
+      const { nicknameInput, emailInput } = stateActuel;
       return {
         ...stateActuel,
-        nickname: action.data.nickname,
-        email: action.data.email,
-        tags: action.data.tags,
-        nicknameInput: action.data.nickname,
-        emailInput: action.data.email,
+        ...action.data,
+        nicknameInput: action.data.nickname ? action.data.nickname : nicknameInput,
+        emailInput: action.data.email ? action.data.email : emailInput,
       };
 
     case FETCH_MY_PROFILE_SUCCESS:
@@ -99,13 +99,11 @@ const reducer = (stateActuel = userState, action = {}) => {
       return {
         ...stateActuel,
         nickname: action.data.nickname,
-        email: action.data.email,
+        nicknameInput: action.data.nickname,
         avatar: action.data.avatar ? action.data.avatar : avatarDefault,
         tags: action.data.tags,
         tagDropDownValue: action.data.tags.map((tag) => tag.name),
         tagDropDownIds: action.data.tags.map((tag) => tag.id),
-        nicknameInput: action.data.nickname,
-        emailInput: action.data.email,
       };
 
     case SET_TAGS_DROPDOWN_VALUE:

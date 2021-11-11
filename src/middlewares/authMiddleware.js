@@ -1,6 +1,7 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 import axios from 'axios';
-import { API_URL } from 'src/settings';
+import { AUTH_URL } from 'src/settings';
 import {
   SUBMIT_LOGIN_FORM,
   loginSuccess,
@@ -17,11 +18,17 @@ import {
   setDataFromGoogle,
   googleLogin,
   GOOGLE_LOGIN,
-  LOGIN_SUCCESS,
+  // LOGIN_SUCCESS,
 } from 'src/actions/authActions';
-import { hideInfos, setFirstLogin } from 'src/actions/appActions';
+import { hideInfos, setFirstLogin, appInfo } from 'src/actions/appActions';
 import { GET_USER_INFOS, getUserSuccess } from 'src/actions/userActions';
-import { SUBMIT_DELETE_ACCOUNT } from 'src/actions/profileActions';
+import {
+  SUBMIT_DELETE_ACCOUNT,
+  fetchMyProfile,
+  postNewProfil,
+  UPDATE_PROFILE,
+  updateProfileSuccess,
+} from 'src/actions/profileActions';
 import handleAPIError from '../selectors/handleAPIError';
 import { submitSignupForm } from '../actions/authActions';
 
@@ -37,8 +44,10 @@ export default (store) => (next) => (action) => {
     updatePassFormOld,
     updatePassFormNew1,
     updatePassFormNew2,
+    firstLogin,
   } = store.getState().auth;
 
+  const { emailInput } = store.getState().user;
   const errorTimer = 2500;
 
   switch (action.type) {
@@ -48,7 +57,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .post(
-          `${API_URL}/v2/login`,
+          `${AUTH_URL}/login`,
           {
             email: loginEmail.toLowerCase(),
             password: loginPassword,
@@ -59,7 +68,23 @@ export default (store) => (next) => (action) => {
         )
         .then((res) => {
           // console.log(res);
-          store.dispatch(loginSuccess(res.data));
+          // Set profile in concord DB
+          if (firstLogin) {
+            store.dispatch(setFirstLogin(false));
+            store.dispatch(loginSuccess({
+              id: res.data.id,
+              nickname: signupPseudo,
+              password: firstSignupPassword,
+              email: signupEmail,
+            }));
+            store.dispatch(postNewProfil({ nickname: signupPseudo }));
+            return;
+          }
+          store.dispatch(fetchMyProfile());
+          store.dispatch(loginSuccess({
+            id: res.data.id,
+            email: loginEmail,
+          }));
         })
         .catch((error) => {
           handleAPIError(error, store, action.type);
@@ -95,24 +120,21 @@ export default (store) => (next) => (action) => {
       }
 
       axios
-        .post(`${API_URL}/v2/signup`, {
+        .post(`${AUTH_URL}/signup`, {
           nickname: signupPseudo,
           email: signupEmail.toLowerCase(),
           password: firstSignupPassword,
         })
         .then((res) => {
-          // console.log('res.data :', res.data);
-          // There try to login right after a signup success
-          store.dispatch(
-            signupSuccess({
-              password: store.getState().auth.firstSignupPassword,
-              email: res.data.email,
-            }),
-          );
+          // need to login
           store.dispatch(setFirstLogin(true));
-          setTimeout(() => {
-            store.dispatch(submitLoginForm());
-          }, 30);
+          store.dispatch(signupSuccess({
+            id: res.data.id,
+            nickname: signupPseudo,
+            email: signupEmail.toLowerCase(),
+            password: firstSignupPassword,
+          }));
+          store.dispatch(submitLoginForm());
         })
         .catch((error) => {
           handleAPIError(error, store, action.type);
@@ -122,7 +144,7 @@ export default (store) => (next) => (action) => {
     case DISCONNECT_USER:
       next(action);
       axios
-        .post(`${API_URL}/v2/logout`, {}, { withCredentials: true })
+        .post(`${AUTH_URL}/logout`, {}, { withCredentials: true })
         .then((res) => {
           store.dispatch(disconnectUserSuccess());
           // console.log('res.data :', res.data);
@@ -137,7 +159,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios
-        .get(`${API_URL}/v2/me`, { withCredentials: true })
+        .get(`${AUTH_URL}/me`, { withCredentials: true })
         .then((res) => {
           // console.log('res.data :', res.data);
           store.dispatch(getUserSuccess(res.data));
@@ -167,7 +189,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .post(
-          `${API_URL}/v2/login`,
+          `${AUTH_URL}/login`,
           {
             email: loginEmail.toLowerCase(),
             password: loginPassword,
@@ -188,7 +210,7 @@ export default (store) => (next) => (action) => {
     case SUBMIT_FORGOT_PASS_FORM:
       // console.log(action);
       axios
-        .post(`${API_URL}/v2/forgot-pwd`, {
+        .post(`${AUTH_URL}/forgot-pwd`, {
           email: forgotPasswordEmailInput,
         })
         .then((res) => {
@@ -229,7 +251,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .patch(
-          `${API_URL}/v2/me`,
+          `${AUTH_URL}/me`,
           {
             password: updatePassFormOld,
             newPassword: updatePassFormNew1,
@@ -252,7 +274,7 @@ export default (store) => (next) => (action) => {
 
     case SUBMIT_DELETE_ACCOUNT:
       axios
-        .delete(`${API_URL}/v2/me`, {
+        .delete(`${AUTH_URL}/me`, {
           withCredentials: true,
         })
         .then(() => {
@@ -262,6 +284,31 @@ export default (store) => (next) => (action) => {
           handleAPIError(error, store, action.type);
         });
       break;
+
+    case UPDATE_PROFILE:
+      next(action);
+
+      axios
+        .put(
+          `${AUTH_URL}/me/credentials`,
+          {
+            email: emailInput,
+          },
+          {
+            withCredentials: true,
+          },
+        )
+        .then((res) => {
+          // console.log(res.data);
+          store.dispatch(updateProfileSuccess(res.data));
+          store.dispatch(appInfo('profil mis à jour'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, 2000);
+        })
+        .catch((error) => {
+          handleAPIError(error, store, action.type);
+        });
 
     default:
       next(action);

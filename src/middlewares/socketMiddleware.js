@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { API_URL } from 'src/settings';
+import { BASE_URL } from 'src/settings';
 import {
   CHANNEL_FORM_SUBMIT,
   FETCH_CHANNEL,
@@ -40,7 +40,7 @@ export default (store) => (next) => (action) => {
     case CONNECT_TO_SOCKET:
       next(action);
       // connect to socket
-      socket = window.io(API_URL);
+      socket = window.io(BASE_URL);
       // auth to inform server
       socket.emit('auth', { user, channel });
       // make listeners

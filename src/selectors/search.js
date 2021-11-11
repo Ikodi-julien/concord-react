@@ -4,7 +4,10 @@ export const searchNameAndReturn = (string = '', object = { name: '' }) => {
 };
 
 export const searchTitleAndReturn = (string = '', object = { title: '' }) => {
-  const filtered = object.filter((item) => item.title.toLowerCase().includes(string.toLowerCase()));
+  const filtered = object.filter((item) => {
+    if (!item.title) return false;
+    return item.title.toLowerCase().includes(string.toLowerCase());
+  });
   return filtered;
 };
 
