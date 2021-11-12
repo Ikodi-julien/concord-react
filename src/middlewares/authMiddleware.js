@@ -18,19 +18,19 @@ import {
   setDataFromGoogle,
   googleLogin,
   GOOGLE_LOGIN,
-  // LOGIN_SUCCESS,
+  SUBMIT_UPDATE_AUTH_CREDENTIALS,
+  updateAuthSuccess,
 } from 'src/actions/authActions';
 import { hideInfos, setFirstLogin, appInfo } from 'src/actions/appActions';
-import { GET_USER_INFOS, getUserSuccess } from 'src/actions/userActions';
+import { GET_USER_INFOS, getUserSuccess, deleteConcordAccount } from 'src/actions/userActions';
 import {
-  SUBMIT_DELETE_ACCOUNT,
+  SUBMIT_DELETE_AUTH_ACCOUNT,
   fetchMyProfile,
   postNewProfil,
-  UPDATE_PROFILE,
-  updateProfileSuccess,
 } from 'src/actions/profileActions';
 import handleAPIError from '../selectors/handleAPIError';
 import { submitSignupForm } from '../actions/authActions';
+import { updateProfile } from '../actions/profileActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -45,9 +45,12 @@ export default (store) => (next) => (action) => {
     updatePassFormNew1,
     updatePassFormNew2,
     firstLogin,
+    updateNickNameAndMailPassword,
+    updateMailNew,
+    updateNicknameNew,
   } = store.getState().auth;
 
-  const { emailInput } = store.getState().user;
+  const { emailInput, nicknameInput } = store.getState().user;
   const errorTimer = 2500;
 
   switch (action.type) {
@@ -81,10 +84,7 @@ export default (store) => (next) => (action) => {
             return;
           }
           store.dispatch(fetchMyProfile());
-          store.dispatch(loginSuccess({
-            id: res.data.id,
-            email: loginEmail,
-          }));
+          store.dispatch(loginSuccess(res.data));
         })
         .catch((error) => {
           handleAPIError(error, store, action.type);
@@ -231,7 +231,7 @@ export default (store) => (next) => (action) => {
       // check for inputs consistency
       if (!updatePassFormOld || !updatePassFormNew1 || !updatePassFormNew2) {
         store.dispatch(
-          updatePassInfo('Un ou plusieurs champs ne sont pas remplis'),
+          appInfo('Un ou plusieurs champs ne sont pas remplis'),
         );
         setTimeout(() => {
           store.dispatch(hideInfos());
@@ -241,7 +241,7 @@ export default (store) => (next) => (action) => {
 
       if (updatePassFormNew1 !== updatePassFormNew2) {
         store.dispatch(
-          updatePassInfo('Les mots de passe ne sont pas identiques'),
+          appInfo('Les mots de passe ne sont pas identiques'),
         );
         setTimeout(() => {
           store.dispatch(hideInfos());
@@ -250,8 +250,8 @@ export default (store) => (next) => (action) => {
       }
 
       axios
-        .patch(
-          `${AUTH_URL}/me`,
+        .put(
+          `${AUTH_URL}/me/password`,
           {
             password: updatePassFormOld,
             newPassword: updatePassFormNew1,
@@ -262,7 +262,7 @@ export default (store) => (next) => (action) => {
         )
         .then((res) => {
           // console.log('res.data :', res.data);
-          store.dispatch(updatePassInfo(res.data.message));
+          store.dispatch(appInfo(res.data.message));
           setTimeout(() => {
             store.dispatch(hideInfos());
           }, errorTimer);
@@ -272,43 +272,49 @@ export default (store) => (next) => (action) => {
         });
       break;
 
-    case SUBMIT_DELETE_ACCOUNT:
+    case SUBMIT_DELETE_AUTH_ACCOUNT:
       axios
-        .delete(`${AUTH_URL}/me`, {
+        .delete(`${AUTH_URL}/me/credentials`, {
           withCredentials: true,
         })
         .then(() => {
-          store.dispatch(disconnectUserSuccess());
+          store.dispatch(deleteConcordAccount());
         })
         .catch((error) => {
           handleAPIError(error, store, action.type);
         });
       break;
 
-    case UPDATE_PROFILE:
+    case SUBMIT_UPDATE_AUTH_CREDENTIALS:
       next(action);
+      console.log(action);
 
       axios
         .put(
           `${AUTH_URL}/me/credentials`,
           {
-            email: emailInput,
+            email: updateMailNew,
+            nickname: updateNicknameNew,
+            password: updateNickNameAndMailPassword,
           },
           {
             withCredentials: true,
           },
         )
         .then((res) => {
-          // console.log(res.data);
-          store.dispatch(updateProfileSuccess(res.data));
+          console.log(res.data);
+          store.dispatch(updateAuthSuccess(res.data));
+          store.dispatch(updateProfile());
           store.dispatch(appInfo('profil mis à jour'));
           setTimeout(() => {
             store.dispatch(hideInfos());
           }, 2000);
         })
         .catch((error) => {
+          console.log('ici');
           handleAPIError(error, store, action.type);
         });
+      break;
 
     default:
       next(action);

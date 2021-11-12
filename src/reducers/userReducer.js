@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   SIGNUP_SUCCESS,
   DISCONNECT_USER_SUCCESS,
+  UPDATE_AUTH_SUCCESS,
 } from 'src/actions/authActions';
 import {
   UPDATE_PROFILE,
@@ -51,6 +52,7 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...stateActuel,
         id: action.user.id,
         nickname: action.user.nickname,
+        nicknameInput: action.user.nickname,
         password: '',
         email: action.user.email,
         emailInput: action.user.email,
@@ -84,13 +86,16 @@ const reducer = (stateActuel = userState, action = {}) => {
       };
 
     case UPDATE_PROFILE_SUCCESS:
-      console.log(action);
-      const { nicknameInput, emailInput } = stateActuel;
+      return {
+        ...stateActuel,
+      };
+
+    case UPDATE_AUTH_SUCCESS:
       return {
         ...stateActuel,
         ...action.data,
-        nicknameInput: action.data.nickname ? action.data.nickname : nicknameInput,
-        emailInput: action.data.email ? action.data.email : emailInput,
+        nicknameInput: action.data.nickname,
+        emailInput: action.data.email,
       };
 
     case FETCH_MY_PROFILE_SUCCESS:
@@ -98,8 +103,6 @@ const reducer = (stateActuel = userState, action = {}) => {
 
       return {
         ...stateActuel,
-        nickname: action.data.nickname,
-        nicknameInput: action.data.nickname,
         avatar: action.data.avatar ? action.data.avatar : avatarDefault,
         tags: action.data.tags,
         tagDropDownValue: action.data.tags.map((tag) => tag.name),

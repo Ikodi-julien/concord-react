@@ -1,8 +1,12 @@
 import React, {useEffect} from 'react';
-import {Button, Form, Dropdown} from 'semantic-ui-react';
+import NicknameAndMailModalContainer from 'src/containers/NicknameAndMailModalContainer'
+
+import {Button, Input, Form, Dropdown} from 'semantic-ui-react';
 
 export default ({
-  user, 
+  nicknameInput,
+  emailInput,
+  tagDropDownValue,
   tags, 
   toggleActiveBtn, 
   setTagsDropdownValue, 
@@ -15,12 +19,12 @@ export default ({
     evt.preventDefault();
     updateProfile();
   };
-  const handleInputChange = (evt) => {
-    const objectInput = {
-      [evt.target.name]: evt.target.value
-    }
-    setProfileInputValue(objectInput);
-  }
+  // const handleInputChange = (evt) => {
+  //   const objectInput = {
+  //     [evt.target.name]: evt.target.value
+  //   }
+  //   setProfileInputValue(objectInput);
+  // }
   
   // This sets options in tags gropdown menu
   let tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
@@ -42,71 +46,54 @@ export default ({
   }, []);
 
   return (
-  <Form onSubmit={handleSubmit}>
-  <div className="profile__authfieldscontainer">
-    <div className="profile__formrow">
-      <label>Pseudo :</label>
-      <div className="profile__inputrow">
-        <Form.Input
-        name='nicknameInput'
-          type='text'
-          placeholder='pseudo'
-          value={user.nicknameInput}
-          onChange={handleInputChange}
-          disabled={!user.nicknameInputIsActive}
-        />
-        <Button
-          name='nicknameInputIsActive'
-          type='button'
-          active={user.nicknameInputIsActive}
-          onClick={handleEditBtn}
-          >
-        <i className="fas fa-edit"></i>
-        </Button>
+  <section >
+    <div className="profile__authfieldscontainer">
+      <div className="profile__formrow">
+        <label>Pseudo :</label>
+        <div className="profile__inputrow">
+          <Input
+            name='nicknameInput'
+            type='text'
+            placeholder='pseudo'
+            value={nicknameInput}
+            disabled={true}
+          />
+        </div>
       </div>
-    </div>
-  
-    <div className="profile__formrow">
-      <label >Email :</label>
-      <div className="profile__inputrow">
-        <Form.Input
+      <div className="profile__formrow">
+        <label>Email :</label>
+        <div className="profile__inputrow">
+          <Input
             name='emailInput'
             type='email'
             placeholder='email'
-            value={user.emailInput}
-            onChange={handleInputChange}
+            value={emailInput}
             className="input"
-            disabled={!user.emailInputIsActive}
+            disabled={true}
             />
-
-        <Button 
-          name='emailInputIsActive'
-          type='button' 
-          active={user.emailInputIsActive}
-          onClick={handleEditBtn}
-          >
-        <i className="fas fa-edit"></i>
-        </Button>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  <div className="profile__tagscontainer">
-    {/* <h1 className="profile__title">Mes catégories</h1> */}
-    <p className="profile__subtitle">Sélectionne des catégories pour avoir des suggestions adaptées.</p>
-    <div className="profile__inputrow --tags">
-      <Dropdown 
-        text='Mes catégories' 
-        fluid 
-        multiple selection 
-        options={tagsOptions} 
-        onChange={handleTagsSelection}
-        value={user.tagDropDownValue}
-        />
       
-      <Button type='submit' primary >Valider mon profil</Button>
+      <NicknameAndMailModalContainer />
     </div>
-  </div>
-  
-</Form>
+    
+    <Form onSubmit={handleSubmit}>
+      <div className="profile__tagscontainer">
+        {/* <h1 className="profile__title">Mes catégories</h1> */}
+        <p className="profile__subtitle">Sélectionne des catégories pour avoir des suggestions adaptées.</p>
+        <div className="profile__inputrow --tags">
+          <Dropdown
+            text='Mes catégories'
+            fluid
+            multiple selection
+            options={tagsOptions}
+            onChange={handleTagsSelection}
+            value={tagDropDownValue}
+            />
+      
+          <Button type='submit' primary >Valider mes catégories</Button>
+        </div>
+      </div>
+    </Form>
+  </section>
 )}

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Segment, Button, Form, Modal} from 'semantic-ui-react';
 import AppInfo from 'src/components/AppInfo/AppInfo';
 
 export default ({ updatePassFormOld, updatePassFormNew1, updatePassFormNew2, setInputValue, submitUpdatePassword, appInfo, updatePassInfoIsVisible }) => {
+  const [open, setOpen] = useState(false);
   const handleChange = (evt) => {
     setInputValue({
       name: evt.target.name,
@@ -10,13 +11,18 @@ export default ({ updatePassFormOld, updatePassFormNew1, updatePassFormNew2, set
     });
   };
   const handleSubmit = () => {
+    setOpen(false)
     submitUpdatePassword()
   }
+  
   return (
   <Modal
   closeIcon
   dimmer='blurring'
   size='small'
+  onOpen={() => setOpen(true)}
+  onClose={() => setOpen(false)}
+  open={open}
   trigger={
     <Button 
       type='button'

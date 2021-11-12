@@ -13,6 +13,7 @@ export const DELETE_FROM_MY_CHANNELS = 'DELETE_FROM_MY_CHANNELS';
 
 export const SET_AVATAR = 'SET_AVATAR';
 export const UPDATE_AVATAR = 'UPDATE_AVATAR';
+export const DELETE_CONCORD_ACCOUNT = 'DELETE_CONCORD_ACCOUNT';
 /*----------------------------------------------------------*/
 export const getUserInfos = () => ({ type: GET_USER_INFOS });
 export const getUserSuccess = (user) => ({
@@ -37,3 +38,4 @@ export const deleteFromMyChannels = (channelId) => ({
 });
 export const setAvatar = (preview) => ({ type: SET_AVATAR, value: preview });
 export const updateAvatar = () => ({ type: UPDATE_AVATAR });
+export const deleteConcordAccount = () => ({ type: DELETE_CONCORD_ACCOUNT });

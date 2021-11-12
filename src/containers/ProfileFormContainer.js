@@ -12,7 +12,9 @@ import { setFirstLogin } from 'src/actions/appActions';
 
 const mapStateToProps = ({ app, user }) => ({
   tags: app.tags,
-  user: { ...user },
+  nicknameInput: user.nicknameInput,
+  emailInput: user.emailInput,
+  tagDropDownValue: user.tagDropDownValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({

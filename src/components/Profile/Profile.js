@@ -10,11 +10,11 @@ import Footer from 'src/components/Footer/Footer'
 
 import './profile.scss'
 
-const Profile = ({ submitDeleteAccount }) => {
+const Profile = ({ submitDeleteAuthAccount }) => {
   const [open, setOpen] = useState(false)
   const handleDeleteAccount = () => {
     setOpen(false)
-    submitDeleteAccount()
+    submitDeleteAuthAccount()
   }
   /* Profile datas are fetch from ProfileForm component */
   return (

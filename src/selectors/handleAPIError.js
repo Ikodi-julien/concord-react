@@ -6,7 +6,7 @@ import {
 import {
   FETCH_MY_PROFILE,
   UPDATE_PROFILE,
-  SUBMIT_DELETE_ACCOUNT,
+  SUBMIT_DELETE_AUTH_ACCOUNT,
 } from 'src/actions/profileActions';
 import {
   FETCH_CHANNEL,
@@ -38,6 +38,8 @@ export default (error, store, actionType) => {
   let errorMsg;
 
   console.warn('handleAPIError: ', actionType, error.toString());
+  
+  
 
   switch (actionType) {
     case FETCH_CHANNEL
@@ -124,7 +126,7 @@ export default (error, store, actionType) => {
       }, errorTimer);
       break;
 
-    case SUBMIT_DELETE_ACCOUNT:
+    case SUBMIT_DELETE_AUTH_ACCOUNT:
       store.dispatch(disconnectUserError(error.toString()));
       setTimeout(() => {
         store.dispatch(hideInfos());

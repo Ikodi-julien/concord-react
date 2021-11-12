@@ -23,6 +23,7 @@ import {
   fetchMyRecosSuccess,
   DELETE_FROM_MY_CHANNELS,
   UPDATE_AVATAR,
+  DELETE_CONCORD_ACCOUNT,
 } from 'src/actions/userActions';
 import {
   FETCH_NAV_DATA,
@@ -34,6 +35,7 @@ import {
 } from 'src/actions/appActions';
 import handleAPIError from '../selectors/handleAPIError';
 import { fetchMyProfile } from '../actions/profileActions';
+import { disconnectUserSuccess } from '../actions/authActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -222,7 +224,7 @@ export default (store) => (next) => (action) => {
 
       axios
         .put(
-          `${BASE_URL}/v2/me/avatar`,
+          `${BASE_URL}/me/avatar`,
           {
             avatar,
           },
@@ -243,6 +245,19 @@ export default (store) => (next) => (action) => {
 
       break;
 
+    case DELETE_CONCORD_ACCOUNT:
+      axios
+        .delete(`${BASE_URL}/me`, {
+          withCredentials: true,
+        })
+        .then(() => {
+          store.dispatch(disconnectUserSuccess());
+        })
+        .catch((error) => {
+          handleAPIError(error, store, action.type);
+        });
+      break;
+      
     default:
       next(action);
   }
