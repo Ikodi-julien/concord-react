@@ -14,7 +14,6 @@ import {
   SUBMIT_FORGOT_PASS_FORM,
   forgotPassInfo,
   SUBMIT_UPDATE_PASSWORD,
-  updatePassInfo,
   setDataFromGoogle,
   googleLogin,
   GOOGLE_LOGIN,
@@ -26,7 +25,6 @@ import { GET_USER_INFOS, getUserSuccess, deleteConcordAccount } from 'src/action
 import {
   SUBMIT_DELETE_AUTH_ACCOUNT,
   fetchMyProfile,
-  postNewProfil,
 } from 'src/actions/profileActions';
 import handleAPIError from '../selectors/handleAPIError';
 import { submitSignupForm } from '../actions/authActions';
@@ -74,14 +72,6 @@ export default (store) => (next) => (action) => {
           // Set profile in concord DB
           if (firstLogin) {
             store.dispatch(setFirstLogin(false));
-            store.dispatch(loginSuccess({
-              id: res.data.id,
-              nickname: signupPseudo,
-              password: firstSignupPassword,
-              email: signupEmail,
-            }));
-            store.dispatch(postNewProfil({ nickname: signupPseudo }));
-            return;
           }
           store.dispatch(fetchMyProfile());
           store.dispatch(loginSuccess(res.data));
@@ -303,7 +293,10 @@ export default (store) => (next) => (action) => {
         )
         .then((res) => {
           console.log(res.data);
-          store.dispatch(updateAuthSuccess(res.data));
+          store.dispatch(updateAuthSuccess({
+            email: updateMailNew,
+            nickname: updateNicknameNew,
+          }));
           store.dispatch(updateProfile());
           store.dispatch(appInfo('profil mis à jour'));
           setTimeout(() => {

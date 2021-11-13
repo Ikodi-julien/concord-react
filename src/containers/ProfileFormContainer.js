@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ProfileForm from 'src/components/Profile/ProfileForm/ProfileForm';
 import {
-  updateProfile,
+  updateMeTags,
   setProfileInputValue,
   setTagsDropdownValue,
   setTagsDropDownIds,
@@ -18,7 +18,7 @@ const mapStateToProps = ({ app, user }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateProfile: () => dispatch(updateProfile()),
+  updateMeTags: () => dispatch(updateMeTags()),
   setProfileInputValue: (objectInput) => dispatch(setProfileInputValue(objectInput)),
   setTagsDropdownValue: (array) => dispatch(setTagsDropdownValue(array)),
   setTagsDropDownIds: (array) => dispatch(setTagsDropDownIds(array)),

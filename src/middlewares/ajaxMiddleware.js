@@ -2,11 +2,12 @@ import axios from 'axios';
 import { BASE_URL } from 'src/settings';
 import handlAPIErrors from 'src/selectors/handleAPIError';
 import {
-  POST_NEW_PROFILE,
   FETCH_MY_PROFILE,
   fetchMyProfileSuccess,
   UPDATE_PROFILE,
   updateProfileSuccess,
+  UPDATE_ME_TAGS,
+  updateTagsSuccess,
 } from 'src/actions/profileActions';
 import {
   FETCH_CHANNEL,
@@ -29,13 +30,12 @@ import {
   FETCH_NAV_DATA,
   fetchNavDataError,
   fetchNavDataSuccess,
-  setFirstLogin,
   appInfo,
   hideInfos,
 } from 'src/actions/appActions';
 import handleAPIError from '../selectors/handleAPIError';
-import { fetchMyProfile } from '../actions/profileActions';
 import { disconnectUserSuccess } from '../actions/authActions';
+import { fetchMyProfile } from '../actions/profileActions';
 
 export default (store) => (next) => (action) => {
   const {
@@ -44,19 +44,6 @@ export default (store) => (next) => (action) => {
   const { id } = store.getState().channel;
 
   switch (action.type) {
-    case POST_NEW_PROFILE:
-      next(action);
-      axios.post(`${BASE_URL}/me`, {
-        nickname: action.data.nickname,
-      }, {
-        withCredentials: true,
-      })
-        .then((res) => {
-          store.dispatch(fetchMyProfile());
-        })
-        .catch((err) => handlAPIErrors(err, store, action.type));
-      break;
-
     case FETCH_CHANNEL:
       // console.log(action);
       next(action);
@@ -159,8 +146,32 @@ export default (store) => (next) => (action) => {
       axios
         .put(
           `${BASE_URL}/me`,
+          {},
           {
-            nickname: nicknameInput,
+            withCredentials: true,
+          },
+        )
+        .then((res) => {
+          // console.log(res.data);
+          store.dispatch(updateProfileSuccess());
+          store.dispatch(appInfo('profil mis à jour'));
+          setTimeout(() => {
+            store.dispatch(hideInfos());
+          }, 2000);
+        })
+        .catch((error) => {
+          handleAPIError(error, store, action.type);
+        });
+
+      break;
+
+    case UPDATE_ME_TAGS:
+      next(action);
+      console.log(action);
+
+      axios
+        .put(
+          `${BASE_URL}/me/tags`, {
             tags: tagDropDownIds,
           },
           {
@@ -169,7 +180,7 @@ export default (store) => (next) => (action) => {
         )
         .then((res) => {
           // console.log(res.data);
-          store.dispatch(updateProfileSuccess(res.data));
+          store.dispatch(fetchMyProfile());
           store.dispatch(appInfo('profil mis à jour'));
           setTimeout(() => {
             store.dispatch(hideInfos());
@@ -257,7 +268,7 @@ export default (store) => (next) => (action) => {
           handleAPIError(error, store, action.type);
         });
       break;
-      
+
     default:
       next(action);
   }

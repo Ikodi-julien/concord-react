@@ -38,8 +38,6 @@ export default (error, store, actionType) => {
   let errorMsg;
 
   console.warn('handleAPIError: ', actionType, error.toString());
-  
-  
 
   switch (actionType) {
     case FETCH_CHANNEL
@@ -77,6 +75,9 @@ export default (error, store, actionType) => {
       if (error.toString().includes('409')) errorMsg = "Informations d'identification invalides";
       if (errorMsg) {
         store.dispatch(loginError(errorMsg));
+      }
+      else if (error.response.data) {
+        store.dispatch(loginError(error.response.data.message));
       }
       else {
         store.dispatch(loginError(error.toString()));

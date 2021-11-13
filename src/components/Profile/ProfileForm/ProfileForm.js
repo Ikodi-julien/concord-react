@@ -12,12 +12,12 @@ export default ({
   setTagsDropdownValue, 
   setTagsDropDownIds, 
   setProfileInputValue, 
-  updateProfile,
+  updateMeTags,
   fetchMyProfile,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    updateProfile();
+    updateMeTags();
   };
   // const handleInputChange = (evt) => {
   //   const objectInput = {
@@ -26,7 +26,7 @@ export default ({
   //   setProfileInputValue(objectInput);
   // }
   
-  // This sets options in tags gropdown menu
+  // This sets options in tags dropdown menu
   let tagsOptions = tags.map(tag => ({ key: tag.id, value: tag.name, text: tag.name }))
   //
   const handleTagsSelection = ((_, {value}) => {

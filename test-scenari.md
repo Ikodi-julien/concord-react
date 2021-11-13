@@ -1,0 +1,45 @@
+* L'utilisateur peut créer un compte depuis concord :
+  - Message d'info si input vide -> ok
+  - Message d'info si email pas valide -> ok
+  - Le login est automatique après un signup réussi -> ok
+  - Le nouvel utilisateur est dans le BDD de auth-server et concord -> ok
+  
+* L'utilisateur peut se logguer depuis concord :
+  - Message d'info si input vide -> ok
+  - Message d'info si email pas valide -> ok
+  - Le login success affiche l'app -> ok
+  
+* L'utilisateur a accès aux différentes pages:
+  - Page discovery :
+    - Affiche les salons -> ok
+    - La recherche et le tri fonctionnent -> ok
+  - Page paramètres :
+    - Pseudo, email, tags, avatar sont corrects -> ok
+    * L'utilisateur peut modifier ses paramètres :
+      - Modif de pseudo :
+        - auth-server DB -> ok
+        - concord-server DB -> ok
+      - Modif d'email ->
+        - auth-server DB -> ok
+        - concord-server DB -> ok
+      - Modif de tags :
+        - concord-server DB -> ok
+      - Modif d'avatar :
+        - concord-server DB -> ok
+      - Modif de mot de passe :
+        - auth-server DB -> ok
+      - Suppression du compte :
+        - auth-server DB -> ok
+        - concord-server DB -> ok
+      
+  - Page Home :
+    - Affiche les salons visités et recommandés -> ok
+    
+
+* Les salons (websockets) fonctionnent:
+  - Affichage du salon avec messages et utilisateurs en DB -> ok
+  - Affichage de mon pseudo dans la liste utilisateurs -> ok
+  - Envoi message ok -> ok
+  - Mise à jour page Home -> ok
+  
+* Le logout fonctionne -> ok

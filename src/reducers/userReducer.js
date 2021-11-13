@@ -13,6 +13,7 @@ import {
   SET_TAGS_DROPDOWN_IDS,
   TOGGLE_ACTIVE_BTN,
   FETCH_MY_PROFILE_SUCCESS,
+  // UPDATE_ME_TAGS_SUCCESS,
 } from 'src/actions/profileActions';
 import {
   GET_USER_SUCCESS,
@@ -94,12 +95,14 @@ const reducer = (stateActuel = userState, action = {}) => {
       return {
         ...stateActuel,
         ...action.data,
+        nickname: action.data.nickname,
+        email: action.data.email,
         nicknameInput: action.data.nickname,
         emailInput: action.data.email,
       };
 
     case FETCH_MY_PROFILE_SUCCESS:
-      // console.log(action);
+      console.log(action);
 
       return {
         ...stateActuel,

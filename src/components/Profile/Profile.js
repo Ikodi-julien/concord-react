@@ -43,9 +43,7 @@ const Profile = ({ submitDeleteAuthAccount }) => {
               <Modal.Description>
                 <p>Vous êtes sûr de vouloir supprimer votre compte ?</p>
                 <p>
-                  Vos informations personnelles seront supprimées, vous serez
-                  déconnecté de l'application mais vous pourrez toujours créer
-                  un nouveau compte.
+                  Vos informations personnelles seront supprimées pour toutes les applications IKODI... envolées, disparues, pfuit...
                 </p>
               </Modal.Description>
             </Modal.Content>
