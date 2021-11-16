@@ -1,13 +1,7 @@
-* L'utilisateur peut créer un compte depuis concord :
-  - Message d'info si input vide -> ok
-  - Message d'info si email pas valide -> ok
-  - Le login est automatique après un signup réussi -> ok
-  - Le nouvel utilisateur est dans le BDD de auth-server et concord -> ok
-  
+TESTS AVANT DEPLOIEMENT CONCORD
+
 * L'utilisateur peut se logguer depuis concord :
-  - Message d'info si input vide -> ok
-  - Message d'info si email pas valide -> ok
-  - Le login success affiche l'app -> ok
+  - Redirigé vers auth-ikodi ->
   
 * L'utilisateur a accès aux différentes pages:
   - Page discovery :

@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Divider, Segment, Modal, Form } from 'semantic-ui-react'
 import AppInfo from 'src/components/AppInfo/AppInfo';
 import ForgotPassContainer from 'src/containers/ForgotPasswordContainer';
-import {GOOGLE_CONNECT_URL} from 'src/settings'
+import {GOOGLE_CONNECT_URL, GITHUB_CONNECT_URL} from 'src/settings';
 import './loginmodal.scss';
 
 const LoginModal = ({
@@ -38,7 +38,7 @@ const LoginModal = ({
     }
     submitSignupForm();
   }
-
+  
   return (
     <Modal
       closeIcon
@@ -52,10 +52,14 @@ const LoginModal = ({
     <AppInfo isVisible={loginInfoIsVisible} appInfo={appInfo} />
     <Modal.Content >
     <Segment placeholder >
-    
-      <a href={GOOGLE_CONNECT_URL} >
-        <button className="button-google" />
-      </a>
+      <div className="btn row">
+        <a href={GOOGLE_CONNECT_URL} >
+          <button className="btn google" />
+        </a>
+        <a href="http://localhost:5050/github/authredirect">
+          <button className="btn github" /> 
+        </a>
+      </div>
       <Divider horizontal >ou</Divider>
     
         <Form name='loginForm' onSubmit={handleSubmit}>

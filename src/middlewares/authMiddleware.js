@@ -152,25 +152,11 @@ export default (store) => (next) => (action) => {
         .get(`${AUTH_URL}/me`, { withCredentials: true })
         .then((res) => {
           // console.log('res.data :', res.data);
+          store.dispatch(fetchMyProfile());
           store.dispatch(getUserSuccess(res.data));
         })
         .catch(async (error) => {
           handleAPIError(error, store, action.type);
-          // Try googleConnect cookie
-          try {
-            const dataGoogle = document.cookie
-              .split('; ').find((row) => row.startsWith('dataGoogle=')).split('=')[1];
-
-            if (dataGoogle) {
-              const decoded = atob(dataGoogle);
-
-              store.dispatch(setDataFromGoogle(JSON.parse(decoded)));
-              store.dispatch(googleLogin());
-            }
-          }
-          catch (err) {
-            console.warn(err);
-          }
         });
       break;
 

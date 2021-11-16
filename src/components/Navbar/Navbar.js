@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import SetSizeContainer from 'src/containers/SetSizeContainer';
 import NavSearchContainer from 'src/containers/NavSearchContainer';
 import Navmenu from './Navmenu/Navmenu';
-import LoginModalContainer from 'src/containers/LoginModalContainer';
+// import LoginModalContainer from 'src/containers/LoginModalContainer';
 import AppInfo from 'src/components/AppInfo/AppInfo';
 
 import './navbar.scss';
@@ -36,8 +36,8 @@ const Navbar = ({
       <Link to={isUserLoggued ? '/home' : '/'} className='nav__logo' >
       </Link>
       
-      {!isUserLoggued && ( <LoginModalContainer />)}
-      {/* {!isUserLoggued && ( <a href="http://localhost:8080?app=concord" ><Button content="S'inscrire / Se connecter" primary/></a>)} */}
+      {/* {!isUserLoggued && ( <LoginModalContainer />)} */}
+      {!isUserLoggued && ( <a href="http://localhost:5050?app=concord" ><Button content="S'inscrire / Se connecter" primary/></a>)}
       
       {isUserLoggued && (
         <div className="nav__button__row">

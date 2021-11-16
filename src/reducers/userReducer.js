@@ -163,8 +163,6 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...action.value,
         nicknameInput: action.value.nickname,
         emailInput: action.value.email,
-        tagDropDownValue: action.value.tags.map((tag) => tag.name),
-        tagDropDownIds: action.value.tags.map((tag) => tag.id),
       };
 
     case SET_AVATAR:
