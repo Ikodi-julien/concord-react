@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   SIGNUP_SUCCESS,
   DISCONNECT_USER_SUCCESS,
+  DISCONNECT_USER_ERROR,
   UPDATE_AUTH_SUCCESS,
 } from 'src/actions/authActions';
 import {
@@ -68,6 +69,11 @@ const reducer = (stateActuel = userState, action = {}) => {
       };
 
     case DISCONNECT_USER_SUCCESS:
+      return {
+        ...userState,
+      };
+
+    case DISCONNECT_USER_ERROR:
       return {
         ...userState,
       };

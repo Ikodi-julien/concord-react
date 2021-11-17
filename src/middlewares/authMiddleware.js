@@ -14,8 +14,6 @@ import {
   SUBMIT_FORGOT_PASS_FORM,
   forgotPassInfo,
   SUBMIT_UPDATE_PASSWORD,
-  setDataFromGoogle,
-  googleLogin,
   GOOGLE_LOGIN,
   SUBMIT_UPDATE_AUTH_CREDENTIALS,
   updateAuthSuccess,
@@ -48,7 +46,6 @@ export default (store) => (next) => (action) => {
     updateNicknameNew,
   } = store.getState().auth;
 
-  const { emailInput, nicknameInput } = store.getState().user;
   const errorTimer = 2500;
 
   switch (action.type) {
@@ -137,6 +134,7 @@ export default (store) => (next) => (action) => {
         .post(`${AUTH_URL}/logout`, {}, { withCredentials: true })
         .then((res) => {
           store.dispatch(disconnectUserSuccess());
+
           // console.log('res.data :', res.data);
         })
         .catch((error) => {

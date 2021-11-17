@@ -95,7 +95,7 @@ export default (error, store, actionType) => {
       break;
 
     case DISCONNECT_USER:
-      store.dispatch(disconnectUserError(error.toString()));
+      store.dispatch(appInfo('Vous êtes déconnecté(e)'));
       setTimeout(() => {
         store.dispatch(hideInfos());
       }, errorTimer);
@@ -116,11 +116,14 @@ export default (error, store, actionType) => {
       if (error.toString().includes('409')) {
         errorMsg = 'Mot de passe incorrect';
       }
+      if (error.toString().includes('409')) {
+        errorMsg = 'Désolé, il faut vous reconnecter';
+      }
       if (errorMsg) {
-        store.dispatch(loginError(errorMsg));
+        store.dispatch(appInfo(errorMsg));
       }
       else {
-        store.dispatch(loginError(error.toString()));
+        store.dispatch(appInfo(error.toString()));
       }
       setTimeout(() => {
         store.dispatch(hideInfos());

@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {NavLink, useParams} from 'react-router-dom';
-import {Divider, Button, Dropdown, Icon, Menu, Segment} from 'semantic-ui-react';
-import { setWindowSize } from '../../../actions/appActions';
+import {Button, Dropdown, Menu} from 'semantic-ui-react';
 import './navmenu.scss';
 
 const Navmenu = (

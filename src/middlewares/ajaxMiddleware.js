@@ -39,7 +39,7 @@ import { fetchMyProfile } from '../actions/profileActions';
 
 export default (store) => (next) => (action) => {
   const {
-    nicknameInput, emailInput, tagDropDownIds, avatar,
+    tagDropDownIds, avatar,
   } = store.getState().user;
   const { id } = store.getState().channel;
 

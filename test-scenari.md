@@ -1,7 +1,7 @@
 TESTS AVANT DEPLOIEMENT CONCORD
 
 * L'utilisateur peut se logguer depuis concord :
-  - Redirigé vers auth-ikodi ->
+  - Redirigé vers auth-ikodi -> ok
   
 * L'utilisateur a accès aux différentes pages:
   - Page discovery :
@@ -21,10 +21,12 @@ TESTS AVANT DEPLOIEMENT CONCORD
       - Modif d'avatar :
         - concord-server DB -> ok
       - Modif de mot de passe :
+        - Message en cas d'erreur -> ok
         - auth-server DB -> ok
       - Suppression du compte :
         - auth-server DB -> ok
         - concord-server DB -> ok
+        - logout -> ok
       
   - Page Home :
     - Affiche les salons visités et recommandés -> ok
@@ -33,7 +35,7 @@ TESTS AVANT DEPLOIEMENT CONCORD
 * Les salons (websockets) fonctionnent:
   - Affichage du salon avec messages et utilisateurs en DB -> ok
   - Affichage de mon pseudo dans la liste utilisateurs -> ok
-  - Envoi message ok -> ok
+  - Envoi message -> 
   - Mise à jour page Home -> ok
   
 * Le logout fonctionne -> ok
