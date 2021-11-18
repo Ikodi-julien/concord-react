@@ -47,30 +47,16 @@ export default ({
 
   return (
   <section >
+    <h1 className="profile__title">Mon profil</h1>
     <div className="profile__authfieldscontainer">
-      <div className="profile__formrow">
-        <label>Pseudo :</label>
-        <div className="profile__inputrow">
-          <Input
-            name='nicknameInput'
-            type='text'
-            placeholder='pseudo'
-            value={nicknameInput}
-            disabled={true}
-          />
+      <div className="profile__formcolumn">
+        <div className="profile__formrow">
+          <label classnName="profile__formrow__label">Pseudo:</label>
+          <div>{nicknameInput}</div>
         </div>
-      </div>
-      <div className="profile__formrow">
-        <label>Email :</label>
-        <div className="profile__inputrow">
-          <Input
-            name='emailInput'
-            type='email'
-            placeholder='email'
-            value={emailInput}
-            className="input"
-            disabled={true}
-            />
+        <div className="profile__formrow">
+          <label classnName="profile__formrow__label">Email:</label>
+          <div>{emailInput}</div>
         </div>
       </div>
       
@@ -89,9 +75,10 @@ export default ({
             options={tagsOptions}
             onChange={handleTagsSelection}
             value={tagDropDownValue}
+            className="profile__dropdown"
             />
       
-          <Button type='submit' primary >Valider mes catégories</Button>
+          <Button type='submit' basic color="blue" >Valider mes catégories</Button>
         </div>
       </div>
     </Form>

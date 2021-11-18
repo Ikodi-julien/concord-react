@@ -54,8 +54,10 @@
   }
 
   &__formrow {
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
+    margin-bottom: 8px;
 
     @media screen and (max-width: 500px) {
       flex-direction: column;
@@ -64,7 +66,14 @@
 
     & label {
       width: 100px;
+      font-weight: 600;
     }
+  }
+
+  &__formcolumn {
+    display: block;
+    margin-right: 20px;
+    ;
   }
 
   &__inputrow {
@@ -84,5 +93,14 @@
     max-width: 600px;
     max-height: 50vh;
     margin-bottom: 10px;
+  }
+
+  &__authfieldscontainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__dropdown {
+    margin-right: 20px;
   }
 }

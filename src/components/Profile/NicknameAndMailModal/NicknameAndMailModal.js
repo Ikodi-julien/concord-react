@@ -34,11 +34,12 @@ export default ({
   open={open}
   trigger={
     <Button 
-      type='button'
+      // type='button'
       content='Modifier mes infos de profil' 
-      icon='unlock'
-      labelPosition='left'
-      primary
+      // icon='unlock'
+      // labelPosition='left'
+      basic
+      color="blue"
     />}
   >
     <Modal.Content >

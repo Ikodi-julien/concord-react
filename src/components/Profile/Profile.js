@@ -23,10 +23,9 @@ const Profile = ({ submitDeleteAuthAccount }) => {
       <NavbarContainer />
 
       <div className="profile__container">
-        <Segment>
-          <h1 className="profile__title">Mon profil</h1>
+        {/* <Segment> */}
           <ProfileFormContainer />
-        </Segment>
+        {/* </Segment> */}
         <Divider />
         <AvatarContainer />
         <Divider />

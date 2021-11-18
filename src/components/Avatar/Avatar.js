@@ -25,7 +25,7 @@ const Avatar = ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
     id: 'a',
   }
   return (
-    <Segment>
+    <section>
       <h1 className="profile__title">Mon avatar</h1>
       <div className="profile__avatar__row">
         <div className="profile__avatar__container">
@@ -45,8 +45,8 @@ const Avatar = ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
           </div>
         )}
       </div>
-      <Button primary content="Valider" onClick={updateAvatar} />
-    </Segment>
+      <div className="profile__avatar__submit"><Button basic color="blue" content="Valider l'avatar" onClick={updateAvatar} /></div>
+    </section>
   )
 }
 
