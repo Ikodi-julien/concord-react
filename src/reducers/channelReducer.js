@@ -40,7 +40,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
 
   switch (action.type) {
     case CHANNEL_INPUT_CHANGE:
-      console.log(action);
+      // console.log(action);
 
       return {
         ...stateActuel,
@@ -48,7 +48,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case CHANNEL_FORM_SUBMIT:
-      console.log(action);
+      // console.log(action);
 
       return {
         ...stateActuel,
@@ -57,14 +57,14 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case SET_QUILL_TEXT:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         quillContent: action.value,
       };
 
     case FETCH_CHANNEL:
-      console.log(action);
+      // console.log(action);
 
       return {
         ...stateActuel,
@@ -73,7 +73,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case FETCH_CHANNEL_SUCCESS:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         ...action.channel,
@@ -89,7 +89,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case FETCH_CHANNEL_ERROR:
-      console.log(action);
+      // console.log(action);
 
       return {
         ...stateActuel,
@@ -98,7 +98,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case MESSAGE_RECEIVED:
-      console.log(action);
+      // console.log(action);
       // Add the received message to message list.
       if (messageIds.includes(action.message.id)) {
         return {
@@ -143,7 +143,7 @@ const reducer = (stateActuel = channelState, action = {}) => {
       };
 
     case UPDATE_CHANNEL_USERS_SUCCESS:
-      console.log(action);
+      // console.log(action);
       const sortedList = [];
       action.value.users.forEach((user) => {
         user.isLogged ? sortedList.unshift(user) : sortedList.push(user);

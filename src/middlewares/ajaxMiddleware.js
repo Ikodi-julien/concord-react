@@ -141,7 +141,7 @@ export default (store) => (next) => (action) => {
 
     case UPDATE_PROFILE:
       next(action);
-      console.log(action);
+      // console.log(action);
 
       axios
         .put(
@@ -167,7 +167,7 @@ export default (store) => (next) => (action) => {
 
     case UPDATE_ME_TAGS:
       next(action);
-      console.log(action);
+      // console.log(action);
 
       axios
         .put(

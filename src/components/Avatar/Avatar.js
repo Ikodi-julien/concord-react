@@ -12,13 +12,8 @@ const Avatar = ({ avatarFile, avatar, setAvatar, pseudo, updateAvatar }) => {
   }
 
   const onCrop = (avatar) => {
-    // console.log(avatar);
     setAvatar(avatar)
   }
-
-  // const onBeforeFileLoad = (elem) => {
-  //   // console.log(elem.target.files[0].size);
-  // }
 
   const preview = {
     nickname: pseudo,

@@ -108,7 +108,7 @@ const reducer = (stateActuel = userState, action = {}) => {
       };
 
     case FETCH_MY_PROFILE_SUCCESS:
-      console.log(action);
+      // console.log(action);
 
       return {
         ...stateActuel,

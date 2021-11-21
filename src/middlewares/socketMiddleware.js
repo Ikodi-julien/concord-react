@@ -51,13 +51,13 @@ export default (store) => (next) => (action) => {
 
       socket.on('user:join', (data) => {
         // This is when a user joins the active channel
-        console.log('user:join', data);
+        // console.log('user:join', data);
         store.dispatch(updateChannelUsers(channel.id));
       });
 
       socket.on('user:leave', (data) => {
         // This is when a user leaves the active channel
-        console.log('user-leave', data);
+        // console.log('user-leave', data);
         store.dispatch(updateChannelUsers(channel.id));
       });
 
@@ -75,7 +75,7 @@ export default (store) => (next) => (action) => {
       break;
 
     case CHANNEL_FORM_SUBMIT:
-      console.log(action);
+      // console.log(action);
       if (!store.getState().channel.quillContent) return;
       // Récupérer dans le state le texte du message
       // fabriquer un objet de message qui contient
@@ -94,13 +94,13 @@ export default (store) => (next) => (action) => {
       // le texte et l'auteur (pas d'id)
       // J'envoie ce message au serveur de webSocket
       socket.emit('message', message);
-      console.log('emit message', message);
+      // console.log('emit message', message);
       next(action);
       break;
 
     case USER_LEAVE_CHANNEL:
       next(action);
-      console.log('user-leave', { user, channel });
+      // console.log('user-leave', { user, channel });
 
       if (socket) {
         socket.emit('user-leave', { user, channel });

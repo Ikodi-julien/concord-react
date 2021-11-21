@@ -27,7 +27,6 @@ const LoginModal = ({
 }) => {
 
   const inputChange = (evt) => {
-    // console.log(evt.)
     setInputValue({name: evt.target.name, value: evt.target.value})
   }
   const handleSubmit = (evt) => {

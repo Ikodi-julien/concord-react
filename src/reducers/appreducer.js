@@ -54,7 +54,7 @@ const appState = {
 const reducer = (stateActuel = appState, action = {}) => {
   switch (action.type) {
     case APP_INFO:
-      console.log(action);
+      // console.log(action);
       return {
         ...stateActuel,
         appInfo: action.value,
