@@ -1,4 +1,5 @@
 @use 'src/styles/vars'as v;
+@use "sass:math";
 
 .nav {
   position: sticky;
@@ -42,7 +43,7 @@
     background-color: v.$base-color-darker;
     color: v.$base-color-light;
     padding: 10px;
-    margin-right: v.$nav-height / 4;
+    margin-right: math.div(v.$nav-height, 4);
   }
 
   &__search {
@@ -119,7 +120,7 @@
     border: none;
     background-color: transparent;
     color: v.$base-color-light;
-    padding: (v.$nav-height - 29px)/2;
+    padding: math.div(v.$nav-height - 29px, 2);
     font-size: v.$size-font-awesome;
   }
 }

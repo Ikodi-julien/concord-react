@@ -29,8 +29,8 @@ const authState = {
   isShowLoginModal: false,
   isShowSignupModal: false,
   loginButtonIsLoading: false,
-  loginEmail: 'ju@pe.fr',
-  loginPassword: 'bob',
+  loginEmail: '',
+  loginPassword: '',
   signupButtonIsLoading: false,
   signupPseudo: '',
   signupEmail: '',
@@ -45,9 +45,9 @@ const authState = {
   updatePassFormNew1: '',
   updatePassFormNew2: '',
   updatePassInfoIsVisible: false,
-  updateMailNew: 'jul@pe.fr',
-  updateNicknameNew: 'bob',
-  updateNickNameAndMailPassword: 'bob',
+  updateMailNew: '',
+  updateNicknameNew: '',
+  updateNickNameAndMailPassword: '',
 };
 
 const reducer = (stateActuel = authState, action = {}) => {

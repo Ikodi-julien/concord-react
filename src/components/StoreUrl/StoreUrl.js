@@ -1,4 +1,3 @@
-// == Import npm
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -10,5 +9,4 @@ const StoreUrl = () => {
   return null;
 };
 
-// == Export
 export default StoreUrl;

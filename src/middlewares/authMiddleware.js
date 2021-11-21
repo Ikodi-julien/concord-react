@@ -188,7 +188,7 @@ export default (store) => (next) => (action) => {
           email: forgotPasswordEmailInput,
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           store.dispatch(forgotPassInfo("L'email a bien été envoyé"));
           setTimeout(() => {
             store.dispatch(hideInfos());
@@ -261,7 +261,7 @@ export default (store) => (next) => (action) => {
 
     case SUBMIT_UPDATE_AUTH_CREDENTIALS:
       next(action);
-      console.log(action);
+      // console.log(action);
 
       axios
         .put(
@@ -276,7 +276,7 @@ export default (store) => (next) => (action) => {
           },
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           store.dispatch(updateAuthSuccess({
             email: updateMailNew,
             nickname: updateNicknameNew,
@@ -288,7 +288,6 @@ export default (store) => (next) => (action) => {
           }, 2000);
         })
         .catch((error) => {
-          console.log('ici');
           handleAPIError(error, store, action.type);
         });
       break;

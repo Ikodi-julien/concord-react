@@ -20,7 +20,6 @@ const Discovery = ({
 }) => {
     {/* if it's a refresh, a rerouting occurs using a path stored previously in sessionStorage */}
     if (isRefresh) {
-      // console.log('on envoi SetPath')
       return (<SetPathnameContainer />)
     }
   
