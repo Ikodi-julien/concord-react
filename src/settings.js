@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 export const BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8002'
-  : 'https://concordapi.ikodi.eu';
+  : 'https://concord.ikodi.eu';
 
 export const AUTH_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:5050'
