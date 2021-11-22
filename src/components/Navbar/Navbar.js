@@ -5,6 +5,7 @@ import NavSearchContainer from 'src/containers/NavSearchContainer';
 import Navmenu from './Navmenu/Navmenu';
 // import LoginModalContainer from 'src/containers/LoginModalContainer';
 import AppInfo from 'src/components/AppInfo/AppInfo';
+import {AUTH_URL} from 'src/settings';
 
 import './navbar.scss';
 import { Button } from 'semantic-ui-react';
@@ -37,7 +38,7 @@ const Navbar = ({
       </Link>
       
       {/* {!isUserLoggued && ( <LoginModalContainer />)} */}
-      {!isUserLoggued && ( <a href="http://localhost:5050?app=concord" ><Button content="S'inscrire / Se connecter" primary/></a>)}
+      {!isUserLoggued && ( <a href={`${AUTH_URL}?app=concord`} ><Button content="S'inscrire / Se connecter" primary/></a>)}
       
       {isUserLoggued && (
         <div className="nav__button__row">
