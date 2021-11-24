@@ -37,19 +37,18 @@ export default (error, store, actionType) => {
   const errorTimer = 2500;
   let errorMsg;
 
-  console.warn('handleAPIError: ', actionType, error.toString());
+  console.warn('Error handled: ', actionType, error.toString());
 
   switch (actionType) {
-    case FETCH_CHANNEL
-    || FETCH_MY_CHANNELS
-    || FETCH_MY_RECOS
-    || FETCH_NAV_DATA
-    || FETCH_MY_PROFILE
-    || UPDATE_PROFILE
-    || UPDATE_CHANNEL_USERS
-    || DELETE_FROM_MY_CHANNELS
-    || UPDATE_AVATAR
-      :
+    case FETCH_CHANNEL:
+    case FETCH_MY_CHANNELS:
+    case FETCH_MY_RECOS:
+    case FETCH_NAV_DATA:
+    case FETCH_MY_PROFILE:
+    case UPDATE_PROFILE:
+    case UPDATE_CHANNEL_USERS:
+    case DELETE_FROM_MY_CHANNELS:
+    case UPDATE_AVATAR:
       if (error.toString().includes('401')) { // Token expired
         store.dispatch(appInfo('Les informations d\'identification ne sont plus valables, vous allez être redirigé vers la page d\'accueil pour vous reconnecter'));
 
@@ -66,32 +65,6 @@ export default (error, store, actionType) => {
         store.dispatch(hideInfos());
       }, errorTimer);
 
-      break;
-
-    case SUBMIT_LOGIN_FORM:
-
-      if (error.toString().includes('401')) errorMsg = 'Désolé, on ne connait pas ces identifiants';
-      if (error.toString().includes('412')) errorMsg = 'Il manque une information, email ? password ?';
-      if (error.toString().includes('409')) errorMsg = "Informations d'identification invalides";
-      if (errorMsg) {
-        store.dispatch(loginError(errorMsg));
-      }
-      else if (error.response.data) {
-        store.dispatch(loginError(error.response.data.message));
-      }
-      else {
-        store.dispatch(loginError(error.toString()));
-      }
-      setTimeout(() => {
-        store.dispatch(hideInfos());
-      }, errorTimer);
-      break;
-
-    case SUBMIT_SIGNUP_FORM:
-      store.dispatch(signupError(error.response.data.message));
-      setTimeout(() => {
-        store.dispatch(hideInfos());
-      }, errorTimer);
       break;
 
     case DISCONNECT_USER:

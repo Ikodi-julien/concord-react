@@ -13,6 +13,7 @@ import {
   SIGNUP_ERROR,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
+  DISCONNECT_USER,
   DISCONNECT_USER_SUCCESS,
   DISCONNECT_USER_ERROR,
   FORGOT_PASS_INFO,
@@ -127,12 +128,8 @@ const reducer = (stateActuel = authState, action = {}) => {
       };
 
     case DISCONNECT_USER_ERROR:
-      return {
-        ...authState,
-        isUserLoggued: false,
-      };
-
     case DISCONNECT_USER_SUCCESS:
+    case DISCONNECT_USER:
       return {
         ...authState,
         isUserLoggued: false,

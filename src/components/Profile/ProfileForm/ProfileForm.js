@@ -51,11 +51,11 @@ export default ({
     <div className="profile__authfieldscontainer">
       <div className="profile__formcolumn">
         <div className="profile__formrow">
-          <label classnName="profile__formrow__label">Pseudo:</label>
+          <label className="profile__formrow__label">Pseudo:</label>
           <div>{nicknameInput}</div>
         </div>
         <div className="profile__formrow">
-          <label classnName="profile__formrow__label">Email:</label>
+          <label className="profile__formrow__label">Email:</label>
           <div>{emailInput}</div>
         </div>
       </div>
