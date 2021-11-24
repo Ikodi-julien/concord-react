@@ -1,0 +1,75 @@
+@use 'src/styles/vars'as v;
+
+.message {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 5px;
+  border-bottom: 1px solid v.$base-color;
+
+  &.--me {
+    // justify-content: flex-end;
+  }
+
+  &__image {
+    width: 50px;
+    height: 50px;
+  }
+
+  &__data {}
+
+  &__options {
+    display: flex;
+    padding-top: 4px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__nickname,
+  &__time {
+    color: v.$base-color-lightblue;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0 10px;
+
+    &.--me {
+      color: v.$base-color-green;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.9em;
+    }
+  }
+
+  &__time {
+    color: v.$base-color-grey;
+    font-weight: 400;
+    font-size: 0.9em;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8em;
+    }
+  }
+
+  &__content {
+    & .ql-editor {
+      padding: 2px 10px;
+
+      & img {
+        max-width: 150px;
+        max-height: 250px;
+      }
+    }
+
+    &__text {
+      color: v.$base-color-light;
+
+      &.--me {
+        //   background-color: v.$color-message-me;
+        //   color: v.$color-message-me-dark;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@use 'src/styles/vars'as v;
+
+.ui.segment {
+  margin: 0;
+  border: none;
+}
+
+.ui.button {
+  margin: 1em;
+}
+
+.ui.placeholder.segment>a {
+  display: flex;
+  justify-content: center;
+}
+
+.ui.placeholder>:before {
+  background-color: transparent;
+}
+
+.btn {
+  width: 100px;
+  height: 48px;
+  border: 1px solid rgba(34, 36, 38, .15);
+  border-radius: 5px;
+  cursor: pointer;
+
+  &.row {
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &.google {
+    background: center/cover white no-repeat url('src/assets/Google-Logo.wine.svg');
+  }
+
+  &.github {
+    background: center/contain white no-repeat url('src/assets/github-logo.png');
+  }
+}

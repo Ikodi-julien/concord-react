@@ -1,0 +1,56 @@
+@use 'src/styles/vars'as v;
+
+.profile__avatar {
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    max-width: 700px;
+    padding: 20px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    & img {
+      height: 50px;
+      width: 50px;
+      margin: 8px;
+    }
+
+    & label {
+      color: v.$base-color-light;
+    }
+  }
+
+  &__container {
+    margin: 0 100px 0 0;
+    background-color: v.$base-color-light;
+    border-radius: 8px;
+    width: v.$avatar-editor-width;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__preview {
+    display: flex;
+
+    &__options {
+      padding: 8px;
+
+      &__time {
+        color: v.$base-color-grey;
+      }
+
+      &__pseudo {
+        color: v.$base-color-light;
+      }
+    }
+  }
+
+  &__submit {
+    margin-left: 20px;
+  }
+}

@@ -1,0 +1,40 @@
+@use 'src/styles/vars'as v;
+
+.landing {
+  position: relative;
+  height: calc(100vh - (#{v.$nav-height + v.$footer-height}));
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(217deg, rgba(14, 6, 6, 0.8), rgba(37, 21, 255, 0) 70.71%),
+    linear-gradient(127deg, rgba(29, 0, 4, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%);
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/concord-backgroundimg-wide.png");
+  background-size: 190vw;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  animation: swapBackground 20s ease-in-out 10s forwards infinite;
+}
+
+@keyframes swapBackground {
+  0% {
+    background-position-x: left;
+  }
+
+  5% {
+    background-position-x: right;
+  }
+
+  55% {
+    background-position-x: right;
+  }
+
+  60% {
+    background-position-x: left;
+  }
+}

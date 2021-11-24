@@ -1,0 +1,126 @@
+@use 'src/styles/vars'as v;
+@use "sass:math";
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: v.$nav-height;
+  background-color: v.$base-color-darkest;
+  color: v.$base-color-light;
+
+  &__logo {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    height: v.$nav-height * 0.6;
+    width: v.$nav-height * 2.5;
+    background: center/contain no-repeat url('src/assets/concord_logo_blue.png');
+    // font-family: 'Permanent Marker', cursive;
+    // color: v.$base-color-dark;
+    // font-size: 2.1em;
+
+    @media screen and (max-width:700px) {
+      display: none;
+    }
+  }
+
+  & .ui {
+
+    &.search,
+    &.selection.dropdown {
+      margin-right: 30px;
+      z-index: v.$z-index-middle;
+    }
+  }
+
+  &__loginButton {
+    border: none;
+    background-color: v.$base-color-darker;
+    color: v.$base-color-light;
+    padding: 10px;
+    margin-right: math.div(v.$nav-height, 4);
+  }
+
+  &__search {
+    position: relative;
+    display: flex;
+    width: auto;
+    align-items: center;
+    z-index: v.$z-index-middle-front;
+
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      align-items: flex-start;
+      top: v.$nav-height;
+      left: 0;
+      width: 100%;
+    }
+
+    &__touchzone {
+      display: flex;
+      align-items: center;
+
+      position: absolute;
+      align-items: flex-start;
+      top: v.$search-height;
+      left: 0;
+      width: 100%;
+      height: 70vh;
+    }
+
+    &__container {
+      display: flex;
+      position: relative;
+      left: 0;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+
+      @media screen and (max-width: 768px) {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: v.$search-height;
+        flex-direction: column;
+        background-color: v.$base-color;
+        padding: 10px;
+
+        &__select,
+        &__search {
+          padding-bottom: 20px;
+          display: flex;
+          justify-content: center;
+        }
+
+        &__search {
+          z-index: v.$z-index-middle-front;
+        }
+      }
+    }
+  }
+
+  &__button__row {
+    position: relative;
+    display: flex;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+  }
+
+  &__hamburger,
+  &__search__button {
+    border: none;
+    background-color: transparent;
+    color: v.$base-color-light;
+    padding: math.div(v.$nav-height - 29px, 2);
+    font-size: v.$size-font-awesome;
+  }
+}

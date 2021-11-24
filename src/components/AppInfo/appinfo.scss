@@ -1,0 +1,19 @@
+@use 'src/styles/vars'as v;
+
+.errorinfo {
+  position: fixed;
+  top: 50px;
+  left: -100vw;
+  width: 300px;
+  padding: 20px;
+  border: 2px dashed v.$base-color-orange;
+  background-color: v.$base-color-ivory;
+  color: v.$base-color-dark;
+  font-size: 1.3em;
+  font-weight: 600;
+
+  &.--visible {
+    left: 20px;
+    z-index: 2000;
+  }
+}

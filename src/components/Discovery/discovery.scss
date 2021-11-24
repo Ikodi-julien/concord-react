@@ -1,0 +1,36 @@
+@use 'src/styles/vars'as v;
+
+.discovery {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: v.$base-color-dark;
+  color: v.$base-color-light;
+
+  &__container {
+
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1200px;
+    height: calc(100vh - #{(v.$nav-height + v.$footer-height)});
+
+    @media screen and (max-width: 768px) {
+      width: 95%;
+    }
+  }
+
+  &__title {
+    padding: 10px 0 0 10px;
+  }
+
+  &__subtitle {
+    padding-left: 10px;
+  }
+
+  &__selectcontainer {
+    padding: 10px;
+  }
+}

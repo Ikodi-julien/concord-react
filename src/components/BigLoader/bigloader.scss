@@ -1,0 +1,11 @@
+@use 'src/styles/vars'as v;
+
+.bigloader {
+  width: 100%;
+  height: 100%;
+  background-color: v.$base-color-darker;
+
+  .ui.dimmer {
+    z-index: 0;
+  }
+}

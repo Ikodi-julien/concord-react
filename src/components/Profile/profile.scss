@@ -1,0 +1,106 @@
+@use 'src/styles/vars'as v;
+
+.profile {
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: v.$base-color-dark;
+  color: v.$base-color-light;
+
+  & .ui.segment {
+    background-color: v.$base-color-dark;
+    color: v.$base-color-light;
+
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
+  }
+
+  &__container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+    max-width: 1200px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 0;
+    }
+
+    & .ui.form input[type='email'],
+    & .ui.form input[type='text'] {
+      border: none;
+      border-bottom: 1px solid v.$base-color-grey;
+    }
+
+    & .ui.form .field {
+      margin: 0;
+    }
+  }
+
+  &__title {
+    padding: 20px;
+
+    @media screen and (max-width: 500px) {
+      padding: 8px;
+
+    }
+  }
+
+  &__formrow {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+      align-items: baseline;
+    }
+
+    & label {
+      width: 100px;
+      font-weight: 600;
+    }
+  }
+
+  &__formcolumn {
+    display: block;
+    margin-right: 20px;
+    ;
+  }
+
+  &__inputrow {
+    display: flex;
+    align-items: center;
+
+    &.--tags {
+      @media screen and (max-width: 500px) {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+
+  &__tagscontainer,
+  &__authfieldscontainer {
+    padding: 20px;
+    max-width: 600px;
+    max-height: 50vh;
+    margin-bottom: 10px;
+  }
+
+  &__authfieldscontainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__dropdown {
+    margin-right: 20px;
+  }
+}

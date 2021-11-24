@@ -1,0 +1,137 @@
+@use 'src/styles/vars'as v;
+
+
+.cardbox__listcontainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-evenly;
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background-color: v.$base-color-darker;
+  border-radius: v.$border-radius;
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+    margin-bottom: 0.5em;
+  }
+
+  .ui.cards {
+    width: 100%;
+    padding: 5px;
+    margin: 0;
+
+    &>.ui.card {
+      position: relative;
+      width: v.$card-width;
+      height: v.$card-height;
+      margin: 0.4em 0.5em;
+      background-color: v.$base-color-light;
+
+      & .cardbox {
+        &__button {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          border: none;
+          background-color: transparent;
+          z-index: v.$z-index-low;
+          color: v.$base-color-grey;
+          cursor: grabbing;
+        }
+
+        &__title {
+          &__row {
+            display: flex;
+            justify-content: space-between;
+            height: v.$card-header-height;
+          }
+
+          &__text {
+            display: flex;
+            padding: 3px 0 0 5px;
+            align-items: center;
+            color: v.$base-color-blue;
+            font-size: 1.2em;
+            font-weight: 700;
+            overflow: hidden;
+          }
+        }
+
+        &__emptyspace {
+          width: 40px;
+        }
+
+        &__tags {
+          display: flex;
+          align-items: center;
+          font-size: 0.7em;
+          height: v.$card-tags-height;
+          overflow: hidden;
+        }
+
+        &__content {
+          width: 100%;
+          display: flex;
+          height: v.$card-height - v.$card-header-height - v.$card-footer-height - v.$card-tags-height;
+
+          &__image {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            & img {
+              width: 100%;
+              min-width: 100%;
+            }
+          }
+
+          &__plot {
+            color: v.$base-color-dark;
+            font-size: 0.8em;
+            font-weight: 600;
+            width: 50%;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            background-color: white;
+          }
+        }
+
+        &__cardtag {
+          padding: 3px;
+          color: v.$base-color-dark;
+          background-color: white;
+          margin: 2px;
+          line-height: 11px;
+          border: 1px solid v.$base-color-grey;
+          border-radius: v.$border-radius;
+
+          &.--matching_tag {
+            color: v.$base-color-orange;
+            font-weight: bold;
+          }
+
+          @media screen and (max-width: 768px) {
+            font-size: 0.8em;
+            padding: 0 5px 2px 5px;
+          }
+        }
+
+        &__footer {
+          display: flex;
+          height: v.$card-footer-height;
+          justify-content: space-between;
+          align-items: center;
+          color: v.$base-color-dark;
+
+          &__rank {}
+
+          &__year {}
+
+          &__usercount {}
+        }
+      }
+    }
+  }
+}

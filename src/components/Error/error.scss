@@ -1,0 +1,13 @@
+@use 'src/styles/vars'as v;
+
+
+.error {
+  width: 100%;
+  height: 100%;
+  background: center/contain no-repeat url('src/assets/error.png');
+
+  &__title {
+    font-size: 3em;
+    text-align: center;
+  }
+}
