@@ -27,6 +27,7 @@ import avatarDefault from 'src/assets/avatarDefault';
 
 const userState = {
   id: -1,
+  authid: -1,
   nickname: '',
   password: '',
   email: '',
@@ -52,7 +53,7 @@ const reducer = (stateActuel = userState, action = {}) => {
 
       return {
         ...stateActuel,
-        id: action.user.id,
+        authid: action.user.id,
         nickname: action.user.nickname,
         nicknameInput: action.user.nickname,
         password: '',
@@ -112,6 +113,7 @@ const reducer = (stateActuel = userState, action = {}) => {
 
       return {
         ...stateActuel,
+        id: action.data.id,
         avatar: action.data.avatar ? action.data.avatar : avatarDefault,
         tags: action.data.tags,
         tagDropDownValue: action.data.tags.map((tag) => tag.name),
@@ -167,6 +169,9 @@ const reducer = (stateActuel = userState, action = {}) => {
       return {
         ...stateActuel,
         ...action.value,
+        id: stateActuel.id,
+        authid: action.value.id,
+        password: '',
         nicknameInput: action.value.nickname,
         emailInput: action.value.email,
       };
