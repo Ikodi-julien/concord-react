@@ -217,7 +217,7 @@ export default (store) => (next) => (action) => {
     case DELETE_FROM_MY_CHANNELS:
       // console.log(action);
       axios
-        .delete(`${BASE_URL}/me/channels/${action.value}`, {
+        .delete(`${BASE_URL}/me/channels/${action.value}?userid=${userId}`, {
           withCredentials: true,
         })
         .then((res) => {
