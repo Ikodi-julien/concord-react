@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import { Button, Header, Segment, Divider, Modal } from 'semantic-ui-react'
+import React, { useState } from "react";
+import { Button, Header, Segment, Divider, Modal } from "semantic-ui-react";
 
-import StoreUrl from 'src/components/StoreUrl/StoreUrl'
-import NavbarContainer from 'src/containers/NavbarContainer'
-import PasswordModalContainer from 'src/containers/PasswordModalContainer'
-import AvatarContainer from 'src/containers/AvatarContainer'
-import ProfileFormContainer from 'src/containers/ProfileFormContainer'
-import Footer from 'src/components/Footer/Footer'
+import StoreUrl from "src/components/StoreUrl/StoreUrl";
+import NavbarContainer from "src/containers/NavbarContainer";
+import PasswordModalContainer from "src/containers/PasswordModalContainer";
+import AvatarContainer from "src/containers/AvatarContainer";
+import ProfileFormContainer from "src/containers/ProfileFormContainer";
+import Footer from "src/components/Footer/Footer";
 
-import './profile.scss'
+import "./profile.scss";
 
 const Profile = ({ submitDeleteAuthAccount }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const handleDeleteAccount = () => {
-    setOpen(false)
-    submitDeleteAuthAccount()
-  }
+    setOpen(false);
+    submitDeleteAuthAccount();
+  };
   /* Profile datas are fetch from ProfileForm component */
   return (
     <section className="profile">
@@ -24,25 +24,27 @@ const Profile = ({ submitDeleteAuthAccount }) => {
 
       <div className="profile__container">
         {/* <Segment> */}
-          <ProfileFormContainer />
+        <ProfileFormContainer />
         {/* </Segment> */}
         <Divider />
         <AvatarContainer />
         <Divider />
-        <Segment>
+        <Segment className="profile__pwdAndDelete">
           <PasswordModalContainer />
 
           <Modal
             onClose={() => setOpen(false)}
             onOpen={() => setOpen(true)}
             open={open}
-            trigger={<Button>Supprimer mon compte</Button>}>
+            trigger={<Button>Supprimer mon compte</Button>}
+          >
             <Modal.Header>Supprimer mon compte</Modal.Header>
             <Modal.Content>
               <Modal.Description>
                 <p>Vous êtes sûr de vouloir supprimer votre compte ?</p>
                 <p>
-                  Vos informations personnelles seront supprimées pour toutes les applications IKODI... envolées, disparues, pfuit...
+                  Vos informations personnelles seront supprimées pour toutes
+                  les applications IKODI... envolées, disparues, pfuit...
                 </p>
               </Modal.Description>
             </Modal.Content>
@@ -63,7 +65,7 @@ const Profile = ({ submitDeleteAuthAccount }) => {
       </div>
       <Footer />
     </section>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
