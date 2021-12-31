@@ -60,11 +60,11 @@ export default (error, store, actionType) => {
         }, errorTimer);
         break;
       }
-      if (error.toString().includes("Cannot read properties of undefined ")) {
-        // this is a first login after new create account, i need to do better, i know
-        // TODO
-        break;
-      }
+      // if (error.toString().includes("Cannot read properties of undefined ")) {
+      //   // this is a first login after new create account, i need to do better, i know
+      //   // TODO
+      //   break;
+      // }
 
       store.dispatch(
         appInfo(`Le serveur a renvoyé une erreur: ${error.toString()}`)
