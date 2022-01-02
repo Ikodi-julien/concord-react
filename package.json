@@ -1,9 +1,9 @@
 {
   "name": "react-modele",
-  "scripts":
-  {
-    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js --port 8001",
-    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production webpack serve --config config/webpack.dev.js --port 8001",
+    "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js --port 8001",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js && rm -rfv ../concord-API/app/public/* && cp -rv dist/* ../concord-API/app/public",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js",
     "clean": "rm -rf dist",

@@ -1,6 +1,7 @@
-import axios from 'axios';
-import { BASE_URL } from 'src/settings';
-import handlAPIErrors from 'src/selectors/handleAPIError';
+/* eslint-disable quotes */
+import axios from "axios";
+import { BASE_URL } from "src/settings";
+import handlAPIErrors from "src/selectors/handleAPIError";
 import {
   FETCH_MY_PROFILE,
   fetchMyProfileSuccess,
@@ -8,14 +9,14 @@ import {
   updateProfileSuccess,
   UPDATE_ME_TAGS,
   updateTagsSuccess,
-} from 'src/actions/profileActions';
+} from "src/actions/profileActions";
 import {
   FETCH_CHANNEL,
   fetchChannelSuccess,
   SOCKET_JOIN_CONFIRM,
   UPDATE_CHANNEL_USERS,
   updateChannelUsersSuccess,
-} from 'src/actions/channelActions';
+} from "src/actions/channelActions";
 import {
   FETCH_MY_CHANNELS,
   fetchMyChannels,
@@ -25,22 +26,21 @@ import {
   DELETE_FROM_MY_CHANNELS,
   UPDATE_AVATAR,
   DELETE_CONCORD_ACCOUNT,
-} from 'src/actions/userActions';
+} from "src/actions/userActions";
 import {
   FETCH_NAV_DATA,
   fetchNavDataError,
   fetchNavDataSuccess,
   appInfo,
   hideInfos,
-} from 'src/actions/appActions';
-import handleAPIError from '../selectors/handleAPIError';
-import { disconnectUserSuccess } from '../actions/authActions';
-import { fetchMyProfile } from '../actions/profileActions';
+} from "src/actions/appActions";
+import handleAPIError from "../selectors/handleAPIError";
+import { disconnectUserSuccess } from "../actions/authActions";
+import { fetchMyProfile } from "../actions/profileActions";
 
 export default (store) => (next) => (action) => {
-  const {
-    tagDropDownIds, avatar,
-  } = store.getState().user;
+  const { tagDropDownIds, avatar } = store.getState().user;
+  const userId = store.getState().user.id;
   const { id } = store.getState().channel;
 
   switch (action.type) {
@@ -50,7 +50,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         url: `${BASE_URL}/channel/${action.channelId}`,
-        method: 'GET',
+        method: "GET",
         withCredentials: true,
       })
         .then((res) => {
@@ -67,8 +67,8 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${BASE_URL}/me/channels`,
-        method: 'GET',
+        url: `${BASE_URL}/me/channels?userid=${userId}`,
+        method: "GET",
         withCredentials: true,
       })
         .then((res) => {
@@ -85,8 +85,8 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${BASE_URL}/me/recommended`,
-        method: 'GET',
+        url: `${BASE_URL}/me/recommended?userid=${userId}`,
+        method: "GET",
         withCredentials: true,
       })
         .then((res) => {
@@ -104,14 +104,14 @@ export default (store) => (next) => (action) => {
       // Fetch tags then channels
       axios({
         url: `${BASE_URL}/tags/channels`,
-        method: 'GET',
+        method: "GET",
         withCredentials: true,
       })
         .then((res) => {
           const tags = res.data;
           axios({
             url: `${BASE_URL}/channels`,
-            method: 'GET',
+            method: "GET",
             withCredentials: true,
           }).then((response) => {
             const channels = response.data;
@@ -149,12 +149,12 @@ export default (store) => (next) => (action) => {
           {},
           {
             withCredentials: true,
-          },
+          }
         )
         .then((res) => {
           // console.log(res.data);
           store.dispatch(updateProfileSuccess());
-          store.dispatch(appInfo('profil mis à jour'));
+          store.dispatch(appInfo("profil mis à jour"));
           setTimeout(() => {
             store.dispatch(hideInfos());
           }, 2000);
@@ -171,17 +171,18 @@ export default (store) => (next) => (action) => {
 
       axios
         .put(
-          `${BASE_URL}/me/tags`, {
+          `${BASE_URL}/me/tags`,
+          {
             tags: tagDropDownIds,
           },
           {
             withCredentials: true,
-          },
+          }
         )
         .then((res) => {
           // console.log(res.data);
           store.dispatch(fetchMyProfile());
-          store.dispatch(appInfo('profil mis à jour'));
+          store.dispatch(appInfo("profil mis à jour"));
           setTimeout(() => {
             store.dispatch(hideInfos());
           }, 2000);
@@ -202,7 +203,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         url: `${BASE_URL}/channel/${id}`,
-        method: 'GET',
+        method: "GET",
         withCredentials: true,
       })
         .then((res) => {
@@ -217,7 +218,7 @@ export default (store) => (next) => (action) => {
     case DELETE_FROM_MY_CHANNELS:
       // console.log(action);
       axios
-        .delete(`${BASE_URL}/me/channels/${action.value}`, {
+        .delete(`${BASE_URL}/me/channels/${action.value}?userid=${userId}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -241,11 +242,11 @@ export default (store) => (next) => (action) => {
           },
           {
             withCredentials: true,
-          },
+          }
         )
         .then((res) => {
           // console.log(res.data);
-          store.dispatch(appInfo('avatar mis à jour'));
+          store.dispatch(appInfo("avatar mis à jour"));
           setTimeout(() => {
             store.dispatch(hideInfos());
           }, 2000);
