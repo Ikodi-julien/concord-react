@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import axios from "axios";
 import { BASE_URL } from "src/settings";
 import handlAPIErrors from "src/selectors/handleAPIError";
@@ -84,7 +85,7 @@ export default (store) => (next) => (action) => {
       next(action);
 
       axios({
-        url: `${BASE_URL}/me/recommended`,
+        url: `${BASE_URL}/me/recommended?userid=${userId}`,
         method: "GET",
         withCredentials: true,
       })
