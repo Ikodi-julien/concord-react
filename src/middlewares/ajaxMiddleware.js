@@ -65,6 +65,7 @@ export default (store) => (next) => (action) => {
     case FETCH_MY_CHANNELS:
       // console.log(action);
       next(action);
+      if (userId === -1) break;
 
       axios({
         url: `${BASE_URL}/me/channels?userid=${userId}`,
@@ -83,6 +84,7 @@ export default (store) => (next) => (action) => {
     case FETCH_MY_RECOS:
       // console.log(action);
       next(action);
+      if (userId === -1) break;
 
       axios({
         url: `${BASE_URL}/me/recommended?userid=${userId}`,
