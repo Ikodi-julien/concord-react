@@ -5,7 +5,7 @@ import {
   DISCONNECT_USER_SUCCESS,
   DISCONNECT_USER_ERROR,
   UPDATE_AUTH_SUCCESS,
-} from 'src/actions/authActions';
+} from "src/actions/authActions";
 import {
   UPDATE_PROFILE,
   UPDATE_PROFILE_SUCCESS,
@@ -15,34 +15,34 @@ import {
   TOGGLE_ACTIVE_BTN,
   FETCH_MY_PROFILE_SUCCESS,
   // UPDATE_ME_TAGS_SUCCESS,
-} from 'src/actions/profileActions';
+} from "src/actions/profileActions";
 import {
   GET_USER_SUCCESS,
   FETCH_MY_CHANNELS_SUCCESS,
   FETCH_MY_RECOS_SUCCESS,
   SET_AVATAR,
-} from 'src/actions/userActions';
+} from "src/actions/userActions";
 
-import avatarDefault from 'src/assets/avatarDefault';
+import avatarDefault from "src/assets/avatarDefault";
 
 const userState = {
   id: -1,
   authid: -1,
-  nickname: '',
-  password: '',
-  email: '',
+  nickname: "",
+  password: "",
+  email: "",
   myChannelLinks: [],
   tags: [],
   noTagAlert: 0,
   channels: [],
   recommendedChannels: [],
-  nicknameInput: '',
-  emailInput: '',
+  nicknameInput: "",
+  emailInput: "",
   nicknameInputIsActive: false,
   emailInputIsActive: false,
   tagDropDownValue: [],
   tagDropDownIds: [],
-  avatarFile: '',
+  avatarFile: "",
   avatar: avatarDefault,
 };
 
@@ -56,7 +56,7 @@ const reducer = (stateActuel = userState, action = {}) => {
         authid: action.user.id,
         nickname: action.user.nickname,
         nicknameInput: action.user.nickname,
-        password: '',
+        password: "",
         email: action.user.email,
         emailInput: action.user.email,
       };
@@ -116,8 +116,12 @@ const reducer = (stateActuel = userState, action = {}) => {
         id: action.data.id,
         avatar: action.data.avatar ? action.data.avatar : avatarDefault,
         tags: action.data.tags,
-        tagDropDownValue: action.data.tags.map((tag) => tag.name),
-        tagDropDownIds: action.data.tags.map((tag) => tag.id),
+        tagDropDownValue: action.data.tags
+          ? action.data.tags.map((tag) => tag.name)
+          : [],
+        tagDropDownIds: action.data.tags
+          ? action.data.tags.map((tag) => tag.id)
+          : [],
       };
 
     case SET_TAGS_DROPDOWN_VALUE:
@@ -171,7 +175,7 @@ const reducer = (stateActuel = userState, action = {}) => {
         ...action.value,
         id: stateActuel.id,
         authid: action.value.id,
-        password: '',
+        password: "",
         nicknameInput: action.value.nickname,
         emailInput: action.value.email,
       };
